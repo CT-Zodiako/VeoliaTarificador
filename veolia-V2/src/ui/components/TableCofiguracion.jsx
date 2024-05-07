@@ -50,6 +50,7 @@ export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
                                                             placeholder='Buscar'
                                                             value={filtro} 
                                                             onChange={onFiltroTabla}
+                                                            style={{ width: '5rem' }}
                                                         />
                                                     </div>
                                                 }

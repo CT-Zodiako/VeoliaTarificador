@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TabTable } from '../../ui/components/TabTable'
 import { TableCofiguracion } from '../../ui/components/TableCofiguracion'
+import { dataResmunenFormatosFormularios19, dataResmunenFormatosFormularios23, dataResmunenFormatosFormularios24, dataResmunenFormatosFormularios35, dataResmunenFormatosFormularios36 } from '../service/ResemunFormatosFormulariosService';
 
 export const ResumenFormatosFormularios = () => {
     const [pestañaActiva, setPestañaActiva] = useState(0); // Inicialmente la primera pestaña está activa
@@ -9,14 +10,12 @@ export const ResumenFormatosFormularios = () => {
 
 
     const titulosTabs = [
-        { titulo: 'Formato 19', datos: dataFormato19 },
-        { titulo: 'Formato 23', datos: dataFormato23 },
-        { titulo: 'Formato 24', datos: dataFormato24 },
-        { titulo: 'Formato 35', datos: dataFormato35 },
-        { titulo: 'Formato 36', datos: dataFormato36 },
-        { titulo: 'Resumen Variables', datos: [] }
+        { titulo: 'Formato 19', datos: dataResmunenFormatosFormularios19 },
+        { titulo: 'Formato 23', datos: dataResmunenFormatosFormularios23},
+        { titulo: 'Formato 24', datos: dataResmunenFormatosFormularios24},
+        { titulo: 'Formato 35', datos: dataResmunenFormatosFormularios35},
+        { titulo: 'Formato 36', datos: dataResmunenFormatosFormularios36}
 
-        // Agrega más pestañas si es necesario
     ];
 
     const handleClickTab = (index, titulo) => {

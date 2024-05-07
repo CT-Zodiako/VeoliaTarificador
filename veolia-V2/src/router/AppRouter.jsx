@@ -3,6 +3,7 @@ import { VeoliaApp } from "../VeoliaApp";
 import { LoginPage } from "../auth/pages/LoginPage";
 import { APSpage } from "../auth/pages/APSpage";
 import { FormatosFormularios } from "../reporteadorSui/pages/FormatosFormularios";
+import { ResumenFormatosFormularios } from "../reporteadorSui/pages/ResumenFormatosFormularios";
 
 
 export const router = createBrowserRouter([
@@ -22,6 +23,11 @@ export const router = createBrowserRouter([
                 element: <FormatosFormularios />,
                 errorElement: <h1>error</h1>,
             },
+            {
+                path: "/resmunenFormatosFormularios",
+                element: <ResumenFormatosFormularios />,
+                errorElement: <h1>error</h1>,
+            }
         ]
 
     },
