@@ -7,6 +7,8 @@ import { ResumenFormatosFormularios } from "../reporteadorSui/pages/ResumenForma
 import { Reversiones } from "../reporteadorSui/pages/Reversiones";
 import { UsuariosPage } from "../auth/pages/UsuarioPage";
 import { InformesProyecciones } from "../informeProyecciones/pages/InformesProyecciones";
+import { DetalladoCosto } from "../informesGerenciales/pages/DetalladoCosto";
+import { DataDetalladoSubAport } from "../informesGerenciales/pages/DetalladoSubAport";
 
 
 export const router = createBrowserRouter([
@@ -19,6 +21,17 @@ export const router = createBrowserRouter([
             {
                 path: "/aps",
                 element: <APSpage />,
+                errorElement: <h1>error</h1>,
+            },
+            //Informes Gerenciales
+            {
+                path: "/detalladoCostos",
+                element: <DetalladoCosto />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/dataDetalladoSubAport",
+                element: <DataDetalladoSubAport />,
                 errorElement: <h1>error</h1>,
             },
 

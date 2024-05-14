@@ -15,10 +15,8 @@ export const InformesProyecciones = () => {
 
         { titulo: 'FACT Ene', datos: dataEnergia },
         { titulo: 'FACT Acu', datos: dataAcueducto },
-        { titulo: 'Costos', datos: dataCostos},
-        {titulo: 'Tarifas', datos: dataTarifas}
-
-        // Agrega más pestañas si es necesario
+        { titulo: 'Costos', datos: dataCostos },
+        { titulo: 'Tarifas', datos: dataTarifas }
     ];
 
     const handleClickTab = (index, titulo) => {
