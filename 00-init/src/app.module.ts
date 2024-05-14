@@ -5,7 +5,6 @@ import { AuthModule } from './auth/auth.module';
 import { ApsModule } from './aps/aps.module';
 import { EmpresasModule } from './empresas/empresas.module';
 import { RellenosModule } from './rellenos/rellenos.module';
-import { IndicesCraModule } from './indices-cra/indices-cra.module';
 import { SubsidiosContribucionesModule } from './subsidios-contribuciones/subsidios-contribuciones.module';
 import { FacturacionInformesComercialesModule } from './facturacion-informes-comerciales/facturacion-informes-comerciales.module';
 import { RevercionesInformesComercialesModule } from './reverciones-informes-comerciales/reverciones-informes-comerciales.module';
@@ -22,6 +21,7 @@ import { FormatosFormulariosModule } from './reporteador-sui/formatos-formulario
 import { DashboardReporteadorModule } from './reporteador-sui/dashboard/dashboard.module';
 import { ResumenFormatosFormulariosModule } from './reporteador-sui/resumen-formatos-formularios/resumen-formatos-formularios.module';
 import { ReversionesModule } from './reporteador-sui/reversiones/reversiones.module';
+import { IndiceCraModule} from './suministros/indice-cra/indice-cra.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -38,7 +38,6 @@ import { ReversionesModule } from './reporteador-sui/reversiones/reversiones.mod
     ApsModule,
     EmpresasModule,
     RellenosModule,
-    IndicesCraModule,
     SubsidiosContribucionesModule,
     FacturacionInformesComercialesModule,
     RevercionesInformesComercialesModule,
@@ -55,6 +54,7 @@ import { ReversionesModule } from './reporteador-sui/reversiones/reversiones.mod
     DashboardReporteadorModule,
     ResumenFormatosFormulariosModule,
     ReversionesModule,
+    IndiceCraModule,
   ],
 })
 export class AppModule {}
