@@ -1,24 +1,22 @@
 import { useState } from "react"
-import { ApsSelector } from "../../ui/components/ApsSelector"
 import { TabTable } from "../../ui/components/TabTable"
-import { dataFormato19, dataFormato23, dataFormato24, dataFormato35, dataFormato36 } from "../service/reporteadorSuiService"
 import { TableCofiguracion } from "../../ui/components/TableCofiguracion"
+import { dataAcueducto, dataEnergia, dataCostos, dataTarifas } from "../service/informesProyeccionesService"
 
 
 
-export const FormatosFormularios = () => {
+export const InformesProyecciones = () => {
 
     const [pestañaActiva, setPestañaActiva] = useState(0); 
     const [titulo, setTitulo] = useState('')
 
 
     const titulosTabs = [
-        { titulo: 'Formulario 19', datos: dataFormato19 },
-        { titulo: 'Formulario 23', datos: dataFormato23 },
-        { titulo: 'Formulario 24', datos: dataFormato24 },
-        { titulo: 'Formulario 35', datos: dataFormato35 },
-        { titulo: 'Formulario 36', datos: dataFormato36 },
-        { titulo: 'Resumen Variables', datos: [] }
+
+        { titulo: 'FACT Ene', datos: dataEnergia },
+        { titulo: 'FACT Acu', datos: dataAcueducto },
+        { titulo: 'Costos', datos: dataCostos},
+        {titulo: 'Tarifas', datos: dataTarifas}
 
         // Agrega más pestañas si es necesario
     ];

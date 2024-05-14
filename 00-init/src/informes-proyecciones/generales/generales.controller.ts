@@ -21,7 +21,7 @@ export class GeneralesController {
 
   @Get('acueducto')
   acueducto(@Body() consultaDTO: ConsultaDTO) {
-    return this.generalesService.getEnergia(consultaDTO);
+    return this.generalesService.getAcueducto(consultaDTO);
   }
 
   @Get('costos')

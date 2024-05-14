@@ -4,6 +4,9 @@ import { LoginPage } from "../auth/pages/LoginPage";
 import { APSpage } from "../auth/pages/APSpage";
 import { FormatosFormularios } from "../reporteadorSui/pages/FormatosFormularios";
 import { ResumenFormatosFormularios } from "../reporteadorSui/pages/ResumenFormatosFormularios";
+import { Reversiones } from "../reporteadorSui/pages/Reversiones";
+import { UsuariosPage } from "../auth/pages/UsuarioPage";
+import { InformesProyecciones } from "../informeProyecciones/pages/InformesProyecciones";
 
 
 export const router = createBrowserRouter([
@@ -12,12 +15,14 @@ export const router = createBrowserRouter([
         element: <VeoliaApp />,
         errorElement: <h1>error</h1>,
         children: [
+            // configuracion
             {
                 path: "/aps",
                 element: <APSpage />,
                 errorElement: <h1>error</h1>,
             },
 
+            //Reporteador Sui
             {
                 path: "/formatosFormularios",
                 element: <FormatosFormularios />,
@@ -26,6 +31,18 @@ export const router = createBrowserRouter([
             {
                 path: "/resmunenFormatosFormularios",
                 element: <ResumenFormatosFormularios />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/reversiones",
+                element: <Reversiones />,
+                errorElement: <h1>error</h1>,
+            },
+            
+            // Informes Proyecciones
+            {
+                path: "/informesProyecciones",
+                element: <InformesProyecciones />,
                 errorElement: <h1>error</h1>,
             }
         ]

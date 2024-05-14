@@ -46,6 +46,7 @@ export const Menu = () => {
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/aps">APS</Link></li>
+                                    <li><Link className="dropdown-item" to="/usuarios">Usuarios</Link></li>
                                 </ul>
                             </li>
 
@@ -57,6 +58,18 @@ export const Menu = () => {
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/formatosFormularios">Formatos y Formularios</Link></li>
                                     <li><Link className="dropdown-item" to="/resmunenFormatosFormularios">Resumen Formatos y Formularios</Link></li>
+                                    <li><Link className="dropdown-item" to="/reversiones">Reversiones</Link></li>
+                                </ul>
+                            </li>
+
+
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                    Informes Proyecciones
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/informesProyecciones">Formatos y Formularios</Link></li>
+                        
                                 </ul>
                             </li>
 
