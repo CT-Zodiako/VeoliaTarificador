@@ -1,19 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import { useFiltroTablas } from '../../hooks/useFiltroTablas';
 
 export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
-    const [filtro, setFiltro] = useState('')
-
-    const onFiltroTabla = (e) => {
-        setFiltro(e.target.value)
-    }
-
-    const filtroName = useMemo(() => {
-        return filtro && filtro.length > 0 ?
-        datos.datos.filter((item) => { 
-            return item.APSA_NOMAPS.toLowerCase().includes(filtro.toLowerCase())
-        })
-        : datos.datos;
-    }, [filtro, datos])
+    const {filtro, onFiltroTabla, filtroName} = useFiltroTablas(datos)
+    console.log('mis datos: ', datos)
     
     return (
         <section className="container d-flex justify-content-center align-items-center">
@@ -25,11 +14,17 @@ export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
                             <thead>
                                 <tr>
                                     {
-                                        Object.keys(datos.formato).map((key, index) => (
-                                            <th key={index} scope="col">
-                                                {key}
+                                        // Object.keys(datos.formato).map((key, index) => (
+                                        //     <th key={index} scope="col">
+                                        //         {key}
+                                        //     </th>
+                                        // ))
+                                        Object.entries(datos.formato).map(([key, value]) => (
+                                            <th key={key} >
+                                                {value.name}
                                             </th>
                                         ))
+                              
                                     }
                                     {acciones && <th>Acciones</th>}
                                 </tr>
@@ -40,7 +35,7 @@ export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
                                         Object.entries(datos.formato).map(([key, value]) => (
                                             <td key={key} >
                                                 {
-                                                    value &&
+                                                    value.filtre &&
                                                     <div className="input-group input-group-sm mb-3">
                                                         <input 
                                                             type="text" 
@@ -48,9 +43,8 @@ export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
                                                             aria-label="Sizing example input" 
                                                             aria-describedby="inputGroup-sizing-sm" 
                                                             placeholder='Buscar'
-                                                            value={filtro} 
-                                                            onChange={onFiltroTabla}
-                                                            style={{ width: '5rem' }}
+                                                            value={filtro[key] || ''} 
+                                                            onChange={(event) => onFiltroTabla(key, event)}
                                                         />
                                                     </div>
                                                 }

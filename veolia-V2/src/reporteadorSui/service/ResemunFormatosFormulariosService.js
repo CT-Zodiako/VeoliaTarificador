@@ -1,18 +1,66 @@
 export const dataResmunenFormatosFormularios19  = {
 
     formato:{
-        "AÑO":true,
-        "MES":false,
-        "NJ":false,
-        "NDJ":false,
-        "CRTJ": false,
-        "CDFJ":false,
-        "QRTJ": false,
-        "QRJ": false,
-        "QBLJ": false,
-        "QLUJ": false,
-        "QNAZ": false,
-        "QAJ": false,
+        // "AÑO":true,
+        // "MES":false,
+        // "NJ":false,
+        // "NDJ":false,
+        // "CRTJ": false,
+        // "CDFJ":false,
+        // "QRTJ": false,
+        // "QRJ": false,
+        // "QBLJ": false,
+        // "QLUJ": false,
+        // "QNAZ": false,
+        // "QAJ": false,
+        "F19_ANNO": {
+            name: "AÑO",
+            filtre:true,
+        },
+            "F19_MES": {
+                name: "MES",
+                filtre:false,
+            },
+            "F19_NJ": {
+                name: "NJ",
+                filtre:false,
+            },
+            "F19_NDJ": {
+                name: "NDJ",
+                filtre:false,
+            },
+            "F19_CRTJ": {
+                name: "CRTJ",
+                filtre:false,
+            },
+            "F19_CDFJ": {
+                name: "CDFJ",
+                filtre:false,
+            },
+            "F19_QRTJ": {
+                name: "QRTJ",
+                filtre:false,
+            },
+            "F19_QRJ": {
+                name: "QRJ",
+                filtre:false,
+            },
+            "F19_QBLJ": {
+                name: "QBLJ",
+                filtre:false,
+            },
+            "F19_QLUJ": {
+                name: "QLUJ",
+                filtre:false,
+            },
+            "F19_QNAZ": {
+                name: "QNAZ",
+                filtre:false,
+            },
+            "F19_QAJ": {
+                name: "QAJ",
+                filtre:false,
+            },
     },
     datos: [
         {
@@ -64,30 +112,104 @@ export const dataResmunenFormatosFormularios19  = {
 export const dataResmunenFormatosFormularios23 = {
 
     formato: {
-        "AÑO":true,
-        "MES":false,
-        "EMPRESAS":false,
-        "IDNOMAPS":false,
-        "NUAP":false,
-        "N":false,
-        "CP":false,
-        "CCC":false,
-        "M2CCJ":false,
-        "CLAVJ":false,
-        "M3AGUAJ":false,
-        "M2LAVJ":false,
-        "CLPJ":false,
-        "KLPJ":false,
-        "CCEI":false,
-        "TIJ":false,
-        "CCEMJ":false,
-        "TMJ":false,
-        "CLUS":false,
-        "CBLJ":false,
-        "LBLJ":false,
-        "CBLS":false,
-        "FACBLCLUS":false,
-        "ABC":false,
+        "F23_ANNO": {
+            name: "AÑO",
+            filtre:true,
+
+        },
+            "F23_MES": {
+                name: "MES",
+                filtre:false,
+            },
+            "EMPR_EMPR": {
+                name: "EMPRESAS",
+                filtre:false,
+            },
+            "F23_ID": {
+                name: "IDNOMAPS",
+                filtre:false,
+            },
+            "F23_NUAP": {
+                name: "NUAP",
+                filtre:false,
+            },
+            "F23_N": {
+                name: "N",
+                filtre:false,
+            },
+            "F23_CP": {
+                name: "CP",
+                filtre:false,
+            },
+            "F23_CCC": {
+                name: "CCC",
+                filtre:false,
+            },
+            "F23_M2CCJ": {
+                name: "M2CCJ",
+                filtre:false,
+            },
+            "F23_CLAVJ": {
+                name: "CLAVJ",
+                filtre:false,
+            },
+            "F23_M3AGUAJ": {
+                name: "M3AGUAJ",
+                filtre:false,
+            },
+            "F23_M2LAVJ": {
+                name: "M2LAVJ",
+                filtre:false,
+            },
+            "F23_CLPJ": {
+                name: "CLPJ",
+                filtre:false,
+            },
+            "F23_KLPJ": {
+                name: "KLPJ",
+                filtre:false,
+            },
+            "F23_CCEI": {
+                name: "CCEI",
+                filtre:false,
+            },
+            "F23_TIJ": {
+                name: "TIJ",
+                filtre:false,
+            },
+            "F23_CCEMJ": {
+                name: "CCEMJ",
+                filtre:false,
+            },
+            "F23_TMJ": {
+                name: "TMJ",
+                filtre:false,
+            },
+            "F23_CLUS": {
+                name: "CLUS",
+                filtre:false,
+            },
+            "F23_CBLJ": {
+                name: "CBLJ",
+                filtre:false,
+            },
+            "F23_LBLJ": {
+                name: "LBLJ",
+                filtre:false,
+            },
+            "F23_CBLS": {
+                name: "CBLS",
+                filtre:false,
+            },
+            "F23_FACBLCLUS": {
+                name: "FACBLCLUS",
+                filtre:false,
+            },
+            "F23_ABC": {
+                name: "ABC",
+                filtre:false,
+            },
+
     },
 
     datos: [
@@ -120,7 +242,7 @@ export const dataResmunenFormatosFormularios23 = {
                 "F23_ABC": "NO",
             },
             {
-                "F23_ANNO": 2024,
+                "F23_ANNO": 2023,
                 "F23_MES": 2,
                 "EMPR_EMPR": 1062,
                 "F23_ID": 3052,
@@ -152,31 +274,108 @@ export const dataResmunenFormatosFormularios23 = {
 export const dataResmunenFormatosFormularios24 = {
     formato:{
 
-        "AÑO":true,
-        "MES":false,
-        "NUAP":false,
-        "NUSD":false,
-        "CENTROIDE":false,
-        "QRT":false,
-        "F1":false,
-        "F2":false,
-        "CPE":false,
-        "PRTZ":false,
-        "DET":false,
-        "F1ET":false,
-        "CPEET":false,
-        "PRTZET":false,
-        "CEG":false,
-        "CRTP":false,
-        "SALINIDAD":false,
-        "VACRTABC":false,
-        "VACRT":false,
-        "FCK":false,
-        "T":false,
-        "CRTZ":false,
-        "CRT":false,
-        "FACRT":false,
-        "FACCS":false,
+            "F24_ANNO": {
+            name: "AÑO",
+            filtre:true,
+            },
+            "F24_MES": {
+                name: "MES",
+                filtre:false,
+            },
+            "F24_NUAP": {
+                name: "NUAP",
+                filtre:false,
+            }, 
+            "F24_NUSD": {
+                name: "NUSD",
+                filtre:false,
+            },
+            "F24_CENTROIDE": {
+                name: "CENTROIDE",
+                filtre:false,
+            },
+            "F24_QRT": {
+                name: "QRT",
+                filtre:false,
+            },
+            "F24_F1": {
+                name: "F1",
+                filtre:false,
+            },
+            "F24_F2": {
+                name: "F2",
+                filtre:false,
+            },  
+            "F24_CPE": {
+                name: "CPE",
+                filtre:false,
+            },
+            "F24_PRTZ": {
+                name: "PRTZ",
+                filtre:false,
+            },
+            "F24_DET": {
+                name: "DET",
+                filtre:false,
+            },
+            "F24_F1ET": {
+                name: "F1ET",
+                filtre:false,
+            },
+            "F24_CPEET": {
+                name: "CPEET",
+                filtre:false,
+            },
+            "F24_PRTZET": {
+                name: "PRTZET",
+                filtre:false,
+            },
+            "F24_CEG": {
+                name: "CEG",
+                filtre:false,
+            },
+            "F24_CRTP": {
+                name: "CRTP",
+                filtre:false,
+            },
+            "F24_SALINIDAD": {
+                name: "SALINIDAD",
+                filtre:false,
+            },
+            "F24_VACRTABC": {
+                name: "VACRTABC",
+                filtre:false,
+            },
+            "F24_VACRT": {
+                name: "VACRT",
+                filtre:false,
+            },
+            "F24_FCK": {
+                name: "FCK",
+                filtre:false,
+            },
+            "F24_T": {
+                name: "T",
+                filtre:false,
+            },
+            "F24_CRTZ": {
+                name: "CRTZ",
+                filtre:false,
+            },
+            "F24_CRT": {
+                name: "CRT",
+                filtre:false,
+            },
+            "F24_FACRT": {
+                name: "FACRT",
+                filtre:false,
+            },  
+            "F24_FACCS": {
+                name: "FACCS",
+                filtre:false,
+            },
+
+
 
     },
     datos:[
@@ -297,32 +496,136 @@ export const dataResmunenFormatosFormularios24 = {
 
 export const dataResmunenFormatosFormularios35 = {
     formato:{
-        "AÑO":true,
-        "MES":false,
-        "NUSD":false,
-        "NOMDF":false,
-        "CAMRERS":false,
-        "QRSMES":false,
-        "QRSPROM":false,
-        "CDFVU":false,
-        "PERADDT":false,
-        "CDFPC":false,
-        "INCENTIVO":false,
-        "DISPALT9":false,
-        "INCCDFALT9":false,
-        "VACDFABC":false,
-        "VACDF":false,
-        "PRCTCRRCP":false,
-        "CDF":false,
-        "CDFP":false,
-        "FACCDF":false,
-        "V0":false,
-        "VM":false,
-        "MCRS":false,
-        "ICRSM":false,
-        "ICCRS":false,
-        "FREIN":false,
-        "CAPREMDF":false,
+        // "AÑO":true,
+        // "MES":false,
+        // "NUSD":false,
+        // "NOMDF":false,
+        // "CAMRERS":false,
+        // "QRSMES":false,
+        // "QRSPROM":false,
+        // "CDFVU":false,
+        // "PERADDT":false,
+        // "CDFPC":false,
+        // "INCENTIVO":false,
+        // "DISPALT9":false,
+        // "INCCDFALT9":false,
+        // "VACDFABC":false,
+        // "VACDF":false,
+        // "PRCTCRRCP":false,
+        // "CDF":false,
+        // "CDFP":false,
+        // "FACCDF":false,
+        // "V0":false,
+        // "VM":false,
+        // "MCRS":false,
+        // "ICRSM":false,
+        // "ICCRS":false,
+        // "FREIN":false,
+        // "CAPREMDF":false,
+        "F35_ANNO": {
+            name: "AÑO",
+            filtre:true,
+        },
+            "F35_MES": {
+                name: "MES",
+                filtre:false,
+            },
+            "F35_NUSD": {
+                name: "NUSD",
+                filtre:false,
+            },
+            "F35_NOMDF": {
+                name: "NOMDF",
+                filtre:false,
+            },
+            "F35_CAMRERS": {
+                name: "CAMRERS",
+                filtre:false,
+            },
+            "F35_QRSMES": {
+                name: "QRSMES",
+                filtre:false,
+            },
+            "F35_QRSPROM": {
+                name: "QRSPROM",
+                filtre:false,
+            },
+            "F35_CDFVU": {
+                name: "CDFVU",
+                filtre:false,
+            },
+            "F35_PERADDT": {
+                name: "PERADDT",
+                filtre:false,
+            },
+            "F35_CDFPC": {
+                name: "CDFPC",
+                filtre:false,
+            },
+            "F35_INCENTIVO": {
+                name: "INCENTIVO",
+                filtre:false,
+            },
+            "F35_DISPALT9": {
+                name: "DISPALT9",
+                filtre:false,
+            },
+            "F35_INCCDFALT9": {
+                name: "INCCDFALT9",
+                filtre:false,
+            },
+            "F35_VACDFABC": {
+                name: "VACDFABC",
+                filtre:false,
+            },
+            "F35_VACDF": {
+                name: "VACDF",
+                filtre:false,
+            },
+            "F35_PRCTCRRCP": {
+                name: "PRCTCRRCP",
+                filtre:false,
+            },
+            "F35_CDF": {
+                name: "CDF",
+                filtre:false,
+            },
+            "F35_CDFP": {
+                name: "CDFP",
+                filtre:false,
+            },
+            "F35_FACCDF": {
+                name: "FACCDF",
+                filtre:false,
+            },
+            "F35_V0": {
+                name: "V0",
+                filtre:false,
+            },
+            "F35_VM": {
+                name: "VM",
+                filtre:false,
+            },
+            "F35_MCRS": {
+                name: "MCRS",
+                filtre:false,
+            },
+            "F35_ICRSM": {
+                name: "ICRSM",
+                filtre:false,
+            },
+            "F35_ICCRS": {
+                name: "ICCRS",
+                filtre:false,
+            },
+            "F35_FREIN": {
+                name: "FREIN",
+                filtre:false,
+            },
+            "F35_CAPREMDF": {
+                name: "CAPREMDF",
+                filtre:false,
+            },
 
     },
     datos:[
@@ -417,26 +720,106 @@ export const dataResmunenFormatosFormularios35 = {
 
 export const dataResmunenFormatosFormularios36 = {
     formato:{
-        "AÑO":true,
-        "MES":false,
-        "NUSD":false,
-        "NOMDPTO":false,
-        "NOMMPIO":false,
-        "NOMDF":false,
-        "VLMES":false,
-        "VLMPROM":false,
-        "ESCENA":false,
-        "CTLMVU":false,
-        "ANNOPOSCLA":false,
-        "CTLMPC":false,
-        "CTLM":false,
-        "CTLMX":false,
-        "VACTLABC":false,
-        "VACTL":false,
-        "FCKCTL":false,
-        "QRS":false,
-        "CTL":false,
-        "FACCTL":false,
+        // "AÑO":true,
+        // "MES":false,
+        // "NUSD":false,
+        // "NOMDPTO":false,
+        // "NOMMPIO":false,
+        // "NOMDF":false,
+        // "VLMES":false,
+        // "VLMPROM":false,
+        // "ESCENA":false,
+        // "CTLMVU":false,
+        // "ANNOPOSCLA":false,
+        // "CTLMPC":false,
+        // "CTLM":false,
+        // "CTLMX":false,
+        // "VACTLABC":false,
+        // "VACTL":false,
+        // "FCKCTL":false,
+        // "QRS":false,
+        // "CTL":false,
+        // "FACCTL":false,
+        "F36_ANNO": {
+            name: "AÑO",
+            filtre:true,
+        },
+        "F36_MES": {
+            name: "MES",
+            filtre:false,
+        },
+        "F36_NUSD": {
+            name: "NUSD",
+            filtre:false,
+        },
+        "F36_NOMDPTO": {
+            name: "NOMDPTO",
+            filtre:false,
+        },
+        "F36_NOMMPIO": {
+            name: "NOMMPIO",
+            filtre:false,
+        },
+        "F36_NOMDF": {
+            name: "NOMDF",
+            filtre:false,
+        },
+        "F36_VLMES": {
+            name: "VLMES",
+            filtre:false,
+        },
+        "F36_VLMPROM": {
+            name: "VLMPROM",
+            filtre:false,
+        },
+        "F36_ESCENA": {
+            name: "ESCENA",
+            filtre:false,
+        },
+        "F36_CTLMVU": {
+            name: "CTLMVU",
+            filtre:false,
+        },
+        "F36_ANNOPOSCLA": {
+            name: "ANNOPOSCLA",
+            filtre:false,
+        },
+        "F36_CTLMPC": {
+            name: "CTLMPC",
+            filtre:false,
+        },
+        "F36_CTLM": {
+            name: "CTLM",
+            filtre:false,
+        },
+        "F36_CTLMX": {
+            name: "CTLMX",
+            filtre:false,
+        },
+        "F36_VACTLABC": {
+            name: "VACTLABC",
+            filtre:false,
+        },
+        "F36_VACTL": {
+            name: "VACTL",
+            filtre:false,
+        },
+        "F36_FCKCTL": {
+            name: "FCKCTL",
+            filtre:false,
+        },
+        "F36_QRS": {
+            name: "QRS",
+            filtre:false,
+        },
+        "F36_CTL": {
+            name: "CTL",
+            filtre:false,
+        },
+        "F36_FACCTL": {
+            name: "FACCTL",
+            filtre:false,
+        },
     },
     datos:
         [

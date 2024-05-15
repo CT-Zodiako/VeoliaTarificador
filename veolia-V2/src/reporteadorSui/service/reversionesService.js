@@ -1,18 +1,44 @@
 export const dataRevFormato19 = {
     formato:{
-        "REVE ID":true,
-        "AÑO":true,
-        "MES":true,
-        "NJ":false,
-        "NDJ":false,
-        "CRTJ":false,
-        "CDFJ":false,
-        "QRTJ":false,
-        "QRJ":false,
-        "QBLJ":false,
-        "QLUJ":false,
-        "QNAZ":false,
-        "QAJ":false,
+        "REVE_ID":{
+            name: "REVE ID",
+            filtre:true},
+        "F19_ANNO":{
+            name: "AÑO",
+            filtre:true},
+        "F19_MES":{
+            name: "MES",
+            filtre:true},
+        "F19_NJ":{
+            name: "NJ",
+            filtre:false},
+        "F19_NDJ":{
+            name: "NDJ",
+            filtre:false},
+        "F19_CRTJ":{
+            name: "CRTJ",
+            filtre:false},
+        "F19_CDFJ":{
+            name: "CDFJ",
+            filtre:false},
+        "F19_QRTJ":{
+            name: "QRTJ",
+            filtre:false},
+        "F19_QRJ":{
+            name: "QRJ",
+            filtre:false},
+        "F19_QBLJ":{
+            name: "QBLJ",
+            filtre:false},
+        "F19_QLUJ":{
+            name: "QLUJ",
+            filtre:false},
+        "F19_QNAZ":{
+            name: "QNAZ",
+            filtre:false},
+        "F19_QAJ":{
+            name: "QAJ",
+            filtre:false},
     },
     datos:[
         {
@@ -52,31 +78,132 @@ export const dataRevFormato19 = {
 
 export const dataRevFormato23 = {
     formato:{
-        "REVE ID":true,
-        "AÑO":true,
-        "MES":true,
-        "EMPRESAS":false,
-        "IDNOMAPS":false,
-        "NUAP":false,
-        "N":false,
-        "CP":false,
-        "CCC":false,
-        "M2CCJ":false,
-        "CLAVJ":false,
-        "M3AGUAJ":false,
-        "M2LAVJ":false,
-        "CLPJ":false,
-        "KLPJ":false,
-        "CCEI":false,
-        "TIJ":false,
-        "CCEMJ":false,
-        "TMJ":false,
-        "CLUS":false,
-        "CBLJ":false,
-        "LBLJ":false,
-        "CBLS":false,
-        "FACBLCLUS":false,
-        "ABC":false,
+        // "REVE ID":true,
+        // "AÑO":true,
+        // "MES":true,
+        // "EMPRESAS":false,
+        // "IDNOMAPS":false,
+        // "NUAP":false,
+        // "N":false,
+        // "CP":false,
+        // "CCC":false,
+        // "M2CCJ":false,
+        // "CLAVJ":false,
+        // "M3AGUAJ":false,
+        // "M2LAVJ":false,
+        // "CLPJ":false,
+        // "KLPJ":false,
+        // "CCEI":false,
+        // "TIJ":false,
+        // "CCEMJ":false,
+        // "TMJ":false,
+        // "CLUS":false,
+        // "CBLJ":false,
+        // "LBLJ":false,
+        // "CBLS":false,
+        // "FACBLCLUS":false,
+        // "ABC":false,
+        "REVE_ID": {
+            name: "REVE ID",
+            filtre:true,
+        },
+        "F23_ANNO": {
+            name: "AÑO",
+            filtre:true,
+        },
+         "F23_MES": {
+            name: "MES",
+            filtre:true,
+        },
+            "EMPR_EMPR": {
+            name: "EMPRESAS",
+            filtre:false,
+            },
+            "F23_ID": {
+            name: "IDNOMAPS",
+            filtre:false,
+            },
+            "F23_NUAP": {
+            name: "NUAP",
+            filtre:false,
+            },
+            "F23_N": {
+                name: "N",
+                filtre:false,
+            },
+            "F23_CP": {
+                name: "CP",
+                filtre:false,
+            },
+            "F23_CCC": {
+                name: "CCC",
+                filtre:false,
+            },
+            "F23_M2CCJ": {
+                name: "M2CCJ",
+                filtre:false,
+            },
+            "F23_CLAVJ": {
+                name: "CLAVJ",
+                filtre:false,
+            },
+            "F23_M3AGUAJ": {
+                name: "M3AGUAJ",
+                filtre:false,
+            },
+            "F23_M2LAVJ": {
+                name: "M2LAVJ",
+                filtre:false,
+            },
+            "F23_CLPJ": {
+                name: "CLPJ",
+                filtre:false,
+            },
+            "F23_KLPJ": {
+                name: "KLPJ",
+                filtre:false,
+            },
+            "F23_CCEI": {
+                name: "CCEI",
+                filtre:false,
+            },
+            "F23_TIJ": {
+                name: "TIJ",
+                filtre:false,
+            },
+            "F23_CCEMJ": {
+                name: "CCEMJ",
+                filtre:false,
+            },
+            "F23_TMJ": {
+                name: "TMJ",
+                filtre:false,
+            },
+            "F23_CLUS": {
+                name: "CLUS",
+                filtre:false,
+            },
+            "F23_CBLJ": {
+                name: "CBLJ",
+                filtre:false,
+            },
+            "F23_LBLJ": {
+                name: "LBLJ",
+                filtre:false,
+            },
+            "F23_CBLS": {
+                name: "CBLS",
+                filtre:false,
+            },
+            "F23_FACBLCLUS": {
+                name: "FACBLCLUS",
+                filtre:false,
+            },
+            "F23_ABC": {
+                name: "ABC",
+                filtre:false,
+            },
+
     },
     datos:[
         {
@@ -108,9 +235,9 @@ export const dataRevFormato23 = {
         },
         {
             "REVE_ID": 3001,
-            "EMPR_EMPR": 1062,
             "F23_ANNO": 2024,
-            "F23_MES": 1,
+            "F23_MES": 2,
+            "EMPR_EMPR": 1062,
             "F23_ID": 3052,
             "F23_NUAP": "1212613001",
             "F23_N": 346779,
@@ -138,34 +265,110 @@ export const dataRevFormato23 = {
 
 export const dataRevFormato24 = {
     formato:{
-        "REVE ID": true,
-        "ANNO":true,
-        "MES":true,
-        "NUAP":false,
-        "NUSD":false,
-        "CENTROIDE":false,
-        "QRT":false,
-        "F1":false,
-        "F2":false,
-        "CPE":false,
-        "PRTZ":false,
-        "DET":false,
-        "F1ET":false,
-        "CPEET":false,
-        "PRTZET":false,
-        "CEG":false,
-        "CRTP":false,
-        "SALINIDAD":false,
-        "VACRTABC":false,
-        "VACRT":false,
-        "FCK":false,
-        "T":false,
-        "CRTZ":false,
-        "CRT":false,
-        "FACRT":false,
-        "FACCS":false,
-
-
+        "REVE_ID": {
+            name: "REVE ID",
+            filtre:true,
+        },
+        "F24_ANNO": {
+            name: "ANNO",
+            filtre:true,
+        },
+        "F24_MES": {
+            name: "MES",
+            filtre:true,
+        },
+        "F24_NUAP": {
+            name: "NUAP",
+            filtre:false,
+        },
+        "F24_NUSD": {
+            name: "NUSD",
+            filtre:false,
+        },
+        "F24_CENTROIDE": {
+            name: "CENTROIDE",
+            filtre:false,
+        },
+        "F24_QRT": {
+            name: "QRT",
+            filtre:false,
+        },
+        "F24_F1": {
+            name: "F1",
+            filtre:false,
+        },
+        "F24_F2": {
+            name: "F2",
+            filtre:false,
+        },
+        "F24_CPE": {
+            name: "CPE",
+            filtre:false,
+        },
+        "F24_PRTZ": {
+            name: "PRTZ",
+            filtre:false,
+        },
+        "F24_DET": {
+            name: "DET",
+            filtre:false,
+        },
+        "F24_F1ET": {
+            name: "F1ET",
+            filtre:false,
+        },
+        "F24_CPEET": {
+            name: "CPEET",
+            filtre:false,
+        },
+        "F24_PRTZET": {
+            name: "PRTZET",
+            filtre:false,
+        },
+        "F24_CEG": {
+            name: "CEG",
+            filtre:false,
+        },
+        "F24_CRTP": {
+            name: "CRTP",
+            filtre:false,
+        },
+        "F24_SALINIDAD": {
+            name: "SALINIDAD",
+            filtre:false,
+        },
+        "F24_VACRTABC": {
+            name: "VACRTABC",
+            filtre:false,
+        },
+        "F24_VACRT": {
+            name: "VACRT",
+            filtre:false,
+        },
+        "F24_FCK": {
+            name: "FCK",
+            filtre:false,
+        },
+        "F24_T": {
+            name: "T",
+            filtre:false,
+        },
+        "F24_CRTZ": {
+            name: "CRTZ",
+            filtre:false,
+        },
+        "F24_CRT": {
+            name: "CRT",
+            filtre:false,
+        },
+        "F24_FACRT": {
+            name: "FACRT",
+            filtre:false,
+        },
+        "F24_FACCS": {
+            name: "FACCS",
+            filtre:false,
+        },
     },
     datos:[
         {
