@@ -1,11 +1,11 @@
-import { IsNumber, IsOptional } from 'class-validator';
+import { IsNumberString, IsOptional } from 'class-validator';
 
 export class ConsultaDTO {
   @IsOptional()
-  @IsNumber()
-  ANNO: number;
+  @IsNumberString()
+  ANNO: string;
 
   @IsOptional()
-  @IsNumber()
-  MES: number;
+  @IsNumberString()
+  MES: string;
 }

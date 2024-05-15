@@ -9,6 +9,7 @@ import { UsuariosPage } from "../auth/pages/UsuarioPage";
 import { InformesProyecciones } from "../informeProyecciones/pages/InformesProyecciones";
 import { DetalladoCosto } from "../informesGerenciales/pages/DetalladoCosto";
 import { DataDetalladoSubAport } from "../informesGerenciales/pages/DetalladoSubAport";
+import { IndicesCRA } from "../suministros/pages/IndicesCRAPage";
 
 
 export const router = createBrowserRouter([
@@ -23,6 +24,13 @@ export const router = createBrowserRouter([
                 element: <APSpage />,
                 errorElement: <h1>error</h1>,
             },
+            //Suministros
+            {
+                path: "/indicesCRA",
+                element: <IndicesCRA />,
+                errorElement: <h1>error</h1>,
+            },
+
             //Informes Gerenciales
             {
                 path: "/detalladoCostos",
