@@ -37,9 +37,13 @@
 
 // }
 
-import { Controller, Get, Query, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Query, BadRequestException , Post, UseGuards, Body, Patch} from '@nestjs/common';
 import { IndiceCraService } from './indice-cra.service';
 import { ConsultaDTO } from './dto/consulta.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from 'src/auth/decorators/get-user.decorator';
+import { CreateIndiceCraDTO } from './dto/create-indice-cra.dto';
+import { UpDateIndiceCraDTO } from './dto/update-indice-cra.dto';
 
 @Controller('indice-cra')
 export class IndiceCraController {
@@ -55,5 +59,16 @@ export class IndiceCraController {
     }
 
     return await this.indiceCraService.findOne(consultaDTO);
+  }
+
+  @Post()
+  @UseGuards(AuthGuard())
+  create(@GetUser() user, @Body() createIndiceCraDTO: CreateIndiceCraDTO[]) {
+    return this.indiceCraService.create(user.SISU_ID,createIndiceCraDTO);
+  }
+
+  @Patch()
+  upDate(@Body() upDateIndiceCraDTO: UpDateIndiceCraDTO[]) {
+    return this.indiceCraService.upDate(upDateIndiceCraDTO);
   }
 }

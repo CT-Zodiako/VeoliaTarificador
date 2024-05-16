@@ -34,6 +34,7 @@ export class IndiceCraService {
 
 
   async create(user,createIndiceCraDTO: CreateIndiceCraDTO[]) {
+    console.log(user)
     try {
       createIndiceCraDTO.forEach(async (element) => {
         await this.indiceCraRepository.query(`
