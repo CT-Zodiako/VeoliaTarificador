@@ -12,8 +12,8 @@ export const APSpage = () => {
   return (
     <>
 
-
-      {/* <Selectores selectorAps={true} selectorFecha={true} /> */}
+      <h1>APS</h1>
+      <Selectores selectorAps={true} selectorFecha={true} />
 
       <hr />
       <TableCofiguracion datos={respuesta} acciones={false} tituloTabla={"APS"} />

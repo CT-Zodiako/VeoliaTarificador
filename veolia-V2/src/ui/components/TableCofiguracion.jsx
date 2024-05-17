@@ -2,7 +2,6 @@ import { useFiltroTablas } from '../../hooks/useFiltroTablas';
 
 export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
     const {filtro, onFiltroTabla, filtroName} = useFiltroTablas(datos)
-    console.log('mis datos: ', datos)
     
     return (
         <section className="container d-flex justify-content-center align-items-center">
@@ -10,15 +9,10 @@ export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
                 <div className="card-body">
                     <h5 className="card-title">{tituloTabla}</h5>
                     <div className="table-responsive" style={{ maxHeight: '40rem', overflowY: 'auto' }}>
-                        <table className="table table-striped">
+                        <table className="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     {
-                                        // Object.keys(datos.formato).map((key, index) => (
-                                        //     <th key={index} scope="col">
-                                        //         {key}
-                                        //     </th>
-                                        // ))
                                         Object.entries(datos.formato).map(([key, value]) => (
                                             <th key={key} >
                                                 {value.name}

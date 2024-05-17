@@ -3,6 +3,7 @@ import { getIndicesCRA } from '../service/indicesCRAService';
 import { ModalNewIndiceCRA } from '../components/modaNewlndicesCRA';
 import { ModalEditIndiceCRA } from '../components/modaEditlndicesCRA';
 import { ApsSelector } from '../../ui/components/ApsSelector';
+import { Selectores } from '../../ui/components/Selectores';
 
 export const IndicesCRA = () => {
     const [data, setData] = useState(null);
@@ -46,43 +47,58 @@ export const IndicesCRA = () => {
     };
 
     return (
-        <div>
-            <ApsSelector/>
-            <h1>Indices CRA</h1>
-            <div className="container">
-                <div className="row justify-content-center align-items-center">
-                    <div className="col-6">
-                        <table className="table table-striped-columns">
-                            <thead>
-                                <tr>
-                                    <th>Indice</th>
-                                    <th>Valor</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {data && data.map((item, index) => (
-                                    <tr key={index}>
-                                        <td>{getIndiceText(item)}</td>
-                                        <td className='text-end'> <strong>$</strong> {item.INDI_VALOR}</td>
+<>
+    <h1>Indices Publicados por la CRA</h1>
+    <Selectores selectorAps={true} selectorFecha={true} />
+    <hr />
+
+    <section className="container">
+        <div className="row justify-content-center align-items-center">
+            <div className="col-md-8"> {/* Cambiado de col-auto a col-md-8 para dar espacio al botón */}
+                <div className="card rounded">
+                    <div className="card-body">
+                        <div className="table-responsive" style={{ maxHeight: '40rem', overflowY: 'auto' }}>
+                            <table className="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Indice</th>
+                                        <th>Valor</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {data && data.map((item, index) => (
+                                        <tr key={index}>
+                                            <td>{getIndiceText(item)}</td>
+                                            <td className='text-end'><strong>$</strong> {item.INDI_VALOR}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div className="col-auto">
+                </div>
+            </div>
+
+            <div className="col-md-2"> {/* Nuevo div para el botón */}
+                <div className="card rounded">
+                    <div className="card-body">
                         {accionBoton()}
                     </div>
                 </div>
             </div>
-            <ModalNewIndiceCRA
-                show={modal}
-                handleClose={handleCloseModal}
-            />
-            <ModalEditIndiceCRA
-                show={modal}
-                handleClose={handleCloseModal}
-            />
-
         </div>
+    </section>
+
+    <ModalNewIndiceCRA
+        show={modal}
+        handleClose={handleCloseModal}
+    />
+    <ModalEditIndiceCRA
+        show={modal}
+        handleClose={handleCloseModal}
+    />
+</>
+
+
     );
 };
