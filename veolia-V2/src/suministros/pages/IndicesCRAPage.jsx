@@ -2,25 +2,35 @@ import React, { useEffect, useState } from 'react';
 import { getIndicesCRA } from '../service/indicesCRAService';
 import { ModalNewIndiceCRA } from '../components/modaNewlndicesCRA';
 import { ModalEditIndiceCRA } from '../components/modaEditlndicesCRA';
-import { ApsSelector } from '../../ui/components/ApsSelector';
 import { Selectores } from '../../ui/components/Selectores';
+import { useAnnoSelector, useMesSelector } from '../../store/storeSelectors';
 
 export const IndicesCRA = () => {
+    const anno = useAnnoSelector((state) => state.anno);
+    const mes = useMesSelector((state) => state.mes);
+
     const [data, setData] = useState(null);
     const [modal, setModal] = useState(false);
+    const [modalNew, setModalNew] = useState(false);
 
+    const actualizarTabla = async () => {
+        const data = await getIndicesCRA(anno, mes);
+        setData(data);
+        
+    }
 
+        
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await getIndicesCRA();
-                setData(result);
+                actualizarTabla();
+                
             } catch (error) {
                 console.error(error);
-            }
-        };
+            };
+        }
         fetchData();
-    }, []);
+    }, [anno, mes,data]);
 
     const getIndiceText = (item) => {
         if (item.PARA_INDICE20011 === 1) {
@@ -39,9 +49,14 @@ export const IndicesCRA = () => {
     const handleShowModal = () => setModal(true);
     const handleCloseModal = () => setModal(false);
 
+    const handleShowModalNew = () => setModalNew(true);
+    const handleCloseModalNew = () => setModalNew(false);
+
+
+
     const accionBoton = () => {
         if (data && data.length === 0) {
-            return <button onClick={handleShowModal} className="btn btn-success">Agregar</button>;
+            return <button onClick={handleShowModalNew} className="btn btn-success">Agregar</button>;
         }
         return <button onClick={handleShowModal} className="btn btn-warning">Editar</button>;
     };
@@ -90,12 +105,13 @@ export const IndicesCRA = () => {
     </section>
 
     <ModalNewIndiceCRA
-        show={modal}
-        handleClose={handleCloseModal}
+        show={modalNew}
+        handleClose={handleCloseModalNew}
     />
     <ModalEditIndiceCRA
         show={modal}
         handleClose={handleCloseModal}
+        actualizarTabla={actualizarTabla}
     />
 </>
 

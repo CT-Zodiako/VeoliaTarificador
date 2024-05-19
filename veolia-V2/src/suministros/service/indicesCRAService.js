@@ -1,11 +1,12 @@
 import {Http} from '../../helpers/axiosHelper'
 
-
-export const getIndicesCRA = async () => {
+export const getIndicesCRA = async (ANNO, MES) => {
     try {
+        if (ANNO === undefined || MES === undefined) return
+        
         const response = await Http.get('indice-cra/', {
-                ANNO: 2025,
-                MES: 1
+            ANNO,
+            MES
         });
         return response;
     } catch (error) {
@@ -17,6 +18,7 @@ export const getIndicesCRA = async () => {
 
 export const crearIndicesCRA = async (nuevoIndiceCRA) => {
     try {
+        console.log(nuevoIndiceCRA)
         const response = await Http.post('indice-cra/', nuevoIndiceCRA);
         return response;
     } catch (error) {

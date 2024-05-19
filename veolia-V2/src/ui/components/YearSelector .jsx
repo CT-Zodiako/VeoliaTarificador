@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import { useAnnoSelector } from '../../store/storeSelectors';
 
-export const YearSelector = ({ onYearChange }) => {
+export const YearSelector = () => {
+    const miAnno = useAnnoSelector(state => state.anno);
+    const anno = useAnnoSelector(state => state.cambioSelectorAnno);
+
     const currentYear = new Date().getFullYear();
     const years = Array.from(new Array(10), (val, index) => currentYear - index);
 
-    const [selectedYear, setSelectedYear] = useState('');
-
     const handleChange = (e) => {
-        setSelectedYear(e.target.value);
-        onYearChange(e.target.value);
+        // onYearChange(e.target.value);
+        anno(e.target.value);
     };
 
     return (
@@ -17,7 +18,7 @@ export const YearSelector = ({ onYearChange }) => {
             <select 
                 className="form-select form-select-sm" 
                 aria-label="Small select example" 
-                value={selectedYear} 
+                value={miAnno} 
                 onChange={handleChange}
             >
                 <option value="" disabled>Seleccionar Año</option>

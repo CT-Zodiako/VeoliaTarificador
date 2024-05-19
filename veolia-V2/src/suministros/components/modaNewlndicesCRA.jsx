@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
-import { modalHook } from '../hooks/useModalHook';
+import  { NewIndiceCRAModalHook } from '../hooks/useNewIndiceCRAModalHook';
 import { crearIndicesCRA } from '../service/indicesCRAService';
 
-export const ModalNewIndiceCRA = ({ show, handleClose }) => {
-    const { data, setData, estadoInputs ,prepararDatosParaBackend} = modalHook({
+export const  ModalNewIndiceCRA = ({ show, handleClose }) => {
+    const { dataNewIndiceCRA, setData, estadoInputs ,prepararDatosParaBackend} = NewIndiceCRAModalHook({
         ipc: "",
         smlv: "",
         ipcc: "",
         ioexp: ""
     });
 
-    const { ipc, smlv, ipcc, ioexp } = data;
+    const { ipc, smlv, ipcc, ioexp } = dataNewIndiceCRA;
 
     useEffect(() => {
         if (!show) {
@@ -22,7 +22,7 @@ export const ModalNewIndiceCRA = ({ show, handleClose }) => {
                 ioexp: ""
             });
         }
-    }, [show, setData]);
+    }, [show]);
     
 
     const handleCancelar = () => {
@@ -31,10 +31,13 @@ export const ModalNewIndiceCRA = ({ show, handleClose }) => {
 
     const nuevoIndiceCRA = prepararDatosParaBackend();
 
+   
+
     const handleGuardar = async () => {
+        console.log(nuevoIndiceCRA)
         // Aquí puedes enviar los datos del formulario a la API o realizar cualquier otra acción necesaria
-        handleClose();
         await crearIndicesCRA(nuevoIndiceCRA);
+        handleClose();
         
         
     };

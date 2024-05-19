@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import { useMesSelector } from '../../store/storeSelectors';
 
-export const MonthSelector = ({ onMonthChange }) => {
+export const MonthSelector = () => {
+    const miMes = useMesSelector(state => state.mes);
+    const mes = useMesSelector(state => state.cambioSelectorMes);
+
     const months = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ];
 
-    const [selectedMonth, setSelectedMonth] = useState('');
-
     const handleChange = (e) => {
-        setSelectedMonth(e.target.value);
-        onMonthChange(e.target.value);
+        // onMonthChange(e.target.value);
+        mes(e.target.value);
     };
 
     return (
@@ -19,7 +20,7 @@ export const MonthSelector = ({ onMonthChange }) => {
             <select 
                 className="form-select form-select-sm" 
                 aria-label="Small select example" 
-                value={selectedMonth} 
+                value={miMes} 
                 onChange={handleChange}
             >
                 <option value="" disabled>Seleccionar Mes</option>
