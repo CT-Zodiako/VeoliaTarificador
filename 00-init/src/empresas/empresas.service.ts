@@ -12,11 +12,24 @@ export class EmpresasService {
     @InjectRepository(AugeEmpresas)
     private readonly empresaRepository: Repository<AugeEmpresas>,
   ) {}
-  async create(createEmpresaDTO: CreateEmpresaDTO) {
+  async create(createEmpresaDTO: CreateEmpresaDTO, sisuId: number) {
+    console.log(createEmpresaDTO)
+    const {EMPR_ESTADO,EMPR_NOMBRE,EMPR_NUAP,EMPR_PROPIA}=createEmpresaDTO;
     try {
-      const nuevaEmpresa = this.empresaRepository.create(createEmpresaDTO);
+      const query = `
+        INSERT INTO TARIFICADOR.AUGE_EMPRESAS
+        (EMPR_EMPR, EMPR_NOMBRE, EMPR_ESTADO, EMPR_PROPIA, EMPR_FECHACREACION, USUA_USUA, EMPR_NUAP) VALUES(
+        SAUGE_EMPRESAS.nextval, :EMPR_NOMBRE, :EMPR_ESTADO, :EMPR_PROPIA , sysdate, :sisuId, :EMPR_NUAP)
+      `
 
-      const response = await this.empresaRepository.save(nuevaEmpresa);
+       const response = await this.empresaRepository.query(query, [
+        EMPR_NOMBRE,
+        EMPR_ESTADO,
+        EMPR_PROPIA,
+        sisuId,
+        EMPR_NUAP
+      ]);
+
 
       return response;
     } catch (error) {

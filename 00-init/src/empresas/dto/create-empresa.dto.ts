@@ -4,9 +4,6 @@ export class CreateEmpresaDTO {
   @IsString()
   EMPR_NUAP: string;
 
-  @IsNumber()
-  EMPR_EMPR: number;
-
   @IsString()
   EMPR_NOMBRE: string | null;
 
@@ -16,9 +13,4 @@ export class CreateEmpresaDTO {
   @IsNumber()
   EMPR_PROPIA: number;
 
-  @IsOptional()
-  EMPR_FECHACREACION: Date | null;
-
-  @IsNumber()
-  USUA_USUA: number;
 }

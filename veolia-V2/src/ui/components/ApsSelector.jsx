@@ -6,7 +6,6 @@ import { useAnnoSelector } from '../../store/storeSelectors';
 export const ApsSelector = () => {
   const [data, setData] = useState([]);
   const selectedApsaId = useApsSelector(state => state.aps);
-  const selectedMes = useAnnoSelector(state => state.anno);
   const setSelectedApsaId = useApsSelector(state => state.cambioSelector);
 
   useEffect(() => {
@@ -27,8 +26,6 @@ export const ApsSelector = () => {
 
   return (
     <div className='col-3 mt-1'>
-        <h1>{selectedApsaId}</h1>
-        <h1>{selectedMes}</h1>
       <label htmlFor="aps">APS:</label>
       <select 
         className="form-select form-select-sm" 

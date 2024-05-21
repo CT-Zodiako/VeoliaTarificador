@@ -15,5 +15,11 @@ export class UpdataEmpresaDTO {
 
   @IsNumber()
   EMPR_PROPIA: number;
+
+  @IsNumber()
+  USUA_USUA: number;
+
+  @IsOptional()
+  EMPR_FECHACREACION: Date | null;
   
 }

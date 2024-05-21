@@ -22,6 +22,8 @@ import { DashboardReporteadorModule } from './reporteador-sui/dashboard/dashboar
 import { ResumenFormatosFormulariosModule } from './reporteador-sui/resumen-formatos-formularios/resumen-formatos-formularios.module';
 import { ReversionesModule } from './reporteador-sui/reversiones/reversiones.module';
 import { IndiceCraModule} from './suministros/indice-cra/indice-cra.module';
+import {ReversionesSuministrosModule} from './suministros/reversiones-suministros/reversiones-suministros.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -55,6 +57,8 @@ import { IndiceCraModule} from './suministros/indice-cra/indice-cra.module';
     ResumenFormatosFormulariosModule,
     ReversionesModule,
     IndiceCraModule,
+    ReversionesSuministrosModule
+
   ],
 })
 export class AppModule {}

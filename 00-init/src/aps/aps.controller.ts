@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { ApsService } from './aps.service';
 import { CreateApsDTO } from './dto/create-aps.dto';
-import { UpdateApDto } from './dto/update-aps.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
 
@@ -22,13 +21,13 @@ export class ApsController {
   @UseGuards(AuthGuard())
   create(@Body() createApsDTO: CreateApsDTO, @GetUser() user: any) {
     const sisuId = user.SISU_ID;
-    console.log(sisuId);
-    return this.apsService.createAps(createApsDTO);
+    return this.apsService.createAps(createApsDTO, sisuId);
   }
 
   @Patch('updataAps')
   @UseGuards(AuthGuard())
-  updataAps(@Body() updataApsDTO: UpdateApDto) {
+  updataAps(@Body() updataApsDTO) {
+    console.log(updataApsDTO)
     return this.apsService.updataAps(updataApsDTO);
   }
 

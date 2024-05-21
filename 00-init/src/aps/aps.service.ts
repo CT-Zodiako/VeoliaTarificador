@@ -12,16 +12,44 @@ export class ApsService {
     private readonly apsRepository: Repository<Aps>,
   ) {}
 
-  async createAps(createApsDTO: CreateApsDTO) {
+  async createAps(createApsDTO: CreateApsDTO, sisuId: number) {
     try {
-      const aps = this.apsRepository.create(createApsDTO);
-      await this.apsRepository.save(aps);
-      return aps;
+      const {
+        APSA_ESTADO,
+        APSA_IDSUI,
+        APSA_NOMAPS,
+        APSA_PROPIO,
+        APSA_RESOLUCION,
+        APSA_SOLORELL,
+      } = createApsDTO;
+  
+      const query = `
+        INSERT INTO AUCO_APSASEO (
+          APSA_ID, APSA_NOMAPS, APSA_FECHACREACION, APSA_PROPIO, USUA_USUA, 
+          APSA_RESOLUCION, APSA_SOLORELL, APSA_ESTADO, APSA_IDSUI
+        ) VALUES (
+          SAUCO_APSASEO.nextval, :APSA_NOMAPS, sysdate, :APSA_PROPIO, :sisuId, 
+          :APSA_RESOLUCION, :APSA_SOLORELL, :APSA_ESTADO, :APSA_IDSUI
+        )
+      `;
+  
+      const response = await this.apsRepository.query(query, [
+        APSA_NOMAPS,
+        APSA_PROPIO,
+        sisuId,
+        APSA_RESOLUCION,
+        APSA_SOLORELL,
+        APSA_ESTADO,
+        APSA_IDSUI,
+      ]);
+  
+      return response;
     } catch (error) {
       console.log(error);
+      throw new Error(error);
     }
   }
-
+  
   async findOneAps(apsaId: number) {
     try {
       const aps = await this.apsRepository.query(
@@ -65,6 +93,7 @@ export class ApsService {
   }
 
   async updataAps(updateApDto: UpdateApDto) {
+    console.log(updateApDto)
     const {
       APSA_ESTADO,
       APSA_ID,
@@ -76,21 +105,30 @@ export class ApsService {
       APSA_VIAT,
     } = updateApDto;
 
-    const updateResult = await this.apsRepository.update(
-      { APSA_ID: APSA_ID },
-      {
-        APSA_NOMAPS,
-        APSA_ESTADO,
-        APSA_PROPIO,
-        APSA_RESOLUCION,
-        APSA_SOLORELL,
-        APSA_VIAT,
-        APSA_IDSUI,
-      },
-    );
+    const updateResult = await this.apsRepository.query(
+      `UPDATE AUCO_APSASEO SET APSA_NOMAPS = '${APSA_NOMAPS}', APSA_ESTADO = ${APSA_ESTADO}, APSA_PROPIO = ${APSA_PROPIO}, APSA_RESOLUCION = ${APSA_RESOLUCION}, APSA_SOLORELL = ${APSA_SOLORELL}, APSA_VIAT = ${APSA_VIAT}, APSA_IDSUI = ${APSA_IDSUI} WHERE APSA_ID = ${APSA_ID}
+      `,)
 
-    return updateResult;
-  }
+
+      return updateResult;
+
+    }
+  //   .update(
+      
+  //     { APSA_ID: APSA_ID },
+  //     {
+  //       APSA_NOMAPS,
+  //       APSA_ESTADO,
+  //       APSA_PROPIO,
+  //       APSA_RESOLUCION,
+  //       APSA_SOLORELL,
+  //       APSA_VIAT,
+  //       APSA_IDSUI,
+  //     },
+  //   );
+
+  //   return updateResult;
+  // }
 
   async deleteAps(id: number) {
     const updateResult = await this.apsRepository.update(

@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { SubsidiosContribucionesService } from './subsidios-contribuciones.service';
 import { CreateSubsidiosContribucioneDto } from './dto/create-subsidios-contribucione.dto';
@@ -34,17 +35,16 @@ export class SubsidiosContribucionesController {
   }
 
   @Get()
-  findOne(@Body() body) {
-    return this.subsidiosContribucionesService.findOne(
-      body.APSA_ID,
-      body.SUCO_ANNO,
-      body.SUCO_MES,
+  async findOne(@Query() body) {
+    const { APSA_ID, SUCO_ANNO, SUCO_MES } = body;
+    return await this.subsidiosContribucionesService.findOne(
+      APSA_ID, SUCO_ANNO, SUCO_MES
     );
   }
 
   @Patch()
   update(
-    @Body() updateSubsidiosContribucioneDto: UpdateSubsidiosContribucioneDTO,
+    @Body() updateSubsidiosContribucioneDto,
   ) {
     return this.subsidiosContribucionesService.update(
       updateSubsidiosContribucioneDto

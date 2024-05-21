@@ -46,20 +46,16 @@ export class SubsidiosContribucionesService {
   }
 
   async update(
-    updateSubsidiosContribucioneDto: UpdateSubsidiosContribucioneDTO,
+    updateSubsidiosContribucioneDto,
   ) {
-    const { APSA_ID, CLAS_CLASE, SUCO_ANNO, SUCO_MES, SUCO_VALOR } =
-      updateSubsidiosContribucioneDto;
-    return await this.subsidiosContribucionesRepository.update(
-      {
-        SUCO_ANNO,
-        SUCO_MES,
-        APSA_ID,
-        CLAS_CLASE,
-      },
-      {
-        SUCO_VALOR,
-      },
-    );
+    console.log(updateSubsidiosContribucioneDto);
+
+    for (const element of updateSubsidiosContribucioneDto) {
+      await this.subsidiosContribucionesRepository.query(`
+        UPDATE AUCO_APSSUBSCONT SET suco_valor = ${element.SUCO_VALOR} WHERE apsa_id = ${element.APSA_ID} AND suco_anno = ${element.SUCO_ANNO} AND suco_mes = ${element.SUCO_MES} AND CLAS_CLASE = ${element.CLAS_CLASE}
+      `);
+    }
+
+    return 'ok'
   }
 }

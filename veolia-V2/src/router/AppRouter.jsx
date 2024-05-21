@@ -10,6 +10,8 @@ import { InformesProyecciones } from "../informeProyecciones/pages/InformesProye
 import { DetalladoCosto } from "../informesGerenciales/pages/DetalladoCosto";
 import { DataDetalladoSubAport } from "../informesGerenciales/pages/DetalladoSubAport";
 import { IndicesCRA } from "../suministros/pages/IndicesCRAPage";
+import { SubConPage } from "../suministros/pages/SubsidiosContribucionesPage";
+import { EmpresasPage } from "../auth/pages/EmpresasPage";
 
 
 export const router = createBrowserRouter([
@@ -24,10 +26,25 @@ export const router = createBrowserRouter([
                 element: <APSpage />,
                 errorElement: <h1>error</h1>,
             },
+            {
+                path: "/empresas",
+                element: <EmpresasPage />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/usuarios",
+                element: <UsuariosPage />,
+                errorElement: <h1>error</h1>,
+            },
             //Suministros
             {
                 path: "/indicesCRA",
                 element: <IndicesCRA />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/sub-con",
+                element: <SubConPage/>,
                 errorElement: <h1>error</h1>,
             },
 

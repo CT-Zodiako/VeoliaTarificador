@@ -12,15 +12,17 @@ import { EmpresasService } from './empresas.service';
 import { CreateEmpresaDTO } from './dto/create-empresa.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { UpdataEmpresaDTO } from './dto/update-empresa.dto';
+import { GetUser } from 'src/auth/decorators/get-user.decorator';
 
 @Controller('empresas')
 export class EmpresasController {
   constructor(private readonly empresasService: EmpresasService) {}
 
   @Post()
-  // @UseGuards(AuthGuard())
-  create(@Body() createEmpresaDTO: CreateEmpresaDTO) {
-    return this.empresasService.create(createEmpresaDTO);
+  @UseGuards(AuthGuard())
+  create(@GetUser() user: any, @Body() createEmpresaDTO: CreateEmpresaDTO) {
+    const sisuId = user.SISU_ID;
+    return this.empresasService.create(createEmpresaDTO,sisuId);
   }
 
 
