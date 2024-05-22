@@ -48,6 +48,7 @@ export const Menu = () => {
                                     <li><Link className="dropdown-item" to="/aps">APS</Link></li>
                                     <li><Link className="dropdown-item" to="/empresas">Empresas</Link></li>
                                     <li><Link className="dropdown-item" to="/usuarios">Usuarios</Link></li>
+                                    <li><Link className="dropdown-item" to="/rellenos">Rellenos</Link></li>
 
                                 </ul>
                             </li>

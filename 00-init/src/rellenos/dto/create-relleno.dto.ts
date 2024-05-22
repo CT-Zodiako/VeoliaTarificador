@@ -4,8 +4,6 @@ export class CreateRellenoDTO {
   @IsString()
   RELL_NOMRELLENO: string;
 
-  @IsString()
-  RELL_DESCRIPCION: string;
 
   @IsNumber()
   RELL_ESTADO: number;
@@ -16,6 +14,6 @@ export class CreateRellenoDTO {
   @IsNumber()
   RELL_REGIONAL: number;
 
-  @IsNumber()
+  @IsString()
   RELL_NUSD: number;
 }

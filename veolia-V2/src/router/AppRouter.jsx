@@ -12,6 +12,7 @@ import { DataDetalladoSubAport } from "../informesGerenciales/pages/DetalladoSub
 import { IndicesCRA } from "../suministros/pages/IndicesCRAPage";
 import { SubConPage } from "../suministros/pages/SubsidiosContribucionesPage";
 import { EmpresasPage } from "../auth/pages/EmpresasPage";
+import { RellenosPage } from "../auth/pages/RellenosPage";
 
 
 export const router = createBrowserRouter([
@@ -34,6 +35,11 @@ export const router = createBrowserRouter([
             {
                 path: "/usuarios",
                 element: <UsuariosPage />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/rellenos",
+                element: <RellenosPage />,
                 errorElement: <h1>error</h1>,
             },
             //Suministros

@@ -39,8 +39,10 @@ export class RellenosController {
     return this.rellenosService.remove(RELL_ID);
   }
 
-  @Patch(':RELL_ID')
-  upData(@Param('RELL_ID') RELL_ID: number, @Body() upDataDTO: UpDataDTO) {
-    return this.rellenosService.upData(RELL_ID, upDataDTO);
+  @Patch()
+  @UseGuards(AuthGuard())
+  upData(@GetUser() user ,@Body() upDataDTO) {
+  
+    return this.rellenosService.upData(user.SISU_ID, upDataDTO);
   }
 }

@@ -6,10 +6,6 @@ export class UpDataDTO {
   RELL_NOMRELLENO: string;
 
   @IsOptional()
-  @IsString()
-  RELL_DESCRIPCION: string;
-
-  @IsOptional()
   @IsNumber()
   RELL_ESTADO: number;
 

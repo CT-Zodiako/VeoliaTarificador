@@ -41,7 +41,7 @@ export const EditarEmpresaModal = ({
                 <Form.Control
                     as="select"
                     value={selectedItem.EMPR_PROPIA}
-                    onChange={(e) => setSelectedItem({ ...selectedItem, EMPR_PROPIA: Number(e.target.value) })}
+                    onChange={(e) => setSelectedItem({ ...selectedItem, EMPR_PROPIA: Num(e.target.value) })}
                 >
                     <option value="0">Propio</option>
                     <option value="1">Terceros</option>
