@@ -60,31 +60,20 @@ export class AuthService {
   }
 
   async updateUser(updateUserDTO: UpdateUserDTO) {
+    console.log(updateUserDTO)
     const {
       sisuId,
       sisuNombres,
       sisuApellidos,
       sisuCorreo,
-      sisuEstado,
-      sisuPass,
+      sisuEstado
     } = updateUserDTO;
 
-    const hashPass = await this.brcyptHelper.hashPassword(sisuPass);
-
-    await this.userRepository
-      .createQueryBuilder()
-      .update('AUGE_SISUSUARIO')
-      .set({
-        sisuId,
-        sisuNombres,
-        sisuApellidos,
-        sisuCorreo,
-        sisuEstado,
-        sisuPass: hashPass,
-      })
-      .where('SISU_ID = :id', { id: sisuId })
-      .execute();
-
+    const query = `
+    UPDATE AUGE_SISUSUARIO
+    SET SISU_NOMBRES = '${sisuNombres}', SISU_APELLIDOS = '${sisuApellidos}', SISU_CORREO = '${sisuCorreo}', SISU_ESTADO = ${sisuEstado}`
+    // const hashPass = await this.brcyptHelper.hashPassword(sisuPass);
+    await this.userRepository.query(query + ` WHERE SISU_ID = ${sisuId}`)
     return { message: 'Usuario actualizado exitosamente' };
   }
 

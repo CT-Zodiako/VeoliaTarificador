@@ -23,7 +23,7 @@ export const TableEmpresas = () => {
             setTablaDatos(data);
 
         } catch (error) {
-            
+            console.log('Error obteniendo los datos:', error)
         }
     }
 

@@ -138,4 +138,22 @@ export class ApsService {
 
     return updateResult;
   }
+
+  async getApsAsignadas(id:number) {
+    const apsAsignadas = await this.apsRepository.query(`
+    SELECT aa.* FROM AUCO_APSASEO aa JOIN AUCO_APSUSUARIOS aa2 ON (aa.APSA_ID = aa2.APSA_ID AND aa2.APSI_ESTADO = 1) WHERE aa2.SISU_ID = ${id} AND aa.APSA_ESTADO = 1 ORDER BY aa.APSA_NOMAPS ASC
+    `);
+
+    const apsSinAsignar = await this.apsRepository.query(`
+    SELECT * FROM AUCO_APSASEO aa WHERE APSA_ID NOT IN (SELECT aa2.APSA_ID FROM AUCO_APSUSUARIOS aa2 WHERE SISU_ID = ${id} AND APSI_ESTADO = 1) AND APSA_ESTADO = 1 ORDER BY aa.APSA_NOMAPS ASC
+    `);
+
+    return {
+      apsAsignadas,
+      apsSinAsignar
+  }
+
+
+  }
 }
+

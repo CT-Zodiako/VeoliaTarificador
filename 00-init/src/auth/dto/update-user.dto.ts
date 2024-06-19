@@ -27,10 +27,6 @@ export class UpdateUserDTO {
   sisuCorreo: string;
 
   @IsOptional()
-  @IsString()
-  sisuPass: string;
-
-  @IsOptional()
   @IsIn([0, 1])
   sisuEstado: number;
 }

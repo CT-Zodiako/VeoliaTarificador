@@ -97,6 +97,16 @@ export const Menu = () => {
                                 </ul>
                             </li>
 
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                PGIRS
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/informePGIRS">Informe PGIRS</Link></li>
+                        
+                                </ul>
+                            </li>
+
                         </ul>
 
                     </div>

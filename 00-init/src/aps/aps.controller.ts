@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { ApsService } from './aps.service';
 import { CreateApsDTO } from './dto/create-aps.dto';
@@ -60,4 +61,13 @@ export class ApsController {
   deleteAps(@Param('id') id: number){
     return this.apsService.deleteAps(id)
   }
+
+  @Get('getApsAsignadas')
+  getByAps(@Query() Body){
+    console.log(Body)
+    return this.apsService.getApsAsignadas(Body.sisuId)
+  }
+
+
+
 }

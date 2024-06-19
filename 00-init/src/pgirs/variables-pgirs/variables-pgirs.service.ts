@@ -11,19 +11,17 @@ export class VariablesPgirsService {
     private readonly pgirsRepository: Repository<Vpgirs>,
   ) {}
 
-  async informePgirsClus(consultaDTO: ConsultaDTO) {
-    const { APSA_ID } = consultaDTO;
+  async informePgirsClus(apsid) {
     return await this.pgirsRepository.query(
       `
-      SELECT * FROM vgirs_informe WHERE apsid = ${APSA_ID}
+      SELECT * FROM vgirs_informe WHERE apsid = ${apsid}
       `,
     );
   }
 
-  async informePgirsBarridos(consultaDTO: ConsultaDTO){
-    const {APSA_ID}= consultaDTO;
+  async informePgirsBarridos(apsid){
     return await this.pgirsRepository.query(`
-      SELECT * FROM VGIRS_INFORMELBL WHERE apsid = ${APSA_ID}
+      SELECT * FROM VGIRS_INFORMELBL WHERE apsid = ${apsid}
     `)
   }
 }

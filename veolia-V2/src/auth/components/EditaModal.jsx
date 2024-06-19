@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modal, Form } from 'react-bootstrap';
 
 const EditModal = ({ selectedItem, handleCloseModal, handleSaveChanges, setSelectedItem }) => {

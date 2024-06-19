@@ -56,7 +56,6 @@ export const TableRellenos = () => {
 
     const handleSaveNewRelleno = async () => {
         try {
-            console.log(newRelleno)
             await rellenosService.saveNewRelleno(newRelleno);
             handleCloseNewModal();
             fetchData();
@@ -64,12 +63,6 @@ export const TableRellenos = () => {
             console.error('Error guardando los datos:', error);
         }
     }
-
-
-
-    
-    
-    
 
 
   return (

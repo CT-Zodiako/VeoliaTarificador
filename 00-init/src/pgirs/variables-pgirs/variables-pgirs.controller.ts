@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { VariablesPgirsService } from './variables-pgirs.service';
 import { ConsultaDTO } from './dto/consulta.dto';
@@ -15,12 +16,13 @@ export class VariablesPgirsController {
   constructor(private readonly variablesPgirsService: VariablesPgirsService) {}
 
   @Get('informePgirsClus')
-  informePgirsClus(@Body() consultaDTO: ConsultaDTO) {
-    return this.variablesPgirsService.informePgirsClus(consultaDTO);
+  informePgirsClus(@Query() Body) {
+    console.log(Body.APSA_ID);
+    return this.variablesPgirsService.informePgirsClus(Body.APSA_ID);
   }
 
   @Get('informePgirsBarridos')
-  informePgirsBarridos(@Body() consultaDTO: ConsultaDTO) {
-    return this.variablesPgirsService.informePgirsBarridos(consultaDTO);
+  informePgirsBarridos(@Query() Body) {
+    return this.variablesPgirsService.informePgirsBarridos(Body.APSA_ID);
   }
 }

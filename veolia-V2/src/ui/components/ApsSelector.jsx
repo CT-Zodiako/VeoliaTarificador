@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { selectorService } from '../services/selectorService';
 import { useApsSelector } from '../../store/storeSelectors';
-import { useAnnoSelector } from '../../store/storeSelectors';
 
 export const ApsSelector = () => {
   const [data, setData] = useState([]);

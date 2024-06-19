@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { apsService } from '../services/apsService';
 import { Table, Button } from 'react-bootstrap';
 import EditModal from '../components/EditaModal'; // Importar el nuevo componente
@@ -51,9 +51,9 @@ const TableUsers = () => {
         }
     };
 
-    const handleShowNewModal = () => {
-        setShowNewModal(true);
-    };
+    // const handleShowNewModal = () => {
+    //     setShowNewModal(true);
+    // };
 
     const handleCloseNewModal = () => {
         setShowNewModal(false);

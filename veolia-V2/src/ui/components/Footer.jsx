@@ -1,5 +1,4 @@
 // Footer.js
-import React from 'react';
 import './footerStyles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

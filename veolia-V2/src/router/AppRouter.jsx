@@ -13,6 +13,7 @@ import { IndicesCRA } from "../suministros/pages/IndicesCRAPage";
 import { SubConPage } from "../suministros/pages/SubsidiosContribucionesPage";
 import { EmpresasPage } from "../auth/pages/EmpresasPage";
 import { RellenosPage } from "../auth/pages/RellenosPage";
+import { InformePGIRSPage } from "../pgirs/pages/InformePGIRSPage";
 
 
 export const router = createBrowserRouter([
@@ -88,7 +89,14 @@ export const router = createBrowserRouter([
                 path: "/informesProyecciones",
                 element: <InformesProyecciones />,
                 errorElement: <h1>error</h1>,
+            },
+            //
+            {
+                path: "/informePGIRS",
+                element: <InformePGIRSPage />,
+                errorElement: <h1>error</h1>,
             }
+
         ]
 
     },
