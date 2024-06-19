@@ -14,9 +14,13 @@ export class ResumenVariablesPgirsService {
 
   }
   async resumenVariables(APSA_ID){
-    return await this.pgirsRepository.query(`
-      SELECT * FROM vpgir_infvariables  WHERE APSAID = ${APSA_ID}  ORDER BY apsa_nomaps, periodo DESC    
-    `)
+    try {
+      return await this.pgirsRepository.query(`
+        SELECT * FROM vpgir_infvariables  WHERE APSAID = ${APSA_ID}  ORDER BY apsa_nomaps, periodo DESC    
+      `)
+    } catch (error) {
+      console.log("error en resuenVariables", error)
+    }
   }
 
 }
