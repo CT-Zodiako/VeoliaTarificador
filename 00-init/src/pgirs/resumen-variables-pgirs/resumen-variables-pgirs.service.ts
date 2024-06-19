@@ -13,8 +13,7 @@ export class ResumenVariablesPgirsService {
   ){
 
   }
-  async resumenVariables(consultaDTO: ConsultaDTO){
-    const{APSA_ID}= consultaDTO;
+  async resumenVariables(APSA_ID){
     return await this.pgirsRepository.query(`
       SELECT * FROM vpgir_infvariables  WHERE APSAID = ${APSA_ID}  ORDER BY apsa_nomaps, periodo DESC    
     `)

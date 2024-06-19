@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ResumenVariablesPgirsService } from './resumen-variables-pgirs.service';
 import { ConsultaDTO } from './dto/consulta.dto';
 
@@ -7,7 +7,7 @@ export class ResumenVariablesPgirsController {
   constructor(private readonly resumenVariablesPgirsService: ResumenVariablesPgirsService) {}
 
   @Get('resumenVariables')
-  informePgirsClus(@Body() consultaDTO: ConsultaDTO) {
-    return this.resumenVariablesPgirsService.resumenVariables(consultaDTO);
+  informePgirsClus(@Query() Body) {
+    return this.resumenVariablesPgirsService.resumenVariables(Body.APSA_ID);
   }
 }
