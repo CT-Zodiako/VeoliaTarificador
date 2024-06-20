@@ -14,9 +14,8 @@ export class PgirsVariablesService {
   ){
     
   }
-  async getVariablesPgirs(consultaDTO:ConsultaDTO){
-    console.log(consultaDTO)
-    const{ANNO,APSA_ID,MES}=consultaDTO
+  async getVariablesPgirs(Body){
+    const {APSA_ID,ANNO,MES}=Body;
     return await this.pgrisRepository.query(`
       SELECt * FROM vpirg_parametros WHERE APSAID = ${APSA_ID} AND PGRIANNO = ${ANNO} AND PGRIMES = ${MES}
     `)
