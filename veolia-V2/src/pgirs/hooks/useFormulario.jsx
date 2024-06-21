@@ -72,9 +72,9 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/sto
     const onDatas = () => {
         setFormulario({
             ...formulario,
-            aps: apss,
-            anno: annos,
-            mes: mess
+            APSAID: apss,
+            PGRIANNO: annos,
+            PGRIMES: mess
         });
     }
 

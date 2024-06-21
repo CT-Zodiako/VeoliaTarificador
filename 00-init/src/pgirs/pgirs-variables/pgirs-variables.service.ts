@@ -21,13 +21,27 @@ export class PgirsVariablesService {
     `)
   }
 
-  async createVaraible(createDTO:CrearDTO,SISU_ID){
-    const {APSAID,PGRIANNO,PGRIFRECUENCIA,PGRIMES,PGRIVALOR,PGRIVARIABLE}=createDTO;
-    return this.pgrisRepository.query(`
-    INSERT INTO TARIFICADOR.PGRI_PARAMETROS
-    (APSAID, PGRIANNO, PGRIMES, PGRIVARIABLE, PGRIVALOR, PGRIFRECUENCIA, PGRIFECHA, PGRIUSUARIO)
-  VALUES
-    (${APSAID}, ${PGRIANNO}, ${PGRIMES}, ${PGRIVARIABLE}, ${PGRIVALOR}, ${PGRIFRECUENCIA}, SYSDATE, ${SISU_ID})
-    `)
+  async createVaraible(createVaraible,SISU_ID){
+    const {aps,anno,mes,data}=createVaraible;
+    console.log(data[0])
+    console.log(data[1])
+
+    // for (let i = 0; i < data.length; i++) {
+    //   const {variable,valor,frecuencia}=data[i];
+    //   await this.pgrisRepository.query(`
+    //   INSERT INTO TARIFICADOR.PGRI_PARAMETROS
+    //   (APSAID, PGRIANNO, PGRIMES, PGRIVARIABLE, PGRIVALOR, PGRIFRECUENCIA, PGRIFECHA, PGRIUSUARIO)
+    // VALUES
+    //   (${aps}, ${anno}, ${mes}, ${variable}, ${valor}, ${frecuencia}, SYSDATE, ${SISU_ID})
+    //   `)
+    // }
+
+
+  //   return this.pgrisRepository.query(`
+  //   INSERT INTO TARIFICADOR.PGRI_PARAMETROS
+  //   (APSAID, PGRIANNO, PGRIMES, PGRIVARIABLE, PGRIVALOR, PGRIFRECUENCIA, PGRIFECHA, PGRIUSUARIO)
+  // VALUES
+  //   (${APSAID}, ${PGRIANNO}, ${PGRIMES}, ${PGRIVARIABLE}, ${PGRIVALOR}, ${PGRIFRECUENCIA}, SYSDATE, ${SISU_ID})
+  //   `)
   }
 }

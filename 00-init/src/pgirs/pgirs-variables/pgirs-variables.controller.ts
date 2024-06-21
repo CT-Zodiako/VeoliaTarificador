@@ -15,7 +15,7 @@ export class PgirsVariablesController {
   }
   @Post()
   @UseGuards(AuthGuard())
-  createVariable(@GetUser() user, @Body() createDTO:CrearDTO){
-    return this.pgirsVariablesService.createVaraible(createDTO,user.SISU_ID)
+  createVariable(@GetUser() user, @Body() body){
+    return this.pgirsVariablesService.createVaraible(body,user.SISU_ID)
   }
 }

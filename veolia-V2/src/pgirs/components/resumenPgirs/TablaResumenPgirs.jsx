@@ -34,6 +34,7 @@ import { useFiltroTabResumen } from '../../../hooks/useFiltroTabResumen';
     
     const fetchData = async () => {
         if (!aps) return;            
+        console.log('aps', aps)
         const data = {
             APSA_ID : aps
         }

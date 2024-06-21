@@ -3,7 +3,7 @@ import {create} from 'zustand';
 export const useApsSelector = create((set) => {
     return{
         aps:'',
-        cambioSelector: (aps) => set({aps: aps}),
+        cambioSelector: (aps) => set({aps: Number(aps)}),
     }
 });
 
@@ -11,7 +11,7 @@ export const useApsSelector = create((set) => {
 export const useAnnoSelector = create((set) => {
     return{
         anno:2024,
-        cambioSelectorAnno: (anno) => set({anno: anno}),
+        cambioSelectorAnno: (anno) => set({anno: Number(anno)}),
     }
 });
 
@@ -19,6 +19,6 @@ export const useAnnoSelector = create((set) => {
 export const useMesSelector = create((set) => {
     return{
         mes:2,
-        cambioSelectorMes: (mes) => set({mes: mes}),
+        cambioSelectorMes: (mes) => set({mes: Number(mes)}),
     }
 });

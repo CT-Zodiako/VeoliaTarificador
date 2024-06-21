@@ -49,8 +49,9 @@ export const getVariablesPgirs = async (aps, anno, mes) => {
 }
 
 export const postVariablesPgirs = async (data) => {  
+    console.log(data)
     try{
-        const response = await Http.get('pgirs-variables', data
+        const response = await Http.post('pgirs-variables', data
     );
         return response;
     }
