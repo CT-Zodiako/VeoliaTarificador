@@ -14,6 +14,8 @@ import { SubConPage } from "../suministros/pages/SubsidiosContribucionesPage";
 import { EmpresasPage } from "../auth/pages/EmpresasPage";
 import { RellenosPage } from "../auth/pages/RellenosPage";
 import { InformePGIRSPage } from "../pgirs/pages/InformePGIRSPage";
+import { ResumenPGIRS } from "../pgirs/pages/ResumenPGIRS";
+import { VariablesPGIRS } from "../pgirs/pages/VariablesPGIRS";
 
 
 export const router = createBrowserRouter([
@@ -95,7 +97,17 @@ export const router = createBrowserRouter([
                 path: "/informePGIRS",
                 element: <InformePGIRSPage />,
                 errorElement: <h1>error</h1>,
-            }
+            },
+            {
+                path: "/resumenPGIRS",
+                element: <ResumenPGIRS />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/variablesPGIRS",
+                element: <VariablesPGIRS />,
+                errorElement: <h1>error</h1>,
+            },
 
         ]
 

@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import { useEffect} from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { modalHook } from '../hooks/useModalHook';
 import { getIndicesCRA } from '../service/indicesCRAService';

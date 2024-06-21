@@ -25,10 +25,6 @@ export const TablaBarrido = () => {
         fetchData()
     
     }, [aps])
-    
-
-
-
 
   return (
     <div className='container'>

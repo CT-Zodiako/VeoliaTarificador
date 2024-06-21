@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 
-export const useFiltroTablas = (datos, initialForm = {}) => {
+export const useFiltroTabResumen = (datos, initialForm = {}) => {
     const [filtro, setFiltro] = useState(initialForm) 
     
     const onFiltroTabla = (key, event) => {
@@ -9,10 +9,10 @@ export const useFiltroTablas = (datos, initialForm = {}) => {
             [key]: event.target.value
         });
     };
-
-    const filtroName = useMemo(() => {        
-        return filtro && Object.keys(filtro).length > 0 ?        
-        datos.datos.filter((item) => {   
+    
+    const filtroInput = useMemo(() => {
+        return filtro && Object.keys(filtro).length > 0 ? 
+        datos.filter((item) => {
             return Object.entries(filtro).some(([key, value]) => {
                 const itemValue = item[key];
                 if (itemValue !== undefined && value !== undefined) {
@@ -21,10 +21,10 @@ export const useFiltroTablas = (datos, initialForm = {}) => {
                     return itemValueStr.includes(valueStr);
                 }
                 return false;
-            });
+            })
         })
-        : datos.datos;
-    }, [filtro, datos]);
+        : datos;
+    },[filtro, datos]); 
 
-    return { onFiltroTabla, filtro, filtroName}; 
+    return { onFiltroTabla, filtro, filtroInput}; 
 };

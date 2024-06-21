@@ -68,6 +68,7 @@ export const Menu = () => {
                                     Informes gerenciales
                                 </a>
                                 <ul className="dropdown-menu">
+                                <li><Link className="dropdown-item" to="/dataDetalladoSubAport">Detallado Sub y Aportes</Link></li>
                                     <li><Link className="dropdown-item" to="/detalladoCostos">Detallado de costo</Link></li>
                                     <li><Link className="dropdown-item" to="/dataDetalladoSubAport">Detallado Sub y Aportes</Link></li>
                                 </ul>
@@ -99,11 +100,12 @@ export const Menu = () => {
 
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
-                                PGIRS
+                                    PGIRS
                                 </a>
                                 <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/variablesPGIRS">Variables PGIRS</Link></li>
                                     <li><Link className="dropdown-item" to="/informePGIRS">Informe PGIRS</Link></li>
-                        
+                                    <li><Link className="dropdown-item" to="/resumenPGIRS">Resumen Variables PGIRS</Link></li>
                                 </ul>
                             </li>
 
