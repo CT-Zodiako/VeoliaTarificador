@@ -22,9 +22,76 @@ export class PgirsVariablesService {
   }
 
   async createVaraible(createVaraible,SISU_ID){
-    const {aps,anno,mes,data}=createVaraible;
-    console.log(data[0])
-    console.log(data[1])
+    try {
+      
+      const {aps,anno,mes,data}=createVaraible;
+  
+      const lbl = data[0]
+      const cesped = data[1]
+      const poda = data[2]
+      const lavado = data[3]
+      const playas = data[4]
+      const inscestas = data[5]
+      const mancestas = data[6]
+  
+      this.pgrisRepository.query(`
+        INSERT INTO TARIFICADOR.PGRI_PARAMETROS
+        (APSAID, PGRIANNO, PGRIMES, PGRIVARIABLE, PGRIVALOR, PGRIFRECUENCIA, PGRIFECHA, PGRIUSUARIO)
+        VALUES
+        (${aps}, ${anno}, ${mes}, ${lbl.PGRIVARIABLE}, ${lbl.LBL}, ${lbl.selectorLBL}, SYSDATE, ${SISU_ID})
+      `)
+
+      this.pgrisRepository.query(`
+        INSERT INTO TARIFICADOR.PGRI_PARAMETROS
+        (APSAID, PGRIANNO, PGRIMES, PGRIVARIABLE, PGRIVALOR, PGRIFRECUENCIA, PGRIFECHA, PGRIUSUARIO)
+        VALUES
+        (${aps}, ${anno}, ${mes}, ${cesped.PGRIVARIABLE}, ${cesped.CESPED}, ${cesped.selectorCESPED}, SYSDATE, ${SISU_ID})
+      `)
+
+      this.pgrisRepository.query(`
+        INSERT INTO TARIFICADOR.PGRI_PARAMETROS
+        (APSAID, PGRIANNO, PGRIMES, PGRIVARIABLE, PGRIVALOR, PGRIFRECUENCIA, PGRIFECHA, PGRIUSUARIO)
+        VALUES
+        (${aps}, ${anno}, ${mes}, ${poda.PGRIVARIABLE}, ${poda.PODA}, ${poda.selectorPODA}, SYSDATE, ${SISU_ID})
+      `)
+
+      this.pgrisRepository.query(`
+        INSERT INTO TARIFICADOR.PGRI_PARAMETROS
+        (APSAID, PGRIANNO, PGRIMES, PGRIVARIABLE, PGRIVALOR, PGRIFRECUENCIA, PGRIFECHA, PGRIUSUARIO)
+        VALUES
+        (${aps}, ${anno}, ${mes}, ${lavado.PGRIVARIABLE}, ${lavado.LAVADO}, ${lavado.selectorLAVADO}, SYSDATE, ${SISU_ID})
+      `)
+
+      this.pgrisRepository.query(`
+        INSERT INTO TARIFICADOR.PGRI_PARAMETROS
+        (APSAID, PGRIANNO, PGRIMES, PGRIVARIABLE, PGRIVALOR, PGRIFRECUENCIA, PGRIFECHA, PGRIUSUARIO)
+        VALUES
+        (${aps}, ${anno}, ${mes}, ${playas.PGRIVARIABLE}, ${playas.PLAYAS}, ${playas.selectorPLAYAS}, SYSDATE, ${SISU_ID})
+      `)
+
+      this.pgrisRepository.query(`
+        INSERT INTO TARIFICADOR.PGRI_PARAMETROS
+        (APSAID, PGRIANNO, PGRIMES, PGRIVARIABLE, PGRIVALOR, PGRIFRECUENCIA, PGRIFECHA, PGRIUSUARIO)
+        VALUES
+        (${aps}, ${anno}, ${mes}, ${inscestas.PGRIVARIABLE}, ${inscestas.INSCESTAS}, ${inscestas.selectorINSCESTAS}, SYSDATE, ${SISU_ID})
+      `)
+
+      this.pgrisRepository.query(`
+        INSERT INTO TARIFICADOR.PGRI_PARAMETROS
+        (APSAID, PGRIANNO, PGRIMES, PGRIVARIABLE, PGRIVALOR, PGRIFRECUENCIA, PGRIFECHA, PGRIUSUARIO)
+        VALUES
+        (${aps}, ${anno}, ${mes}, ${mancestas.PGRIVARIABLE}, ${mancestas.MANCESTAS}, ${mancestas.selectorMANCESTAS}, SYSDATE, ${SISU_ID})
+      `)
+
+      return 'Variables creadas correctamente'
+
+      
+    } catch (error) {
+      console.log('Error en crear variables',error)
+      
+    }
+
+
 
     // for (let i = 0; i < data.length; i++) {
     //   const {variable,valor,frecuencia}=data[i];
