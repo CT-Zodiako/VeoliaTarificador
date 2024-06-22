@@ -1,6 +1,7 @@
 import { useState } from "react";
+import {frecuencias} from "./datas";
 
- export const SelectorFrecuencia = ({frecuencia, index, onFormFrecuencia}) => {
+ export const SelectorFrecuencia = ({index, onFormFrecuencia}) => {
     const [valorFrecuencia, setValorFrecuencia] = useState();
     
     const onFrecuenciaChange = (event) => {
@@ -19,7 +20,7 @@ import { useState } from "react";
         >
             <option value=''>Frecuencia</option>
             {
-                frecuencia.map((item) =>(
+                frecuencias.map((item) =>(
                     <option 
                         key={item.id} 
                         value={item.id}
