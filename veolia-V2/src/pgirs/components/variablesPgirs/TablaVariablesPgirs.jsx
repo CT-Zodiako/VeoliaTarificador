@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Table } from "react-bootstrap";
 import { ModalVariablesPgirs } from "./ModalVariablesPgirs";
-import { getVariablesPgirs } from "../../services/informePgirsService";
 import { meses, variables, frecuencias } from "../../../ui/components/datas";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/storeSelectors";
+import { SelectorFrecuenciaEditar } from "./SelectorFrecuenciaEditar";
+import { updateVariablesPgirs } from "../../services/informePgirsService";
 
- export const TablaVariablesPgirs = () => {
-  const aps = useApsSelector(state => state.aps);
-  const anno = useAnnoSelector((state) => state.anno);
-  const mes = useMesSelector((state) => state.mes);
-  
-  const [datos, setDatos] = useState([]);
+ export const TablaVariablesPgirs = ({aps, anno, mes, datos, fetchData}) => {
   const [modal, setModal] = useState(false);
-  const [variableEditar, setVariableEditar] = useState('');
+  const [editar, setEditar] = useState(null);
+  const [variableEditar, setVariableEditar] = useState('');  
   console.log('variableEditar', variableEditar);
 
   const onAbrirModal = () => {
@@ -38,23 +34,35 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/
     return frecuencias.find((item) => item.id === frecuencia).nombre;
   }
 
-  const onEditarFormulario = (item) => {
-    setVariableEditar(item);
-    onAbrirModal();
+  const onEditarFormulario = (index) => {
+    setVariableEditar(datos[index]);
+    setEditar(index);
   }
 
-  const fetchData = async () => {
+  const onCancelarEditar = () => {
+    setVariableEditar('');
+    setEditar(false);
+  }
+
+  const onEditarVariable = (event) => {
+    const {name, value} = event.target;
+    setVariableEditar({
+      ...variableEditar,
+      [name]: value
+    });
+  }
+
+  const onActualizarVariable = async () => {
     try {
-      const response = await getVariablesPgirs(aps, anno, mes);
-      setDatos(response);
-    } catch (error) {
-      console.error(error);
+      await updateVariablesPgirs(variableEditar);
     }
-  }
-
-  useEffect(() => {
+    catch (error) {
+      console.error(error);
+    } 
     fetchData();
-  },[aps, anno, mes]);
+    setVariableEditar('');
+    setEditar(null);
+  }
 
   return(
     <>
@@ -62,7 +70,7 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/
         <button
           onClick={onAbrirModal}
           className="btn btn-success"
-          // disabled={datos.length === 0}
+          disabled={datos && datos.length > 0 ? true : false}
         >
           Nuevo
         </button>
@@ -79,7 +87,7 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/
               <th>USUARIO</th>
               <th>FECHA INGRESO</th>
               <th>TIPO INGRESO</th>
-              <th>OPCIONES</th>
+              <th style={{ width: '200px' }}>OPCIONES</th>
             </tr>
           </thead>
           <tbody>
@@ -91,19 +99,67 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/
                   <td>{item.PGRIANNO}</td>
                   <td>{onMeseSeleccionado(item.PGRIMES)}</td>
                   <td>{onVariableSeleccionada(item.PGRIVARIABLE)}</td>
-                  <td>{onFrecuenciaSeleccionada(item.PGRIFRECUENCIA)}</td>
-                  <td>{item.PGRIVALOR}</td>
+                  <td>
+                    {
+                      editar === index ? (
+                        <div>
+                          <SelectorFrecuenciaEditar
+                            label={variableEditar.PGRIFRECUENCIA}
+                            onEditarVariable={onEditarVariable}
+                          />
+                        </div>
+                      )
+                      : (
+                        <div>
+                          {onFrecuenciaSeleccionada(item.PGRIFRECUENCIA)}
+                        </div>
+                      )
+                    }
+                  </td>
+                  <td>
+                    {
+                      editar === index ? (<div>
+                        <input 
+                          type="text"
+                          name="PGRIVALOR"
+                          value={variableEditar.PGRIVALOR || ''}
+                          onChange={(event) => onEditarVariable(event, index)}
+                        />
+                      </div>) 
+                      : (<div>{item.PGRIVALOR}</div>)
+                    }
+                  </td>
                   <td>{item.SISU_CORREO}</td>
                   <td>{item.PGRIFECHA}</td>
                   <td>{item.PGRINGRESO}</td>
-                  <td>
-                    <button 
-                      className="btn btn-warning" 
-                      onClick={() => onEditarFormulario(item)}
-                    >
-                      Editar
-                    </button>
-                    <button className="btn btn-danger">Eliminar</button>
+                  <td className="d-flex justify-content-center align-items-center" style={{ width: '200px' }}>
+                    {
+                      editar === index ? (
+                        <div>
+                          <button 
+                            className="btn btn-success"
+                            onClick={onActualizarVariable}
+                          >
+                            Guardar
+                          </button>
+                          <button 
+                            className="btn btn-danger"
+                            onClick={onCancelarEditar}
+                          >
+                            cancelar
+                          </button>
+                        </div>
+                      ) : (
+                        <div>
+                          <button 
+                            className="btn btn-warning"
+                            onClick={() => onEditarFormulario(index)}
+                          >
+                            Editar
+                          </button>
+                        </div>
+                      )
+                    }
                   </td>
                 </tr>
               ))              

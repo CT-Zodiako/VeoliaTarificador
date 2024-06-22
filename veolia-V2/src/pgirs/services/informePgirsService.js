@@ -49,9 +49,19 @@ export const getVariablesPgirs = async (aps, anno, mes) => {
 }
 
 export const postVariablesPgirs = async (data) => {  
-    console.log("data formulario: ",data)
     try{
         const response = await Http.post('pgirs-variables', data
+    );
+        return response;
+    }
+    catch(error){
+        console.log('error en getResumenPgirs', error);
+    }
+}
+
+export const updateVariablesPgirs = async (data) => {  
+    try{
+        const response = await Http.patch('pgirs-variables', data
     );
         return response;
     }

@@ -1,3 +1,11 @@
+export const filas = [
+    {id: 1, nombre: 'APSA_NOMAPS'},
+    {id: 2, nombre: 'PERIODO'},
+    {id: 3, nombre: 'PGRINGRESO'},
+    {id: 4, nombre: 'PGRIFECHA'},
+    {id: 5, nombre: 'SISU_CORREO'}
+];
+
 export const meses = [
     {mes: 1, nombre: 'Enero'},
     {mes: 2, nombre: 'Febrero'},
@@ -28,3 +36,46 @@ export const frecuencias = [
     {id: 2, nombre: 'Semestral'},
     {id: 3, nombre: 'Anual'}
   ];
+
+export const data = {
+  data: [
+      {
+          PGRIVARIABLE: 11,
+          valor: '',
+          frecuencia: '',
+      },
+      {
+          PGRIVARIABLE: 21,
+          valor: '',
+          frecuencia: '',
+      },
+      {
+          PGRIVARIABLE: 22,
+          valor: '',
+          frecuencia: '',
+      },
+      {
+          PGRIVARIABLE: 23,
+          valor: '',
+          frecuencia: '',
+      },
+      {
+          PGRIVARIABLE: 24,
+          valor: '',
+          frecuencia: '',
+      },
+      {
+          PGRIVARIABLE: 25,
+          valor: '',
+          frecuencia: '',
+      },
+      {
+          PGRIVARIABLE: 26,
+          valor: '',
+          frecuencia: '',
+      },
+  ],
+  APSAID: '',
+  PGRIANNO: '',
+  PGRIMES: '',
+};

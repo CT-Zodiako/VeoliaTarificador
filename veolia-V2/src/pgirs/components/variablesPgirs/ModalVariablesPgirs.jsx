@@ -6,7 +6,6 @@ import { postVariablesPgirs } from "../../services/informePgirsService";
 
  export const ModalVariablesPgirs = ({abrir, handleCancelar, apss, annos, mess}) => {
     const {formulario, onFormChange, onFormFrecuencia, onDatas} = UseFormulario();
-    console.log('formulario PGIRS: ', formulario);
     
     useEffect(() => {
         onDatas();

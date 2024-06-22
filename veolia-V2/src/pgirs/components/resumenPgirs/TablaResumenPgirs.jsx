@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
+import { filas } from '../../../ui/components/datas';
 import { getResumenPgirs } from '../../services/informePgirsService'
 import { useApsSelector } from '../../../store/storeSelectors';
 import { useFiltroTabResumen } from '../../../hooks/useFiltroTabResumen';
@@ -9,32 +10,8 @@ import { useFiltroTabResumen } from '../../../hooks/useFiltroTabResumen';
     const [datos, setDatos] = useState([]);
     const { filtro, onFiltroTabla, filtroInput } = useFiltroTabResumen(datos);     
     
-    const filas = [
-        {
-            id: 1,
-            nombre: 'APSA_NOMAPS'
-        },
-        {
-            id: 2,
-            nombre: 'PERIODO'
-        },
-        {
-            id: 3,
-            nombre: 'PGRINGRESO'
-        },
-        {
-            id: 4,
-            nombre: 'PGRIFECHA'
-        },
-        {
-            id: 5,
-            nombre: 'SISU_CORREO'
-        }
-    ];
-    
     const fetchData = async () => {
         if (!aps) return;            
-        console.log('aps', aps)
         const data = {
             APSA_ID : aps
         }
