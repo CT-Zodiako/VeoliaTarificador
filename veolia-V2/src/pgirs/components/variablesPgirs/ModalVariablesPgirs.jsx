@@ -4,9 +4,9 @@ import { UseFormulario } from "../../hooks/useFormulario";
 import { SelectorFrecuencia } from "../../../ui/components/SelectorFrecuencia";
 import { postVariablesPgirs } from "../../services/informePgirsService";
 
- export const ModalVariablesPgirs = ({abrir, handleCancelar, frecuencia, apss, annos, mess}) => {
+ export const ModalVariablesPgirs = ({abrir, handleCancelar, apss, annos, mess}) => {
     const {formulario, onFormChange, onFormFrecuencia, onDatas} = UseFormulario();
-    console.log('formulario', formulario);
+    console.log('formulario PGIRS: ', formulario);
     
     useEffect(() => {
         onDatas();
@@ -39,7 +39,6 @@ import { postVariablesPgirs } from "../../services/informePgirsService";
                             onChange={(event) => onFormChange(0,event)}
                         />
                         <SelectorFrecuencia   
-                            frecuencia={frecuencia}
                             index={0}
                             onFormFrecuencia={onFormFrecuencia}
                         />
@@ -52,7 +51,6 @@ import { postVariablesPgirs } from "../../services/informePgirsService";
                             onChange={(event) => onFormChange(1,event)}
                         />
                         <SelectorFrecuencia   
-                            frecuencia={frecuencia}
                             index={1}
                             onFormFrecuencia={onFormFrecuencia}
                         />
@@ -64,7 +62,6 @@ import { postVariablesPgirs } from "../../services/informePgirsService";
                             onChange={(event) => onFormChange(2,event)}
                         />
                         <SelectorFrecuencia   
-                            frecuencia={frecuencia}
                             index={2}
                             onFormFrecuencia={onFormFrecuencia}
                         />
@@ -76,7 +73,6 @@ import { postVariablesPgirs } from "../../services/informePgirsService";
                             onChange={(event) => onFormChange(3,event)}
                         />
                         <SelectorFrecuencia   
-                            frecuencia={frecuencia}
                             index={3}
                             onFormFrecuencia={onFormFrecuencia}
                         />
@@ -88,7 +84,6 @@ import { postVariablesPgirs } from "../../services/informePgirsService";
                             onChange={(event) => onFormChange(4,event)}
                         />
                         <SelectorFrecuencia   
-                            frecuencia={frecuencia}
                             index={4}
                             onFormFrecuencia={onFormFrecuencia}
                         />
@@ -100,7 +95,6 @@ import { postVariablesPgirs } from "../../services/informePgirsService";
                             onChange={(event) => onFormChange(5,event)}
                         />
                         <SelectorFrecuencia   
-                            frecuencia={frecuencia}
                             index={5}
                             onFormFrecuencia={onFormFrecuencia}
                         />
@@ -112,7 +106,6 @@ import { postVariablesPgirs } from "../../services/informePgirsService";
                             onChange={(event) => onFormChange(6,event)}
                         />
                         <SelectorFrecuencia   
-                            frecuencia={frecuencia}
                             index={6}
                             onFormFrecuencia={onFormFrecuencia}
                         />

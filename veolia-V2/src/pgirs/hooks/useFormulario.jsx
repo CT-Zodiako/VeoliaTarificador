@@ -51,13 +51,19 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/sto
     const onFormChange = (index, event) => {
         const newFormulario = [ ...formulario.data ];
         newFormulario[index].valor = event.target.value;
-        setFormulario({data: newFormulario});
+        setFormulario(prevFormulario => ({
+            ...prevFormulario,
+            data: newFormulario,
+        }));
     }
 
     const onFormFrecuencia = (index, event) => {
         const newFormulario = [ ...formulario.data ];
         newFormulario[index].frecuencia = event.target.value;
-        setFormulario({data: newFormulario});
+        setFormulario(prevFormulario => ({
+            ...prevFormulario,
+            data: newFormulario,
+        }));
     }
 
     const onDatas = () => {

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { ModalVariablesPgirs } from "./ModalVariablesPgirs";
 import { getVariablesPgirs } from "../../services/informePgirsService";
+import { meses, variables, frecuencias } from "../../../ui/components/datas";
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/storeSelectors";
 
  export const TablaVariablesPgirs = () => {
@@ -13,37 +14,6 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/
   const [modal, setModal] = useState(false);
   const [variableEditar, setVariableEditar] = useState('');
   console.log('variableEditar', variableEditar);
-
-  const meses = [
-    {mes: 1, nombre: 'Enero'},
-    {mes: 2, nombre: 'Febrero'},
-    {mes: 3, nombre: 'Marzo'},
-    {mes: 4, nombre: 'Abril'},
-    {mes: 5, nombre: 'Mayo'},
-    {mes: 6, nombre: 'Junio'},
-    {mes: 7, nombre: 'Julio'},
-    {mes: 8, nombre: 'Agosto'},
-    {mes: 9, nombre: 'Septiembre'},
-    {mes: 10, nombre: 'Octubre'},
-    {mes: 11, nombre: 'Noviembre'},
-    {mes: 12, nombre: 'Diciembre'}
-  ];
-
-  const variables = [
-    {id: 11, nombre: 'LBL'},
-    {id: 21, nombre: 'CESPED'},
-    {id: 22, nombre: 'PODA'},
-    {id: 23, nombre: 'LAVADO'},
-    {id: 24, nombre: 'PLAYAS'},
-    {id: 25, nombre: 'INSCESTAS'},
-    {id: 26, nombre: 'MANCESTAS'}
-  ];
-
-  const frecuencias = [
-    {id: 1, nombre: 'Mensual'},
-    {id: 2, nombre: 'Semestral'},
-    {id: 3, nombre: 'Anual'}
-  ];
 
   const onAbrirModal = () => {
     setModal(true);
@@ -143,7 +113,6 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/
         <ModalVariablesPgirs
           abrir={modal}
           handleCancelar={onCerrarModal}
-          frecuencia= {frecuencias}
           apss={aps}
           annos={anno}
           mess={mes}
