@@ -23,6 +23,7 @@ import { ResumenFormatosFormulariosModule } from './reporteador-sui/resumen-form
 import { ReversionesModule } from './reporteador-sui/reversiones/reversiones.module';
 import { IndiceCraModule} from './suministros/indice-cra/indice-cra.module';
 import {ReversionesSuministrosModule} from './suministros/reversiones-suministros/reversiones-suministros.module';
+import { VerificacionModule } from './suministros/verificacion/verificacion.module';
 
 @Module({
   imports: [
@@ -57,7 +58,8 @@ import {ReversionesSuministrosModule} from './suministros/reversiones-suministro
     ResumenFormatosFormulariosModule,
     ReversionesModule,
     IndiceCraModule,
-    ReversionesSuministrosModule
+    ReversionesSuministrosModule,
+    VerificacionModule
 
   ],
 })
