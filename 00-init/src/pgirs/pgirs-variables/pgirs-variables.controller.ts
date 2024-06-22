@@ -18,6 +18,19 @@ export class PgirsVariablesController {
   createVariable(@GetUser() user, @Body() body){
     return this.pgirsVariablesService.createVaraible(body,user.SISU_ID)
   }
+  @Patch()
+  @UseGuards(AuthGuard())
+  updateVariable(@Body() body, @GetUser() user){
+    return this.pgirsVariablesService.updateVariable(body,user.SISU_ID)
+  }
 }
 
 
+// {
+//   APSAID: 1011,
+//   PGRIANNO: 2024,
+//   PGRIMES: 11,
+//   PGRIVARIABLE: 1,
+//   PGRIVALOR: 999,
+//   PGRIFRECUENCIA: 3
+// }

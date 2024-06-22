@@ -45,4 +45,22 @@ export class PgirsVariablesService {
       
     }
   }
+
+
+  async updateVariable(updateVariable,SISU_ID){
+    try {
+      
+      const {APSAID ,PGRIANNO,PGRIMES,PGRIVARIABLE,PGRIVALOR,PGRIFRECUENCIA}=updateVariable;
+  
+      await this.pgrisRepository.query(`
+        UPDATE TARIFICADOR.PGRI_PARAMETROS
+        SET PGRIVALOR= ${PGRIVALOR}, PGRIFRECUENCIA= ${PGRIFRECUENCIA}, PGRIFECHA=sysdate, PGRIUSUARIO= ${SISU_ID}, PGRINGRESO= 'MANUAL' 
+        WHERE APSAID= ${APSAID} AND PGRIANNO= ${PGRIANNO} AND PGRIMES= ${PGRIMES} AND PGRIVARIABLE= ${PGRIVARIABLE}
+      `)
+
+      return 'Variables actualizadas con exito'
+    } catch (error) {
+      console.log(error,'Error en actualizar variables')
+    }
+  }
 }
