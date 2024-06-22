@@ -1,10 +1,10 @@
 import { useState } from "react";
 
- export const SelectorFrecuencia = ({frecuencia, name, onFormChange}) => {
+ export const SelectorFrecuencia = ({frecuencia, index, onFormFrecuencia}) => {
     const [valorFrecuencia, setValorFrecuencia] = useState();
     
     const onFrecuenciaChange = (event) => {
-        onFormChange(event);
+        onFormFrecuencia(index, event);
         setValorFrecuencia(event.target.value);
     }
 
@@ -16,7 +16,6 @@ import { useState } from "react";
             label="Frecuencia"
             value={valorFrecuencia}
             onChange={onFrecuenciaChange}
-            name={name}
         >
             <option value=''>Frecuencia</option>
             {
