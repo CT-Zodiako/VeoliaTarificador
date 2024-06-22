@@ -19,3 +19,5 @@ export class PgirsVariablesController {
     return this.pgirsVariablesService.createVaraible(body,user.SISU_ID)
   }
 }
+
+
