@@ -9,64 +9,55 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/sto
         data: [
             {
                 PGRIVARIABLE: 11,
-                LBL: '',
-                selectorLBL: '',
+                valor: '',
+                frecuencia: '',
             },
             {
                 PGRIVARIABLE: 21,
-                CESPED: '',
-                selectorCESPED: '',
+                valor: '',
+                frecuencia: '',
             },
             {
                 PGRIVARIABLE: 22,
-                PODA: '',
-                selectorPODA: '',
+                valor: '',
+                frecuencia: '',
             },
             {
                 PGRIVARIABLE: 23,
-                LAVADO: '',
-                selectorLAVADO: '',
+                valor: '',
+                frecuencia: '',
             },
             {
                 PGRIVARIABLE: 24,
-                PLAYAS: '',
-                selectorPLAYAS: '',
+                valor: '',
+                frecuencia: '',
             },
             {
                 PGRIVARIABLE: 25,
-                INSCESTAS: '',
-                selectorINSCESTAS: '',
+                valor: '',
+                frecuencia: '',
             },
             {
                 PGRIVARIABLE: 26,
-                MANCESTAS: '',
-                selectorMANCESTAS: '',
+                valor: '',
+                frecuencia: '',
             },
         ],
-            aps: apss,
-            anno: annos,
-            mes: mess,
+        APSAID: '',
+        PGRIANNO: '',
+        PGRIMES: '',
     });
-    
-    const onFormChange = (event) => {
-        const { name, value } = event.target;
-        if (Array.isArray(formulario.data)) {
-            const cargarFormulario = formulario.data.map((item) => {
-                if (item.hasOwnProperty(name)) {
-                    return {
-                        ...item,
-                        [name]: value
-                    };
-                }
-                return item;
-            });
-            setFormulario((prevFormulario) => ({
-                ...prevFormulario,
-                data: cargarFormulario
-            }));
-        } else {
-            console.error("formulario.data no es un array o no está definido");
-        }
+
+    const onFormChange = (index, event) => {
+        const newFormulario = [ ...formulario.data ];
+        newFormulario[index].valor = event.target.value;
+        setFormulario({data: newFormulario});
+    }
+
+    const onFormFrecuencia = (index, event) => {
+        const newFormulario = [ ...formulario.data ];
+        newFormulario[index].frecuencia = event.target.value;
+        setFormulario({data: newFormulario});
     }
 
     const onDatas = () => {
@@ -78,5 +69,5 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/sto
         });
     }
 
-    return { formulario, onFormChange, onDatas };
+    return { formulario, onFormChange, onFormFrecuencia, onDatas };
 };

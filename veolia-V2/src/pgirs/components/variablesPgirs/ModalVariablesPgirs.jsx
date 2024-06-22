@@ -5,7 +5,7 @@ import { SelectorFrecuencia } from "../../../ui/components/SelectorFrecuencia";
 import { postVariablesPgirs } from "../../services/informePgirsService";
 
  export const ModalVariablesPgirs = ({abrir, handleCancelar, frecuencia, apss, annos, mess}) => {
-    const {formulario, onFormChange, onDatas} = UseFormulario();
+    const {formulario, onFormChange, onFormFrecuencia, onDatas} = UseFormulario();
     console.log('formulario', formulario);
     
     useEffect(() => {
@@ -35,88 +35,86 @@ import { postVariablesPgirs } from "../../services/informePgirsService";
                         <Form.Control
                             type="number"
                             name='LBL'
-                            value={formulario.LBL}
-                            onChange={(event) => onFormChange(event)}
+                            value={formulario.data[0].valor}
+                            onChange={(event) => onFormChange(0,event)}
                         />
                         <SelectorFrecuencia   
                             frecuencia={frecuencia}
-                            name='selectorLBL'
-                            onFormChange={onFormChange}
+                            index={0}
+                            onFormFrecuencia={onFormFrecuencia}
                         />
                         <h4>CLUS</h4>
                         <Form.Label>CESPED:</Form.Label>
                         <Form.Control
                             type="number"
                             name='CESPED'
-                            value={formulario.CESPED}
-                            onChange={(event) => onFormChange(event)}
-                            // value={smlv}
-                            // onChange={(e) => estadoInputs({ target: { value: e.target.value } }, 'smlv')}
+                            value={formulario.data[1].valor}
+                            onChange={(event) => onFormChange(1,event)}
                         />
                         <SelectorFrecuencia   
                             frecuencia={frecuencia}
-                            name='selectorCESPED'
-                            onFormChange={onFormChange}
+                            index={1}
+                            onFormFrecuencia={onFormFrecuencia}
                         />
                         <Form.Label>PODA:</Form.Label>
                         <Form.Control
                             type="number"
                             name='PODA'
-                            value= {formulario.PODA}
-                            onChange={(event) => onFormChange(event)}
+                            value={formulario.data[2].valor}
+                            onChange={(event) => onFormChange(2,event)}
                         />
                         <SelectorFrecuencia   
                             frecuencia={frecuencia}
-                            name='selectorPODA'
-                            onFormChange={onFormChange}
+                            index={2}
+                            onFormFrecuencia={onFormFrecuencia}
                         />
                         <Form.Label>LAVADO:</Form.Label>
                         <Form.Control
                             type="number"
                             name='LAVADO'
-                            value={formulario.LAVADO}
-                            onChange={(event) => onFormChange(event)}
+                            value={formulario.data[3].valor}
+                            onChange={(event) => onFormChange(3,event)}
                         />
                         <SelectorFrecuencia   
                             frecuencia={frecuencia}
-                            name='selectorLAVADO'
-                            onFormChange={onFormChange}
+                            index={3}
+                            onFormFrecuencia={onFormFrecuencia}
                         />
                         <Form.Label>PLAYAS:</Form.Label>
                         <Form.Control
                             type="number"
                             name='PLAYAS'
-                            value={formulario.PLAYAS}
-                            onChange={(event) => onFormChange(event)}
+                            value={formulario.data[4].valor}
+                            onChange={(event) => onFormChange(4,event)}
                         />
                         <SelectorFrecuencia   
                             frecuencia={frecuencia}
-                            name='selectorPLAYAS'
-                            onFormChange={onFormChange}
+                            index={4}
+                            onFormFrecuencia={onFormFrecuencia}
                         />
                         <Form.Label>INS CESTAS:</Form.Label>
                         <Form.Control
                             type="number"
                             name='INSCESTAS'
-                            value={formulario.INSCESTAS}
-                            onChange={(event) => onFormChange(event)}
+                            value={formulario.data[5].valor}
+                            onChange={(event) => onFormChange(5,event)}
                         />
                         <SelectorFrecuencia   
                             frecuencia={frecuencia}
-                            name='selectorINSCESTAS'
-                            onFormChange={onFormChange}
+                            index={5}
+                            onFormFrecuencia={onFormFrecuencia}
                         />
                         <Form.Label>MAN CESTAS:</Form.Label>
                         <Form.Control
                             type="number"
                             name='MANCESTAS'
-                            value={formulario.MANCESTAS}
-                            onChange={(event) => onFormChange(event)}
+                            value={formulario.data[6].valor}
+                            onChange={(event) => onFormChange(6,event)}
                         />
                         <SelectorFrecuencia   
                             frecuencia={frecuencia}
-                            name='selectorMANCESTAS'
-                            onFormChange={onFormChange}
+                            index={6}
+                            onFormFrecuencia={onFormFrecuencia}
                         />
                     </Form.Group>
                 </Form>

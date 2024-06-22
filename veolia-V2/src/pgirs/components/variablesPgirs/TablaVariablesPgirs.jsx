@@ -10,8 +10,9 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/
   const mes = useMesSelector((state) => state.mes);
   
   const [datos, setDatos] = useState([]);
-  console.log('datos variables: ', datos);
   const [modal, setModal] = useState(false);
+  const [variableEditar, setVariableEditar] = useState('');
+  console.log('variableEditar', variableEditar);
 
   const meses = [
     {mes: 1, nombre: 'Enero'},
@@ -67,6 +68,11 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/
     return frecuencias.find((item) => item.id === frecuencia).nombre;
   }
 
+  const onEditarFormulario = (item) => {
+    setVariableEditar(item);
+    onAbrirModal();
+  }
+
   const fetchData = async () => {
     try {
       const response = await getVariablesPgirs(aps, anno, mes);
@@ -86,6 +92,7 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/
         <button
           onClick={onAbrirModal}
           className="btn btn-success"
+          // disabled={datos.length === 0}
         >
           Nuevo
         </button>
@@ -119,7 +126,15 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../../../store/
                   <td>{item.SISU_CORREO}</td>
                   <td>{item.PGRIFECHA}</td>
                   <td>{item.PGRINGRESO}</td>
-                  <td>{}</td>
+                  <td>
+                    <button 
+                      className="btn btn-warning" 
+                      onClick={() => onEditarFormulario(item)}
+                    >
+                      Editar
+                    </button>
+                    <button className="btn btn-danger">Eliminar</button>
+                  </td>
                 </tr>
               ))              
             }
