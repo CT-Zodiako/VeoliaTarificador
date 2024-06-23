@@ -60,6 +60,8 @@ export const Menu = () => {
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/indicesCRA">Indices CRA</Link></li>
                                     <li><Link className="dropdown-item" to="/sub-con">Subsidios y Contribuciones</Link></li>
+                                    <li><Link className="dropdown-item" to="/sub-verf">Verificación</Link></li>
+                                    <li><Link className="dropdown-item" to="/sub-aproch">Activar Aprovechamiento</Link></li>
                                 </ul>
                             </li>
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Selectores } from "../../ui/components/Selectores";
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { TablaVariablesPgirs } from "../components/variablesPgirs/TablaVariablesPgirs";
-import { getVariablesPgirs } from "../services/informePgirsService";
+import { getVariablesPgirs, updateVariablesPgirs } from "../services/variablesPgirsService";
 
  export const VariablesPGIRS = () => {
   const aps = useApsSelector(state => state.aps);
@@ -20,6 +20,15 @@ import { getVariablesPgirs } from "../services/informePgirsService";
     }
   }
 
+  const onActualizar = async(variableEditar) => {
+    try {
+      await updateVariablesPgirs(variableEditar);
+    }
+    catch (error) {
+      console.error(error);
+    } 
+  }
+
   useEffect(() => {
     fetchData();
   },[aps, anno, mes]);
@@ -33,6 +42,7 @@ import { getVariablesPgirs } from "../services/informePgirsService";
             mes={mes}
             datos={datos}
             fetchData={fetchData}
+            onActualizar={onActualizar}
         />
     </>
   )

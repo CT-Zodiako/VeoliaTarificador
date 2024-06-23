@@ -16,6 +16,8 @@ import { RellenosPage } from "../auth/pages/RellenosPage";
 import { InformePGIRSPage } from "../pgirs/pages/InformePGIRSPage";
 import { ResumenPGIRS } from "../pgirs/pages/ResumenPGIRS";
 import { VariablesPGIRS } from "../pgirs/pages/VariablesPGIRS";
+import { Verificacion } from "../suministros/pages/Verificacion";
+import { ActivarAprovechamiento } from "../suministros/pages/ActivarAprovechamiento";
 
 
 export const router = createBrowserRouter([
@@ -54,6 +56,16 @@ export const router = createBrowserRouter([
             {
                 path: "/sub-con",
                 element: <SubConPage/>,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/sub-verf",
+                element: <Verificacion/>,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/sub-aproch",
+                element: <ActivarAprovechamiento/>,
                 errorElement: <h1>error</h1>,
             },
 

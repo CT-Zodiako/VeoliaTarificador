@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { frecuencias } from "../../../ui/components/datas";
+import { frecuencias } from "../data";
 
  export const SelectorFrecuenciaEditar = ({label, onEditarVariable}) => {
     const [valorFrecuencia, setValorFrecuencia] = useState(label);

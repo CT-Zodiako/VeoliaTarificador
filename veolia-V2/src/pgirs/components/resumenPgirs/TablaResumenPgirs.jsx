@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { filas } from '../../../ui/components/datas';
-import { getResumenPgirs } from '../../services/informePgirsService'
+import { getResumenPgirs } from "../../services/resumenPgirsService";
 import { useApsSelector } from '../../../store/storeSelectors';
 import { useFiltroTabResumen } from '../../../hooks/useFiltroTabResumen';
 

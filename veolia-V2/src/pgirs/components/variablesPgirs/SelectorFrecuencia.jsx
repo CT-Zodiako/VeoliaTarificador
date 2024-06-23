@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {frecuencias} from "./datas";
+import {frecuencias} from "../data";
 
  export const SelectorFrecuencia = ({index, onFormFrecuencia}) => {
     const [valorFrecuencia, setValorFrecuencia] = useState();

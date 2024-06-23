@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { UseFormulario } from "../../hooks/useFormulario";
-import { SelectorFrecuencia } from "../../../ui/components/SelectorFrecuencia";
-import { postVariablesPgirs } from "../../services/informePgirsService";
+import { SelectorFrecuencia } from "../variablesPgirs/SelectorFrecuencia";
+import { postVariablesPgirs } from "../../services/variablesPgirsService";
 
  export const ModalVariablesPgirs = ({abrir, handleCancelar, apss, annos, mess}) => {
     const {formulario, onFormChange, onFormFrecuencia, onDatas} = UseFormulario();

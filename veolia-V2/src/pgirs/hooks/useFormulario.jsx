@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { data } from "../../ui/components/datas";
+import { data } from "../components/data";
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 
  export const UseFormulario = () => {

@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { Table } from "react-bootstrap";
 import { ModalVariablesPgirs } from "./ModalVariablesPgirs";
-import { meses, variables, frecuencias } from "../../../ui/components/datas";
-import { SelectorFrecuenciaEditar } from "./SelectorFrecuenciaEditar";
-import { updateVariablesPgirs } from "../../services/informePgirsService";
+import { meses, variables, frecuencias } from "../data";
+import { SelectorFrecuenciaEditar } from "../variablesPgirs/SelectorFrecuenciaEditar";
 
- export const TablaVariablesPgirs = ({aps, anno, mes, datos, fetchData}) => {
+ export const TablaVariablesPgirs = ({aps, anno, mes, datos, fetchData, onActualizar}) => {
   const [modal, setModal] = useState(false);
   const [editar, setEditar] = useState(null);
   const [variableEditar, setVariableEditar] = useState('');  
-  console.log('variableEditar', variableEditar);
 
   const onAbrirModal = () => {
     setModal(true);
@@ -54,14 +52,13 @@ import { updateVariablesPgirs } from "../../services/informePgirsService";
 
   const onActualizarVariable = async () => {
     try {
-      await updateVariablesPgirs(variableEditar);
-    }
-    catch (error) {
+      await onActualizar(variableEditar);
+      await fetchData();
+      setVariableEditar('');
+      setEditar(null);
+    } catch (error) {
       console.error(error);
-    } 
-    fetchData();
-    setVariableEditar('');
-    setEditar(null);
+    }
   }
 
   return(
@@ -87,7 +84,7 @@ import { updateVariablesPgirs } from "../../services/informePgirsService";
               <th>USUARIO</th>
               <th>FECHA INGRESO</th>
               <th>TIPO INGRESO</th>
-              <th style={{ width: '200px' }}>OPCIONES</th>
+              <th>OPCIONES</th>
             </tr>
           </thead>
           <tbody>
@@ -132,7 +129,7 @@ import { updateVariablesPgirs } from "../../services/informePgirsService";
                   <td>{item.SISU_CORREO}</td>
                   <td>{item.PGRIFECHA}</td>
                   <td>{item.PGRINGRESO}</td>
-                  <td className="d-flex justify-content-center align-items-center" style={{ width: '200px' }}>
+                  <td className="d-flex justify-content-center align-items-center">
                     {
                       editar === index ? (
                         <div>
