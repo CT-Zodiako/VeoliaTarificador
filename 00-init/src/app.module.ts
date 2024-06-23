@@ -24,6 +24,7 @@ import { ReversionesModule } from './reporteador-sui/reversiones/reversiones.mod
 import { IndiceCraModule} from './suministros/indice-cra/indice-cra.module';
 import {ReversionesSuministrosModule} from './suministros/reversiones-suministros/reversiones-suministros.module';
 import { VerificacionModule } from './suministros/verificacion/verificacion.module';
+import { ActivarAprovechamientoModule } from './suministros/activar-aprovechamiento/activar-aprovechamiento.module';
 
 @Module({
   imports: [
@@ -59,7 +60,8 @@ import { VerificacionModule } from './suministros/verificacion/verificacion.modu
     ReversionesModule,
     IndiceCraModule,
     ReversionesSuministrosModule,
-    VerificacionModule
+    VerificacionModule,
+    ActivarAprovechamientoModule
 
   ],
 })
