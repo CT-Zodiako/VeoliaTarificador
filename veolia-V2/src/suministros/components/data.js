@@ -52,3 +52,8 @@ export const columsRelleno = [
     {head: 'ESCENARIO', body: 'IARE_ESCENARIO'},
     {head: 'C', body: 'IARE_C'},
 ]
+
+export const ingresos = [
+    {id: 0, nombre: 'Automatico'},
+    {id: 1, nombre: 'Manual'},
+]

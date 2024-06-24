@@ -18,6 +18,8 @@ import { ResumenPGIRS } from "../pgirs/pages/ResumenPGIRS";
 import { VariablesPGIRS } from "../pgirs/pages/VariablesPGIRS";
 import { Verificacion } from "../suministros/pages/Verificacion";
 import { ActivarAprovechamiento } from "../suministros/pages/ActivarAprovechamiento";
+import { CostoPoda } from "../suministros/pages/CostoPoda";
+import { AjustesProductividad } from "../suministros/pages/AjustesProductividad";
 
 
 export const router = createBrowserRouter([
@@ -68,7 +70,16 @@ export const router = createBrowserRouter([
                 element: <ActivarAprovechamiento/>,
                 errorElement: <h1>error</h1>,
             },
-
+            {
+                path: "/sub-costPoda",
+                element: <CostoPoda/>,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/sub-ajutProd",
+                element: <AjustesProductividad/>,
+                errorElement: <h1>error</h1>,
+            },
             //Informes Gerenciales
             {
                 path: "/detalladoCostos",
