@@ -5,7 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { ApsModule } from './aps/aps.module';
 import { EmpresasModule } from './empresas/empresas.module';
 import { RellenosModule } from './rellenos/rellenos.module';
-import { SubsidiosContribucionesModule } from './subsidios-contribuciones/subsidios-contribuciones.module';
+import { SubsidiosContribucionesModule } from './suministros/subsidios-contribuciones/subsidios-contribuciones.module';
 import { FacturacionInformesComercialesModule } from './facturacion-informes-comerciales/facturacion-informes-comerciales.module';
 import { RevercionesInformesComercialesModule } from './reverciones-informes-comerciales/reverciones-informes-comerciales.module';
 import { CostoPodaModule } from './informes-gerenciales/costo-poda/costo-poda.module';
@@ -26,6 +26,7 @@ import {ReversionesSuministrosModule} from './suministros/reversiones-suministro
 import { VerificacionModule } from './suministros/verificacion/verificacion.module';
 import { ActivarAprovechamientoModule } from './suministros/activar-aprovechamiento/activar-aprovechamiento.module';
 import { CostoPodaSuminitroModule } from './suministros/costo-poda/costo-poda.module';
+import { AjusteProductividadModule } from './suministros/ajuste-productividad/ajuste-productividad.module';
 
 @Module({
   imports: [
@@ -63,7 +64,8 @@ import { CostoPodaSuminitroModule } from './suministros/costo-poda/costo-poda.mo
     ReversionesSuministrosModule,
     VerificacionModule,
     ActivarAprovechamientoModule,
-    CostoPodaSuminitroModule
+    CostoPodaSuminitroModule,
+    AjusteProductividadModule
 
   ],
 })
