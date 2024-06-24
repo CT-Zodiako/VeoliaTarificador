@@ -33,15 +33,20 @@ export class AjusteProductividadService {
     return `This action returns all ajusteProductividad`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ajusteProductividad`;
+  async findProductividad(data) {
+    try {
+      
+      const { APSA_ID, PROD_ANNO, PROD_MES } = data;
+      return await this.ajusteProductividadRepository.query(`
+        SELECT * FROM AUCO_PRODUCTIVIDAD WHERE APSA_ID = ${APSA_ID} AND PROD_ANNO =${PROD_ANNO} AND PROD_MES = ${PROD_MES}
+        `)
+    } catch (error) {
+      console.log('error en buscar ajusteProductividad', error)
+    }
   }
 
   update(id: number, updateAjusteProductividadDto: UpdateAjusteProductividadDto) {
     return `This action updates a #${id} ajusteProductividad`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} ajusteProductividad`;
-  }
 }
