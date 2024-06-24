@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
- export const SelectorAprovechamiento = () => {
+ export const SelectorAprovechamiento = ({dataAprovechamiento, onAprovechamiento}) => {    
     const [aprovechamiento, setAprovechamiento] = useState(false);
-    console.log('SelectorAprovechamiento: ', aprovechamiento);
     
     const onSelectorAprovechamiento = () => {
-        const valor = !aprovechamiento;
-        setAprovechamiento(valor);
+        const newAprovechamiento = !aprovechamiento;
+        setAprovechamiento(newAprovechamiento);
+        onAprovechamiento(newAprovechamiento);
     }
+
+    useEffect(() => {
+        dataAprovechamiento &&
+            setAprovechamiento(dataAprovechamiento);
+    }, [dataAprovechamiento]);
 
   return(
     <>
@@ -25,7 +30,11 @@ import { useState } from "react";
                 style={{ fontSize: '30px' }} 
                 htmlFor="flexSwitchCheckChecked"
             >
-                Checked switch checkbox input
+                {
+                    aprovechamiento ? 
+                        'Cobro de aprovechamiento sin tener QA: Activado'
+                        : 'Cobro de aprovechamiento sin tener QA: Desactivado'
+                }
             </label>
         </div>
     </>
