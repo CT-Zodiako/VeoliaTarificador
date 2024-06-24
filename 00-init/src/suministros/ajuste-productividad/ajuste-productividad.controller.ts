@@ -1,7 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { AjusteProductividadService } from './ajuste-productividad.service';
-import { CreateAjusteProductividadDto } from './dto/create-ajuste-productividad.dto';
-import { UpdateAjusteProductividadDto } from './dto/update-ajuste-productividad.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
 
@@ -20,9 +18,9 @@ export class AjusteProductividadController {
     return this.ajusteProductividadService.findProductividad(data);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAjusteProductividadDto: UpdateAjusteProductividadDto) {
-    return this.ajusteProductividadService.update(+id, updateAjusteProductividadDto);
+  @Patch()
+  update(@Body() data) {
+    return this.ajusteProductividadService.updateProductividad(data);
   }
 
 

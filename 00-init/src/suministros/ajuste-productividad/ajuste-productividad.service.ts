@@ -45,8 +45,14 @@ export class AjusteProductividadService {
     }
   }
 
-  update(id: number, updateAjusteProductividadDto: UpdateAjusteProductividadDto) {
-    return `This action updates a #${id} ajusteProductividad`;
+  async updateProductividad(data) {
+    try {
+      return this.ajusteProductividadRepository.query(`
+        UPDATE AUCO_PRODUCTIVIDAD SET PROD_VALOR = :1 WHERE APSA_ID = :2 AND PROD_ANNO = :3 AND PROD_MES = :4
+      `, [data.PROD_VALOR, data.APSA_ID, data.PROD_ANNO, data.PROD_MES])
+    } catch (error) {
+       console.log('error en actualizar ajusteProductividad', error)
+    }
   }
 
 }
