@@ -25,6 +25,7 @@ import { IndiceCraModule} from './suministros/indice-cra/indice-cra.module';
 import {ReversionesSuministrosModule} from './suministros/reversiones-suministros/reversiones-suministros.module';
 import { VerificacionModule } from './suministros/verificacion/verificacion.module';
 import { ActivarAprovechamientoModule } from './suministros/activar-aprovechamiento/activar-aprovechamiento.module';
+import { CostoPodaSuminitroModule } from './suministros/costo-poda/costo-poda.module';
 
 @Module({
   imports: [
@@ -61,7 +62,8 @@ import { ActivarAprovechamientoModule } from './suministros/activar-aprovechamie
     IndiceCraModule,
     ReversionesSuministrosModule,
     VerificacionModule,
-    ActivarAprovechamientoModule
+    ActivarAprovechamientoModule,
+    CostoPodaSuminitroModule
 
   ],
 })
