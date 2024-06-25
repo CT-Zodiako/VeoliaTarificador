@@ -27,6 +27,7 @@ import { VerificacionModule } from './suministros/verificacion/verificacion.modu
 import { ActivarAprovechamientoModule } from './suministros/activar-aprovechamiento/activar-aprovechamiento.module';
 import { CostoPodaSuminitroModule } from './suministros/costo-poda/costo-poda.module';
 import { AjusteProductividadModule } from './suministros/ajuste-productividad/ajuste-productividad.module';
+import { DescuentosCostosModule } from './suministros/descuentos-costos/descuentos-costos.module';
 
 @Module({
   imports: [
@@ -65,7 +66,8 @@ import { AjusteProductividadModule } from './suministros/ajuste-productividad/aj
     VerificacionModule,
     ActivarAprovechamientoModule,
     CostoPodaSuminitroModule,
-    AjusteProductividadModule
+    AjusteProductividadModule,
+    DescuentosCostosModule
 
   ],
 })
