@@ -38,11 +38,38 @@ export class DescuentosCostosService {
     }
   }
 
-  update(id: number, updateDescuentosCostoDto: UpdateDescuentosCostoDto) {
-    return `This action updates a #${id} descuentosCosto`;
+  async selectorNewDescuento(data) {
+    try {
+      const { APSA_ID, DESC_ANNO, DESC_MES } = data;
+      return await this.descuentosCostosRepository.query(`
+        SELECT ap.PARA_PARA, ap.PARA_NOMBRE, 0 DESC_VALOR 
+		FROM (SELECT PARA_COSTO20010 FROM AUCO_INFOAPSDESCOST WHERE DESC_ESTADO = 1 AND APSA_ID = :1 AND DESC_ANNO = :2 AND DESC_MES = :3) t1 
+      RIGHT JOIN AUGE_PARAMETROS ap ON (t1.PARA_COSTO20010 = ap.PARA_PARA AND ap.PARA_ESTADO = 'A') WHERE ap.CLAS_CLAS = 20010 AND t1.PARA_COSTO20010 IS NULL
+        `, [APSA_ID, DESC_ANNO, DESC_MES]);
+    } catch (error) {
+      console.log('error en selector new descuento', error)
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} descuentosCosto`;
+  async updateDescuento(data) {
+
+    try {
+      console.log(data)
+
+      return await this.descuentosCostosRepository.query(
+        `
+        UPDATE TARIFICADOR.AUCO_INFOAPSDESCOST
+        SET  DESC_VALOR= :1 
+        WHERE DESC_ID= :2 AND APSA_ID= :3 AND DESC_ANNO= :4 AND DESC_MES= :5 AND PARA_COSTO20010= :6
+        `, [data.DESC_VALOR, data.DESC_ID, data.APSA_ID, data.DESC_ANNO, data.DESC_MES, data.PARA_COSTO20010]
+      )
+
+    } catch (error) {
+      console.log('error en actualizar descuento', error)
+    }
   }
+
+
+
+
 }

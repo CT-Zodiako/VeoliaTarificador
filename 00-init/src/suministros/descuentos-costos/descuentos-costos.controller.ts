@@ -15,18 +15,24 @@ export class DescuentosCostosController {
     return this.descuentosCostosService.create(data, user.SISU_ID);
   }
 
+  
+
   @Get()
   findDescuento(@Query() data) {
     return this.descuentosCostosService.findDescuento(data);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDescuentosCostoDto: UpdateDescuentosCostoDto) {
-    return this.descuentosCostosService.update(+id, updateDescuentosCostoDto);
+
+  @Get('selector-new-descuento')
+  selectorNewDescuento(@Query() data) {
+    return this.descuentosCostosService.selectorNewDescuento(data);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.descuentosCostosService.remove(+id);
+  @Patch()
+  updateDescuento(@Body() data) {
+    return this.descuentosCostosService.updateDescuento(data);
   }
+
+
+
 }
