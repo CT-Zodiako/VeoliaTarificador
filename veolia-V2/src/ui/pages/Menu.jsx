@@ -64,6 +64,7 @@ export const Menu = () => {
                                     <li><Link className="dropdown-item" to="/sub-aproch">Activar Aprovechamiento</Link></li>
                                     <li><Link className="dropdown-item" to="/sub-costPoda">Costo Poda</Link></li>
                                     <li><Link className="dropdown-item" to="/sub-ajutProd">Ajustes Productividad</Link></li>
+                                    <li><Link className="dropdown-item" to="/sub-desCost">Descuento Costo</Link></li>
                                 </ul>
                             </li>
 

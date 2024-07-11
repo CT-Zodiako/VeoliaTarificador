@@ -10,9 +10,19 @@ export const getAjuestesProductividad = async (data) => {
     }
 }
 
-export const patchCostoPoda = async (data) => {
+export const postAjuestesProductividad = async (data) => {
     try {
-        const response = await Http.patch('costo-poda-suminitro', data);
+        const response = await Http.post('ajuste-productividad', data);
+        return response;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+export const patchAjuestesProductividad = async (data) => {
+    try {
+        const response = await Http.patch('ajuste-productividad', data);
         return response;
     } catch (error) {
         console.error('Error fetching data:', error);

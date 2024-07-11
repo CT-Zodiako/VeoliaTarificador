@@ -20,7 +20,7 @@ import { Verificacion } from "../suministros/pages/Verificacion";
 import { ActivarAprovechamiento } from "../suministros/pages/ActivarAprovechamiento";
 import { CostoPoda } from "../suministros/pages/CostoPoda";
 import { AjustesProductividad } from "../suministros/pages/AjustesProductividad";
-
+import { DescuentoCosto } from "../suministros/pages/DescuentoCosto";
 
 export const router = createBrowserRouter([
     {
@@ -78,6 +78,11 @@ export const router = createBrowserRouter([
             {
                 path: "/sub-ajutProd",
                 element: <AjustesProductividad/>,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/sub-desCost",
+                element: <DescuentoCosto/>,
                 errorElement: <h1>error</h1>,
             },
             //Informes Gerenciales

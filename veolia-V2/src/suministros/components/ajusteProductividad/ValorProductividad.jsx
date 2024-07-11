@@ -1,8 +1,17 @@
+import { useState } from "react";
 import { Table } from "react-bootstrap";
+import { ModalValorProductividad } from "./ModalValorProductividad";
 
- export const ValorProductividad = () => {
+ export const ValorProductividad = ({datos, aps, ajusteProductividad, onServicioAjustes, fetchData}) => {
+    const [modal, setModal] = useState(false);
+
+    const onCerrarModal = () => {
+        setModal(false);
+    }
+    
     return(
     <>
+        <div style={{ width: '50%' }}>
         <Table striped bordered hover>
             <thead>
                 <tr>
@@ -10,11 +19,34 @@ import { Table } from "react-bootstrap";
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                </tr>
+                {
+                    datos &&
+                    datos.map((item, index) => (
+                        <tr key={index}>
+                            <td>
+                                <div>{item.PROD_VALOR}</div>
+                            </td>
+                        </tr>
+                    ))
+                }
             </tbody>
         </Table>
+        </div>
+        <div>
+            <button
+                className={aps === '' || datos.length === 0 ? "btn btn-success" : "btn btn-warning"}
+                onClick={() => setModal(true)}
+            >
+                {aps === '' || datos.length === 0 ? 'Agregar' : 'Editar'}
+            </button>
+        </div>
+        <ModalValorProductividad
+            show={modal}
+            onCerrarModal={onCerrarModal}
+            ajusteProductividad={ajusteProductividad}
+            onServicioAjustes={onServicioAjustes}
+            fetchData={fetchData}
+        />
     </>
   )
 };
