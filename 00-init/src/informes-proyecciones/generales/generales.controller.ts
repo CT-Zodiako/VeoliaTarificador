@@ -12,7 +12,7 @@ export class GeneralesController {
   constructor(private readonly generalesService: GeneralesService) {}
 
 
-  @Get('Query')
+  @Get('getProyeccionByAPS')
   proyeccionByAPS(@Query() body){
     return this.generalesService.getProyeccionByAPS(body);
   }
