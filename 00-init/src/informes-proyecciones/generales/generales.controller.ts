@@ -1,11 +1,8 @@
 import {
   Controller,
   Get,
-  Post,
   Body,
-  Patch,
-  Param,
-  Delete,
+  Query,
 } from '@nestjs/common';
 import { GeneralesService } from './generales.service';
 import { ConsultaDTO } from './dto/consulta.dto';
@@ -15,8 +12,8 @@ export class GeneralesController {
   constructor(private readonly generalesService: GeneralesService) {}
 
 
-  @Get('getProyeccionByAPS')
-  proyeccionByAPS(@Body() body){
+  @Get('Query')
+  proyeccionByAPS(@Query() body){
     return this.generalesService.getProyeccionByAPS(body);
   }
 
