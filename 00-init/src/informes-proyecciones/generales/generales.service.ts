@@ -11,6 +11,15 @@ export class GeneralesService {
     private readonly generalesRepository: Repository<Vpoda_reporte>,
   ) {}
 
+  async getProyeccionByAPS(aps){
+    const {APSA_ID} = aps
+    return await this.generalesRepository.query(
+      `
+        SELECT * FROM proy_proyeccion WHERE APS = ${APSA_ID} ORDER BY PROYNOMBRE      
+      `
+    )
+  }
+
   async getEnergia(consultaDTO: ConsultaDTO) {
     const { APSA_ID, PROY_ID } = consultaDTO;
     return await this.generalesRepository.query(`

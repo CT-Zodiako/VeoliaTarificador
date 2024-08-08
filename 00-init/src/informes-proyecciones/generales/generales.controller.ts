@@ -14,6 +14,12 @@ import { ConsultaDTO } from './dto/consulta.dto';
 export class GeneralesController {
   constructor(private readonly generalesService: GeneralesService) {}
 
+
+  @Get('getProyeccionByAPS')
+  proyeccionByAPS(@Body() body){
+    return this.generalesService.getProyeccionByAPS(body);
+  }
+
   @Get('energia')
   energia(@Body() consultaDTO: ConsultaDTO) {
     return this.generalesService.getEnergia(consultaDTO);
