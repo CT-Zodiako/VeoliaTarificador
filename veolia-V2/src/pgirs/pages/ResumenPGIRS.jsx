@@ -4,8 +4,15 @@ import { TablaResumenPgirs } from "../components/resumenPgirs/TablaResumenPgirs"
  export const ResumenPGIRS = () => {
   return(
     <>
-        <Selectores selectorAps={true} />
+      <div className="headerComponent">
+        <div className="tituloComponent"/>
+        <div className="selector">
+          <Selectores selectorAps={true} />
+        </div>
+      </div>
+      <div className="bodyComponent">
         <TablaResumenPgirs/>
+      </div>
     </>
   )
 };

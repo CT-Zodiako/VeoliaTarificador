@@ -18,22 +18,22 @@ export class GeneralesController {
   }
 
   @Get('energia')
-  energia(@Body() consultaDTO: ConsultaDTO) {
+  energia(@Query() consultaDTO) {
     return this.generalesService.getEnergia(consultaDTO);
   }
 
   @Get('acueducto')
-  acueducto(@Body() consultaDTO: ConsultaDTO) {
+  acueducto(@Query() consultaDTO) {
     return this.generalesService.getAcueducto(consultaDTO);
   }
 
   @Get('costos')
-  costos(@Body() consultaDTO: ConsultaDTO) {
+  costos(@Query() consultaDTO) {
     return this.generalesService.getCostos(consultaDTO);
   }
 
   @Get('tarifas')
-  tarifas(@Body() consultaDTO: ConsultaDTO) {
+  tarifas(@Query() consultaDTO) {
     return this.generalesService.getTarifas(consultaDTO);
   }
 }

@@ -9,7 +9,6 @@ export const Footer = () => {
                 <img src="../assets/Veolia_sml.png" className="img-fluid footer-image" alt="VEO REGULADOR" />
                 
             </div>
-          
         </footer>
     );
 };

@@ -69,14 +69,21 @@ import { getAjuestesProductividad, patchAjuestesProductividad, postAjuestesProdu
 
     return(
     <>
-        <Selectores selectorAps={true} selectorFecha={true} />
-        <ValorProductividad 
-            datos={datos}
-            aps={aps}
-            ajusteProductividad={ajusteProductividad}
-            onServicioAjustes={onServicioAjustes}
-            fetchData={fetchData}
-        />
+        <div className="headerComponent">
+            <div className="tituloComponent"/>
+            <div className="selector">
+                <Selectores selectorAps={true} selectorFecha={true} />
+            </div>
+        </div>
+        <div className="bodyComponent">
+            <ValorProductividad 
+                datos={datos}
+                aps={aps}
+                ajusteProductividad={ajusteProductividad}
+                onServicioAjustes={onServicioAjustes}
+                fetchData={fetchData}
+            />
+        </div>
     </>
   )
 };

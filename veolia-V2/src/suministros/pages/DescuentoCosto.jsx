@@ -49,14 +49,21 @@ import { Selectores } from "../../ui/components/Selectores";
 
     return(
     <>
-        <Selectores selectorAps={true} selectorFecha={true} />
-        <TablaDescuentoCosto
-            dataDescuento={dataDescuento}
-            onAgregarDescuentoCosto={onAgregarDescuentoCosto}
-            onEditarDescuentoCosto={onEditarDescuentoCosto}
-            fetchData={fetchData}
-            data={data}
-        />
+        <div className="headerComponent">
+            <div className="tituloComponent"/>
+            <div className="selector">
+                <Selectores selectorAps={true} selectorFecha={true} />
+            </div>
+        </div>
+        <div className="bodyComponent">
+            <TablaDescuentoCosto
+                dataDescuento={dataDescuento}
+                onAgregarDescuentoCosto={onAgregarDescuentoCosto}
+                onEditarDescuentoCosto={onEditarDescuentoCosto}
+                fetchData={fetchData}
+                data={data}
+            />
+        </div>
     </>
   )
 };

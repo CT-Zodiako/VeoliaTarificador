@@ -41,20 +41,40 @@ import { getVerificacionAPS, getVerificacionEmpresa, getVerificacinRelleno } fro
 
   return(
     <>
-        <Selectores selectorAps={true} selectorFecha={true} />
-        <h3>Variables de ejecución corriente (MM/AA)</h3>
-        <TablaVerificacion 
-            colums={columsEmpresa}
-            data={verificacionEmpresa}
-        />
-        <TablaVerificacion 
-            colums={columsAps}
-            data={verificacionAPS}
-        />
-        <TablaVerificacion 
-            colums={columsRelleno}
-            data={verificacionRelleno}
-        />
+        <div className="headerComponent">
+            <div className="tituloComponent"/>
+            <div className="selector">
+                <Selectores selectorAps={true} selectorFecha={true} />
+            </div>
+        </div>
+        
+        <div className="bodyComponent">
+            <div className="componenTable">
+                <div className="acctionTable">
+                    <h3>Variables de ejecución corriente (MM/AA)</h3>
+                </div>
+                <div className="table-responsive tableVerificacion" style={{ maxHeight: '34rem', overflowY: 'auto' }}>
+                    <div className="tableVerificacion">
+                        <TablaVerificacion 
+                            colums={columsEmpresa}
+                            data={verificacionEmpresa}
+                        />
+                    </div>
+                    <div className="tableVerificacion">
+                        <TablaVerificacion 
+                            colums={columsAps}
+                            data={verificacionAPS}
+                        />
+                    </div>
+                    <div className="tableVerificacion">
+                        <TablaVerificacion 
+                            colums={columsRelleno}
+                            data={verificacionRelleno}
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
     </>
   )
 };

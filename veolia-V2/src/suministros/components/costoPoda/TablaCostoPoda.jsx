@@ -50,75 +50,80 @@ import { useState } from 'react';
 
     return(
     <>
-        <Table striped bordered hover>
-            <thead>
-                <tr>
-                    <th>EMPRESA</th>
-                    <th>COSTO TECHO SUI</th>
-                    <th>COSTO FACTURACION</th>
-                    <th>TIPO INGRESO</th>
-                    <th>Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    dataPoda &&
-                    dataPoda.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.EMPR_NOMBRE}</td>
-                            <td>{
-                                editar === index ? (
-                                    <input
-                                        type="number"
-                                        name='CPTE_VALORSUI'
-                                        value={podaEditar.CPTE_VALORSUI}
-                                        onChange={(event) => onEditarSIU(event)}
-                                    />
-                                ) : 
-                                (
-                                    <div>
-                                        {item.CPTE_VALORSUI}
-                                    </div>
-                                )
-                                }
-                            </td>
-                            <td>{item.CPTE_VALORFACT}</td>
-                            <td>{tipoIngreso(item.CPTE_TIPINGRESO)}</td>
-                            <td>
-                                {
-                                    editar === index ? (
-                                        <div>
-                                            <button
-                                                className="btn btn-success"
-                                                onClick={onEditarPoda}
-                                            >
-                                                Guardar
-                                            </button>
-                                            <button
-                                                className="btn btn-danger"
-                                                onClick={() => setEditar(null)}
-                                            >
-                                                Cancelar
-                                            </button>
-                                        </div>
-                                    )
-                                    : (
-                                        <div>
-                                            <button
-                                                className="btn btn-warning"
-                                                onClick={() => onCostoPoda(index)}
-                                            >
-                                                Editar
-                                            </button>
-                                        </div>
-                                    )
-                                }
-                            </td>
+        <div className="componenTable">
+            <div className="acctionTable"/>
+            <div className='tableBorde'>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>EMPRESA</th>
+                            <th>COSTO TECHO SUI</th>
+                            <th>COSTO FACTURACION</th>
+                            <th>TIPO INGRESO</th>
+                            <th>Opciones</th>
                         </tr>
-                    ))
-                }
-            </tbody>
-        </Table>
+                    </thead>
+                    <tbody>
+                        {
+                            dataPoda &&
+                            dataPoda.map((item, index) => (
+                                <tr key={index}>
+                                    <td>{item.EMPR_NOMBRE}</td>
+                                    <td>{
+                                        editar === index ? (
+                                            <input
+                                                type="number"
+                                                name='CPTE_VALORSUI'
+                                                value={podaEditar.CPTE_VALORSUI}
+                                                onChange={(event) => onEditarSIU(event)}
+                                            />
+                                        ) : 
+                                        (
+                                            <div>
+                                                {item.CPTE_VALORSUI}
+                                            </div>
+                                        )
+                                        }
+                                    </td>
+                                    <td>{item.CPTE_VALORFACT}</td>
+                                    <td>{tipoIngreso(item.CPTE_TIPINGRESO)}</td>
+                                    <td>
+                                        {
+                                            editar === index ? (
+                                                <div>
+                                                    <button
+                                                        className="btn btn-success"
+                                                        onClick={onEditarPoda}
+                                                    >
+                                                        Guardar
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-danger"
+                                                        onClick={() => setEditar(null)}
+                                                    >
+                                                        Cancelar
+                                                    </button>
+                                                </div>
+                                            )
+                                            : (
+                                                <div>
+                                                    <button
+                                                        className="btn btn-warning"
+                                                        onClick={() => onCostoPoda(index)}
+                                                    >
+                                                        Editar
+                                                    </button>
+                                                </div>
+                                            )
+                                        }
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </Table>
+            </div>
+        </div>
     </>
   )
 };

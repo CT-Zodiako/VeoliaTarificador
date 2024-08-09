@@ -4,8 +4,8 @@ export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
     const {filtro, onFiltroTabla, filtroName} = useFiltroTablas(datos)
     
     return (
-        <section className="container d-flex justify-content-center align-items-center">
-            <div className="card rounded">
+        <div className="componenTable">
+            <div className="tableBorde">
                 <div className="card-body">
                     <h5 className="card-title">{tituloTabla}</h5>
                     <div className="table-responsive" style={{ maxHeight: '40rem', overflowY: 'auto' }}>
@@ -63,6 +63,6 @@ export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };

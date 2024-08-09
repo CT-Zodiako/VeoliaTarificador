@@ -63,47 +63,56 @@ export const IndicesCRA = () => {
 
     return (
 <>
-    <h1>Indices Publicados por la CRA</h1>
-    <Selectores selectorAps={true} selectorFecha={true} />
-    <hr />
+    <div className="headerComponent">
+        <div className="tituloComponent">
+            <h1>Indices Publicados por la CRA</h1>
+        </div>
+        <div className="selector">
+            <Selectores selectorAps={true} selectorFecha={true} />
+        </div>
+    </div>
 
-    <section className="container">
-        <div className="row justify-content-center align-items-center">
-            <div className="col-md-8"> {/* Cambiado de col-auto a col-md-8 para dar espacio al botón */}
-                <div className="card rounded">
-                    <div className="card-body">
-                        <div className="table-responsive" style={{ maxHeight: '40rem', overflowY: 'auto' }}>
-                            <table className="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Indice</th>
-                                        <th>Valor</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {data && data.map((item, index) => (
-                                        <tr key={index}>
-                                            <td>{getIndiceText(item)}</td>
-                                            <td className='text-end'><strong>$</strong> {item.INDI_VALOR}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+    <div className="bodyComponent">
+        <div className='componenTable'>
+            <div className="acctionTable"/>
+            <section>
+                <div className="row justify-content-center align-items-center">
+                    <div className="col-md-8"> {/* Cambiado de col-auto a col-md-8 para dar espacio al botón */}
+                        <div className="card rounded">
+                            <div className="card-body">
+                                <div className="table-responsive" style={{ maxHeight: '40rem', overflowY: 'auto' }}>
+                                    <table className="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Indice</th>
+                                                <th>Valor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {data && data.map((item, index) => (
+                                                <tr key={index}>
+                                                    <td>{getIndiceText(item)}</td>
+                                                    <td className='text-end'><strong>$</strong> {item.INDI_VALOR}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-md-2"> {/* Nuevo div para el botón */}
+                        <div className="card rounded">
+                            <div className="card-body">
+                                {accionBoton()}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className="col-md-2"> {/* Nuevo div para el botón */}
-                <div className="card rounded">
-                    <div className="card-body">
-                        {accionBoton()}
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
-    </section>
-
+    </div>
     <ModalNewIndiceCRA
         show={modalNew}
         handleClose={handleCloseModalNew}

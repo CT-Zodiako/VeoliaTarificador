@@ -5,12 +5,15 @@ import { Footer } from './ui/components/Footer'
 
 export const VeoliaApp = () => {
     return (
-        <>
+        <div className='veoliaComponents'>
             <h1>Veolia App</h1>
             <Menu />
-            <Outlet />
-
-           <Footer />
-        </>
+            <div className='bodyVeolia'>
+                <Outlet />
+            </div>
+            <div className='footerVeolia'>
+                <Footer />
+            </div>
+        </div>
     )
 }

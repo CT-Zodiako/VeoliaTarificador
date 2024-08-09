@@ -22,3 +22,10 @@ export const useMesSelector = create((set) => {
         cambioSelectorMes: (mes) => set({mes: Number(mes)}),
     }
 });
+
+export const useProyeccionesSelector = create((set) => {
+    return{
+        proy: '',
+        cambioSelectorProyeciones: (proy) => set({proy: Number(proy)}),
+    }
+});

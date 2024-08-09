@@ -25,10 +25,11 @@ export const ResumenFormatosFormularios = () => {
 
 
     return (
-        <div>
-            <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+        <div className='bodyComponent topListTable'>
+            <div className="listTable">
+                <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+            </div>
             <TableCofiguracion tituloTabla={titulo} datos={titulosTabs[pestañaActiva].datos} />
-
         </div>
     )
 }

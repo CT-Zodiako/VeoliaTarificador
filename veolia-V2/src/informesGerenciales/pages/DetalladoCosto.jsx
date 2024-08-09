@@ -7,7 +7,7 @@ export const DetalladoCosto = () => {
     const datos = dataDetalladoCosto
 
   return (
-    <div>
+    <div className='bodyComponentable topListTable'>
         <TableCofiguracion tituloTabla={'Detallado de costos'} datos={datos} />
     </div>
   )

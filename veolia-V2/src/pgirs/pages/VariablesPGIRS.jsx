@@ -3,6 +3,7 @@ import { Selectores } from "../../ui/components/Selectores";
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { TablaVariablesPgirs } from "../components/variablesPgirs/TablaVariablesPgirs";
 import { getVariablesPgirs, updateVariablesPgirs } from "../services/variablesPgirsService";
+import '../../index.css'
 
  export const VariablesPGIRS = () => {
   const aps = useApsSelector(state => state.aps);
@@ -35,7 +36,13 @@ import { getVariablesPgirs, updateVariablesPgirs } from "../services/variablesPg
 
   return(
     <>
-        <Selectores selectorAps={true} selectorFecha={true} />
+      <div className="headerComponent">
+        <div className="tituloComponent"/>
+        <div className="selector">
+          <Selectores selectorAps={true} selectorFecha={true} />
+        </div>
+      </div>
+      <div className="bodyComponent">
         <TablaVariablesPgirs
             aps={aps}
             anno={anno}
@@ -44,6 +51,7 @@ import { getVariablesPgirs, updateVariablesPgirs } from "../services/variablesPg
             fetchData={fetchData}
             onActualizar={onActualizar}
         />
+      </div>
     </>
   )
 };

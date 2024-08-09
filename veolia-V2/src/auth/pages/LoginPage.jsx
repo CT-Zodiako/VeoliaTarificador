@@ -2,8 +2,7 @@ import React from 'react'
 import { useForm } from '../../hooks/useForm'
 import { useState } from 'react';
 import axios from 'axios';
-
-
+import './style.css';
 
 
 
@@ -39,32 +38,36 @@ export const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h2>Iniciar sesión</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="sisuCorreo">Correo electrónico:</label>
-          <input
-            type="sisuCorreo"
-            id="sisuCorreo"
-            value={sisuCorreo}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <>
+      <div className='login'>
+        <div className='sesion'>
+          <h2>Iniciar sesión</h2>
+          <form onSubmit={handleLogin}>
+            <div>
+              <label htmlFor="sisuCorreo">Correo electrónico:</label>
+              <input
+                type="sisuCorreo"
+                id="sisuCorreo"
+                value={sisuCorreo}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="sisuPass">Contraseña:</label>
+              <input
+                type="sisuPass"
+                id="sisuPass"
+                value={sisuPass}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">Iniciar sesión</button>
+          </form>
         </div>
-        <div>
-          <label htmlFor="sisuPass">Contraseña:</label>
-          <input
-            type="sisuPass"
-            id="sisuPass"
-            value={sisuPass}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Iniciar sesión</button>
-      </form>
-    </div>
+      </div>
+    </>
   );
   
 

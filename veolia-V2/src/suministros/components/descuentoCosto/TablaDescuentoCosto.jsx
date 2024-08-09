@@ -43,81 +43,84 @@ import { ModalCrearDescuentoCosto } from "./ModalCrearDescuentoCosto";
 
     return(
     <>
-        <div style={{ width: '50%' }}>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Costo</th>
-                        <th>Descuento</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {   dataDescuento &&
-                        dataDescuento.map((item, index) => (
-                            <tr key={index}>
-                                <td>{item.PARA_NOMBRE}</td>
-                                <td>
-                                    {
-                                        estadoData === index ? (
-                                            <input
-                                                type="number"
-                                                name='DESC_VALOR'
-                                                value={editarDescuento.DESC_VALOR}
-                                                onChange={onEditarDescuento}
-                                            />
-                                        ) :
-                                        (
-                                            item.DESC_VALOR
-                                        )
-                                    }
-                                </td>
-                                <td>
-                                    {
-                                        estadoData === index ? (
-                                            <div>
+        <div className="componenTable" style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className="acctionTable"/>
+            <div className='tableBorde' style={{ width: '50%' }}>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Costo</th>
+                            <th>Descuento</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {   dataDescuento &&
+                            dataDescuento.map((item, index) => (
+                                <tr key={index}>
+                                    <td>{item.PARA_NOMBRE}</td>
+                                    <td>
+                                        {
+                                            estadoData === index ? (
+                                                <input
+                                                    type="number"
+                                                    name='DESC_VALOR'
+                                                    value={editarDescuento.DESC_VALOR}
+                                                    onChange={onEditarDescuento}
+                                                />
+                                            ) :
+                                            (
+                                                item.DESC_VALOR
+                                            )
+                                        }
+                                    </td>
+                                    <td>
+                                        {
+                                            estadoData === index ? (
+                                                <div>
+                                                    <button
+                                                        className="btn btn-success"
+                                                        onClick={onEditar}
+                                                    >
+                                                        Guardar
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-danger"
+                                                        onClick={onCancelarEditar}
+                                                    >
+                                                        Cancelar
+                                                    </button>
+                                                </div>
+                                            ) :
+                                            (
                                                 <button
-                                                    className="btn btn-success"
-                                                    onClick={onEditar}
+                                                    className="btn btn-warning"
+                                                    onClick={() => onDescuentoCosto(index)}
                                                 >
-                                                    Guardar
+                                                    Editar
                                                 </button>
-                                                <button
-                                                    className="btn btn-danger"
-                                                    onClick={onCancelarEditar}
-                                                >
-                                                    Cancelar
-                                                </button>
-                                            </div>
-                                        ) :
-                                        (
-                                            <button
-                                                className="btn btn-warning"
-                                                onClick={() => onDescuentoCosto(index)}
-                                            >
-                                                Editar
-                                            </button>
-                                        )
-                                    }
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </Table>
-            <div>
-                <button
-                    onClick={() => setModal(true)}
-                >
-                    Agregar
-                </button>
+                                            )
+                                        }
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </Table>
+                <div>
+                    <button
+                        onClick={() => setModal(true)}
+                    >
+                        Agregar
+                    </button>
+                </div>
+                <ModalCrearDescuentoCosto
+                    show={modal}
+                    onCerrarModal={onCerrarModal}
+                    data={data}
+                    onAgregarDescuentoCosto={onAgregarDescuentoCosto}
+                />
             </div>
-            <ModalCrearDescuentoCosto
-                show={modal}
-                onCerrarModal={onCerrarModal}
-                data={data}
-                onAgregarDescuentoCosto={onAgregarDescuentoCosto}
-            />
         </div>
     </>
   )

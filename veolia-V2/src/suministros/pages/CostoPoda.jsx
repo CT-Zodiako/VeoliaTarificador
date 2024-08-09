@@ -41,15 +41,22 @@ import { TablaCostoPoda } from "../components/costoPoda/TablaCostoPoda";
 
     return(
     <>  
-        <Selectores selectorAps={true} selectorFecha={true} />
-        <TablaCostoPoda 
-            dataPoda={dataCostoPoda}
-            aps={aps}
-            anno={anno}
-            mes={mes}
-            onEditarCostoPoda={onEditarCostoPoda}
-            fetchData={fetchData}
-        />
+        <div className="headerComponent">
+            <div className="tituloComponent"/>
+            <div className="selector">
+                <Selectores selectorAps={true} selectorFecha={true} />
+            </div>
+        </div>
+        <div className="bodyComponent">
+            <TablaCostoPoda 
+                dataPoda={dataCostoPoda}
+                aps={aps}
+                anno={anno}
+                mes={mes}
+                onEditarCostoPoda={onEditarCostoPoda}
+                fetchData={fetchData}
+            />
+        </div>
     </>
   )
 };

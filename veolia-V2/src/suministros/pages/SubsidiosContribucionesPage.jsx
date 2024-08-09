@@ -77,75 +77,92 @@ export const SubConPage = () => {
 
     return (
         <>
-            <h1>Porcentajes de Subsidios y Contribuciones</h1>
-
-            <Selectores selectorAps={true} selectorFecha={true} />
-            <hr />
-            <div className="container">
-                <Button variant="primary" onClick={handleShowModal}>Editar Índices</Button>
-                <hr />
-
-                <div className="table-responsive">
-                    <table className="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Clase</th>
-                                <th>Valor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.map((item, index) => (
-                                <tr key={item.SUCO_ID}>
-                                    <td>{getClaseText(item.CLAS_CLASE)}</td>
-                                    <td className='text-end'>
-                                        <strong>$</strong> {item.SUCO_VALOR}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-
-                    </table>
+            <div className="headerComponent">
+                <div className="tituloComponent">
+                    <h1>Porcentajes de Subsidios y Contribuciones</h1>
                 </div>
+                <div className="selector">
+                    <Selectores selectorAps={true} selectorFecha={true} />
+                </div>
+            </div>
 
+
+            <div className="bodyComponent">
+                <div className='componenTable'>
+                    <section>
+                        <div className="row justify-content-center align-items-center">
+                            <div className="col-md-8">
+                                <div className='acctionTable'>
+                                    <Button variant="primary" onClick={handleShowModal}>Editar Índices</Button>
+                                </div>
+                                <div className="card rounded">
+                                    <div className="card-body">
+                                        <div className="table-responsive" style={{ maxHeight: '40rem', overflowY: 'auto' }}>
+                                            <table className="table table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Clase</th>
+                                                        <th>Valor</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {data.map((item, index) => (
+                                                        <tr key={item.SUCO_ID}>
+                                                            <td>{getClaseText(item.CLAS_CLASE)}</td>
+                                                            <td className='text-end'>
+                                                                <strong>$</strong> {item.SUCO_VALOR}
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
                 <Modal show={showModal} onHide={handleCloseModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Editar Índices</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        {data.map((item, index) => (
-                            <Form key={item.SUCO_ID}>
-                                <Form.Group className="row">
-                                    <Form.Label className="col-sm-3">Clase</Form.Label>
-                                    <div className="col-sm-9">
-                                        <Form.Control
-                                            type="number"
-                                            name="CLAS_CLASE"
-                                            value={item.CLAS_CLASE}
-                                            onChange={(e) => handleChange(index, 'CLAS_CLASE', e.target.value)}
-                                            disabled
-                                        />
-                                    </div>
-                                </Form.Group>
-                                <Form.Group className="row">
-                                    <Form.Label className="col-sm-3">Valor</Form.Label>
-                                    <div className="col-sm-9">
-                                        <Form.Control
-                                            type="number"
-                                            name="SUCO_VALOR"
-                                            value={item.SUCO_VALOR}
-                                            onChange={(e) => handleChange(index, 'SUCO_VALOR', e.target.value)}
-                                        />
-                                    </div>
-                                </Form.Group>
-                                <hr />
-                            </Form>
-                        ))}
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseModal}>Cerrar</Button>
-                        <Button variant="primary" onClick={handleSave}>Guardar Cambios</Button>
-                    </Modal.Footer>
-                </Modal>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Editar Índices</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                {data.map((item, index) => (
+                                    <Form key={item.SUCO_ID}>
+                                        <Form.Group className="row">
+                                            <Form.Label className="col-sm-3">Clase</Form.Label>
+                                            <div className="col-sm-9">
+                                                <Form.Control
+                                                    type="number"
+                                                    name="CLAS_CLASE"
+                                                    value={item.CLAS_CLASE}
+                                                    onChange={(e) => handleChange(index, 'CLAS_CLASE', e.target.value)}
+                                                    disabled
+                                                />
+                                            </div>
+                                        </Form.Group>
+                                        <Form.Group className="row">
+                                            <Form.Label className="col-sm-3">Valor</Form.Label>
+                                            <div className="col-sm-9">
+                                                <Form.Control
+                                                    type="number"
+                                                    name="SUCO_VALOR"
+                                                    value={item.SUCO_VALOR}
+                                                    onChange={(e) => handleChange(index, 'SUCO_VALOR', e.target.value)}
+                                                />
+                                            </div>
+                                        </Form.Group>
+                                        <hr />
+                                    </Form>
+                                ))}
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleCloseModal}>Cerrar</Button>
+                                <Button variant="primary" onClick={handleSave}>Guardar Cambios</Button>
+                            </Modal.Footer>
+                        </Modal>
             </div>
         </>
     );

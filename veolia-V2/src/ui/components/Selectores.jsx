@@ -2,8 +2,9 @@ import React from 'react';
 import { ApsSelector } from './ApsSelector';
 import { YearSelector } from './YearSelector ';
 import { MonthSelector } from './MonthSelector';
+import { SelectProyecciones } from './SelectProyecciones'
 
-export const Selectores = ({ selectorAps = false, selectorFecha = false }) => {
+export const Selectores = ({ selectorAps = false, selectorFecha = false, selectorProy = false }) => {
 
     // const handleYearChange = (year) => {
     //     handleYearMonthChange(year);
@@ -20,7 +21,7 @@ export const Selectores = ({ selectorAps = false, selectorFecha = false }) => {
                     {selectorAps && <ApsSelector />}
                     {selectorFecha && <YearSelector />}
                     {selectorFecha && <MonthSelector />}
-                    
+                    {selectorProy && <SelectProyecciones />}
                 </div>
             </div>
         </div>

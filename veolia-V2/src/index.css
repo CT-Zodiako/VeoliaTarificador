@@ -4,3 +4,92 @@
   padding: 0;
   background-color: #272323;
 } */
+
+/* CUERPO DEL SISTEMA */
+.veoliaComponents {
+  height: 100vh;
+}
+
+.bodyVeolia {
+  height: 79%;
+}
+
+.footerVeolia {
+  height: 15%;
+}
+
+/* CUEERPO DE LOS COMPONENTES */
+.headerComponent {
+  display: flex;
+  flex-direction: column;
+  height: 24%;
+}
+
+.tituloComponent {
+  width: 100%;
+  height: 30%;
+  padding: 0.5rem 0rem 0rem 11rem;
+}
+
+.selectorComponent {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topListTable {
+  margin-top: 5rem;
+}
+
+.bodyComponent {
+  height: 76%;
+}
+
+.bodyComponentable {
+  height: 46rem;
+}
+
+.componenTable {
+  padding: 0rem 4rem;
+}
+
+.acctionTable {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.listTable {
+  padding: 0rem 2rem;
+  height: 4rem;
+}
+
+.tableVerificacion {
+  display: grid;
+}
+
+.tableBorde {
+  padding: 20px;
+  border: 2px solid rgba( 0, 0, 0, 0.3);
+  border-radius: 16px;
+}
+
+.tableVerificacion {
+  padding: 20px;
+  border: 2px solid rgba( 0, 0, 0, 0.3);
+  border-radius: 16px;
+  display: inline-block;
+}
+
+
+.tableBorde h5 {
+  margin-bottom: 1rem;
+}
+
+
+/* SUMINISTROS */
+
+
+

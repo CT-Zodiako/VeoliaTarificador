@@ -85,26 +85,38 @@ import { getResumenAprovechamiento, patchResumenAprovechamiento, postResumenApro
 
   return(
     <>
-        <Selectores selectorAps={true} selectorFecha={true} />
-        {
-            aps === '' ? null 
-                :(
-                    <>
-                        <div className="d-flex justify-content-center" style={{ height: '100px' }}>
-                            <SelectorAprovechamiento 
-                                dataAprovechamiento={dataAprovechamiento.ACTIVAR === 0 ? false : true}
-                                onAprovechamiento={onAprovechamiento}
-                            />
-                        </div>
-                        <button
-                            onClick={onResumenAprovechamiento}
-                            className="btn btn-success"
-                        >
-                            Activar
-                        </button>
-                    </>
-                )
-        }
+        <div className="headerComponent">
+            <div className="tituloComponent"/>
+            <div className="selector">
+                <Selectores selectorAps={true} selectorFecha={true} />
+            </div>
+        </div>
+
+        <div className="bodyComponent">
+            <div className="componenTable">
+                {
+                    aps === '' ? null 
+                        :(
+                            <>
+                                <div className="d-flex justify-content-center acctionTable">
+                                    <SelectorAprovechamiento 
+                                        dataAprovechamiento={dataAprovechamiento.ACTIVAR === 0 ? false : true}
+                                        onAprovechamiento={onAprovechamiento}
+                                    />
+                                </div>
+                                <div style={{ width: '200px', margin: '30px 0px 0px 250px' }}>
+                                    <button
+                                        onClick={onResumenAprovechamiento}
+                                        className="btn btn-success"
+                                    >
+                                        Activar
+                                    </button>
+                                </div>
+                            </>
+                        )
+                }
+            </div>
+        </div>
     </>
   )
 };
