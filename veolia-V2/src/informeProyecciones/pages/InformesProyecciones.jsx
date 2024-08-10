@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { TabTable } from "../../ui/components/TabTable"
-import { TablaProyecciones } from "../components/TablaProyecciones";
 import { Selectores } from "../../ui/components/Selectores"
 import { useApsSelector, useProyeccionesSelector } from "../../store/storeSelectors"
 import { getEnergia, getAcueducto, getCosto, getTarifas } from '../service/informesProyeccionesService';
 import { columsEnergia, columsAcueducto, columsCostos, columsTarifa } from '../components/data';
+import { TablaComponentes } from "../../ui/components/TablaComponentes";
 
 export const InformesProyecciones = () => {
     const aps = useApsSelector(state => state.aps);
@@ -18,8 +18,8 @@ export const InformesProyecciones = () => {
     
 
     const data = {
-        APSA_ID : 1010,
-        PROY_ID: 161
+        APSA_ID : aps,
+        PROY_ID: proy
     }
 
     const dataTablasProyecciones = async() => {
@@ -41,7 +41,9 @@ export const InformesProyecciones = () => {
     }
 
     useEffect(()=>{
-        dataTablasProyecciones();
+        if (aps && proy){
+            dataTablasProyecciones();
+        }
     }, [aps, proy])
 
     const titulosTabs = [
@@ -68,8 +70,7 @@ export const InformesProyecciones = () => {
                 <div className='listTable'>
                     <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
                 </div>
-                <TablaProyecciones datos={titulosTabs[pestañaActiva].datos} colums={titulosTabs[pestañaActiva].encabezado}/>
-                {/* <TableCofiguracion tituloTabla={titulo} datos={titulosTabs[pestañaActiva].datos} /> */}
+                <TablaComponentes colums={titulosTabs[pestañaActiva].encabezado} data={titulosTabs[pestañaActiva].datos}/>
             </div>
         </div>
     );

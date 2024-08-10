@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { DetalladoCostoService } from './detallado-costo.service';
 import { ConsultaDTO } from './dto/consulta.dto';
@@ -15,7 +16,7 @@ export class DetalladoCostoController {
   constructor(private readonly detalladoCostoService: DetalladoCostoService) {}
 
   @Get()
-  findOne(@Body() consultaDTO: ConsultaDTO) {
+  findOne(@Query() consultaDTO) {
     return this.detalladoCostoService.findOne(consultaDTO);
   }
 }

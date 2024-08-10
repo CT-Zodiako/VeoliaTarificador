@@ -1,9 +1,9 @@
 import { Table } from "react-bootstrap";
 
- export const TablaVerificacion = ({colums, data}) => {
+ export const TablaComponentes = ({colums, data}) => {
 return (
     <div className='container'>
-      <div style={{ overflowX: 'auto' }}>
+      <div style={{ overflowX: 'auto', overflowX: 'auto', maxHeight: '40rem' }}>
         <Table striped bordered hover>
           <thead>
             <tr>

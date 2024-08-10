@@ -23,7 +23,7 @@ import { useEffect, useState } from "react";
                 type="checkbox" role="switch" 
                 id="flexSwitchCheckChecked" 
                 checked={aprovechamiento}
-                onClick={onSelectorAprovechamiento}
+                onChange={onSelectorAprovechamiento}
             />
             <label 
                 className="form-check-label"

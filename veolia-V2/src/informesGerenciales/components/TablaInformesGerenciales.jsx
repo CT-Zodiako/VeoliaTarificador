@@ -1,15 +1,15 @@
-import { useFiltroTablas } from '../../hooks/useFiltroTablas';
+import { useFiltroTablas } from "../../hooks/useFiltroTablas"
 
-export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
-    const {filtro, onFiltroTabla, filtroName} = useFiltroTablas(datos)
-        
-    return (
+export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums }) => {
+    const {filtro, onFiltroTabla, filtroName} = useFiltroTablas(datos);
+    
+    return(
         <div className="componenTable">
-            <div className='acctionTable'/>
+            <div className="acctionTable"/>
             <div className="tableBorde">
                 <div className="card-body">
                     <h5 className="card-title">{tituloTabla}</h5>
-                    <div className="table-responsive" style={{ maxHeight: '40rem', overflowY: 'auto' }}>
+                    <div className="table-responsive" style={{ maxHeight: '32.5rem', overflowY: 'auto' }}>
                         <table className="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -48,17 +48,13 @@ export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
                                     }
                                 </tr>
                                 {filtroName.length > 0 && filtroName.map((item, index) => (
-                                    <tr key={index}>
-                                        {Object.keys(item).map((key, index) => (
-                                            <td
-                                                className={typeof item[key] === 'number' ? 'text-end' : 'text-start'}
-                                                key={index}
-                                            >
-                                                {item[key]}
-                                            </td>
-                                        ))}
-                                    </tr>
-                                ))}
+                                        <tr key={index}>
+                                            {colums.map((body, colIndex) => (
+                                                <td key={colIndex}>{item[body.body]}</td>
+                                            ))}
+                                        </tr>
+                                    ))
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -66,4 +62,4 @@ export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
             </div>
         </div>
     );
-};
+}

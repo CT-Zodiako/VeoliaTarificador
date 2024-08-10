@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { DetalladoSubAporteService } from './detallado-sub-aporte.service';
 import { ConsultaDTO } from './dto/consulta.dto';
 
@@ -8,7 +8,7 @@ export class DetalladoSubAporteController {
 
 
   @Get()
-  findOne(@Body() consultaDTO:ConsultaDTO) {
+  findOne(@Query() consultaDTO) {
     return this.detalladoSubAporteService.findOne(consultaDTO);
   }
 }

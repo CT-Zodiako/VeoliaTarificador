@@ -1,7 +1,6 @@
 import { Http } from "../../helpers/axiosHelper";
 
 export const getFormulario19 = async (data) => { 
-	console.log('data consulta: ', data);
     try{
         const response = await Http.get('formatos-formularios/f19', data);
         return response;

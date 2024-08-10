@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Selectores } from "../../ui/components/Selectores";
 import { columsEmpresa, columsAps, columsRelleno } from "../components/data";
-import { TablaVerificacion } from "../components/verificacion/TablaVerificacion";
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { getVerificacionAPS, getVerificacionEmpresa, getVerificacinRelleno } from "../service/verificacionService";
+import { TablaComponentes } from "../../ui/components/TablaComponentes";
 
  export const Verificacion = () => {
     const aps = useApsSelector(state => state.aps);
@@ -55,19 +55,19 @@ import { getVerificacionAPS, getVerificacionEmpresa, getVerificacinRelleno } fro
                 </div>
                 <div className="table-responsive tableVerificacion" style={{ maxHeight: '34rem', overflowY: 'auto' }}>
                     <div className="tableVerificacion">
-                        <TablaVerificacion 
+                        <TablaComponentes 
                             colums={columsEmpresa}
                             data={verificacionEmpresa}
                         />
                     </div>
                     <div className="tableVerificacion">
-                        <TablaVerificacion 
+                        <TablaComponentes 
                             colums={columsAps}
                             data={verificacionAPS}
                         />
                     </div>
                     <div className="tableVerificacion">
-                        <TablaVerificacion 
+                        <TablaComponentes 
                             colums={columsRelleno}
                             data={verificacionRelleno}
                         />

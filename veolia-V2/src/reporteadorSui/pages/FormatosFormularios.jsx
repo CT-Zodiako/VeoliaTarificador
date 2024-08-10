@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react"
 // import { ApsSelector } from "../../ui/components/ApsSelector"
 import { TabTable } from "../../ui/components/TabTable"
-// import { dataFormato19, dataFormato23, dataFormato24, dataFormato35, dataFormato36, getFormulario23, getFormulario24, getFormulario35, getFormulario36 } from "../service/reporteadorSuiService"
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors"
 import { Selectores } from "../../ui/components/Selectores"
-import { TablaProyecciones } from "../../informeProyecciones/components/TablaProyecciones"
-// import { TableCofiguracion } from "../../ui/components/TableCofiguracion"
 import { columsF19, columsF23, columsF24, columsF35, columsF36 } from '../components/data'
-import { getFormulario19 } from '../service/reporteadorSuiService';
+import { getFormulario19, getFormulario23, getFormulario24, getFormulario35, getFormulario36 } from '../service/reporteadorSuiService';
+import { TablaComponentes } from "../../ui/components/TablaComponentes"
 
 export const FormatosFormularios = () => {
     const aps = useApsSelector(state => state.aps);
@@ -22,9 +20,9 @@ export const FormatosFormularios = () => {
     const [dataFormato36, setFormulario36] = useState([]);
 
     const data = {
-        APSA_ID: 1011,
-        ANNO: 2023,
-        MES: 3 
+        APSA_ID: aps,
+        ANNO: anno,
+        MES: mess
     }    
 
     const dataTablasFormularios = async() => {
@@ -48,8 +46,10 @@ export const FormatosFormularios = () => {
         }
     }
 
-    useEffect(()=>{
-        dataTablasFormularios();
+    useEffect(()=> {
+        if(aps && anno && mess){
+            dataTablasFormularios();
+        }
     }, [aps, anno, mess])
 
     const titulosTabs = [
@@ -79,8 +79,7 @@ export const FormatosFormularios = () => {
                 <div className='listTable'>
                     <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
                 </div>
-                <TablaProyecciones datos={titulosTabs[pestañaActiva].datos} colums={titulosTabs[pestañaActiva].encabezado}/>
-                {/* <TableCofiguracion tituloTabla={titulo} datos={titulosTabs[pestañaActiva].datos} /> */}
+                <TablaComponentes colums={titulosTabs[pestañaActiva].encabezado} data={titulosTabs[pestañaActiva].datos}/>
             </div>
         </div>
     );

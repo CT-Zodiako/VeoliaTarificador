@@ -1,17 +1,11 @@
-export const dataDetalladoSubAport = {
-    formato:{
-        "APS": true,
-        "CALSE USO": true ,
-        "VALOR": true,
-        "TIPO PREDIO": false
+import { Http } from "../../helpers/axiosHelper";
 
-    },
-    datos:[
-        {
-            "APSA_NOMAPS": "SUR",
-            "CLAS_CLASE": 9,
-            "SUCO_VALOR": 0,
-            "PARA_NOMBRE": "Urbano"
-        },
-    ]
+export const getsubAporte = async (data) => { 
+    try{
+        const response = await Http.get('detallado-sub-aporte', data);
+        return response;
+    }
+    catch(error){
+        console.log('error en data sub/aport', error);
+    }
 }
