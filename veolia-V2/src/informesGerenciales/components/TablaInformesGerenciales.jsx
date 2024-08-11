@@ -26,7 +26,7 @@ export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums 
                             </thead>
                             <tbody>
                                 <tr>
-                                    {
+                                    {datos &&
                                         Object.entries(datos.formato).map(([key, value]) => (
                                             <td key={key} >
                                                 {

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { DashboardService } from './dashboard.service';
 import { ConsultaDTO } from './dto/consulta.dto';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
@@ -11,7 +11,7 @@ export class DashboardController {
 // TODO REVISAR EN FRONt
   @Get()
   @UseGuards(AuthGuard())
-  findOne(@Body() body:ConsultaDTO, @GetUser() user) {
+  findOne(@Query() body, @GetUser() user) {
     return this.dashboardService.findOne(body, user.SISU_ID);
   }
 

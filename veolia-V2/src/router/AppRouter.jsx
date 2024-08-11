@@ -21,6 +21,10 @@ import { ActivarAprovechamiento } from "../suministros/pages/ActivarAprovechamie
 import { CostoPoda } from "../suministros/pages/CostoPoda";
 import { AjustesProductividad } from "../suministros/pages/AjustesProductividad";
 import { DescuentoCosto } from "../suministros/pages/DescuentoCosto";
+import { DetalladoTarifasGerenciales } from "../informesGerenciales/pages/DetalladoTarifasGerenciales";
+import { DetalladoTarifasComerciales } from "../informesComerciales/pages/DetalladoTarifasComerciales";
+import { DashBoardTarifas } from "../informesGerenciales/pages/DashBoardTarifas";
+import { CostoPodainfo } from "../informesGerenciales/pages/CostoPodaInfo";
 
 export const router = createBrowserRouter([
     {
@@ -85,15 +89,38 @@ export const router = createBrowserRouter([
                 element: <DescuentoCosto/>,
                 errorElement: <h1>error</h1>,
             },
+
+            //Informes Comerciales
+            {
+                path: "/dataDetalladoTarifasCo",
+                element: <DetalladoTarifasComerciales />,
+                errorElement: <h1>error</h1>,
+            },
+
             //Informes Gerenciales
+            {
+                path: "/dataDetalladoTarifas",
+                element: <DetalladoTarifasGerenciales />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/dataDetalladoSubAport",
+                element: <DataDetalladoSubAport />,
+                errorElement: <h1>error</h1>,
+            },
             {
                 path: "/detalladoCostos",
                 element: <DetalladoCosto />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/dataDetalladoSubAport",
-                element: <DataDetalladoSubAport />,
+                path: "/dashBoardTarifas",
+                element: <DashBoardTarifas />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/costoPodaInfo",
+                element: <CostoPodainfo />,
                 errorElement: <h1>error</h1>,
             },
 

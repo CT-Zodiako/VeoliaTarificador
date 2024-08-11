@@ -10,7 +10,8 @@ import { TablaComponentes } from "../../ui/components/TablaComponentes"
 export const FormatosFormularios = () => {
     const aps = useApsSelector(state => state.aps);
     const mess = useMesSelector(state => state.mes);
-    const anno = useAnnoSelector(state => state.anno)
+    const anno = useAnnoSelector(state => state.anno);
+
     const [pestañaActiva, setPestañaActiva] = useState(0); 
     const [titulo, setTitulo] = useState('')
     const [dataFormato19, setFormulario19] = useState([]);

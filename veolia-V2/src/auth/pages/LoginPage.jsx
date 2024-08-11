@@ -7,7 +7,6 @@ import './style.css';
 
 
 export const LoginPage = () => {
-
   // Estado para almacenar el correo electrónico y la contraseña ingresados por el usuario
   const [sisuCorreo, setEmail] = useState('');
   const [sisuPass, setPassword] = useState('');
@@ -27,6 +26,10 @@ export const LoginPage = () => {
 
       // Configurar Axios para enviar el token en los encabezados de autorización
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      // if (token){
+      //   onAutorizacion(true)
+      // }
 
       // Redireccionar a la página de inicio o realizar cualquier otra acción necesaria
       // Por ejemplo, puedes usar React Router para redireccionar a otra página

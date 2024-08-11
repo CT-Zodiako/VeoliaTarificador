@@ -51,8 +51,5 @@ export const DetalladoCosto = () => {
         <TablaInformesGerenciales datos={dataDetalladoCosto} tituloTabla={'Detallado de costos'} colums={columnsAPSACosto} />
       </div>
     </div>
-    // <div className='bodyComponentable topListTable'>
-    //     <TableCofiguracion tituloTabla={'Detallado de costos'} datos={datos} />
-    // </div>
   )
 }

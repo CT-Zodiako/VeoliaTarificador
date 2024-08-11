@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { CostoPodaService } from './costo-poda.service';
 
 
@@ -8,7 +8,7 @@ export class CostoPodaController {
 
 
   @Get()
-  findByAps(@Body() body) {
+  findByAps(@Query() body) {
     return this.costoPodaService.findByAps(body.APS_ID);
   }
 

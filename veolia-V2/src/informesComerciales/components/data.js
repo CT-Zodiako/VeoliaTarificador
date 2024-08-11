@@ -1,0 +1,63 @@
+export const columnsTarifasPlena = [
+    { head: "Clase Uso", body: "CLAS_NOMBRE" },
+    { head: "Tipo Tarifa", body: "PARA_NOMBRE" },
+    { head: "Tipo Fac", body: "TIPO_FACT" },
+    { head: "Cargo fijo", body: "TARI_CARGOFIJO" },
+    { head: "Tc", body: "TARI_TC" },
+    { head: "Tbl", body: "TARI_TBL" },
+    { head: "Tlu", body: "TARI_TLU" },
+    { head: "C. Variable", body: "TARI_CVARIABLE" },
+    { head: "Trt", body: "TARI_TRT" },
+    { head: "Tdt", body: "TARI_TDT" },
+    { head: "Ttl", body: "TARI_TTL" },
+    { head: "Ta", body: "TARI_TA" },
+    { head: "Plena", body: "TARI_PLENA" },
+];
+
+export const formatoTarifasPlena = {
+    'CLAS_NOMBRE': { name: 'Clase Uso', filtre: true },
+    'PARA_NOMBRE': { name: 'Tipo Tarifa', filtre: true },
+    'TIPO_FACT': { name: 'Tipo Fac', filtre: true },
+    'TARI_CARGOFIJO': { name: 'Cargo fijo', filtre: false },
+    'TARI_TC': { name: 'Tc', filtre: false },
+    'TARI_TBL': { name: 'Tbl', filtre: false },
+    'TARI_TLU': { name: 'Tlu', filtre: false },
+    'TARI_CVARIABLE': { name: 'C. Variable', filtre: false },
+    'TARI_TRT': { name: 'Trt', filtre: false },
+    'TARI_TDT': { name: 'Tdt', filtre: false },
+    'TARI_TTL': { name: 'Ttl', filtre: false },
+    'TARI_TA': { name: 'Ta', filtre: false },
+    'TARI_PLENA': { name: 'Plena', filtre: false },
+};
+
+export const columnsTarifasSC = [
+    { head: "Clase Uso", body: "CLAS_NOMBRE" },
+    { head: "Tipo Tarifa", body: "PARA_NOMBRE" },
+    { head: "Tipo Fac", body: "TIPO_FACT" },
+    { head: "Cargo fijo", body: "TARI_CARGOFIJOSC" },
+    { head: "Tc", body: "TARI_TCSC" },
+    { head: "Tbl", body: "TARI_TBLSC" },
+    { head: "Tlu", body: "TARI_TLUSC" },
+    { head: "C. Variable", body: "TARI_CVARIABLESC" },
+    { head: "Trt", body: "TARI_TRTSC" },
+    { head: "Tdt", body: "TARI_TDTSC" },
+    { head: "Ttl", body: "TARI_TTLSC" },
+    { head: "Ta", body: "TARI_TASC" },
+    { head: "S/C", body: "TARI_SUBCON" },
+];
+
+export const formatoTarifasSC = {
+    'CLAS_NOMBRE': { name: 'Clase Uso', filtre: true },
+    'PARA_NOMBRE': { name: 'Tipo Tarifa', filtre: true },
+    'TIPO_FACT': { name: 'Tipo Fac', filtre: true },
+    'TARI_CARGOFIJOSC': { name: 'Cargo fijo', filtre: false },
+    'TARI_TCSC': { name: 'Tc', filtre: false },
+    'TARI_TBLSC': { name: 'Tbl', filtre: false },
+    'TARI_TLUSC': { name: 'Tlu', filtre: false },
+    'TARI_CVARIABLESC': { name: 'C. Variable', filtre: false },
+    'TARI_TRTSC': { name: 'Trt', filtre: false },
+    'TARI_TDTSC': { name: 'Tdt', filtre: false },
+    'TARI_TTLSC': { name: 'Ttl', filtre: false },
+    'TARI_TASC': { name: 'Ta', filtre: false },
+    'TARI_SUBCON': { name: 'S/C', filtre: false },
+};

@@ -70,12 +70,24 @@ export const Menu = () => {
 
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                    Informes comerciales
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/dataDetalladoTarifasCo">Detallado Tarifas</Link></li>
+                                </ul>
+                          
+                            </li>
+
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Informes gerenciales
                                 </a>
                                 <ul className="dropdown-menu">
-                                <li><Link className="dropdown-item" to="/dataDetalladoSubAport">Detallado Sub y Aportes</Link></li>
+                                    <li><Link className="dropdown-item" to="/dataDetalladoTarifas">Detallado Tarifas</Link></li>
                                     <li><Link className="dropdown-item" to="/detalladoCostos">Detallado de costo</Link></li>
                                     <li><Link className="dropdown-item" to="/dataDetalladoSubAport">Detallado Sub y Aportes</Link></li>
+                                    <li><Link className="dropdown-item" to="/dashBoardTarifas">DashBoard</Link></li>
+                                    <li><Link className="dropdown-item" to="/costoPodaInfo">Costo Poda</Link></li>
                                 </ul>
                           
                             </li>
