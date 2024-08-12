@@ -1,35 +1,35 @@
 import { useEffect, useState } from "react";
 import { useAnnoSelector, useMesSelector } from "../../store/storeSelectors";
-import { columnsdashBoard } from '../components/data';
-import { getDashboard } from '../service/DashBoardTarifasService';
 import { Selectores } from "../../ui/components/Selectores";
+import {  getDashBoardSUI } from '../service/dashBoardService';
+import { columnsDashBoardSUI } from '../components/data';
 import { TablaComponentes } from "../../ui/components/TablaComponentes";
  
-export const DashBoardTarifas = () => {
+export const DashBoardSUI = () => {
     const mess = useMesSelector(state => state.mes);
     const anno = useAnnoSelector(state => state.anno);
 
-    const [dataDashBoard, setDataDashBoard] = useState([]);
+    const [dataDashBoardSUI, setDataDashBoardSUI] = useState([]);
     
     const data = {
         ANNO: anno,
         MES: mess
-    }  
+    }
 
-    const dataTablasDashBoard = async() => {
+    const dataTablaDashBoardSUI = async() => {
         try{
-            const dashBoard = await getDashboard(data);
-            setDataDashBoard(dashBoard);
+            const dashBoard = await getDashBoardSUI(data);
+            setDataDashBoardSUI(dashBoard)
         } catch {
-            console.error('data de las tablas no encontrada'); 
+            console.error('error en data dashBoard SUI');
         }
     }
 
-    useEffect(()=> {
-        if(anno && mess){
-            dataTablasDashBoard();
-        }
-    }, [anno, mess])
+    useEffect(() =>{
+        if (anno && mess){
+            dataTablaDashBoardSUI();
+        } 
+    }, [anno, mess]);
 
     return(
     <>
@@ -40,8 +40,8 @@ export const DashBoardTarifas = () => {
                     <Selectores selectorFecha={true} />
                 </div>
             </div>
-            <div className="bodyComponent">
-                <TablaComponentes colums={columnsdashBoard} data={dataDashBoard}/>
+            <div className="bodyComponent" >
+                <TablaComponentes colums={columnsDashBoardSUI} data={dataDashBoardSUI} />
             </div>
         </div>
     </>

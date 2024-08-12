@@ -7,15 +7,20 @@
 
 /* CUERPO DEL SISTEMA */
 .veoliaComponents {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
 }
 
 .bodyVeolia {
-  height: 80.5%;
+  /* height: 85%; */
+  flex: 1 1 auto;
+  overflow: auto;
 }
 
 .footerVeolia {
-  height: 13.5%;
+  /* height: 13%; */
+  flex: 0 0 auto;
 }
 
 /* CUEERPO DE LOS COMPONENTES */
@@ -27,7 +32,6 @@
 }
 
 .tituloComponent {
-  /* background: green; */
   width: 100%;
   height: 23%;
   padding: 0.5rem 0rem 0rem 11rem;

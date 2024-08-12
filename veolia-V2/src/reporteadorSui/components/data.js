@@ -1,3 +1,14 @@
+export const columnsDashBoardSUI = [
+    { head: "Id", body: "APSID" },
+    { head: "APS", body: "APSNOM" },
+    { head: "F19", body: "F19" },
+    { head: "F23", body: "F23" },
+    { head: "F24", body: "F24" },
+    { head: "F35", body: "F35" },
+    { head: "F36", body: "F36" },
+    { head: "Usuario", body: "USUARIO" },
+];
+
 export const columsF19 = [
     { head: "NJ", body: "F19_NJ" },
     { head: "NDJ", body: "F19_NDJ" },

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { DashboardService } from './dashboard.service';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
@@ -10,7 +10,7 @@ export class DashboardController {
 
   @Get()
   @UseGuards(AuthGuard())
-  getDashboard(@GetUser() user , @Body() consultaDTO:ConsultaDTO){
+  getDashboard(@GetUser() user , @Query() consultaDTO){
     return this.dashboardService.getDashboard(user.SISU_ID, consultaDTO)
   }
 

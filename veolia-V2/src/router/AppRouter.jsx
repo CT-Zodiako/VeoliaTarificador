@@ -25,6 +25,7 @@ import { DetalladoTarifasGerenciales } from "../informesGerenciales/pages/Detall
 import { DetalladoTarifasComerciales } from "../informesComerciales/pages/DetalladoTarifasComerciales";
 import { DashBoardTarifas } from "../informesGerenciales/pages/DashBoardTarifas";
 import { CostoPodainfo } from "../informesGerenciales/pages/CostoPodaInfo";
+import { DashBoardSUI } from "../reporteadorSui/pages/DashBoardSUI";
 
 export const router = createBrowserRouter([
     {
@@ -128,6 +129,11 @@ export const router = createBrowserRouter([
             {
                 path: "/formatosFormularios",
                 element: <FormatosFormularios />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/DashBoardSUI",
+                element: <DashBoardSUI />,
                 errorElement: <h1>error</h1>,
             },
             {

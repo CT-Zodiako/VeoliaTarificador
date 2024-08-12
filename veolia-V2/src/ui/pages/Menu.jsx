@@ -99,6 +99,7 @@ export const Menu = () => {
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/formatosFormularios">Formatos y Formularios</Link></li>
+                                    <li><Link className="dropdown-item" to="/DashBoardSUI">DashBoard</Link></li>
                                     <li><Link className="dropdown-item" to="/resmunenFormatosFormularios">Resumen Formatos y Formularios</Link></li>
                                     <li><Link className="dropdown-item" to="/reversiones">Reversiones</Link></li>
                                 </ul>
