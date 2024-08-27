@@ -28,6 +28,7 @@ import { ActivarAprovechamientoModule } from './suministros/activar-aprovechamie
 import { CostoPodaSuminitroModule } from './suministros/costo-poda/costo-poda.module';
 import { AjusteProductividadModule } from './suministros/ajuste-productividad/ajuste-productividad.module';
 import { DescuentosCostosModule } from './suministros/descuentos-costos/descuentos-costos.module';
+import { RevercionesModule } from './reverciones/reverciones.module';
 
 @Module({
   imports: [
@@ -67,7 +68,8 @@ import { DescuentosCostosModule } from './suministros/descuentos-costos/descuent
     ActivarAprovechamientoModule,
     CostoPodaSuminitroModule,
     AjusteProductividadModule,
-    DescuentosCostosModule
+    DescuentosCostosModule,
+    RevercionesModule
 
   ],
 })
