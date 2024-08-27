@@ -29,6 +29,7 @@ import { CostoPodaSuminitroModule } from './suministros/costo-poda/costo-poda.mo
 import { AjusteProductividadModule } from './suministros/ajuste-productividad/ajuste-productividad.module';
 import { DescuentosCostosModule } from './suministros/descuentos-costos/descuentos-costos.module';
 import { RevercionesModule } from './reverciones/reverciones.module';
+import { ProcesosModule } from './procesos/procesos.module';
 
 @Module({
   imports: [
@@ -69,7 +70,8 @@ import { RevercionesModule } from './reverciones/reverciones.module';
     CostoPodaSuminitroModule,
     AjusteProductividadModule,
     DescuentosCostosModule,
-    RevercionesModule
+    RevercionesModule,
+    ProcesosModule
 
   ],
 })
