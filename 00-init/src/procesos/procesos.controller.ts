@@ -34,9 +34,37 @@ export class ProcesosController {
 
   @Get('calculartarifas')
   @UseGuards(AuthGuard())
-  calcularTarifas(@GetUser() user @Query() data) {
+  calcularTarifas(@GetUser() user, @Query() data) {
     return this.procesosService.calcularTarifas(user.SISU_ID, data);
   }
+
+  @Get('trna')
+  consultarTrna(@Query() data) {
+    return this.procesosService.consultarTrna(data);
+  }
+
+  
+  @Get('tafna')
+  consultarTafna(@Query() data) {
+    return this.procesosService.consultarTafna(data);
+  }
+
+  @Get('tarifas')
+  consultarTarifas(@Query() data) {
+    return this.procesosService.consultarTarifas(data);
+  }
+
+  @Get('resumen')
+  consultarResumen(@Query() data) {
+    return this.procesosService.consultarResumen(data);
+  }
+  @Get('costosJson')
+  consultarCostosJson(@Query() data) {
+    return this.procesosService.consultarCostosJson(data);
+  }
+
+
+
 
 
 

@@ -79,6 +79,67 @@ export class ProcesosService {
       return `error en consultaCostos ${error}`;
     }
   }
+ async  consultarTrna(data) {
+    try {
+      const {APSA_ID, ANNO, MES} = data;
+      return await this.procesosRepository.query(`
+        SELECT ED.apsa_id, ED.empr_empr, ED.divi_divi, AP.apsa_nomaps, trim(fapr_nombre) AS fapr_nombre, fapr_codigo, fapr_valor, 
+                  ROUND(PK_TRNA.fauco_trna(ED.empr_empr, ED.divi_divi, ED.apsa_id, fapr_codigo, ${ANNO}, ${MES}),10) AS trna
+             FROM auco_apsemprdivi ED
+                  INNER JOIN auco_factproduccion FP ON (ED.apsa_id = FP.apsa_id)
+                  INNER JOIN auco_apsaseo AP ON (ED.apsa_id = AP.apsa_id) 
+            WHERE ED.apsa_id = ${APSA_ID} AND apem_estado = 1 AND fapr_valor > 0
+            ORDER BY fapr_codigo
+        `);
+    } catch (error) {
+      return `error en consultarTrna ${error}`;
+    }
+  }
+ async  consultarTafna(data) {
+    try {
+      const {APSA_ID, ANNO, MES} = data;
+      return await this.procesosRepository.query(`
+        SELECT aps, empresa, anno, mes, valor
+        FROM vauco_toneladas QA
+        WHERE tipo  IN ('TAFNA') AND aps = ${APSA_ID} AND anno*12+mes BETWEEN  (${ANNO}*12+${MES})-6 AND ${ANNO}*12+${MES}
+        `);
+    } catch (error) {
+      return `error en consultarTafna ${error}`;
+    }
+  }
+  
+ async  consultarTarifas(data) {
+    try {
+      const {APSA_ID, ANNO, MES} = data;
+      return await this.procesosRepository.query(`
+        SELECT * FROM vauco_tarifa4  WHERE apsa_id = ${APSA_ID} AND tari_anno = ${ANNO} AND tari_mes = ${MES}
+        `);
+    } catch (error) {
+      return `error en consultaCostos ${error}`;
+    }
+  }
+
+ async  consultarResumen(data) {
+    try {
+      const {APSA_ID, ANNO, MES} = data;
+      return await this.procesosRepository.query(`
+        SELECT * FROM vauco_resumen WHERE APSA_ID = ${APSA_ID} AND RETA_ANNO= ${ANNO} AND RETA_MES = ${MES}
+        `);
+    } catch (error) {
+      return `error en consultaCostos ${error}`;
+    }
+  }
+
+ async  consultarCostosJson(data) {
+    try {
+      const {APSA_ID, ANNO, MES} = data;
+      return await this.procesosRepository.query(`
+        SELECT * FROM vauco_resumen WHERE APSA_ID = ${APSA_ID} AND RETA_ANNO= ${ANNO} AND RETA_MES = ${MES}
+        `);
+    } catch (error) {
+      return `error en consultaCostos ${error}`;
+    }
+  }
 
  async  calcularTarifas(user, data) {
     try {
