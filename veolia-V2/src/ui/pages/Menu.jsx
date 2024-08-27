@@ -11,17 +11,15 @@ export const Menu = () => {
 
     return (
         <nav className="navbar bg-body-tertiary fixed-top">
-            <div className="container-fluid">
-
-                <p>Veolia</p>
-
+            <div className="container-fluid" style={{ height: '1.8rem' }}>
+                <h6>Veolia App</h6>
                 <button
-                    className="navbar-toggler"
+                    className="navbar-toggler botonMenu"
                     type="button"
                     onClick={onMenu}
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon "></span>
                 </button>
                 <div className={`offcanvas offcanvas-end ${showOffcanvas ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div className="offcanvas-header">

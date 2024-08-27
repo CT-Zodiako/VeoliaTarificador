@@ -13,9 +13,10 @@ import { useStyleTablaComponent } from "../../hooks/useStyleTablaComponent";
   const dataF = data.slice(indexOfFirstItem, indexOfLastItem);
 
 return (
-    <div className='container'>
-      <div>
-        <Table striped bordered hover style={{ fontSize: '1vw' }}>
+    <div className='componenTable'>
+      <div className="acctionTable"/>
+      <div className="tableBorde">
+        <Table striped bordered hover style={{ fontSize: '2vh', overflowY: 'auto', minWidth: '10rem' }}>
           <thead>
             <tr>
               {colums &&

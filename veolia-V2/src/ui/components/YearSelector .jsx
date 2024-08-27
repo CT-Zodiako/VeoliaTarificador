@@ -14,9 +14,9 @@ export const YearSelector = () => {
 
     return (
         <div className='col-3 mt-1'>
-            <label htmlFor="year">Año:</label>
+            <label htmlFor="year" className='labelSelect'>Año:</label>
             <select 
-                className="form-select form-select-sm" 
+                className="form-select form-select-sm selectores" 
                 aria-label="Small select example" 
                 value={miAnno} 
                 onChange={handleChange}
