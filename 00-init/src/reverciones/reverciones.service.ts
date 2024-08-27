@@ -17,11 +17,13 @@ export class RevercionesService {
 
   async crearAutorizacion(user,data) {
     try {
-      const {APSA_ID,ANNO,MES,DESCRIPCION} =data
+      const {APSA_ID,ANNO,MES,DESCRIPCION} =data;
+      console.log('data', APSA_ID,ANNO,MES,DESCRIPCION);
+            
       return await this.revercionesRepository.query(`
         INSERT INTO TARIFICADOR.REVE_AUTORIZACION
         (APSA_ID, AUTO_ANNO, AUTO_MES, AUTO_DESCRIPCION, AUTO_FECCREA, USUA_USUARIO)
-        VALUES(${APSA_ID}, ${ANNO}, ${MES}, ${DESCRIPCION}, SYSDATE , ${user})
+        VALUES(${APSA_ID}, ${ANNO}, ${MES}, '${DESCRIPCION}', SYSDATE , ${user})
       `)
 
     } catch (error) {
