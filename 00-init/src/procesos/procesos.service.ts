@@ -115,7 +115,7 @@ export class ProcesosService {
         SELECT * FROM vauco_tarifa4  WHERE apsa_id = ${APSA_ID} AND tari_anno = ${ANNO} AND tari_mes = ${MES}
         `);
     } catch (error) {
-      return `error en consultaCostos ${error}`;
+      return `error en consultarTarifas ${error}`;
     }
   }
 
@@ -126,18 +126,26 @@ export class ProcesosService {
         SELECT * FROM vauco_resumen WHERE APSA_ID = ${APSA_ID} AND RETA_ANNO= ${ANNO} AND RETA_MES = ${MES}
         `);
     } catch (error) {
-      return `error en consultaCostos ${error}`;
+      return `error en consultarResumen ${error}`;
     }
   }
 
  async  consultarCostosJson(data) {
     try {
       const {APSA_ID, ANNO, MES} = data;
-      return await this.procesosRepository.query(`
-        SELECT * FROM vauco_resumen WHERE APSA_ID = ${APSA_ID} AND RETA_ANNO= ${ANNO} AND RETA_MES = ${MES}
+      const resultado =  await this.procesosRepository.query(`
+        SELECT * FROM json_json WHERE apsa_id = ${APSA_ID} AND json_anno = ${ANNO} AND json_mes = ${MES} AND json_tipo200 = 2
         `);
+
+        resultado.map(item=> {
+
+          item.JSON_DOCUMENT = JSON.parse(item.JSON_DOCUMENT);
+        });
+
+        return resultado;
+
     } catch (error) {
-      return `error en consultaCostos ${error}`;
+      return `error en consultarCostosJson ${error}`;
     }
   }
 
