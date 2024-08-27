@@ -20,4 +20,19 @@ export class RevercionesController {
     return this.revercionesService.detalladoAutorizacion(user.SISU_ID);
   }
 
+  @Post('crearReversion')
+  @UseGuards(AuthGuard())
+  crearReversion(@GetUser() user, @Body() data) {
+    return this.revercionesService.crearReversion(data, user.SISU_ID);
+  }
+
+
+  @Get('detalladoReversion')
+  @UseGuards(AuthGuard())
+  detalladoReversion() {
+    return this.revercionesService.detalladoReversion();
+  }
+
+  
+
 }
