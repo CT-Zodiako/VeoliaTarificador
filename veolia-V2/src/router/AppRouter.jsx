@@ -30,6 +30,7 @@ import { Reversion } from "../reversiones/pages/Reversion";
 import { AutorizacionReversiones } from "../reversiones/pages/AutorizacionReversiones";
 import { DetallesReversion } from "../reversiones/pages/DetallesReversion";
 import { DetallesAutorizacion } from "../reversiones/pages/DetallesAutorizacion";
+import { Calculo } from "../procesos/pages/Calculo";
 
 export const router = createBrowserRouter([
     {
@@ -193,6 +194,11 @@ export const router = createBrowserRouter([
             {
                 path: "/detalles_autorizacion",
                 element: <DetallesAutorizacion />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/calculo",
+                element: <Calculo />,
                 errorElement: <h1>error</h1>,
             },
         ]
