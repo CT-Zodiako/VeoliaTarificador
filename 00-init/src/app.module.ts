@@ -30,6 +30,7 @@ import { AjusteProductividadModule } from './suministros/ajuste-productividad/aj
 import { DescuentosCostosModule } from './suministros/descuentos-costos/descuentos-costos.module';
 import { RevercionesModule } from './reverciones/reverciones.module';
 import { ProcesosModule } from './procesos/procesos.module';
+import { ValidacionesModule } from './validaciones/validaciones.module';
 
 @Module({
   imports: [
@@ -71,7 +72,8 @@ import { ProcesosModule } from './procesos/procesos.module';
     AjusteProductividadModule,
     DescuentosCostosModule,
     RevercionesModule,
-    ProcesosModule
+    ProcesosModule,
+    ValidacionesModule
 
   ],
 })
