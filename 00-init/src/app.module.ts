@@ -32,6 +32,7 @@ import { RevercionesModule } from './reverciones/reverciones.module';
 import { ProcesosModule } from './procesos/procesos.module';
 import { ValidacionesModule } from './validaciones/validaciones.module';
 import { CrearModule } from './proyecciones/crear/crear.module';
+import { LineasTiempoModule } from './proyecciones/lineas-tiempo/lineas-tiempo.module';
 
 @Module({
   imports: [
@@ -75,7 +76,8 @@ import { CrearModule } from './proyecciones/crear/crear.module';
     RevercionesModule,
     ProcesosModule,
     ValidacionesModule,
-    CrearModule
+    CrearModule,
+    LineasTiempoModule
 
   ],
 })
