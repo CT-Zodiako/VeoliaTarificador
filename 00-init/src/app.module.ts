@@ -33,6 +33,7 @@ import { ProcesosModule } from './procesos/procesos.module';
 import { ValidacionesModule } from './validaciones/validaciones.module';
 import { CrearModule } from './proyecciones/crear/crear.module';
 import { LineasTiempoModule } from './proyecciones/lineas-tiempo/lineas-tiempo.module';
+import { SubsidiosContribucionesProyeccionesModule } from './proyecciones/subsidios-contribuciones/subsidios-contribuciones.module';
 
 @Module({
   imports: [
@@ -77,7 +78,8 @@ import { LineasTiempoModule } from './proyecciones/lineas-tiempo/lineas-tiempo.m
     ProcesosModule,
     ValidacionesModule,
     CrearModule,
-    LineasTiempoModule
+    LineasTiempoModule,
+    SubsidiosContribucionesProyeccionesModule,
 
   ],
 })
