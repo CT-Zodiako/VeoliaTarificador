@@ -141,6 +141,17 @@
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+/*GRAFICOS*/
+.graficos {
+  width: 320px;
+  height: 224px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: red; */
+}
+
 
 
 
