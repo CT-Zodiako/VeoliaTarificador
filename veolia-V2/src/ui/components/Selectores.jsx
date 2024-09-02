@@ -16,8 +16,8 @@ export const Selectores = ({ selectorAps = false, selectorFecha = false, selecto
 
     return (
         <div className="col-12 d-flex justify-content-center">
-            <div className="card col-10">
-                <div className="card-body d-flex justify-content-between gap-3 align-items-start">
+            <div className="card col-10 componenSelect">
+                <div className=" d-flex justify-content-around align-items-center gap-3">
                     {selectorAps && <ApsSelector />}
                     {selectorFecha && <YearSelector />}
                     {selectorFecha && <MonthSelector />}

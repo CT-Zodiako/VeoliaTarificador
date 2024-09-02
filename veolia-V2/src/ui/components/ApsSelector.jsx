@@ -25,9 +25,9 @@ export const ApsSelector = () => {
 
   return (
     <div className='col-3 mt-1'>
-      <label htmlFor="aps">APS:</label>
+      <label htmlFor="aps" className='labelSelect'>APS:</label>
       <select 
-        className="form-select form-select-sm" 
+        className="form-select form-select-sm selectores" 
         aria-label="Small select example" 
         value={selectedApsaId} 
         onChange={handleChange}

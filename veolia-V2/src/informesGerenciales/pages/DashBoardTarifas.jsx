@@ -33,16 +33,14 @@ export const DashBoardTarifas = () => {
 
     return(
     <>
-        <div>
-            <div className="headerComponent">
-                <div className="tituloComponent"/>
-                <div className="selector">
-                    <Selectores selectorFecha={true} />
-                </div>
+        <div className="headerComponent">
+            <div className="tituloComponent"/>
+            <div className="selector">
+                <Selectores selectorFecha={true} />
             </div>
-            <div className="bodyComponent">
-                <TablaComponentes colums={columnsdashBoard} data={dataDashBoard}/>
-            </div>
+        </div>
+        <div className="bodyComponent">
+            <TablaComponentes colums={columnsdashBoard} data={dataDashBoard}/>
         </div>
     </>
   )

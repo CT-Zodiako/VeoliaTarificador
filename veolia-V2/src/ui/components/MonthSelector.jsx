@@ -16,9 +16,9 @@ export const MonthSelector = () => {
 
     return (
         <div className='col-3 mt-1'>
-            <label htmlFor="month">Mes:</label>
+            <label htmlFor="month" className='labelSelect'>Mes:</label>
             <select 
-                className="form-select form-select-sm" 
+                className="form-select form-select-sm selectores" 
                 aria-label="Small select example" 
                 value={miMes} 
                 onChange={handleChange}

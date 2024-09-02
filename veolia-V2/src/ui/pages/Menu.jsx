@@ -11,17 +11,15 @@ export const Menu = () => {
 
     return (
         <nav className="navbar bg-body-tertiary fixed-top">
-            <div className="container-fluid">
-
-                <p>Veolia</p>
-
+            <div className="container-fluid" style={{ height: '1.8rem' }}>
+                <h6>Veolia App</h6>
                 <button
-                    className="navbar-toggler"
+                    className="navbar-toggler botonMenu"
                     type="button"
                     onClick={onMenu}
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon "></span>
                 </button>
                 <div className={`offcanvas offcanvas-end ${showOffcanvas ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div className="offcanvas-header">
@@ -70,12 +68,20 @@ export const Menu = () => {
 
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                    Procesos
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/calculo">Calculo Tarifas</Link></li>
+                                </ul>
+                            </li>
+
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Informes comerciales
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/dataDetalladoTarifasCo">Detallado Tarifas</Link></li>
                                 </ul>
-                          
                             </li>
 
                             <li className="nav-item dropdown">
@@ -101,7 +107,7 @@ export const Menu = () => {
                                     <li><Link className="dropdown-item" to="/formatosFormularios">Formatos y Formularios</Link></li>
                                     <li><Link className="dropdown-item" to="/DashBoardSUI">DashBoard</Link></li>
                                     <li><Link className="dropdown-item" to="/resmunenFormatosFormularios">Resumen Formatos y Formularios</Link></li>
-                                    <li><Link className="dropdown-item" to="/reversiones">Reversiones</Link></li>
+                                    <li><Link className="dropdown-item" to="/reversiones_sui">Reversiones</Link></li>
                                 </ul>
                             </li>
 
@@ -124,6 +130,18 @@ export const Menu = () => {
                                     <li><Link className="dropdown-item" to="/variablesPGIRS">Variables PGIRS</Link></li>
                                     <li><Link className="dropdown-item" to="/informePGIRS">Informe PGIRS</Link></li>
                                     <li><Link className="dropdown-item" to="/resumenPGIRS">Resumen Variables PGIRS</Link></li>
+                                </ul>
+                            </li>
+
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reversiones
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/reversiones">Reversiones</Link></li>
+                                    <li><Link className="dropdown-item" to="/auth_reversiones">Autorizacion Reversiones</Link></li>
+                                    <li><Link className="dropdown-item" to="/detalles_reversiones">Detalles Reversiones</Link></li>
+                                    <li><Link className="dropdown-item" to="/detalles_autorizacion">Detalles Autorizacion</Link></li>
                                 </ul>
                             </li>
 

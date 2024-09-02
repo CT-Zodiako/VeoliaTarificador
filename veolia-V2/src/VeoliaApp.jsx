@@ -7,8 +7,8 @@ import { Footer } from './ui/components/Footer'
 export const VeoliaApp = () => {
     return (
         <div className='veoliaComponents'>
-            <h1>Veolia App</h1>
             <Menu />
+            <div className='cabezote'/>
             <div className='bodyVeolia'>
                 <Outlet />
             </div>

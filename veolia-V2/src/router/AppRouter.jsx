@@ -26,6 +26,11 @@ import { DetalladoTarifasComerciales } from "../informesComerciales/pages/Detall
 import { DashBoardTarifas } from "../informesGerenciales/pages/DashBoardTarifas";
 import { CostoPodainfo } from "../informesGerenciales/pages/CostoPodaInfo";
 import { DashBoardSUI } from "../reporteadorSui/pages/DashBoardSUI";
+import { Reversion } from "../reversiones/pages/Reversion";
+import { AutorizacionReversiones } from "../reversiones/pages/AutorizacionReversiones";
+import { DetallesReversion } from "../reversiones/pages/DetallesReversion";
+import { DetallesAutorizacion } from "../reversiones/pages/DetallesAutorizacion";
+import { Calculo } from "../procesos/pages/Calculo";
 
 export const router = createBrowserRouter([
     {
@@ -142,7 +147,7 @@ export const router = createBrowserRouter([
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/reversiones",
+                path: "/reversiones_sui",
                 element: <Reversiones />,
                 errorElement: <h1>error</h1>,
             },
@@ -170,6 +175,32 @@ export const router = createBrowserRouter([
                 errorElement: <h1>error</h1>,
             },
 
+            // Reversiones
+            {
+                path: "/reversiones",
+                element: <Reversion />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/auth_reversiones",
+                element: <AutorizacionReversiones />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/detalles_reversiones",
+                element: <DetallesReversion />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/detalles_autorizacion",
+                element: <DetallesAutorizacion />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/calculo",
+                element: <Calculo />,
+                errorElement: <h1>error</h1>,
+            },
         ]
 
     },

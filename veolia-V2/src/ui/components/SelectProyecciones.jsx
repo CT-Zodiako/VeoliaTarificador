@@ -35,9 +35,9 @@ import { getProyec } from '../../informeProyecciones/service/informesProyeccione
     return(
     <>
         <div className='col-3 mt-1'>
-            <label htmlFor="aps">Proyecciones:</label>
+            <label htmlFor="aps"className="labelSelect" >Proyecciones:</label>
             <select 
-                className="form-select form-select-sm" 
+                className="form-select form-select-sm selectores" 
                 aria-label="Small select example" 
                 value={selectedProy} 
                 onChange={handleChange}
