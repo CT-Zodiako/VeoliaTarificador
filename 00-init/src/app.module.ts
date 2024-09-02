@@ -31,6 +31,7 @@ import { DescuentosCostosModule } from './suministros/descuentos-costos/descuent
 import { RevercionesModule } from './reverciones/reverciones.module';
 import { ProcesosModule } from './procesos/procesos.module';
 import { ValidacionesModule } from './validaciones/validaciones.module';
+import { CrearModule } from './proyecciones/crear/crear.module';
 
 @Module({
   imports: [
@@ -73,7 +74,8 @@ import { ValidacionesModule } from './validaciones/validaciones.module';
     DescuentosCostosModule,
     RevercionesModule,
     ProcesosModule,
-    ValidacionesModule
+    ValidacionesModule,
+    CrearModule
 
   ],
 })
