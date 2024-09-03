@@ -6,6 +6,16 @@ const nombreMes = (index) => {
     return month[index - 1];
 };
 
+export const getCostos = async (data) => {
+  try{        
+      const response = await Http.get('procesos/costos', data);
+      return response;
+  }
+  catch(error){      
+      console.log('error en data costo', error);
+  }
+}
+
 const getQrt = async (data) => {
     try{        
         const response = await Http.get('procesos/qrt', data);
@@ -284,8 +294,7 @@ const getUsuarios = async (data) => {
 export const getUsuariosChart = async (dataUsuarios) => {
   try{
     const response = await getUsuarios(dataUsuarios);
-    console.log('response data: ', response);
-    
+
     const stackedData = {
       labels: ["N"],
       datasets: [
@@ -312,7 +321,6 @@ export const getUsuariosChart = async (dataUsuarios) => {
     let x = 0;
 
     await response.forEach((element) => {
-      console.log('element: ', element);
       stackedData.datasets[x].label = element.TIPO;
       stackedData.datasets[x].data.push(element.VALOR);
       x++;
@@ -411,4 +419,17 @@ export const getTarifasChart = async (dataTarifas) => {
   } catch {
     console.error('error en data proyeccion');
   } 
+}
+
+/*DESDE AQUI ES LO DE COSTO*/
+export const getCostoJSON = async (data) => {
+  console.log('data costoJson: ', data);
+  
+  try{        
+      const response = await Http.get('procesos/costosJson', data);
+      return response;
+  }
+  catch(error){      
+      console.log('error en data costo', error);
+  }
 }

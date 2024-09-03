@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
-import { getQaChart, getQrtChart, getTafnaChart, getLblChart, getTrnaChart, getUsuariosChart, getTarifasChart } from "../service/calculoGraficasService";
+import { getQaChart, getQrtChart, getTafnaChart, getLblChart, getTrnaChart, getUsuariosChart, getTarifasChart, getCostos, getCostoJSON } from "../service/calculoGraficasService";
 import { GraficoQrt } from "../components/GraficoQrt";
 import { GraficoQa } from "../components/GraficoQa";
 import { GraficoTafna } from "../components/GraficoTafna";
@@ -8,12 +8,16 @@ import { GraficoLbl } from "../components/GraficoLbl";
 import { GraficoTrna } from "../components/GraficoTrna";
 import { GraficoUsuarios } from "../components/GraficoUsuarios";
 import { GraficoTarifas } from "../components/GraficoTarifas";
+import { CuadriculaCosto } from "../components/CuadriculaCosto";
 
  export const Calculo = () => {
     const mess = useMesSelector(state => state.mes);
     const anno = useAnnoSelector(state => state.anno);
     const aps = useApsSelector(state => state.aps);
-
+    const[costo, setCosto] = useState([]);
+    const[costoJson, setCostoJson] = useState([]);
+    console.log('mi costoJson: ', costoJson);
+    
     const[dataQrt, setDataQrt] = useState([]);
     const[dataQa, setDataQa] = useState([]);
     const[dataTafna, setDataTafna] = useState([]);
@@ -27,6 +31,19 @@ import { GraficoTarifas } from "../components/GraficoTarifas";
         APSA_ID: aps,
         ANNO: anno,
         MES: mess,
+    }
+
+    const onCosto = async() => {
+        try{
+            const costos = await getCostos(data);
+            setCosto(costos);
+
+            const Json = await getCostoJSON(data);
+            setCostoJson(Json);
+            
+        } catch {         
+            console.error('error en data calculo');
+        }
     }
 
     const onDataGraficas = async() => {
@@ -66,11 +83,19 @@ import { GraficoTarifas } from "../components/GraficoTarifas";
     useEffect(() => {
         if(anno && mess && aps) {
             onDataGraficas();
+            onCosto();
         }
     }, [anno, mess, aps])
 
     return(
     <>
+    <div>
+        <div>
+            {
+                costo &&
+                <CuadriculaCosto costoResult={costo}/> 
+            }
+        </div>
         <div style={{ marginTop: '1.5rem' }}>
             <div style={{ 
                 display: 'grid', 
@@ -101,6 +126,7 @@ import { GraficoTarifas } from "../components/GraficoTarifas";
                 </div>
             </div>
         </div>
+    </div>
     </>
   )
 };

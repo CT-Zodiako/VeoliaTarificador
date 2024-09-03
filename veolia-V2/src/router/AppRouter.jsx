@@ -31,6 +31,7 @@ import { AutorizacionReversiones } from "../reversiones/pages/AutorizacionRevers
 import { DetallesReversion } from "../reversiones/pages/DetallesReversion";
 import { DetallesAutorizacion } from "../reversiones/pages/DetallesAutorizacion";
 import { Calculo } from "../procesos/pages/Calculo";
+import { Costo } from "../procesos/components/Costo";
 
 export const router = createBrowserRouter([
     {
@@ -196,9 +197,15 @@ export const router = createBrowserRouter([
                 element: <DetallesAutorizacion />,
                 errorElement: <h1>error</h1>,
             },
+            //Procesos
             {
                 path: "/calculo",
                 element: <Calculo />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/costo",
+                element: <Costo />,
                 errorElement: <h1>error</h1>,
             },
         ]
