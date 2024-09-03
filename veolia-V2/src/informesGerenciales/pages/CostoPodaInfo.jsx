@@ -11,7 +11,6 @@ export const CostoPodainfo = () => {
       formato:{},
       datos:[]
     });
-  console.log('costo poda info: ', dataCostoPodaInfo);
   
     const data = {
       APS_ID: aps

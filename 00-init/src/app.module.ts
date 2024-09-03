@@ -30,6 +30,11 @@ import { AjusteProductividadModule } from './suministros/ajuste-productividad/aj
 import { DescuentosCostosModule } from './suministros/descuentos-costos/descuentos-costos.module';
 import { RevercionesModule } from './reverciones/reverciones.module';
 import { ProcesosModule } from './procesos/procesos.module';
+import { ValidacionesModule } from './validaciones/validaciones.module';
+import { CrearModule } from './proyecciones/crear/crear.module';
+import { LineasTiempoModule } from './proyecciones/lineas-tiempo/lineas-tiempo.module';
+import { SubsidiosContribucionesProyeccionesModule } from './proyecciones/subsidios-contribuciones/subsidios-contribuciones.module';
+import { CrecimientoVaraiblesModule } from './proyecciones/crecimiento-varaibles/crecimiento-varaibles.module';
 
 @Module({
   imports: [
@@ -71,7 +76,12 @@ import { ProcesosModule } from './procesos/procesos.module';
     AjusteProductividadModule,
     DescuentosCostosModule,
     RevercionesModule,
-    ProcesosModule
+    ProcesosModule,
+    ValidacionesModule,
+    CrearModule,
+    LineasTiempoModule,
+    SubsidiosContribucionesProyeccionesModule,
+    CrecimientoVaraiblesModule,
 
   ],
 })

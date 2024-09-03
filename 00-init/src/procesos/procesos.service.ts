@@ -115,7 +115,7 @@ export class ProcesosService {
         SELECT * FROM vauco_tarifa4  WHERE apsa_id = ${APSA_ID} AND tari_anno = ${ANNO} AND tari_mes = ${MES}
         `);
     } catch (error) {
-      return `error en consultaCostos ${error}`;
+      return `error en consultarTarifas ${error}`;
     }
   }
 
@@ -126,18 +126,50 @@ export class ProcesosService {
         SELECT * FROM vauco_resumen WHERE APSA_ID = ${APSA_ID} AND RETA_ANNO= ${ANNO} AND RETA_MES = ${MES}
         `);
     } catch (error) {
-      return `error en consultaCostos ${error}`;
+      return `error en consultarResumen ${error}`;
     }
   }
 
- async  consultarCostosJson(data) {
+ async  consultarJson(data, tipo) {
+    try {
+      const {APSA_ID, ANNO, MES} = data;
+      const resultado =  await this.procesosRepository.query(`
+        SELECT * FROM json_json WHERE apsa_id = ${APSA_ID} AND json_anno = ${ANNO} AND json_mes = ${MES} AND json_tipo200 = ${tipo}
+        `);
+
+        resultado.map(item=> {
+          item.JSON_DOCUMENT = JSON.parse(item.JSON_DOCUMENT);
+        });
+
+        return resultado;
+
+    } catch (error) {
+      return `error en consultarJson ${error}`;
+    }
+  }
+ async consultaCostosClus(data) {
     try {
       const {APSA_ID, ANNO, MES} = data;
       return await this.procesosRepository.query(`
-        SELECT * FROM vauco_resumen WHERE APSA_ID = ${APSA_ID} AND RETA_ANNO= ${ANNO} AND RETA_MES = ${MES}
+        SELECT * FROM vacuo_costosclus 
+        WHERE apsa_id = ${APSA_ID} and cost_anno = ${ANNO} and cost_mes = ${MES}
         `);
+
     } catch (error) {
-      return `error en consultaCostos ${error}`;
+      return `error en consultaCostosClus ${error}`;
+    }
+  }
+
+ async comportamientoClus(data) {
+    try {
+      const {APSA_ID, ANNO, MES} = data;
+      return await this.procesosRepository.query(`
+        SELECT * FROM VAUCO_ACTICLUS 
+        WHERE APSA_ID = :1 AND INED_ANNO*12+INED_MES BETWEEN (:2*12+:3)-6 AND :2*12+:3
+        `, [APSA_ID,ANNO,MES]);
+
+    } catch (error) {
+      return `error en comportamientoClus ${error}`;
     }
   }
 

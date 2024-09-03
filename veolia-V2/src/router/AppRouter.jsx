@@ -152,14 +152,20 @@ export const router = createBrowserRouter([
                 element: <Reversiones />,
                 errorElement: <h1>error</h1>,
             },
-            
+
+            //Proyecciones
+            {
+                path: "/crear",
+                element: <Crear/>,
+                errorElement: <h1>error</h1>,
+            },
+
             // Informes Proyecciones
             {
                 path: "/informesProyecciones",
                 element: <InformesProyecciones />,
                 errorElement: <h1>error</h1>,
             },
-            //
             {
                 path: "/informePGIRS",
                 element: <InformePGIRSPage />,
