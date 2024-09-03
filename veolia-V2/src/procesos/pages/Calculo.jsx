@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
-import { getQaChart, getQrtChart, getTafnaChart, getLblChart, getTrnaChart, getUsuariosChart, getTarifasChart, getCostos, getCostoJSON } from "../service/calculoGraficasService";
+import { getQaChart, getQrtChart, getTafnaChart, getLblChart, getTrnaChart, getUsuariosChart, getTarifasChart } from "../service/calculoGraficasService";
 import { GraficoQrt } from "../components/GraficoQrt";
 import { GraficoQa } from "../components/GraficoQa";
 import { GraficoTafna } from "../components/GraficoTafna";
@@ -9,12 +9,14 @@ import { GraficoTrna } from "../components/GraficoTrna";
 import { GraficoUsuarios } from "../components/GraficoUsuarios";
 import { GraficoTarifas } from "../components/GraficoTarifas";
 import { CuadriculaCosto } from "../components/CuadriculaCosto";
+import { getCostoJSON, getCostos } from "../service/costosService";
 
  export const Calculo = () => {
     const mess = useMesSelector(state => state.mes);
     const anno = useAnnoSelector(state => state.anno);
     const aps = useApsSelector(state => state.aps);
     const[costo, setCosto] = useState([]);
+    console.log('mi costo: ', costo);
     const[costoJson, setCostoJson] = useState([]);
     console.log('mi costoJson: ', costoJson);
     
@@ -40,7 +42,7 @@ import { CuadriculaCosto } from "../components/CuadriculaCosto";
 
             const Json = await getCostoJSON(data);
             setCostoJson(Json);
-            
+
         } catch {         
             console.error('error en data calculo');
         }

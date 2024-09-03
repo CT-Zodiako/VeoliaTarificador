@@ -6,16 +6,6 @@ const nombreMes = (index) => {
     return month[index - 1];
 };
 
-export const getCostos = async (data) => {
-  try{        
-      const response = await Http.get('procesos/costos', data);
-      return response;
-  }
-  catch(error){      
-      console.log('error en data costo', error);
-  }
-}
-
 const getQrt = async (data) => {
     try{        
         const response = await Http.get('procesos/qrt', data);
@@ -422,14 +412,3 @@ export const getTarifasChart = async (dataTarifas) => {
 }
 
 /*DESDE AQUI ES LO DE COSTO*/
-export const getCostoJSON = async (data) => {
-  console.log('data costoJson: ', data);
-  
-  try{        
-      const response = await Http.get('procesos/costosJson', data);
-      return response;
-  }
-  catch(error){      
-      console.log('error en data costo', error);
-  }
-}
