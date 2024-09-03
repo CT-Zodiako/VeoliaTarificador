@@ -31,6 +31,15 @@ export class ProcesosController {
   consultaCostos(@Query() data) {
     return this.procesosService.consultaCostos(data);
   }
+  @Get('costosClus')
+  consultaCostosClus(@Query() data) {
+    return this.procesosService.consultaCostosClus(data);
+  }
+
+  @Get('comportamientoClus')
+  comportamientoClus(@Query() data) {
+    return this.procesosService.comportamientoClus(data);
+  }
 
   @Get('calculartarifas')
   @UseGuards(AuthGuard())
@@ -60,7 +69,14 @@ export class ProcesosController {
   }
   @Get('costosJson')
   consultarCostosJson(@Query() data) {
-    return this.procesosService.consultarCostosJson(data);
+    const tipo = 1;
+    return this.procesosService.consultarJson(data,tipo);
+  }
+
+  @Get('clusJson')
+  consultarClusJson(@Query() data) {
+    const tipo = 2;
+    return this.procesosService.consultarJson(data,tipo);
   }
 
 
