@@ -31,7 +31,8 @@ import { AutorizacionReversiones } from "../reversiones/pages/AutorizacionRevers
 import { DetallesReversion } from "../reversiones/pages/DetallesReversion";
 import { DetallesAutorizacion } from "../reversiones/pages/DetallesAutorizacion";
 import { Calculo } from "../procesos/pages/Calculo";
-import { Costo } from "../procesos/components/Costo";
+import { Costo } from "../procesos/pages/Costo";
+import { Crear } from "../proyecciones/pages/Crear";
 
 export const router = createBrowserRouter([
     {
@@ -152,7 +153,7 @@ export const router = createBrowserRouter([
                 element: <Reversiones />,
                 errorElement: <h1>error</h1>,
             },
-
+            
             //Proyecciones
             {
                 path: "/crear",
@@ -166,6 +167,7 @@ export const router = createBrowserRouter([
                 element: <InformesProyecciones />,
                 errorElement: <h1>error</h1>,
             },
+            //
             {
                 path: "/informePGIRS",
                 element: <InformePGIRSPage />,

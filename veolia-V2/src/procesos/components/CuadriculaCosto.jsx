@@ -24,7 +24,7 @@ export const CuadriculaCosto = ({ costoResult }) => {
     };
 
     return(
-        <div id="panel" className="p-grid">
+        <div className="p-grid panel" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
         {costoResult.map((item, index) => (
           <div
             key={index}
@@ -39,7 +39,7 @@ export const CuadriculaCosto = ({ costoResult }) => {
               <span>{item.NOMCOSTO}</span>
             </div>
             <div id="medio" className="p-align-center">
-              <h1>{parseFloat(item.VALOR.toFixed(2))}</h1>
+              <p>{parseFloat(item.VALOR.toFixed(2))}</p>
             </div>
             <div id="button" className="p-align-center">
               <small>% {parseFloat((item.VARIACION * 100).toFixed(2))}</small>

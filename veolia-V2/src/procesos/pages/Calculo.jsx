@@ -10,15 +10,17 @@ import { GraficoUsuarios } from "../components/GraficoUsuarios";
 import { GraficoTarifas } from "../components/GraficoTarifas";
 import { CuadriculaCosto } from "../components/CuadriculaCosto";
 import { getCostoJSON, getCostos } from "../service/costosService";
+import { TablaCostos } from "../components/TablaCostos";
+import { Selectores } from "../../ui/components/Selectores";
 
  export const Calculo = () => {
     const mess = useMesSelector(state => state.mes);
     const anno = useAnnoSelector(state => state.anno);
     const aps = useApsSelector(state => state.aps);
     const[costo, setCosto] = useState([]);
-    console.log('mi costo: ', costo);
+    console.log('costo: ', costo);
     const[costoJson, setCostoJson] = useState([]);
-    console.log('mi costoJson: ', costoJson);
+    const[periodoCosto, setPeriodoCosto] = useState([]);
     
     const[dataQrt, setDataQrt] = useState([]);
     const[dataQa, setDataQa] = useState([]);
@@ -41,10 +43,11 @@ import { getCostoJSON, getCostos } from "../service/costosService";
             setCosto(costos);
 
             const Json = await getCostoJSON(data);
-            setCostoJson(Json);
-
+            setCostoJson(Json[0].JSON_DOCUMENT.dataset);
+            setPeriodoCosto(Json[0].JSON_DOCUMENT.semestre);
+            
         } catch {         
-            console.error('error en data calculo');
+            console.error('error en data costo');
         }
     }
 
@@ -91,44 +94,74 @@ import { getCostoJSON, getCostos } from "../service/costosService";
 
     return(
     <>
-    <div>
-        <div>
-            {
-                costo &&
-                <CuadriculaCosto costoResult={costo}/> 
-            }
-        </div>
-        <div style={{ marginTop: '1.5rem' }}>
-            <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(4, 1fr)', 
-                gap: '16px', 
-                justifyItems: 'center' 
-             }}>
-                <div>
-                    <GraficoQrt dataQrt={dataQrt}/>
-                </div>
-                <div>
-                    <GraficoQa dataQa={dataQa}/>
-                </div>
-                <div>
-                    <GraficoTafna dataTafna={dataTafna}/>
-                </div>
-                <div>
-                    <GraficoLbl dataLBL={dataLBL}/>
-                </div>
-                <div>
-                    <GraficoTrna dataTrna={dataTrna}/>
-                </div>
-                <div>
-                    <GraficoUsuarios dataUsuarios={dataUsuarios} options={optionUsuarios}/>
-                </div>
-                <div>
-                    <GraficoTarifas dataTarifas={dataTarifas}/>
-                </div>
+        <div className="headerComponent">
+            <div className="tituloComponent"/>
+            <div className="selector">
+                <Selectores selectorFecha={true} selectorAps={true}/>
             </div>
         </div>
-    </div>
+        <div className="bodyComponent" style={{ marginTop: '3rem' }}>
+            {periodoCosto &&
+                <div>
+                    <CuadriculaCosto costoResult={costo}/> 
+                </div>
+            }
+            {periodoCosto.length !== 0 ?
+                (
+                    <div 
+                        className="panel"
+                        style={{ 
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(3, 1fr)', 
+                            gap: '16px', 
+                            justifyItems: 'left',
+                            padding: '2rem'
+                        }}
+                    >
+                        {costoJson &&
+                            costoJson.map((item, index) => {
+                                return <div key={index}>
+                                            <TablaCostos data={item}/>
+                                        </div>
+                            })
+                        }
+                    </div>
+                ) : (
+                    <div 
+                        className="panel"
+                        style={{ 
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(4, 1fr)', 
+                            gap: '16px', 
+                            justifyItems: 'center' 
+                        }}
+                    >
+                        <div>
+                            <GraficoQrt dataQrt={dataQrt}/>
+                        </div>
+                        <div>
+                            <GraficoQa dataQa={dataQa}/>
+                        </div>
+                        <div>
+                            <GraficoTafna dataTafna={dataTafna}/>
+                        </div>
+                        <div>
+                            <GraficoLbl dataLBL={dataLBL}/>
+                        </div>
+                        <div>
+                            <GraficoTrna dataTrna={dataTrna}/>
+                        </div>
+                        <div>
+                            <GraficoUsuarios dataUsuarios={dataUsuarios} options={optionUsuarios}/>
+                        </div>
+                        <div>
+                            <GraficoTarifas dataTarifas={dataTarifas}/>
+                        </div>
+                    </div>
+                )
+
+            }
+        </div>
     </>
   )
 };

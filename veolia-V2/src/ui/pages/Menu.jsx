@@ -21,7 +21,7 @@ export const Menu = () => {
                 >
                     <span className="navbar-toggler-icon "></span>
                 </button>
-                <div className={`offcanvas offcanvas-end ${showOffcanvas ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div className={`offcanvas offcanvas-end ${showOffcanvas ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style={{ width: '15rem', fontSize: '12px' }}>
                     <div className="offcanvas-header">
                         <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
                         <button type="button" className="btn-close" onClick={onMenu} aria-label="Close"></button>
@@ -33,9 +33,9 @@ export const Menu = () => {
                                     Dropdown
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a className="dropdown-item textMenu" href="#">Action</a></li>
+                                    <li><a className="dropdown-item textMenu" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item textMenu" href="#">Something else here</a></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
@@ -43,10 +43,10 @@ export const Menu = () => {
                                     Configuración
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/aps">APS</Link></li>
-                                    <li><Link className="dropdown-item" to="/empresas">Empresas</Link></li>
-                                    <li><Link className="dropdown-item" to="/usuarios">Usuarios</Link></li>
-                                    <li><Link className="dropdown-item" to="/rellenos">Rellenos</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/aps">APS</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/empresas">Empresas</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/usuarios">Usuarios</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/rellenos">Rellenos</Link></li>
 
                                 </ul>
                             </li>
@@ -56,13 +56,13 @@ export const Menu = () => {
                                     Suministros
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/indicesCRA">Indices CRA</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-con">Subsidios y Contribuciones</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-verf">Verificación</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-aproch">Activar Aprovechamiento</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-costPoda">Costo Poda</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-ajutProd">Ajustes Productividad</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-desCost">Descuento Costo</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/indicesCRA">Indices CRA</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/sub-con">Subsidios y Contribuciones</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/sub-verf">Verificación</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/sub-aproch">Activar Aprovechamiento</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/sub-costPoda">Costo Poda</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/sub-ajutProd">Ajustes Productividad</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/sub-desCost">Descuento Costo</Link></li>
                                 </ul>
                             </li>
 
@@ -71,7 +71,7 @@ export const Menu = () => {
                                     Procesos
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/calculo">Calculo Tarifas</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/calculo">Calculo Tarifas</Link></li>
                                 </ul>
                             </li>
 
@@ -80,7 +80,7 @@ export const Menu = () => {
                                     Informes comerciales
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/dataDetalladoTarifasCo">Detallado Tarifas</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/dataDetalladoTarifasCo">Detallado Tarifas</Link></li>
                                 </ul>
                             </li>
 
@@ -89,11 +89,11 @@ export const Menu = () => {
                                     Informes gerenciales
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/dataDetalladoTarifas">Detallado Tarifas</Link></li>
-                                    <li><Link className="dropdown-item" to="/detalladoCostos">Detallado de costo</Link></li>
-                                    <li><Link className="dropdown-item" to="/dataDetalladoSubAport">Detallado Sub y Aportes</Link></li>
-                                    <li><Link className="dropdown-item" to="/dashBoardTarifas">DashBoard</Link></li>
-                                    <li><Link className="dropdown-item" to="/costoPodaInfo">Costo Poda</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/dataDetalladoTarifas">Detallado Tarifas</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/detalladoCostos">Detallado de costo</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/dataDetalladoSubAport">Detallado Sub y Aportes</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/dashBoardTarifas">DashBoard</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/costoPodaInfo">Costo Poda</Link></li>
                                 </ul>
                           
                             </li>
@@ -104,10 +104,10 @@ export const Menu = () => {
                                     Reporteador Sui
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/formatosFormularios">Formatos y Formularios</Link></li>
-                                    <li><Link className="dropdown-item" to="/DashBoardSUI">DashBoard</Link></li>
-                                    <li><Link className="dropdown-item" to="/resmunenFormatosFormularios">Resumen Formatos y Formularios</Link></li>
-                                    <li><Link className="dropdown-item" to="/reversiones_sui">Reversiones</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/formatosFormularios">Formatos y Formularios</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/DashBoardSUI">DashBoard</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/resmunenFormatosFormularios">Resumen Formatos y Formularios</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/reversiones_sui">Reversiones</Link></li>
                                 </ul>
                             </li>
 
@@ -116,7 +116,7 @@ export const Menu = () => {
                                     Proyecciones
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/crear">Crear</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/crear">Crear</Link></li>
                         
                                 </ul>
                             </li>
@@ -126,7 +126,7 @@ export const Menu = () => {
                                     Informes Proyecciones
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/informesProyecciones">Formatos y Formularios</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/informesProyecciones">Formatos y Formularios</Link></li>
                         
                                 </ul>
                             </li>
@@ -136,9 +136,9 @@ export const Menu = () => {
                                     PGIRS
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/variablesPGIRS">Variables PGIRS</Link></li>
-                                    <li><Link className="dropdown-item" to="/informePGIRS">Informe PGIRS</Link></li>
-                                    <li><Link className="dropdown-item" to="/resumenPGIRS">Resumen Variables PGIRS</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/variablesPGIRS">Variables PGIRS</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/informePGIRS">Informe PGIRS</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/resumenPGIRS">Resumen Variables PGIRS</Link></li>
                                 </ul>
                             </li>
 
@@ -147,10 +147,10 @@ export const Menu = () => {
                                     Reversiones
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/reversiones">Reversiones</Link></li>
-                                    <li><Link className="dropdown-item" to="/auth_reversiones">Autorizacion Reversiones</Link></li>
-                                    <li><Link className="dropdown-item" to="/detalles_reversiones">Detalles Reversiones</Link></li>
-                                    <li><Link className="dropdown-item" to="/detalles_autorizacion">Detalles Autorizacion</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/reversiones">Reversiones</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/auth_reversiones">Autorizacion Reversiones</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/detalles_reversiones">Detalles Reversiones</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/detalles_autorizacion">Detalles Autorizacion</Link></li>
                                 </ul>
                             </li>
 

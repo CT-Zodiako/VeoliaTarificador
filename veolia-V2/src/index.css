@@ -6,6 +6,10 @@
 } */
 
 /* CUERPO DEL SISTEMA */
+.textMenu {
+  font-size: 12px;
+}
+
 .cabezote {
   background: black;
   height: 2.8rem;
@@ -156,7 +160,7 @@
 #lista-tarjeta{
   list-style: none;
 }
-#panel{
+.panel{
   border: 1px;
   border-color: #C9C9C9;
   border-style: solid;
@@ -190,10 +194,11 @@
 }
 
 
-.tarjeta h1 {
+.tarjeta p {
   margin: auto;
   text-align:center;
   top: 80%;
+  font-size: 1.8rem;
 }
 .tarjeta small{
   text-align: center;
@@ -216,6 +221,72 @@
   text-align: center;
 }
 
+/*TABLA COSTOS*/
+.tableCosto {
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+  text-align: left;
+}
 
+.theadCosto {
+  background-color: #4CAF50;
+  color: white;
+}
 
+.theadCosto th {
+  padding: 12px;
+}
+
+.tbodyCosto tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.tbodyCosto tr:hover {
+  background-color: #ddd;
+}
+
+.tbodyCosto td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tbodyCosto tr {
+  transition: background-color 0.3s ease;
+}
+
+.tableCosto th, td {
+  text-align: center;
+}
+
+.tableCosto th {
+  background-color: #f8f8f8;
+  color: #333;
+  border-bottom: 2px solid #4CAF50;
+}
+
+.tableCosto td {
+  color: #333;
+}
+
+/*BORDE TABLA COSTO*/
+.tabla-con-titulo {
+  position: relative;
+  border: 2px solid #ccc;
+  padding-top: 20px; /* Para darle espacio al título */
+  border-radius: 8px;
+  margin-top: 20px;
+  background-color: white;
+  padding: 1rem;
+}
+
+.tituloCosto {
+  position: absolute;
+  top: -15px; /* Levanta el título sobre el borde del div */
+  left: 20px;
+  background-color: white;
+  padding: 0 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
 

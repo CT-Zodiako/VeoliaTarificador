@@ -5,11 +5,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const GraficoClus = ({ dataClus }) => {
     return (
-        <div className="graficos">
+        <div style={{ height: '24rem', width: '24rem' }}>
             {dataClus.length === 0 ? (
                 <h2>grafica Qrt</h2>
             ) : (
-                <Doughnut data={dataClus} style={{ width: '12rem', height: '12rem' }}/>
+                <Doughnut data={dataClus} style={{ width: '100%' }}/>
             )}
         </div>
     );
