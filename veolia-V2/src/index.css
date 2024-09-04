@@ -239,7 +239,7 @@
 }
 
 .tbodyCosto tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #f5f5f5;
 }
 
 .tbodyCosto tr:hover {
@@ -290,3 +290,32 @@
   font-size: 1.2rem;
 }
 
+/*BARRA DE PROGRESOS*/
+.progress-bar-container {
+  width: 100%; /* Asegura que el contenedor ocupe el ancho completo disponible */
+  background-color: #e0e0e0; /* Color de fondo de la barra */
+  border-radius: 4px; /* Bordes redondeados */
+  position: relative; /* Para posicionar el texto del porcentaje */
+  height: 20px; /* Altura fija para la barra */
+  margin-top: 10px; /* Espacio arriba de la barra, ajusta según sea necesario */
+}
+
+.progress-bar {
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #4caf50;
+  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.progress-bar-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  z-index: 2;
+}
