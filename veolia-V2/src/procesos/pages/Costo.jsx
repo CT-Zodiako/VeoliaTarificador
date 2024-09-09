@@ -55,18 +55,20 @@ import { GraficoComportamientoClus } from "../components/GraficoComportamientoCl
         <div className="bodyComponent">
             <div className="panel" style={{ marginTop: '2rem' }}>
                 <h3>Costo de Limpieza Urbana</h3>
-                <div style={{ display: 'flex' }}>
-                    <div style={{ width: '40%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                    <div style={{ width: '30rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <GraficoClus dataClus={dataClus}/>
                     </div>
-                    <div style={{ width: '60%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ width: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TablaCostos data={tablaClus}/>
                     </div>
                 </div>
             </div>
             <div className="panel" style={{ marginTop: '2rem' }}>
                 <h3>Comportamiento CLUS</h3>
-                <GraficoComportamientoClus dataCompClus={compClus}/>
+                <div style={{ width: '95%' }}>
+                    <GraficoComportamientoClus dataCompClus={compClus}/>
+                </div>
             </div>
         </div>
     </>

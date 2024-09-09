@@ -15,7 +15,7 @@ export const MonthSelector = () => {
     };
 
     return (
-        <div className='col-3 mt-1'>
+        <div className='mt-1'>
             <label htmlFor="month" className='labelSelect'>Mes:</label>
             <select 
                 className="form-select form-select-sm selectores" 

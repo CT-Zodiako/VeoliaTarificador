@@ -63,16 +63,21 @@ const TableUsers = () => {
         try {
             await apsService.saveNewAps(newAps);
             handleCloseNewModal();
-            fetchData(); // Recargar datos después de guardar la nueva APS
+            fetchData();
         } catch (error) {
             console.error('Error guardando la nueva APS:', error);
         }
     };
 
     return (
-        <div className="container">
+        <div>
             <h2>Gestion de areas de prestacion de servicio</h2>
-            <Button onClick={() => setShowNewModal(true)}>Nueva APS</Button>
+            <Button 
+                style={{ width: '120px' }}
+                onClick={() => setShowNewModal(true)}
+            >
+                Nueva APS
+            </Button>
             <Table striped bordered hover>
                 <thead>
                     <tr>

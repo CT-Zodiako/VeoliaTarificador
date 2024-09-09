@@ -19,17 +19,21 @@ export const InformePGIRSPage = () => {
   };
   return (
     <>
-      <div className="headerComponent">
-        <div className="tituloComponent"/>
-        <div className="selector">
-          <Selectores selectorAps={true} />
+      <div>
+        <div>
+          <div className="tituloComponent">
+            <h3>Informe PGIRS</h3>
+          </div>
+          <div className="selector">
+            <Selectores selectorAps={true} />
+          </div>
         </div>
-      </div>
-      <div className="bodyComponent">
-        <div className='listTable'>
-          <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+        <div className="bodyComponent">
+          <div className='listTable'>
+            <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+          </div>
+          {titulo === 'Clus' ? (<TablePgirs />) : (<TablaBarrido />)}
         </div>
-        {titulo === 'Clus' ? (<TablePgirs />) : (<TablaBarrido />)}
       </div>
     </>
   )

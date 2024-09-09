@@ -59,8 +59,6 @@ export const FormatosFormularios = () => {
         { titulo: 'Formulario 24', datos: dataFormato24, encabezado: columsF24 },
         { titulo: 'Formulario 35', datos: dataFormato35, encabezado: columsF35 },
         { titulo: 'Formulario 36', datos: dataFormato36, encabezado: columsF36 },
-        // { titulo: 'Resumen Variables', datos: [] }
-        // Agrega más pestañas si es necesario
     ];
 
     const handleClickTab = (index, titulo) => {

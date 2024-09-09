@@ -1,14 +1,14 @@
 import { useFiltroTablas } from "../../hooks/useFiltroTablas"
 
-export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums }) => {
-    const {filtro, onFiltroTabla, filtroName} = useFiltroTablas(datos);
-    
+export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums, modal }) => {
+    const {filtro, onFiltroTabla, filtroName = []} = useFiltroTablas(datos);
+
     return(
         <div className="componenTable">
-            <div className="acctionTable"/>
             <div className="tableBorde">
+                <h5 className="card-title">{datos && tituloTabla}</h5>
+                <div className="acctionTable"/>
                 <div className="card-body">
-                    <h5 className="card-title">{tituloTabla}</h5>
                     <div className="table-responsive" style={{ maxHeight: '32.5rem', overflowY: 'auto' }}>
                         <table className="table table-striped table-bordered">
                             <thead>
@@ -19,7 +19,6 @@ export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums 
                                                 {value.name}
                                             </th>
                                         ))
-                              
                                     }
                                     {acciones && <th>Acciones</th>}
                                 </tr>
@@ -52,6 +51,16 @@ export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums 
                                             {colums.map((body, colIndex) => (
                                                 <td key={colIndex}>{item[body.body]}</td>
                                             ))}
+                                            {acciones && 
+                                                <td>
+                                                    <button
+                                                        className="btn btn-primary"
+                                                        onClick={modal} 
+                                                    >
+                                                        Editar
+                                                    </button>
+                                                </td>
+                                            }
                                         </tr>
                                     ))
                                 }

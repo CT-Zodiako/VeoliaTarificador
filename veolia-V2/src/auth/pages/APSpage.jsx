@@ -3,13 +3,13 @@ import TableUsers  from '../components/TableUsers.jsx';
 
 export const APSpage = () => {
 
-
   return (
     <>
-
-      <TableUsers/>
-
-
+      <div>
+        <div className='headerComponent'>
+          <TableUsers/>
+        </div>
+      </div>
     </>
   )
 }

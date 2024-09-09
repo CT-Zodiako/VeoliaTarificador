@@ -6,15 +6,6 @@
 } */
 
 /* CUERPO DEL SISTEMA */
-.textMenu {
-  font-size: 12px;
-}
-
-.cabezote {
-  background: black;
-  height: 2.8rem;
- }
-
 .veoliaComponents {
   display: flex;
   flex-direction: column;
@@ -22,42 +13,29 @@
   width: 100%;
 }
 
+.cabezote {
+  background: black;
+  height: 2.8rem;
+ }
+
 .bodyVeolia {
-  /* height: 85%; */
   flex: 1 1 auto;
   overflow: auto;
   width: 100%;
+  padding-top: 1rem;
 }
 
 .footerVeolia {
-  /* height: 13%; */
   flex: 0 0 auto;
+  bottom: 0%;
 }
 
-/* CUEERPO DE LOS COMPONENTES */
-.headerComponent {
-  background: rgba(255, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
-  height: 13rem;
-  width: 100%;
-}
-
+/* CUERPO DE LOS COMPONENTES */
 .tituloComponent {
-  /* background: violet; */
   width: 100%;
   height: 20%;
-  padding: 0.5rem 0rem 0rem 11rem;
+  padding: 0.5rem 0rem 0rem 4.5rem;
   display: flex;
-  align-items: center;
-}
-
-.selectorComponent {
-  width: 100%;
-  height: 77%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .topListTable {
@@ -66,7 +44,19 @@
 
 .bodyComponent {
   height: 65%;
+  padding-top: 1rem;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 .bodyComponentable {
   height: 46rem;
@@ -83,7 +73,7 @@
 }
 
 .listTable {
-  padding: 0rem 2rem;
+  padding: 0rem 4rem;
   height: 4rem;
 }
 
@@ -113,26 +103,76 @@
 
 /* SELECTOR */
 .selector {
-  /* background: orange; */
   height: 80%;
   display: flex;
   justify-content: center;
   padding-top: 0.8rem;
 }
 
+.selectorComponent {
+  width: 100%;
+  height: 77%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .componenSelect {
-  height: 5rem;
-  width: 80%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: stretch;
+  padding: 0 40px;
+}
+
+.d-flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.d-flex-rows {
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.select-item {
+  flex: 1 1 auto;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  padding: 0 auto;
+}
+
+.select-descripcion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 2rem;
+}
+
+.select-horizonte {
+  display: flex;
+  justify-content: center;
+  /* padding-left: 2rem; */
 }
 
 .selectores {
   height: 1.5rem;
-  width: 70%;
+  width: 12rem;
   font-size: 0.7rem;
 }
 
 .labelSelect {
   font-size: 2vh;
+  margin-bottom: 0.5rem;
+  color: #343a40;
 }
 
 /*MENU*/
@@ -142,8 +182,44 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
+
+.custom-navbar {
+  background: linear-gradient(90deg, rgb(255, 0, 0) 0%, rgb(128, 128, 128) 100%);  
+  color: white;
+}
+
+.navMenu {
+  width: 15rem;
+  font-size: 15px;
+  color: rgb(213, 208, 208);
+}
+
+.textMen {
+  color: rgb(213, 208, 208);
+  font-weight: 600;
+  white-space: normal;
+}
+
+.textMen:hover {
+  color: rgb(255, 0, 0, 0.7);
+}
+
+.textMen:active {
+  color: rgb(255, 0, 0, 0.7);
+}
+
+.textMenu {
+  font-size: 12px;
+  color: rgb(213, 208, 208);
+  white-space: normal;
+}
+
+.textMenu:hover {
+  color: rgb(255, 0, 0);
+}
+
 
 /*GRAFICOS*/
 .graficos {
@@ -153,8 +229,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: red; */
 }
+
+
+
+
+
+
+
+
 
 /*ETIQUETAS DE COSTO*/
 #lista-tarjeta{
@@ -193,7 +276,6 @@
   top: 3px;
 }
 
-
 .tarjeta p {
   margin: auto;
   text-align:center;
@@ -225,7 +307,7 @@
 .tableCosto {
   border-collapse: collapse;
   margin: 20px 0;
-  font-size: 15px;
+  font-size: 12px;
   text-align: left;
 }
 
@@ -273,7 +355,7 @@
 .tabla-con-titulo {
   position: relative;
   border: 2px solid #ccc;
-  padding-top: 20px; /* Para darle espacio al título */
+  padding-top: 20px;
   border-radius: 8px;
   margin-top: 20px;
   background-color: white;
@@ -282,7 +364,7 @@
 
 .tituloCosto {
   position: absolute;
-  top: -15px; /* Levanta el título sobre el borde del div */
+  top: -15px;
   left: 20px;
   background-color: white;
   padding: 0 10px;
@@ -292,12 +374,12 @@
 
 /*BARRA DE PROGRESOS*/
 .progress-bar-container {
-  width: 100%; /* Asegura que el contenedor ocupe el ancho completo disponible */
-  background-color: #e0e0e0; /* Color de fondo de la barra */
-  border-radius: 4px; /* Bordes redondeados */
-  position: relative; /* Para posicionar el texto del porcentaje */
-  height: 20px; /* Altura fija para la barra */
-  margin-top: 10px; /* Espacio arriba de la barra, ajusta según sea necesario */
+  width: 100%;
+  background-color: rgb(224, 224, 224);
+  border-radius: 4px;
+  position: relative;
+  height: 20px;
+  margin-top: 10px;
 }
 
 .progress-bar {
@@ -318,4 +400,144 @@
   color: rgb(0, 0, 0);
   font-weight: bold;
   z-index: 2;
+}
+
+/*SELECT DESCRIPCION*/
+.custom-container {
+  margin-bottom: 1.5rem;
+}
+
+.custom-textarea {
+  width: 15rem;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  resize: none;
+}
+
+.custom-textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+}
+
+/*SELECT HORIZONTE*/
+.custom-form-group {
+  margin-bottom: 0.3rem;
+}
+
+.custom-input {
+  height: 1.5rem;
+  width: 12rem;
+  font-size: 0.7rem;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+/*PESTAÑAS DE NAVEGACION*/
+.custom-tabs {
+  width: 100%;
+  padding-bottom: 1px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+}
+
+.custom-nav-link {
+  background-color: rgba(224, 224, 224, 0.4);
+  display: inline-block;
+  padding: 12px 20px;
+  margin-right: 5px;
+  color: #0f0f0f;
+  border-radius: 8px 8px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+  text-align: center;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.custom-nav-link:hover {
+  background-color: rgba(0, 108, 223, 0.8);
+  color: #fff;
+  font-weight: 600;
+}
+
+/*PAGINACION TABLAS*/
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.pagination-buttons button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+.pagination-buttons button:hover {
+  background-color: #27ae60;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.pagination-buttons button:disabled {
+  background-color: #95a5a6;
+  color: #ecf0f1;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/*TEXT AREA REVERSIONES*/
+.text-area-rev {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.form-text-area {
+  width: 50%;
+  height: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.form-text-area:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.2);
+}
+
+.boton-area {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.boton-area:hover {
+  background-color: #357ab8;
+}
+
+.boton-area:active {
+  background-color: #285a85;
 }

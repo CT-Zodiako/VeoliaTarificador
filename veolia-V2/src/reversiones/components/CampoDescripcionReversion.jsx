@@ -2,19 +2,18 @@
     return(
     <>
         <div className='componenTable'>
-            <div>
+            <div className="text-area-rev">
                 <textarea 
-                    // name="" 
-                    // id=""
-                    style={{ width: '50%'}}
+                    className="form-text-area"
                     rows={10}
                     onChange={onEstadoReversion}
                 >
 
                 </textarea>
             </div>
-            <div>
+            <div className="text-area-rev">
                 <button
+                    className="boton-area"
                     onClick={guardar}
                 >
                     {textBoton}

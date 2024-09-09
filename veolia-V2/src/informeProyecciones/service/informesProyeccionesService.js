@@ -2,7 +2,7 @@ import { Http } from "../../helpers/axiosHelper";
 
 export const getProyec = async (data) => {    
     try{
-        const response = await Http.get('generales/getProyeccionByAPS', data);
+        const response = await Http.get('generales/getProyeccionByAPS', data);        
         return response;
     }
     catch(error){

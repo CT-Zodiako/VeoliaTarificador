@@ -36,14 +36,18 @@ import { postReversiones } from "../service/reversionService";
 
     return(
     <>
-        <div className="headerComponent">
-            <div className="tituloComponent"/>
-            <div className="selector">
-                <Selectores selectorFecha={true} selectorAps={true}/>
+        <div>
+            <div>
+                <div className="tituloComponent">
+                    <h3>Reversiones</h3>
+                </div>
+                <div className="selector">
+                    <Selectores selectorFecha={true} selectorAps={true} />
+                </div>
             </div>
-        </div>
-        <div className="bodyComponent" >
-            <CampoDescripcionReversion onEstadoReversion={onDescripcionReversion} guardar={guardarReversion} textBoton='Reversar'/>
+            <div className="bodyComponent" >
+                <CampoDescripcionReversion onEstadoReversion={onDescripcionReversion} guardar={guardarReversion} textBoton='Reversar'/>
+            </div>
         </div>
     </>
   )

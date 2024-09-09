@@ -29,3 +29,24 @@ export const useProyeccionesSelector = create((set) => {
         cambioSelectorProyeciones: (proy) => set({proy: Number(proy)}),
     }
 });
+
+export const useDescripcion = create((set) => {
+    return{
+        descripcion: '',
+        cambioDescripcion: (descripcion) => set({descripcion: descripcion}),
+    }
+});
+
+export const useHorizonteDesde = create((set) => {
+    return{
+        horizonteDesde: '',
+        cambioHorizonteDesde: (horizonteDesde) => set({horizonteDesde: horizonteDesde}),
+    }
+});
+
+export const useHorizonteHasta = create((set) => {
+    return{
+        horizonteHasta: '',
+        cambioHorizonteHasta: (horizonteHasta) => set({horizonteHasta: horizonteHasta}),
+    }
+});

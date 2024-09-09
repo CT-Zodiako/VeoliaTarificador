@@ -31,8 +31,8 @@ import { getDetalladoAutorizacion } from '../service/detalladoAutorizacionServic
     <>
         <div>
             <div className="bodyComponent" >
-                <div className='listTable'>
-                </div>
+                {/* <div className='listTable'>
+                </div> */}
                 <TablaInformesGerenciales datos={dataDetalleAutorizacion} tituloTabla='Detalles Autorizacion' colums={columnsDetaAutorizacion} />
             </div>
         </div>

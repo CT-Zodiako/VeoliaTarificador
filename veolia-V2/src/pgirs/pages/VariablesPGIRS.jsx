@@ -36,21 +36,25 @@ import '../../index.css'
 
   return(
     <>
-      <div className="headerComponent">
-        <div className="tituloComponent"/>
-        <div className="selector">
-          <Selectores selectorAps={true} selectorFecha={true} />
+      <div>
+        <div>
+          <div className="tituloComponent">
+            <h3>Variables PGIRS</h3>
+          </div>
+          <div className="selector">
+            <Selectores selectorAps={true} selectorFecha={true} />
+          </div>
         </div>
-      </div>
-      <div className="bodyComponent">
-        <TablaVariablesPgirs
-            aps={aps}
-            anno={anno}
-            mes={mes}
-            datos={datos}
-            fetchData={fetchData}
-            onActualizar={onActualizar}
-        />
+        <div className="bodyComponent">
+          <TablaVariablesPgirs
+              aps={aps}
+              anno={anno}
+              mes={mes}
+              datos={datos}
+              fetchData={fetchData}
+              onActualizar={onActualizar}
+          />
+        </div>
       </div>
     </>
   )

@@ -33,6 +33,9 @@ import { DetallesAutorizacion } from "../reversiones/pages/DetallesAutorizacion"
 import { Calculo } from "../procesos/pages/Calculo";
 import { Costo } from "../procesos/pages/Costo";
 import { Crear } from "../proyecciones/pages/Crear";
+import { LineasTiempo } from "../proyecciones/pages/LineasTiempo";
+import { SubsidiosContribuciones } from "../proyecciones/pages/SubsidiosContribuciones";
+// import { SubsidiosContribuciones } from "../proyecciones/pages/SubsidiosContribuciones";
 
 export const router = createBrowserRouter([
     {
@@ -158,6 +161,16 @@ export const router = createBrowserRouter([
             {
                 path: "/crear",
                 element: <Crear/>,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/lineasTiempo",
+                element: <LineasTiempo/>,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/subsidioscontribuciones",
+                element: <SubsidiosContribuciones/>,
                 errorElement: <h1>error</h1>,
             },
 

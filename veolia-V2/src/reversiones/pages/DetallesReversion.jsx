@@ -30,9 +30,9 @@ import { columnsDetaReversiones, formatoDetaReversiones } from '../components/da
     return(
     <>
         <div>
-            <div className="bodyComponent" >
-                <div className='listTable'>
-                </div>
+            <div>
+                {/* <div className='listTable'>
+                </div> */}
                 <TablaInformesGerenciales datos={dataDetalleReversiones} tituloTabla='Detalles de Reversiones' colums={columnsDetaReversiones} />
             </div>
         </div>

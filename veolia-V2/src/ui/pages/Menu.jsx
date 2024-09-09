@@ -10,7 +10,7 @@ export const Menu = () => {
     };
 
     return (
-        <nav className="navbar bg-body-tertiary fixed-top">
+        <nav className="navbar fixed-top custom-navbar">
             <div className="container-fluid" style={{ height: '1.8rem' }}>
                 <h6>Veolia App</h6>
                 <button
@@ -19,9 +19,9 @@ export const Menu = () => {
                     onClick={onMenu}
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon "></span>
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className={`offcanvas offcanvas-end ${showOffcanvas ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style={{ width: '15rem', fontSize: '12px' }}>
+                <div className={`offcanvas offcanvas-end ${showOffcanvas ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style={{ width: '15rem', fontSize: '15px', color: 'rgb(213,208,208)', background: 'rgb(110,110,112)' }}>
                     <div className="offcanvas-header">
                         <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
                         <button type="button" className="btn-close" onClick={onMenu} aria-label="Close"></button>
@@ -29,7 +29,7 @@ export const Menu = () => {
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Dropdown
                                 </a>
                                 <ul className="dropdown-menu">
@@ -39,7 +39,7 @@ export const Menu = () => {
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Configuración
                                 </a>
                                 <ul className="dropdown-menu">
@@ -52,7 +52,7 @@ export const Menu = () => {
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Suministros
                                 </a>
                                 <ul className="dropdown-menu">
@@ -67,7 +67,7 @@ export const Menu = () => {
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Procesos
                                 </a>
                                 <ul className="dropdown-menu">
@@ -76,7 +76,7 @@ export const Menu = () => {
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Informes comerciales
                                 </a>
                                 <ul className="dropdown-menu">
@@ -85,7 +85,7 @@ export const Menu = () => {
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Informes gerenciales
                                 </a>
                                 <ul className="dropdown-menu">
@@ -100,7 +100,7 @@ export const Menu = () => {
 
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Reporteador Sui
                                 </a>
                                 <ul className="dropdown-menu">
@@ -112,17 +112,18 @@ export const Menu = () => {
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Proyecciones
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item textMenu" to="/crear">Crear</Link></li>
-                        
+                                    <li><Link className="dropdown-item textMenu" to="/lineasTiempo">Lineas de Tiempo</Link></li>
+                                    <li><Link className="dropdown-item textMenu" to="/subsidioscontribuciones">Subsidios y Contribuciones</Link></li>
                                 </ul>
                             </li>
-
+                    
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Informes Proyecciones
                                 </a>
                                 <ul className="dropdown-menu">
@@ -132,7 +133,7 @@ export const Menu = () => {
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     PGIRS
                                 </a>
                                 <ul className="dropdown-menu">
@@ -143,7 +144,7 @@ export const Menu = () => {
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Reversiones
                                 </a>
                                 <ul className="dropdown-menu">

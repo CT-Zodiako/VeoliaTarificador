@@ -19,3 +19,8 @@ export const formatoCrear = {
     'HASTA': { name: 'Horizonte Hasta', filtre: false },
     'SISU_CORREO': { name: 'Usuario', filtre: true },
 };
+
+export const columnsSubContri = [
+    { head: "clase de uso", body: "CLAS_CLASE" },
+    { head: "valor", body: "SUCO_VALOR" },
+];

@@ -32,14 +32,18 @@ import { postAutorizacionReversiones } from "../service/autorizacionReversionSer
 
     return(
     <>
-        <div className="headerComponent">
-            <div className="tituloComponent"/>
-            <div className="selector">
-                <Selectores selectorFecha={true} selectorAps={true}/>
+        <div>
+            <div>
+                <div className="tituloComponent">
+                    <h3>Detalle de Reversiones</h3>
+                </div>
+                <div className="selector">
+                    <Selectores selectorFecha={true} selectorAps={true}/>
+                </div>
             </div>
-        </div>
-        <div className="bodyComponent" >
-            <CampoDescripcionReversion onEstadoReversion={onDescripcionReversion} guardar={guardarAutorizacionReversion} textBoton='Guardar'/>
+            <div className="bodyComponent" >
+                <CampoDescripcionReversion onEstadoReversion={onDescripcionReversion} guardar={guardarAutorizacionReversion} textBoton='Guardar'/>
+            </div>
         </div>
     </>
   )

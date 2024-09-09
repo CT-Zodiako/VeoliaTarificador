@@ -58,19 +58,6 @@
                             </tr>
                         </thead>
                         <tbody className="tbodyCosto">
-                        {/* {data &&
-                            data.data.map((item, index) => (
-                                <tr key={index}>
-                                {item.map((value, idx) => (
-                                    <td 
-                                        key={idx}
-                                    >
-                                        {value}
-                                    </td>
-                                ))}
-                                </tr>
-                            ))
-                        } */}
                         {data &&
                             data.data.map((item, index) => (
                                 <tr key={index}>

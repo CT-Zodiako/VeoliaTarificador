@@ -15,7 +15,6 @@ import { getProyec } from '../../informeProyecciones/service/informesProyeccione
     const getProyecciones = async() => {
         try {
             const responce = await getProyec(data);
-            console.log('proyecciones data: ', responce);
             setProyecciones(responce);
         } catch {
             console.error('no se pudo realizar la consulta');    
@@ -34,7 +33,7 @@ import { getProyec } from '../../informeProyecciones/service/informesProyeccione
 
     return(
     <>
-        <div className='col-3 mt-1'>
+        <div className='mt-1'>
             <label htmlFor="aps"className="labelSelect" >Proyecciones:</label>
             <select 
                 className="form-select form-select-sm selectores" 
@@ -49,7 +48,7 @@ import { getProyec } from '../../informeProyecciones/service/informesProyeccione
                 </option>
                 ))}
             </select>
-            </div>
+        </div>
     </>
   )
 };

@@ -24,7 +24,7 @@ export const ApsSelector = () => {
   };
 
   return (
-    <div className='col-3 mt-1'>
+    <div className='mt-1'>
       <label htmlFor="aps" className='labelSelect'>APS:</label>
       <select 
         className="form-select form-select-sm selectores" 

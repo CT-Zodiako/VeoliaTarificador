@@ -4,14 +4,18 @@ import { TablaResumenPgirs } from "../components/resumenPgirs/TablaResumenPgirs"
  export const ResumenPGIRS = () => {
   return(
     <>
-      <div className="headerComponent">
-        <div className="tituloComponent"/>
-        <div className="selector">
-          <Selectores selectorAps={true} />
-        </div>
-      </div>
-      <div className="bodyComponent">
-        <TablaResumenPgirs/>
+      <div>
+        <div>
+            <div className="tituloComponent">
+              <h3>Resumen Variables PGIRS</h3>
+            </div>
+            <div className="selector">
+              <Selectores selectorAps={true} />
+            </div>
+          </div>
+          <div className="bodyComponent">
+            <TablaResumenPgirs/>
+          </div>
       </div>
     </>
   )

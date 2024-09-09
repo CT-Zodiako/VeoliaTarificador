@@ -84,3 +84,54 @@ export const columsTarifa = [
     {head: 'TARIFA PLENA', body: 'TARI_TOTAL'},
     {head: 'TARIDA S/C', body: 'TARI_TOTSC'},
 ]
+
+export const mesesAno = [
+    {
+        id: 1,
+        meses: 'Enero'
+    },
+    {
+        id: 2,
+        meses: 'Febrero'
+    },
+    {
+        id: 3,
+        meses: 'Marzo'
+    },
+    {
+        id: 4,
+        meses: 'Abril'
+    },
+    {
+        id: 5,
+        meses: 'Mayo'
+    },
+    {
+        id: 6,
+        meses: 'Junio'
+    },
+    {
+        id: 7,
+        meses: 'Julio'
+    },
+    {
+        id: 8,
+        meses: 'Agosto'
+    },
+    {
+        id: 9,
+        meses: 'Septiembre'
+    },
+    {
+        id: 10,
+        meses: 'Octubre'
+    },
+    {
+        id: 11,
+        meses: 'Noviembre'
+    },
+    {
+        id: 12,
+        meses: 'Diciembre'
+    }
+];
