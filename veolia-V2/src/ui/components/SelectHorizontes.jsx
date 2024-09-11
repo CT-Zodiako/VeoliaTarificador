@@ -6,7 +6,7 @@ import { useHorizonteDesde, useHorizonteHasta } from "../../store/storeSelectors
 
     return(
     <>
-      <div className='col-3 mt-1'>
+      <div className='mt-1'>
         <h6 className="labelSelect">Horizonte</h6>
         <div className="custom-form-group">
           <label htmlFor="aps1" className="labelSelect">Desde:</label>

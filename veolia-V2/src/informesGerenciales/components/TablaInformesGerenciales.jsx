@@ -55,7 +55,7 @@ export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums,
                                                 <td>
                                                     <button
                                                         className="btn btn-primary"
-                                                        onClick={modal} 
+                                                        onClick={ () => modal(item)} 
                                                     >
                                                         Editar
                                                     </button>

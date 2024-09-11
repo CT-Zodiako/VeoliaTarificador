@@ -11,7 +11,7 @@ import { useDescripcion } from "../../store/storeSelectors";
                 id="descripcion"
                 value={selecteDescripcion}
                 className="form-control custom-textarea"
-                rows="4"
+                rows="3"
                 readOnly   
             />
         </div>

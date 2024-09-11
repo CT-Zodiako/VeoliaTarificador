@@ -11,7 +11,6 @@ export const getLineasTiempo = async (data) => {
 }
 
 export const postLineasTiempo = async (data) => { 
-    console.log('data: ', data);
     try{
         const response = await Http.post('lineas-tiempo/crearLineasTiempo', data);
         return response;

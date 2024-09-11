@@ -9,7 +9,6 @@ import { TablaEditarLinTiemp } from "../components/TablaEditarLinTiemp";
     const proy = useProyeccionesSelector(state => state.proy);
 
     const[dataLineasTimp, setDataLineasTimp] = useState([]);
-    console.log('dataLineasTimp: ', dataLineasTimp);
     
     const data = {
         PROYID: proy,

@@ -9,8 +9,8 @@ export const Crear = () => {
         formato:{},
         datos:[]
     });
-    const[modal, setModal] = useState(false); 
-    console.log('modal: ', modal);
+    const [modal, setModal] = useState(false); 
+    const [editarCrear, setEditarCrear] = useState('');
     
     const onDatosCrear = async() => {
         try{
@@ -25,8 +25,10 @@ export const Crear = () => {
         }
     }
 
-    const abrirModal = () => {
+    const abrirModal = (item) => {
         setModal(true);
+        setEditarCrear(item);
+        console.log('editar este: ', item);
     }
 
     const cerrarModal = () => {
