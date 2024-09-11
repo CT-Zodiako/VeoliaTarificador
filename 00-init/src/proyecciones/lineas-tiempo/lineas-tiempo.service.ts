@@ -11,6 +11,7 @@ export class LineasTiempoService {
     private proyProyeccionRepository: Repository<ProyProyeccion>
   ) {}
   async crearLineasTiempo(data, usuario) {
+  console.log('data', data);
    try {
     const {isNEw, dataTable} = data;
     if(isNEw){

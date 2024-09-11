@@ -25,7 +25,7 @@ import { useState } from 'react';
             EMPR_EMPR: dataPoda[index].EMPR_EMPR,
             CPTE_ANNO: anno,
             CPTE_MES: mes,
-        });
+        });        
         setEditar(index);
     }
 

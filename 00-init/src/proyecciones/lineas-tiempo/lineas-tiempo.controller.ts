@@ -8,11 +8,12 @@ export class LineasTiempoController {
 
   @Post('crearLineasTiempo')
   crearLineasTiempo(@Body() data, @GetUser() usuario) {
+    console.log('data Q', data);
     return this.lineasTiempoService.crearLineasTiempo(data,usuario.SISU_ID);
   }
 
   @Get('consultarPorId')
-  consultarPorId(@Query() data,) {
+  consultarPorId(@Query() data,) {    
     return this.lineasTiempoService.consultarPorId(data );
   }
 }

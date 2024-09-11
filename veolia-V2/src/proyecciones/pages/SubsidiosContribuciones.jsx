@@ -31,7 +31,7 @@ import { TablaComponentes } from "../../ui/components/TablaComponentes";
     }
 
     useEffect(() =>{
-        if (aps && proy) {
+        if (aps && proy && anno && mess) {
             onTablaSubCon();
         }
     },[aps, proy, anno, mess] );
