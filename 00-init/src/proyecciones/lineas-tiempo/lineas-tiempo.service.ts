@@ -12,8 +12,8 @@ export class LineasTiempoService {
   ) {}
   async crearLineasTiempo(data, usuario) {
    try {
-    const {isNEw, dataTable} = data;
-    if(isNEw){
+    const {isNew, dataTable} = data;
+    if(isNew){
       for (const element of dataTable) {
         await this.proyProyeccionRepository.query(`
           INSERT INTO PROY_DETLINEATIEMPO
@@ -22,11 +22,15 @@ export class LineasTiempoService {
         `); 
       }
     }else{
-      await this.proyProyeccionRepository.query(`
-        UPDATE PROY_DETLINEATIEMPO
-        SET DELTIPC= :1, DELTIPCC= :2, DELTSMLV= :3, DELTIOEXP=:4, DELTFACPRODUC=:5, DELTFECHA=sysdate , USUARIO= :6, DELTINDIPCC= :7, DELTIPCCS=:8
-        WHERE PROYID= :9 AND APS= :10 AND PROYANNO= :11 AND PROYMES= :12
-        `, [dataTable.DELTIPC, dataTable.DELTIPCC, dataTable.DELTSMLV, dataTable.DELTIOEXP, dataTable.DELTFACPRODUC, usuario, dataTable.DELTINDIPCC, dataTable.DELTIPCCS, dataTable.PROYID, dataTable.APS, dataTable.PROYANNO, dataTable.PROYMES]);
+      {
+        for (const element of dataTable) {  // Agregamos const aquí
+          await this.proyProyeccionRepository.query(`
+            UPDATE PROY_DETLINEATIEMPO
+            SET DELTIPC= :1, DELTIPCC= :2, DELTSMLV= :3, DELTIOEXP= :4, DELTFACPRODUC= :5, DELTFECHA = sysdate, USUARIO = :6, DELTINDIPCC = :7, DELTIPCCS = :8
+            WHERE PROYID = :9 AND APS = :10 AND PROYANNO = :11 AND PROYMES = :12
+          `, [element.DELTIPC, element.DELTIPCC, element.DELTSMLV, element.DELTIOEXP, element.DELTFACPRODUC, usuario, element.DELTINDIPCC, element.DELTIPCCS, element.PROYID, element.APS, element.PROYANNO, element.PROYMES]);
+        }
+      }
     }
    } catch (error) {
       return `error al crearLineasTiempo: ${error}`
