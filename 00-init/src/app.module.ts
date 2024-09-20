@@ -35,6 +35,7 @@ import { CrearModule } from './proyecciones/crear/crear.module';
 import { LineasTiempoModule } from './proyecciones/lineas-tiempo/lineas-tiempo.module';
 import { SubsidiosContribucionesProyeccionesModule } from './proyecciones/subsidios-contribuciones/subsidios-contribuciones.module';
 import { CrecimientoVaraiblesModule } from './proyecciones/crecimiento-varaibles/crecimiento-varaibles.module';
+import { SemestralModule } from './cargue-informacion/semestral/semestral.module';
 
 @Module({
   imports: [
@@ -82,6 +83,7 @@ import { CrecimientoVaraiblesModule } from './proyecciones/crecimiento-varaibles
     LineasTiempoModule,
     SubsidiosContribucionesProyeccionesModule,
     CrecimientoVaraiblesModule,
+    SemestralModule,
 
   ],
 })

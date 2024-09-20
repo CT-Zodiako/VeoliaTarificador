@@ -23,7 +23,7 @@ export class LineasTiempoService {
       }
     }else{
       {
-        for (const element of dataTable) {  // Agregamos const aquí
+        for (const element of dataTable) { 
           await this.proyProyeccionRepository.query(`
             UPDATE PROY_DETLINEATIEMPO
             SET DELTIPC= :1, DELTIPCC= :2, DELTSMLV= :3, DELTIOEXP= :4, DELTFACPRODUC= :5, DELTFECHA = sysdate, USUARIO = :6, DELTINDIPCC = :7, DELTIPCCS = :8
