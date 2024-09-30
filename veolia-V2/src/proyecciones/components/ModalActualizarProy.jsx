@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
+import { SelectorAPS } from "./SelectorAps.jsx";
+import { ProyResolucion } from "./ProyResolucion.jsx";
+import { SelectFecha } from "./SelectFecha.jsx";
 
-export const ModalActualizarProy = ({show, cerrar}) => {
+export const ModalActualizarProy = ({show, cerrar, editar, actualizar}) => {
     const[formulario, setFormulario] = useState({
         PROYNOMBRE: '',
         PROYDESCRIPCION: '',
@@ -19,6 +22,17 @@ export const ModalActualizarProy = ({show, cerrar}) => {
         })
     }
 
+    useEffect(() => {
+        setFormulario({
+            PROYNOMBRE: editar.PROYNOMBRE,
+            PROYDESCRIPCION: editar.PROYDESCRIPCION,
+            PROYTIPO100: editar.PROYTIPO100,
+            PROYANNOHAS: editar.PROYANNOHAS,
+            PROYMESHAS: editar.PROYMESHAS,
+            PROYID: editar.PROYID
+        })
+    }, [editar]);
+
     return(
     <>
         <Modal show={show} onHide={cerrar}>
@@ -27,63 +41,61 @@ export const ModalActualizarProy = ({show, cerrar}) => {
             </Modal.Header>
             <Modal.Body>
                 <div>
-                    {/* <label className="form-label">Id</label> */}
                     <input 
                         type="number" 
                         className="form-control" 
                         placeholder="Id" 
                         value={formulario.PROYID}
-                        onChange={onFormulario}
                         style={{ width: '10rem' }}
+                        readOnly
                     />
                 </div>
                 <div  style={{ display: 'flex' }}>
                     <div>
-                        <input 
-                            type="number" 
-                            className="form-control" 
-                            placeholder="APS" 
-                            style={{ width: '10rem' }}
-                    />
+                        <SelectorAPS aps={editar.APS}/>
                     </div>
                     <div>
                         <input 
-                            type="number" 
+                            type="text" 
+                            name="formulario.PROYNOMBRE"
                             className="form-control" 
                             placeholder="Nombre" 
-                            style={{ width: '10rem' }}
+                            value={formulario.PROYNOMBRE}
+                            onChange={onFormulario}
+                            style={{ width: '15rem' }}
                         />
                     </div>
                 </div>
                 <div>
                     <label className="form-label">Ultimo Calculo de Tarifas</label>
-                    <input type="number" className="form-control" style={{ width: '10rem' }}/>
+                    <input 
+                        type="text" 
+                        className="form-control" 
+                        value={editar.DESDE}
+                        style={{ width: '10rem' }}
+                        readOnly
+                    />
                 </div>
                 <div>
                     <label className="form-label">Descripción</label>
                     <textarea 
                         type="number" 
+                        name="formulario.PROYDESCRIPCION"
                         className="form-control" 
+                        value={formulario.PROYDESCRIPCION}
+                        onChange={onFormulario}
                         rows="5"
                     />
                 </div>
                 <div style={{ display: 'flex' }}>
                     <div style={{ width: '40%' }}>
                         <h5 className="form-label">Resolucion</h5>
-                        <div>
-                            <div>
-                                <input type="radio" />
-                                <label className="form-label">Ingresos</label>
-                            </div>
-                            <div>
-                                <input type="radio" />
-                                <label className="form-label">Sub & Con</label>
-                            </div>
-                        </div>
+                        <ProyResolucion resolucion={formulario.PROYTIPO100}/>
                     </div>
                     <div style={{ width: '40%' }}>
                         <h5 className="form-label">Horizonte hasta</h5>
-                        <input type="number" className="form-control" style={{ width: '10rem' }}/>
+                        <SelectFecha />
+                        {/* <input type="number" className="form-control" style={{ width: '10rem' }}/> */}
                     </div>
                 </div>
             </Modal.Body>
@@ -96,6 +108,7 @@ export const ModalActualizarProy = ({show, cerrar}) => {
                 </button>
                 <button 
                     className="btn btn-primary"
+                    onClick={() => actualizar(formulario)}
                 >
                     Guardar
                 </button>

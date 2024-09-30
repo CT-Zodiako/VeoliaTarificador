@@ -29,129 +29,130 @@ export const Menu = () => {
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Dropdown
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item textMenu" href="#">Action</a></li>
-                                    <li><a className="dropdown-item textMenu" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item textMenu" href="#">Something else here</a></li>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Configuración
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item textMenu" to="/aps">APS</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/empresas">Empresas</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/usuarios">Usuarios</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/rellenos">Rellenos</Link></li>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/aps">APS</Link></li>
+                                    <li><Link className="dropdown-item" to="/empresas">Empresas</Link></li>
+                                    <li><Link className="dropdown-item" to="/usuarios">Usuarios</Link></li>
+                                    <li><Link className="dropdown-item" to="/rellenos">Rellenos</Link></li>
 
                                 </ul>
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Suministros
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item textMenu" to="/indicesCRA">Indices CRA</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/sub-con">Subsidios y Contribuciones</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/sub-verf">Verificación</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/sub-aproch">Activar Aprovechamiento</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/sub-costPoda">Costo Poda</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/sub-ajutProd">Ajustes Productividad</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/sub-desCost">Descuento Costo</Link></li>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/indicesCRA">Indices CRA</Link></li>
+                                    <li><Link className="dropdown-item" to="/sub-con">Subsidios y Contribuciones</Link></li>
+                                    <li><Link className="dropdown-item" to="/sub-verf">Verificación</Link></li>
+                                    <li><Link className="dropdown-item" to="/sub-aproch">Activar Aprovechamiento</Link></li>
+                                    <li><Link className="dropdown-item" to="/sub-costPoda">Costo Poda</Link></li>
+                                    <li><Link className="dropdown-item" to="/sub-ajutProd">Ajustes Productividad</Link></li>
+                                    <li><Link className="dropdown-item" to="/sub-desCost">Descuento Costo</Link></li>
                                 </ul>
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Procesos
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item textMenu" to="/calculo">Calculo Tarifas</Link></li>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/calculo">Calculo Tarifas</Link></li>
                                 </ul>
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Informes comerciales
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item textMenu" to="/dataDetalladoTarifasCo">Detallado Tarifas</Link></li>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/dataDetalladoTarifasCo">Detallado Tarifas</Link></li>
+                                    <li><Link className="dropdown-item" to="/facturacion">Detallado Facturacion</Link></li>
                                 </ul>
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Informes gerenciales
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item textMenu" to="/dataDetalladoTarifas">Detallado Tarifas</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/detalladoCostos">Detallado de costo</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/dataDetalladoSubAport">Detallado Sub y Aportes</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/dashBoardTarifas">DashBoard</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/costoPodaInfo">Costo Poda</Link></li>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/dataDetalladoTarifas">Detallado Tarifas</Link></li>
+                                    <li><Link className="dropdown-item" to="/detalladoCostos">Detallado de costo</Link></li>
+                                    <li><Link className="dropdown-item" to="/dataDetalladoSubAport">Detallado Sub y Aportes</Link></li>
+                                    <li><Link className="dropdown-item" to="/dashBoardTarifas">DashBoard</Link></li>
+                                    <li><Link className="dropdown-item" to="/costoPodaInfo">Costo Poda</Link></li>
                                 </ul>
                           
                             </li>
 
 
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Reporteador Sui
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item textMenu" to="/formatosFormularios">Formatos y Formularios</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/DashBoardSUI">DashBoard</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/resmunenFormatosFormularios">Resumen Formatos y Formularios</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/reversiones_sui">Reversiones</Link></li>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/formatosFormularios">Formatos y Formularios</Link></li>
+                                    <li><Link className="dropdown-item" to="/DashBoardSUI">DashBoard</Link></li>
+                                    <li><Link className="dropdown-item" to="/resmunenFormatosFormularios">Resumen Formatos y Formularios</Link></li>
+                                    <li><Link className="dropdown-item" to="/reversiones_sui">Reversiones</Link></li>
                                 </ul>
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Proyecciones
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item textMenu" to="/crear">Crear</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/lineasTiempo">Lineas de Tiempo</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/subsidioscontribuciones">Subsidios y Contribuciones</Link></li>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/crear">Crear</Link></li>
+                                    <li><Link className="dropdown-item" to="/crecimientovariables">Crecimiento Variables</Link></li>
+                                    <li><Link className="dropdown-item" to="/lineasTiempo">Lineas de Tiempo</Link></li>
+                                    <li><Link className="dropdown-item" to="/subsidioscontribuciones">Subsidios y Contribuciones</Link></li>
                                 </ul>
                             </li>
                     
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Informes Proyecciones
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item textMenu" to="/informesProyecciones">Formatos y Formularios</Link></li>
-                        
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/informesProyecciones">Formatos y Formularios</Link></li>
                                 </ul>
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     PGIRS
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item textMenu" to="/variablesPGIRS">Variables PGIRS</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/informePGIRS">Informe PGIRS</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/resumenPGIRS">Resumen Variables PGIRS</Link></li>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/variablesPGIRS">Variables PGIRS</Link></li>
+                                    <li><Link className="dropdown-item" to="/informePGIRS">Informe PGIRS</Link></li>
+                                    <li><Link className="dropdown-item" to="/resumenPGIRS">Resumen Variables PGIRS</Link></li>
                                 </ul>
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="textMen nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Reversiones
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item textMenu" to="/reversiones">Reversiones</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/auth_reversiones">Autorizacion Reversiones</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/detalles_reversiones">Detalles Reversiones</Link></li>
-                                    <li><Link className="dropdown-item textMenu" to="/detalles_autorizacion">Detalles Autorizacion</Link></li>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/reversiones">Reversiones</Link></li>
+                                    <li><Link className="dropdown-item" to="/auth_reversiones">Autorizacion Reversiones</Link></li>
+                                    <li><Link className="dropdown-item" to="/detalles_reversiones">Detalles Reversiones</Link></li>
+                                    <li><Link className="dropdown-item" to="/detalles_autorizacion">Detalles Autorizacion</Link></li>
                                 </ul>
                             </li>
 

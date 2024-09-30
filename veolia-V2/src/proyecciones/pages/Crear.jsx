@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getCrear } from '../services/craerService';
+import { getCrear, postCrear } from '../services/craerService';
 import { TablaInformesGerenciales } from '../../informesGerenciales/components/TablaInformesGerenciales';
 import { columnsCrear, formatoCrear } from '../components/data';
 import { ModalActualizarProy } from '../components/ModalActualizarProy';
@@ -25,10 +25,19 @@ export const Crear = () => {
         }
     }
 
+    const onActualizarCrear = async(item) => {
+        try {
+            await postCrear(item);
+            onDatosCrear();
+            setModal(false);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     const abrirModal = (item) => {
         setModal(true);
         setEditarCrear(item);
-        console.log('editar este: ', item);
     }
 
     const cerrarModal = () => {
@@ -50,7 +59,7 @@ export const Crear = () => {
                     acciones={true}
                     modal={abrirModal}
                 />
-                <ModalActualizarProy show={modal} cerrar={cerrarModal}/>
+                <ModalActualizarProy show={modal} cerrar={cerrarModal} editar={editarCrear} actualizar={onActualizarCrear}/>
             </div>
         </div>
     </>

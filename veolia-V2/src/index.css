@@ -11,15 +11,17 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
+
+
 }
 
 .cabezote {
-  background: black;
+  /* background: black; */
   height: 2.8rem;
  }
 
 .bodyVeolia {
-  flex: 1 1 auto;
+  flex: 1;
   overflow: auto;
   width: 100%;
   padding-top: 1rem;
@@ -128,10 +130,11 @@
 
 .componenSelect-2 {
   width: 60%;
+  height: 20rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
 }
 
 .d-flex-row {
@@ -148,6 +151,7 @@
   flex-direction: column;
   justify-content: space-around;
   gap: 1rem;
+  padding-bottom: 0.8rem;
 }
 
 .d-flex-rows {
@@ -205,6 +209,37 @@
 }
 
 /*MENU*/
+.optionMenu {
+  background-color: rgb(110, 110, 112);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease-in-out;
+  display: none;
+}
+
+.optionMenu:hover {
+  background-color: rgb(140, 140, 143);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.optionMenu .dropdown-item {
+  background-color: rgb(110, 110, 112, 0);
+  color: #ecf0f1;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: normal;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.optionMenu .dropdown-item:hover {
+  background-color: rgb(140, 140, 143, 0);
+  font-size: 13px;
+  font-weight: 700;
+  transition: font-size 0.2s ease;
+}
+
 .botonMenu {
   height: 2rem;
   width: 2.5rem;
@@ -225,29 +260,29 @@
   color: rgb(213, 208, 208);
 }
 
-.textMen {
+.text-nav {
   color: rgb(213, 208, 208);
   font-weight: 600;
   white-space: normal;
+  transition: color 0.3s ease-in-out;
 }
 
-.textMen:hover {
-  color: rgb(255, 0, 0, 0.7);
+.nav-item.dropdown.show .text-nav,
+.text-nav:focus 
+{
+    color: rgb(213, 208, 208) !important;
+    outline: none;
 }
 
-.textMen:active {
-  color: rgb(255, 0, 0, 0.7);
+.text-nav:hover {
+  color: rgba(255, 0, 0, 0.7) !important;
+  transition: color 0.3s ease-in-out;
 }
 
-.textMenu {
-  font-size: 12px;
-  color: rgb(213, 208, 208);
-  white-space: normal;
+.text-nav:active {
+  color: rgba(255, 0, 0, 0.7) !important;
 }
 
-.textMenu:hover {
-  color: rgb(255, 0, 0);
-}
 
 
 /*GRAFICOS*/

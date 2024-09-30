@@ -1,20 +1,19 @@
-// import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Menu } from './ui/pages/Menu'
 import { Footer } from './ui/components/Footer'
-// import { LoginPage } from './auth/pages/LoginPage'
 
 export const VeoliaApp = () => {
     return (
         <div className='veoliaComponents'>
             <Menu />
-            <div className='cabezote'/>
-            <div className='bodyVeolia'>
-                <Outlet />
-            </div>
-            <div className='footerVeolia'>
-                <Footer />
-            </div>
+             <nav className='cabezote'/>
+             <main className='bodyVeolia'>
+                 <Outlet />
+             </main>
+             <footer className='footerVeolia'>
+                 <Footer />
+             </footer>
         </div>
     )
 }

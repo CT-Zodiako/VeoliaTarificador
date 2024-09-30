@@ -23,6 +23,8 @@ export class CrearController {
 
   @Patch('editarProyeccion')
   editarProyeccion(@Body() data) {
+    console.log('data',data);
+    
     return this.crearService.editarProyeccion(data);
   }
 

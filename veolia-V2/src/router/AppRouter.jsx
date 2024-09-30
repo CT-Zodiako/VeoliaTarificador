@@ -35,12 +35,20 @@ import { Costo } from "../procesos/pages/Costo";
 import { Crear } from "../proyecciones/pages/Crear";
 import { LineasTiempo } from "../proyecciones/pages/LineasTiempo";
 import { SubsidiosContribuciones } from "../proyecciones/pages/SubsidiosContribuciones";
-// import { SubsidiosContribuciones } from "../proyecciones/pages/SubsidiosContribuciones";
+import { CreciemientoVariables } from "../proyecciones/pages/CreciemientoVariables";
+import { PrivateRouters } from "./PrivateRouters";
+import { DetalladoFacturacion } from "../informesComerciales/pages/DetalladoFacturacion";
 
 export const router = createBrowserRouter([
     {
+        path: "/login",
+        element: <LoginPage/>,
+        errorElement: <h1>error</h1>,
+    },
+    {
         path: "/",
         element: <VeoliaApp />,
+        // element: <PrivateRouters><VeoliaApp /></PrivateRouters>,
         errorElement: <h1>error</h1>,
         children: [
             // configuracion
@@ -105,6 +113,11 @@ export const router = createBrowserRouter([
             {
                 path: "/dataDetalladoTarifasCo",
                 element: <DetalladoTarifasComerciales />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/facturacion",
+                element: <DetalladoFacturacion />,
                 errorElement: <h1>error</h1>,
             },
 
@@ -173,6 +186,11 @@ export const router = createBrowserRouter([
                 element: <SubsidiosContribuciones/>,
                 errorElement: <h1>error</h1>,
             },
+            {
+                path: "/crecimientovariables",
+                element: <CreciemientoVariables/>,
+                errorElement: <h1>error</h1>,
+            },
 
             // Informes Proyecciones
             {
@@ -232,11 +250,6 @@ export const router = createBrowserRouter([
         ]
 
     },
-    {
-        path: "/login",
-        element: <LoginPage />,
-        errorElement: <h1>error</h1>,
-    }
 
 
 ]);
