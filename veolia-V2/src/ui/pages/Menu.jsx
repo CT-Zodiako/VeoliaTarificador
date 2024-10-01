@@ -104,7 +104,7 @@ export const Menu = () => {
                                     Cargue de Informacion
                                 </a>
                                 <ul className="dropdown-menu optionMenu">
-                                    <li><Link className="dropdown-item" to="/carguesem">Cargue Mensual</Link></li>
+                                    <li><Link className="dropdown-item" to="/cargue">Cargue Mensual</Link></li>
                                     <li><Link className="dropdown-item" to="/carguesem">Cargue Semestral</Link></li>
                                 </ul>
                           

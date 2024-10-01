@@ -39,6 +39,7 @@ import { CreciemientoVariables } from "../proyecciones/pages/CreciemientoVariabl
 import { PrivateRouters } from "./PrivateRouters";
 import { DetalladoFacturacion } from "../informesComerciales/pages/DetalladoFacturacion";
 import { CargueSemestral } from "../cargueInformacion/page/CargueSemestral";
+import { CargueMensual } from "../cargueInformacion/page/CargueMensual";
 
 export const router = createBrowserRouter([
     {
@@ -153,6 +154,11 @@ export const router = createBrowserRouter([
             {
                 path: "/carguesem",
                 element: <CargueSemestral />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/cargue",
+                element: <CargueMensual />,
                 errorElement: <h1>error</h1>,
             },
 

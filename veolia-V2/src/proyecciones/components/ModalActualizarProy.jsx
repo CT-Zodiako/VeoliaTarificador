@@ -4,15 +4,28 @@ import { SelectorAPS } from "./SelectorAps.jsx";
 import { ProyResolucion } from "./ProyResolucion.jsx";
 import { SelectFecha } from "./SelectFecha.jsx";
 
-export const ModalActualizarProy = ({show, cerrar, editar, actualizar}) => {
-    const[formulario, setFormulario] = useState({
-        PROYNOMBRE: '',
-        PROYDESCRIPCION: '',
-        PROYTIPO100: '',
-        PROYANNOHAS: '',
-        PROYMESHAS: '',
-        PROYID: ''
-    });
+export const ModalActualizarProy = ({show, cerrar, editar='', actualizar}) => {
+    const[formulario, setFormulario] = useState(
+        editar === '' ? 
+        {
+            APS: null, 
+            PROYNOMBRE: "",
+            PROYDESCRIPCION: "", 
+            PROYTIPO100: null, 
+            PROYANNODES: null, 
+            PROYMESDES: null, 
+            PROYANNOHAS: null , 
+            PROYMESHAS: null,
+        } :
+        {
+            PROYNOMBRE: '',
+            PROYDESCRIPCION: '',
+            PROYTIPO100: '',
+            PROYANNOHAS: '',
+            PROYMESHAS: '',
+            PROYID: ''
+        }
+    );
 
     const onFormulario = (event) => {
         const { name, value } = event.target;
@@ -20,6 +33,10 @@ export const ModalActualizarProy = ({show, cerrar, editar, actualizar}) => {
             ...formulario,
             [name]: value
         })
+    }
+
+    const onAccionModal = (formulario) => {
+        actualizar(formulario);
     }
 
     useEffect(() => {
@@ -108,9 +125,11 @@ export const ModalActualizarProy = ({show, cerrar, editar, actualizar}) => {
                 </button>
                 <button 
                     className="btn btn-primary"
-                    onClick={() => actualizar(formulario)}
+                    onClick={() => onAccionModal(formulario)}
                 >
-                    Guardar
+                    {
+                        editar === '' ? 'Crear' : 'Actualizar'
+                    }
                 </button>
             </Modal.Footer>
         </Modal>

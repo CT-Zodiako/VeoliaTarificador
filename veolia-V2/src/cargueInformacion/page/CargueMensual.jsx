@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useAnnoSelector, useApsSelector, useMesSelector } from '../../store/storeSelectors';
-import { getCargueSemestral } from '../service/cargueSemestralService';
-import { Selectores } from '../../ui/components/Selectores';
-import { TabTable } from '../../ui/components/TabTable';
-import { InfoPropia } from '../components/cargueSemestral/InfoPropia';
-import { InfoCompetidor } from '../components/cargueSemestral/InfoCompetidor';
-import { InfoUsuario } from '../components/cargueSemestral/InfoUsuario';
- 
-export const CargueSemestral = () => {
+import { Selectores } from "../../ui/components/Selectores";
+import { InfoPropia } from '../components/cargueMensual/InfoPropia';
+import { InfoCompetidor } from '../components/cargueMensual/InfoCompetidor';
+import { InfoUsuario } from '../components/cargueMensual/InfoUsuario';
+import { TabTable } from "../../ui/components/TabTable";
+import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
+import { getCargueSemestral } from "../service/cargueSemestralService";
+import React, { useEffect, useState } from "react";
+
+export const CargueMensual = () => {
     const aps = useApsSelector(state => state.aps);
     const anno = useAnnoSelector(state => state.anno);
     const mes = useMesSelector(state => state.mes);
@@ -51,7 +51,7 @@ export const CargueSemestral = () => {
         <div>
             <div>
                 <div className="tituloComponent">
-                    <h3>Cargue Semestral</h3>
+                    <h3>Cargue Mensual</h3>
                 </div>
                 <div className="selector">
                     <Selectores selectorAps={true} selectorFecha={true}/>

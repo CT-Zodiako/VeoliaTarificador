@@ -7,7 +7,7 @@ export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums,
         <div className="componenTable">
             <div className="tableBorde">
                 <h5 className="card-title">{datos && tituloTabla}</h5>
-                <div className="acctionTable"/>
+                {/* <div className="acctionTable"/> */}
                 <div className="card-body">
                     <div className="table-responsive" style={{ maxHeight: '32.5rem', overflowY: 'auto' }}>
                         <table className="table table-striped table-bordered">
@@ -55,7 +55,7 @@ export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums,
                                                 <td>
                                                     <button
                                                         className="btn btn-primary"
-                                                        onClick={ () => modal(item)} 
+                                                        onClick={ () => modal(item, false) } 
                                                     >
                                                         Editar
                                                     </button>

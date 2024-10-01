@@ -1,6 +1,6 @@
 import React from 'react'
-import { columnsPropia } from './data';
-import { TablaComponentes } from '../../ui/components/TablaComponentes';
+import { columnsPropiaMen } from '../data';
+import { TablaComponentes } from '../../../ui/components/TablaComponentes';
  
 export const InfoPropia = () => {
     return(
@@ -13,7 +13,7 @@ export const InfoPropia = () => {
             </div>
             <div>
                 <h4>Vista Previa</h4>
-                {/* <TablaComponentes colums={columnsPropia} data={}/> */}
+                {/* <TablaComponentes colums={columnsPropiaMen} data={}/> */}
             </div>
         </div>
     </>

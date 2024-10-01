@@ -10,7 +10,8 @@ export const Crear = () => {
         datos:[]
     });
     const [modal, setModal] = useState(false); 
-    const [editarCrear, setEditarCrear] = useState('');
+    const [itemEditar, setItemEditar] = useState('');
+    const [accion, setAccion] = useState(false);
     
     const onDatosCrear = async() => {
         try{
@@ -29,19 +30,21 @@ export const Crear = () => {
         try {
             await postCrear(item);
             onDatosCrear();
-            setModal(false);
+            cerrarModal();
         } catch (error) {
             console.error(error);
         }
     }
 
-    const abrirModal = (item) => {
+    const abrirModal = (item, tipo) => {
         setModal(true);
-        setEditarCrear(item);
+        setItemEditar(item);
+        setAccion(tipo);
     }
 
     const cerrarModal = () => {
         setModal(false);
+        setItemEditar('');
     }
 
     useEffect(() =>{
@@ -52,6 +55,12 @@ export const Crear = () => {
     <>
         <div>
             <div className="bodyComponent" >
+                <button
+                    className="btn btn-primary btn-md"
+                    onClick={() => abrirModal('', true)}
+                >
+                    <h3>Nuevo</h3>
+                </button>
                 <TablaInformesGerenciales 
                     datos={dataCrear} 
                     tituloTabla={'PROYECCIONES DE SUBSIDIO / CONTRIBUCIÓN'} 
@@ -59,7 +68,14 @@ export const Crear = () => {
                     acciones={true}
                     modal={abrirModal}
                 />
-                <ModalActualizarProy show={modal} cerrar={cerrarModal} editar={editarCrear} actualizar={onActualizarCrear}/>
+                {
+                    accion ? (
+                        <ModalActualizarProy show={modal} cerrar={cerrarModal} actualizar={onActualizarCrear}/>
+                    ) : (
+                        <ModalActualizarProy show={modal} cerrar={cerrarModal} editar={itemEditar} actualizar={onActualizarCrear}/>
+                    )
+                }
+                {/* <ModalActualizarProy show={modal} cerrar={cerrarModal} editar={itemEditar} actualizar={onActualizarCrear}/> */}
             </div>
         </div>
     </>

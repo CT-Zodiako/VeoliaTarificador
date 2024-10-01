@@ -4,6 +4,7 @@ import { Selectores } from "../../ui/components/Selectores";
 import { TabTable } from "../../ui/components/TabTable";
 import { getDetFac, getDetFacClus, getDetFacDinc, getFacturacion } from "../service/detalladoFacturacion";
 import { columnsDetFac, columnsDetFacClus, columnsDetFacDINC, columnsFacturacion, formatoDetFac, formatoDetFacClus, formatoDetFacDINC, formatoFacturacion } from "../components/data";
+import { TablaInformesGerenciales } from "../../informesGerenciales/components/TablaInformesGerenciales";
  
 export const DetalladoFacturacion = () => {
     const aps = useApsSelector(state => state.aps);
@@ -51,26 +52,26 @@ export const DetalladoFacturacion = () => {
                 datos: facturacion
             });
 
-            // const detFac = await getDetFac(data);
-            // setDataDetFac({
-            //     ...dataDetFac,
-            //     formato: formatoDetFac,
-            //     datos: detFac
-            // });
+            const detFac = await getDetFac(data);
+            setDataDetFac({
+                ...dataDetFac,
+                formato: formatoDetFac,
+                datos: detFac
+            });
 
-            // const detFacClus = await getDetFacClus(data);
-            // setDataDetFacClus({
-            //     ...dataDetFacClus,
-            //     formato: formatoDetFacClus,
-            //     datos: detFacClus
-            // });
+            const detFacClus = await getDetFacClus(data);
+            setDataDetFacClus({
+                ...dataDetFacClus,
+                formato: formatoDetFacClus,
+                datos: detFacClus
+            });
 
-            // const detFacDinc = await getDetFacDinc(data);
-            // setDataDetFacDinc({
-            //     ...dataDetFacDinc,
-            //     formato: formatoDetFacDINC,
-            //     datos: detFacDinc
-            // });
+            const detFacDinc = await getDetFacDinc(data);
+            setDataDetFacDinc({
+                ...dataDetFacDinc,
+                formato: formatoDetFacDINC,
+                datos: detFacDinc
+            });
         } catch {
             console.error('data de las tablas no encontrada'); 
         }
@@ -106,7 +107,7 @@ export const DetalladoFacturacion = () => {
                 <div className='listTable'>
                     <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
                 </div>
-                {/* <TablaInformesGerenciales datos={dataDetalleReversiones} tituloTabla='Detalles de Reversiones' colums={columnsDetaReversiones} /> */}
+                <TablaInformesGerenciales datos={titulosTabs[pestañaActiva].datos} tituloTabla={titulosTabs[pestañaActiva].titulo} colums={titulosTabs[pestañaActiva].encabezado} />
             </div>
         </div>
     </>
