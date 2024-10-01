@@ -6,9 +6,9 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { FacturacionInformesComercialesService } from './facturacion-informes-comerciales.service';
-import { ConsultaDTO } from './dto/consulta-facturacion-informes-comerciale.dto';
 
 @Controller('facturacion-informes-comerciales')
 export class FacturacionInformesComercialesController {
@@ -18,30 +18,30 @@ export class FacturacionInformesComercialesController {
 
   @Get('facturacion')
   facturacion(
-    @Body()
-    consultaDTO: ConsultaDTO,
+    @Query()
+    consultaDTO,
   ) {
     return this.facturacionInformesComercialesService.facturacion(consultaDTO);
   }
 
   @Get('detalleFacturacion')
   facturacionDetalle(
-    @Body()
-    consultaDTO: ConsultaDTO,
+    @Query()
+    consultaDTO,
   ) {
     return this.facturacionInformesComercialesService.facturacionDetalle(consultaDTO);
   }
   @Get('facturacionClus')
   facturacionClus(
-    @Body()
-    consultaDTO: ConsultaDTO,
+    @Query()
+    consultaDTO,
   ) {
     return this.facturacionInformesComercialesService.facturacionClus(consultaDTO);
   }
   @Get('facturacionDinc')
   facturacionDinc(
-    @Body()
-    consultaDTO: ConsultaDTO,
+    @Query()
+    consultaDTO,
   ) {
     return this.facturacionInformesComercialesService.facturacionDinc(consultaDTO);
   }
