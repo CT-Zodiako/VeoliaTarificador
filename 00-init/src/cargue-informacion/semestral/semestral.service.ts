@@ -23,56 +23,80 @@ export class SemestralService {
   }
 
   async carguePropia(data, usuario) {
-    const {aps} = data;    
-    // try {
+    const {aps,
+      empr,
+      anno,
+      mes,
+      cp,
+      mt3agua,
+      m2cc,
+      m2lav,
+      ti,
+      tm,
+      klp,
+      t,
+      qa,
+      escenario,} = data;    
+    try {
 
-    //   if (data) {
-    //     await this.semestralRepository.query(`
-    //       DELETE FROM 
-    //         AUCO_CARGUEPROPIO 
-    //       WHERE 
-    //         APSA_ID = ${data.aps} AND 
-    //         PROP_ANNO = ${data.anno} AND 
-    //         PROP_MES = ${data.mes}
-    //     `);
+      if (data) {
+        await this.semestralRepository.query(`
+          DELETE FROM 
+            AUCO_CARGUEPROPIO 
+          WHERE 
+            APSA_ID = ${aps} AND 
+            PROP_ANNO = ${anno} AND 
+            PROP_MES = ${mes}
+        `);
   
-    //     await this.semestralRepository.query(`
-    //     INSERT INTO AUCO_CARGUEPROPIO
-    //       (APSA_ID, EMPR_EMPR, PROP_ANNO, PROP_MES, PROP_CP, PROP_MT3AGUA, PROP_M2CC, PROP_M2LAV, PROP_TI, PROP_TM, PROP_KLP, PROP_T, PROP_QA, PROP_ESCENARIO, PROP_FECCREA, USUA_USUARIO)
-    //     VALUES 
-    //       (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, sysdate, :15)`,
-    //     [
-    //       data.aps,
-    //       data.empr,
-    //       data.anno,
-    //       data.mes,
-    //       data.cp,
-    //       data.mt3agua,
-    //       data.m2cc,
-    //       data.m2lav,
-    //       data.ti,
-    //       data.tm,
-    //       data.klp,
-    //       data.t,
-    //       data.qa,
-    //       data.escenario,
-    //       usuario
-    //     ]
-    //   )
-    //   }
-    //   return 'carguePropia con exito';
-    // } catch (err) {
-    //   return `error al carguePropia: ${err}`
-    // }
+        await this.semestralRepository.query(`
+        INSERT INTO AUCO_CARGUEPROPIO
+          (APSA_ID, EMPR_EMPR, PROP_ANNO, PROP_MES, PROP_CP, PROP_MT3AGUA, PROP_M2CC, PROP_M2LAV, PROP_TI, PROP_TM, PROP_KLP, PROP_T, PROP_QA, PROP_ESCENARIO, PROP_FECCREA, USUA_USUARIO)
+        VALUES 
+          (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, sysdate, :15)`,
+        [
+          aps,
+          empr,
+          anno,
+          mes,
+          cp,
+          mt3agua,
+          m2cc,
+          m2lav,
+          ti,
+          tm,
+          klp,
+          t,
+          qa,
+          escenario,
+          usuario
+        ]
+      )
+      }
+      return 'carguePropia con exito';
+    } catch (err) {
+      return `error al carguePropia: ${err}`
+    }
   };
 
   async cargueInfCompetidor(data, usuario) {
     try {
-      const {resumemes} = data;
+      const {
+        aps,
+        empr,
+        anno,
+        mes,
+        cp,
+        mt3agua,
+        m2cc,
+        m2lav,
+        ti,
+        tm,
+        klp,
+        cblj,
+      } = data;
 
-      if (resumemes) {
-        let resmes = resumemes[0];
-
+      if (data) {
         await this.semestralRepository.query(`
           DELETE FROM 
             AUCO_CARGUECOMPE 
@@ -81,7 +105,7 @@ export class SemestralService {
             EMPR_EMPR = :2 AND 
             COMP_ANNO = :3 AND 
             COMP_MES = :4
-        `,[resmes.aps, resmes.empr, resmes.anno, resmes.mes]);
+        `,[aps, empr, anno, mes]);
   
         await this.semestralRepository.query(`
             INSERT INTO 
@@ -91,18 +115,18 @@ export class SemestralService {
         
           `,
         [
-          resmes.aps,
-          resmes.empr,
-          resmes.anno,
-          resmes.mes,
-          resmes.cp,
-          resmes.mt3agua,
-          resmes.m2cc,
-          resmes.m2lav,
-          resmes.ti,
-          resmes.tm,
-          resmes.klp,
-          resmes.cblj,
+          aps,
+          empr,
+          anno,
+          mes,
+          cp,
+          mt3agua,
+          m2cc,
+          m2lav,
+          ti,
+          tm,
+          klp,
+          cblj,
           usuario
         ]
       )
@@ -114,6 +138,27 @@ export class SemestralService {
   };
 
     async cargueUsuarios(data, usuario) {
+      const {
+        aps, 
+        anno, 
+        mes,
+        N,
+        ND,
+        NA,
+        TAFNA,
+        usucre,
+        codaps,
+        coduso, 
+        nomuso, 
+        codfactor ,
+        codtipo,  
+        tipo, 
+        tiponom,  
+        cantidad, 
+        toneladas 
+
+      } = data;
+
       try {
         
         await this.semestralRepository.query(`
@@ -123,7 +168,7 @@ export class SemestralService {
             CCOM_CODAPS = :1 AND 
             CCOM_ANNO = :2 AND 
             CCOM_MES = :3 
-        `,[data.aps, data.anno, data.mes]);
+        `,[aps, anno, mes]);
 
 
         await this.semestralRepository.query(`
@@ -133,7 +178,7 @@ export class SemestralService {
             APSA_ID =:1 AND 
             RCOM_ANNO =:2 AND 
             RCOM_MES =:3
-        `,[data.aps, data.anno, data.mes]);
+        `,[aps, anno, mes]);
 
         const pkvalue = await this.semestralRepository.query(`
           SELECT SAUCO_RESCOMERCIAL.nextval FROM DUAL
@@ -146,34 +191,34 @@ export class SemestralService {
             (:1, :2, :3, :4, :5, :6, :7, :8, sysdate, :9)
         `, [
           pkvalue[0].NEXTVAL,
-          data.aps,
-          data.anno,
-          data.mes,
-          data.resume.N,
-          data.resume.ND,
-          data.resume.NA,
-          data.resume.TAFNA,
-          data.usucre,
+          aps,
+          anno,
+          mes,
+          N,
+          ND,
+          NA,
+          TAFNA,
+          usucre,
         ]);
 
 
-        for (let results of data.filecontent) {
           try {
-            await this.semestralRepository.query(  `INSERT INTO AUCO_CARGUECOMERCIAL VALUES (SAUCO_CARGUECOMERCIAL.nextval, :1, TO_NUMBER(:2), :3, TO_NUMBER(:4), TO_NUMBER(:5), TO_NUMBER(:6), :7, TO_NUMBER(:8), TO_NUMBER(:9), TO_NUMBER(:10), :11, TO_NUMBER(:12), TO_NUMBER(:13), sysdate, :14)`,
+            await this.semestralRepository.query(
+              `INSERT INTO AUCO_CARGUECOMERCIAL VALUES (SAUCO_CARGUECOMERCIAL.nextval, :1, TO_NUMBER(:2), :3, TO_NUMBER(:4), TO_NUMBER(:5), TO_NUMBER(:6), :7, TO_NUMBER(:8), TO_NUMBER(:9), TO_NUMBER(:10), :11, TO_NUMBER(:12), TO_NUMBER(:13), sysdate, :14)`,
               [
                 pkvalue[0].NEXTVAL,
-                results.codaps,
-                results.aps,
-                results.anno,
-                results.mes,
-                results.coduso,
-                results.nomuso,
-                results.codfactor,
-                results.codtipo,
-                results.tipo,
-                results.tiponom,
-                results.cantidad,
-                results.toneladas,
+                codaps,
+                aps,
+                anno,
+                mes,
+                coduso,
+                nomuso,
+                codfactor,
+                codtipo,
+                tipo,
+                tiponom,
+                cantidad,
+                toneladas,
                 usuario,
               ],
              );
@@ -183,7 +228,7 @@ export class SemestralService {
           } catch (err) {
             return `error al cargueUsuarios: ${err}`
           }
-        }
+        
         return 'cargueUsuarios con exito';
       } catch (error) {
         return `error al cargueUsuarios: ${error}`
@@ -191,7 +236,14 @@ export class SemestralService {
     }
 
     async cargueTerceros(data, usuario) {
-
+      const {
+        aps, 
+        anno, 
+        mes,
+        cdfter, 
+        ctlter, 
+        incenter
+      } = data;
       try {
         await this.semestralRepository.query(`
           DELETE FROM 
@@ -200,14 +252,23 @@ export class SemestralService {
             APSA_ID = :1 AND 
             TERC_ANNO = :2 AND T
             ERC_MES = :3
-        `,[data.aps, data.anno, data.mes]);
+        `,[aps, anno, mes]);
 
         await this.semestralRepository.query(`
           INSERT INTO 
             AUCO_CARGUETERCERO 
           VALUES
             (:1, :2, :3, :4, :5, :6, sysdate, :7)
-        `, [data.aps, data.anno, data.mes, data.params.cdfter, data.params.ctlter, data.params.incenter, usuario]);
+        `, 
+        [
+          aps, 
+          anno, 
+          mes, 
+          cdfter, 
+          ctlter, 
+          incenter, 
+          usuario
+        ]);
 
         return 'cargueTerceros con exito';
         

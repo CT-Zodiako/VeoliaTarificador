@@ -20,20 +20,20 @@ export class SemestralController {
   }
 
   @Post('cargueInfCompetidor')
-  @UseGuards()
-  cargueInfCompetidor(@Query() data, @GetUser() usuario) {
+  @UseGuards(AuthGuard())
+  cargueInfCompetidor(@Body() data, @GetUser() usuario) {
     return this.semestralService.cargueInfCompetidor(data,usuario.SISU_ID);
   }
 
   @Post('cargueUsuarios')
-  @UseGuards()
-  cargueUsuarios(@Query() data, @GetUser() usuario) {
+  @UseGuards(AuthGuard())
+  cargueUsuarios(@Body() data, @GetUser() usuario) {
     return this.semestralService.cargueUsuarios(data,usuario.SISU_ID);
   }
 
   @Post('cargueTerceros')
-  @UseGuards()
-  cargueTerceros(@Query() data, @GetUser() usuario) {
+  @UseGuards(AuthGuard())
+  cargueTerceros(@Body() data, @GetUser() usuario) {
     return this.semestralService.cargueTerceros(data,usuario.SISU_ID);
   }
 
