@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { SemestralService } from './semestral.service';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('semestral')
 export class SemestralController {
@@ -12,8 +13,9 @@ export class SemestralController {
   }
 
   @Post('carguePropia')
-  @UseGuards()
-  carguePropia(@Query() data, @GetUser() usuario) {
+  @UseGuards(AuthGuard())
+  carguePropia(@Body() data, @GetUser() usuario) {
+    console.log('data',data);
     return this.semestralService.carguePropia(data,usuario.SISU_ID);
   }
 

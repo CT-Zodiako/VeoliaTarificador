@@ -23,49 +23,47 @@ export class SemestralService {
   }
 
   async carguePropia(data, usuario) {
-    try {
-      const {resumemes} = data;
+    const {aps} = data;    
+    // try {
 
-      if (resumemes) {
-        let resmes = resumemes[0];
-
-        await this.semestralRepository.query(`
-          DELETE FROM 
-            AUCO_CARGUEPROPIO 
-          WHERE 
-            APSA_ID = ${resmes.aps} AND 
-            PROP_ANNO = ${resmes.anno} AND 
-            PROP_MES = ${resmes.mes}
-        `);
+    //   if (data) {
+    //     await this.semestralRepository.query(`
+    //       DELETE FROM 
+    //         AUCO_CARGUEPROPIO 
+    //       WHERE 
+    //         APSA_ID = ${data.aps} AND 
+    //         PROP_ANNO = ${data.anno} AND 
+    //         PROP_MES = ${data.mes}
+    //     `);
   
-        await this.semestralRepository.query(`
-        INSERT INTO AUCO_CARGUEPROPIO
-          (APSA_ID, EMPR_EMPR, PROP_ANNO, PROP_MES, PROP_CP, PROP_MT3AGUA, PROP_M2CC, PROP_M2LAV, PROP_TI, PROP_TM, PROP_KLP, PROP_T, PROP_QA, PROP_ESCENARIO, PROP_FECCREA, USUA_USUARIO)
-        VALUES 
-          (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, sysdate, :15)`,
-        [
-          resmes.aps,
-          resmes.empr,
-          resmes.anno,
-          resmes.mes,
-          resmes.cp,
-          resmes.mt3agua,
-          resmes.m2cc,
-          resmes.m2lav,
-          resmes.ti,
-          resmes.tm,
-          resmes.klp,
-          resmes.t,
-          resmes.qa,
-          resmes.escenario,
-          usuario
-        ]
-      )
-      }
-      return 'carguePropia con exito';
-    } catch (err) {
-      return `error al carguePropia: ${err}`
-    }
+    //     await this.semestralRepository.query(`
+    //     INSERT INTO AUCO_CARGUEPROPIO
+    //       (APSA_ID, EMPR_EMPR, PROP_ANNO, PROP_MES, PROP_CP, PROP_MT3AGUA, PROP_M2CC, PROP_M2LAV, PROP_TI, PROP_TM, PROP_KLP, PROP_T, PROP_QA, PROP_ESCENARIO, PROP_FECCREA, USUA_USUARIO)
+    //     VALUES 
+    //       (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, sysdate, :15)`,
+    //     [
+    //       data.aps,
+    //       data.empr,
+    //       data.anno,
+    //       data.mes,
+    //       data.cp,
+    //       data.mt3agua,
+    //       data.m2cc,
+    //       data.m2lav,
+    //       data.ti,
+    //       data.tm,
+    //       data.klp,
+    //       data.t,
+    //       data.qa,
+    //       data.escenario,
+    //       usuario
+    //     ]
+    //   )
+    //   }
+    //   return 'carguePropia con exito';
+    // } catch (err) {
+    //   return `error al carguePropia: ${err}`
+    // }
   };
 
   async cargueInfCompetidor(data, usuario) {

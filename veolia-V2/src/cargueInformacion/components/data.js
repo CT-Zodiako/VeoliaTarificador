@@ -20,7 +20,23 @@ export const columnsPropiaSem = [
     { head: "CDFPRO", body: "cdfpro" },
   ];
 
-  export const columnsPropiaMen = [
+//   export const columnsPropiaMen = [
+//     { head: "APS", body: "APS" },
+//     { head: "EMPRESA", body: "EMPRESA" },
+//     { head: "AÑO", body: "ANNO" },
+//     { head: "MES", body: "MES" },
+//     { head: "CP", body: "CP" },
+//     { head: "MT3AGUA", body: "MT3AGUA" },
+//     { head: "M2CC", body: "M2CC" },
+//     { head: "M2LAV", body: "M2LAV" },
+//     { head: "TI", body: "TI" },
+//     { head: "TM", body: "TM" },
+//     { head: "KLP", body: "KLP" },
+//     { head: "T", body: "T" },
+//     { head: "QA", body: "QA" },
+//     { head: "ESCENARIO", body: "ESCENARIO" }
+// ];
+export const columnsPropiaMen = [
     { head: "APS", body: "aps" },
     { head: "EMPRESA", body: "empr" },
     { head: "AÑO", body: "anno" },

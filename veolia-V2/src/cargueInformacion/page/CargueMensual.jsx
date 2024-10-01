@@ -4,7 +4,7 @@ import { InfoCompetidor } from '../components/cargueMensual/InfoCompetidor';
 import { InfoUsuario } from '../components/cargueMensual/InfoUsuario';
 import { TabTable } from "../../ui/components/TabTable";
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
-import { getCargueSemestral } from "../service/cargueSemestralService";
+import { getCargueSemestral } from "../service/cargueMensualService";
 import React, { useEffect, useState } from "react";
 
 export const CargueMensual = () => {
