@@ -99,7 +99,17 @@ export const Menu = () => {
                           
                             </li>
 
-
+                            <li className="nav-item dropdown">
+                                <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
+                                    Cargue de Informacion
+                                </a>
+                                <ul className="dropdown-menu optionMenu">
+                                    <li><Link className="dropdown-item" to="/carguesem">Cargue Mensual</Link></li>
+                                    <li><Link className="dropdown-item" to="/carguesem">Cargue Semestral</Link></li>
+                                </ul>
+                          
+                            </li>
+                            
                             <li className="nav-item dropdown">
                                 <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">
                                     Reporteador Sui

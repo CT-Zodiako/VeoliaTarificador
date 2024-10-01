@@ -38,6 +38,7 @@ import { SubsidiosContribuciones } from "../proyecciones/pages/SubsidiosContribu
 import { CreciemientoVariables } from "../proyecciones/pages/CreciemientoVariables";
 import { PrivateRouters } from "./PrivateRouters";
 import { DetalladoFacturacion } from "../informesComerciales/pages/DetalladoFacturacion";
+import { CargueSemestral } from "../cargueInformacion/page/CargueSemestral";
 
 export const router = createBrowserRouter([
     {
@@ -145,6 +146,13 @@ export const router = createBrowserRouter([
             {
                 path: "/costoPodaInfo",
                 element: <CostoPodainfo />,
+                errorElement: <h1>error</h1>,
+            },
+
+            //Cargue Informacion
+            {
+                path: "/carguesem",
+                element: <CargueSemestral />,
                 errorElement: <h1>error</h1>,
             },
 

@@ -2,8 +2,7 @@ import { Http } from "../../helpers/axiosHelper";
 
 export const getFacturacion = async (data) => {    
     try{
-        const response = await Http.get('facturacion-informes-comerciales/facturacionDinc', data);
-        console.log('response facturacion: ', response);
+        const response = await Http.get('facturacion-informes-comerciales/facturacion', data);
         return response;
     }
     catch(error){
