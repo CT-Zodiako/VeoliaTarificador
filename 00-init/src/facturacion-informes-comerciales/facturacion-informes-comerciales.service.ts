@@ -37,7 +37,7 @@ export class FacturacionInformesComercialesService {
     );
   }
 
-  async historialCertifacion(data, usuario){
+  async historialCertificacion(data, usuario){
    try {
     const {anno,mes} = data;
 
@@ -53,7 +53,7 @@ export class FacturacionInformesComercialesService {
     `, [anno,mes,usuario]);
 
    } catch (error) {
-     return `error al historialCertifacion: ${error}`
+     return `error al historialCertificacion: ${error}`
     
    }
   }

@@ -49,10 +49,10 @@ export class FacturacionInformesComercialesController {
     return this.facturacionInformesComercialesService.facturacionDinc(consultaDTO);
   }
 
-  @Get('historialCertifacion')
+  @Get('historialCertificacion')
   @UseGuards(AuthGuard())
   historialCertifacion(@Query() data, @GetUser() usuario) {
-    return this.facturacionInformesComercialesService.historialCertifacion(data, usuario.SISU_ID);
+    return this.facturacionInformesComercialesService.historialCertificacion(data, usuario.SISU_ID);
   }
 
   @Get('historialProductividad')
