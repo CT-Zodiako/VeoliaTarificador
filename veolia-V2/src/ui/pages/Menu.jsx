@@ -82,6 +82,8 @@ export const Menu = () => {
                                 <ul className="dropdown-menu optionMenu">
                                     <li><Link className="dropdown-item" to="/dataDetalladoTarifasCo">Detallado Tarifas</Link></li>
                                     <li><Link className="dropdown-item" to="/facturacion">Detallado Facturacion</Link></li>
+                                    <li><Link className="dropdown-item" to="/histCertificacion">Historial de Certificacion</Link></li>
+                                    <li><Link className="dropdown-item" to="/histProductividad">Historial de Productividad</Link></li>
                                 </ul>
                             </li>
 

@@ -40,6 +40,8 @@ import { PrivateRouters } from "./PrivateRouters";
 import { DetalladoFacturacion } from "../informesComerciales/pages/DetalladoFacturacion";
 import { CargueSemestral } from "../cargueInformacion/page/CargueSemestral";
 import { CargueMensual } from "../cargueInformacion/page/CargueMensual";
+import { HistorialCertificacion } from "../informesComerciales/pages/HistorialCertificacion";
+import { HistorialProductividad } from "../informesComerciales/pages/HistorialProductividad";
 
 export const router = createBrowserRouter([
     {
@@ -120,6 +122,16 @@ export const router = createBrowserRouter([
             {
                 path: "/facturacion",
                 element: <DetalladoFacturacion />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/histCertificacion",
+                element: <HistorialCertificacion />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/histProductividad",
+                element: <HistorialProductividad />,
                 errorElement: <h1>error</h1>,
             },
 

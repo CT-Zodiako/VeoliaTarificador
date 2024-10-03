@@ -10,7 +10,7 @@ export const getCargueSemestral = async (data) => {
     }
 }
 
-export const PostPropiaMensual = async (data) => { 
+export const postPropiaMensual = async (data) => { 
     try{
         const response = await Http.post('semestral/carguePropia', data);
         return response;

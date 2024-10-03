@@ -1,10 +1,15 @@
 import { useState } from 'react'
 import { columnsPropiaMen } from '../data';
 import { TablaComponentes } from '../../../ui/components/TablaComponentes';
-import { PostPropiaMensual } from '../../service/cargueMensualService';
+import { postPropiaMensual } from '../../service/cargueMensualService';
 import Papa from 'papaparse';
+import { useAnnoSelector, useApsSelector, useMesSelector } from '../../../store/storeSelectors';
 
 export const InfoPropia = () => {
+    const aps = useApsSelector(state => state.aps);
+    const anno = useAnnoSelector((state) => state.anno);
+    const mes = useMesSelector((state) => state.mes);
+
     const [filemonthChose, setFilemonthChose] = useState([]);
     const [procesedFilemonth, setProcesedFilemonth] = useState([]);
     const [apsFilemonth, setApsFilemonth] = useState('');
@@ -13,7 +18,6 @@ export const InfoPropia = () => {
     const [datemFilemonth, setDatemFilemonth] = useState('');
     const [errors, setErrors] = useState(false);
     const [messages, setMessages] = useState([]);
-    console.log('InfoPropia', procesedFilemonth);
     
     const stapsSeleccionado = 'APS_SELECCIONADO';
     const emprSelected = { emprempr: 'EMPRESA_SELECCIONADA' };
@@ -52,7 +56,10 @@ export const InfoPropia = () => {
                 let hasErrors = false;
 
                 for (const element of data) {
-                    if (element.CODAPS !== stapsSeleccionado) {
+                    console.log('element', element.ANNO);
+                    console.log('ano:', anno);
+                    if (element.CODAPS != aps) {
+                        console.log('APS');
                         addMessages("error", "El APS Seleccionado no concuerda con el APS del archivo!");
                         hasErrors = true;
                         break;
@@ -60,7 +67,8 @@ export const InfoPropia = () => {
                         addMessages("error", "La Empresa Seleccionada no concuerda con la Empresa del archivo!");
                         hasErrors = true;
                         break;
-                    } else if (element.ANNO !== tmpYear) {
+                    } else if (element.ANNO != anno) {
+                        // console.log('ANNO');
                         addMessages("error", "El AÑO Seleccionado no concuerda con los del archivo!");
                         hasErrors = true;
                         break;
@@ -83,7 +91,7 @@ export const InfoPropia = () => {
 
     const onGuardarCSV = async() => {
         try {
-            await PostPropiaMensual(procesedFilemonth[0]);
+            await postPropiaMensual(procesedFilemonth[0]);
         } catch (error) {
             console.error('Error al guardar el archivo', error);
         }

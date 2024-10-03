@@ -38,6 +38,7 @@ export class FacturacionInformesComercialesService {
   }
 
   async historialCertificacion(data, usuario){
+    console.log('data',data);
    try {
     const {anno,mes} = data;
 
