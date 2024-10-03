@@ -23,6 +23,7 @@ export class SemestralService {
   }
 
   async carguePropia(data, usuario) {
+    console.log('data', data);
     const {aps,
       empr,
       anno,
@@ -39,7 +40,6 @@ export class SemestralService {
       escenario,} = data;    
     try {
 
-      if (data) {
         await this.semestralRepository.query(`
           DELETE FROM 
             AUCO_CARGUEPROPIO 
@@ -53,7 +53,8 @@ export class SemestralService {
         INSERT INTO AUCO_CARGUEPROPIO
           (APSA_ID, EMPR_EMPR, PROP_ANNO, PROP_MES, PROP_CP, PROP_MT3AGUA, PROP_M2CC, PROP_M2LAV, PROP_TI, PROP_TM, PROP_KLP, PROP_T, PROP_QA, PROP_ESCENARIO, PROP_FECCREA, USUA_USUARIO)
         VALUES 
-          (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, sysdate, :15)`,
+          (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, sysdate, :15)
+          `,
         [
           aps,
           empr,
@@ -72,7 +73,6 @@ export class SemestralService {
           usuario
         ]
       )
-      }
       return 'carguePropia con exito';
     } catch (err) {
       return `error al carguePropia: ${err}`
@@ -146,7 +146,6 @@ export class SemestralService {
         ND,
         NA,
         TAFNA,
-        usucre,
         codaps,
         coduso, 
         nomuso, 
@@ -156,7 +155,6 @@ export class SemestralService {
         tiponom,  
         cantidad, 
         toneladas 
-
       } = data;
 
       try {
@@ -198,7 +196,7 @@ export class SemestralService {
           ND,
           NA,
           TAFNA,
-          usucre,
+          usuario,
         ]);
 
 
@@ -250,15 +248,14 @@ export class SemestralService {
             AUCO_CARGUETERCERO 
           WHERE 
             APSA_ID = :1 AND 
-            TERC_ANNO = :2 AND T
-            ERC_MES = :3
+            TERC_ANNO = :2 AND
+            TERC_MES = :3
         `,[aps, anno, mes]);
 
         await this.semestralRepository.query(`
-          INSERT INTO 
-            AUCO_CARGUETERCERO 
-          VALUES
-            (:1, :2, :3, :4, :5, :6, sysdate, :7)
+          INSERT INTO  AUCO_CARGUETERCERO
+            (APSA_ID, TERC_ANNO, TERC_MES, TERC_CDF, TERC_CTL, TERC_INCENTIVOCDF, TERC_FECCREA, USUA_USUARIO)
+          VALUES(:1, :2, :3, :4 , :5 , :6 , SYSDATE, :7)
         `, 
         [
           aps, 

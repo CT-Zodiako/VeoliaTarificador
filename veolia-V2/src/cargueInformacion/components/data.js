@@ -20,22 +20,7 @@ export const columnsPropiaSem = [
     { head: "CDFPRO", body: "cdfpro" },
   ];
 
-//   export const columnsPropiaMen = [
-//     { head: "APS", body: "APS" },
-//     { head: "EMPRESA", body: "EMPRESA" },
-//     { head: "AÑO", body: "ANNO" },
-//     { head: "MES", body: "MES" },
-//     { head: "CP", body: "CP" },
-//     { head: "MT3AGUA", body: "MT3AGUA" },
-//     { head: "M2CC", body: "M2CC" },
-//     { head: "M2LAV", body: "M2LAV" },
-//     { head: "TI", body: "TI" },
-//     { head: "TM", body: "TM" },
-//     { head: "KLP", body: "KLP" },
-//     { head: "T", body: "T" },
-//     { head: "QA", body: "QA" },
-//     { head: "ESCENARIO", body: "ESCENARIO" }
-// ];
+
 export const columnsPropiaMen = [
     { head: "APS", body: "aps" },
     { head: "EMPRESA", body: "empr" },
@@ -51,4 +36,19 @@ export const columnsPropiaMen = [
     { head: "T", body: "t" },
     { head: "QA", body: "qa" },
     { head: "ESCENARIO", body: "escenario" }
+];
+
+export const columnsCompetidorMen = [
+    { head: "APS", body: "aps" },
+    { head: "EMPRESA", body: "empr" },
+    { head: "AÑO", body: "anno" },
+    { head: "MES", body: "mes" },
+    { head: "CP", body: "cp" },
+    { head: "MT3AGUA", body: "mt3agua" },
+    { head: "M2CC", body: "m2cc" },
+    { head: "M2LAV", body: "m2lav" },
+    { head: "TI", body: "ti" },
+    { head: "TM", body: "tm" },
+    { head: "KLP", body: "klp" },
+    { head: "CBLJ", body: "cblj" },
 ];

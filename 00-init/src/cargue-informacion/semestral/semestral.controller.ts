@@ -15,7 +15,6 @@ export class SemestralController {
   @Post('carguePropia')
   @UseGuards(AuthGuard())
   carguePropia(@Body() data, @GetUser() usuario) {
-    console.log('data',data);
     return this.semestralService.carguePropia(data,usuario.SISU_ID);
   }
 

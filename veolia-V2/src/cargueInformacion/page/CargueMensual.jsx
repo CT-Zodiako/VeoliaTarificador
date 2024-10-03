@@ -2,6 +2,7 @@ import { Selectores } from "../../ui/components/Selectores";
 import { InfoPropia } from '../components/cargueMensual/InfoPropia';
 import { InfoCompetidor } from '../components/cargueMensual/InfoCompetidor';
 import { InfoUsuario } from '../components/cargueMensual/InfoUsuario';
+import { InfoTerceros } from '../components/cargueMensual/InfoTerceros';
 import { TabTable } from "../../ui/components/TabTable";
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { getCargueSemestral } from "../service/cargueMensualService";
@@ -39,6 +40,7 @@ export const CargueMensual = () => {
         { titulo: 'info. Propia', info: InfoPropia },
         { titulo: 'info. Competidor', info: InfoCompetidor },
         { titulo: 'info. Usuario', info: InfoUsuario },
+        { titulo: 'info. Terceros', info: InfoTerceros },
     ];
 
     const handleClickTab = (index, titulo) => {

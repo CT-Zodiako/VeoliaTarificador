@@ -10,12 +10,42 @@ export const getCargueSemestral = async (data) => {
     }
 }
 
-export const PostCargueMensual = async (data) => { 
+export const PostPropiaMensual = async (data) => { 
     try{
         const response = await Http.post('semestral/carguePropia', data);
         return response;
     }
     catch(error){
         console.log('error al enviar data csv', error);
+    }
+}
+
+export const PostCompetidorMensual = async (data) => { 
+    try{
+        const response = await Http.post('semestral/cargueInfCompetidor', data);
+        return response;
+    }
+    catch(error){
+        console.log('error al enviar data csv competidor', error);
+    }
+}
+
+export const postInfoUsuarios = async (data) => { 
+    try{
+        const response = await Http.post('semestral/cargueUsuarios', data);
+        return response;
+    }
+    catch(error){
+        console.log('error al enviar data csv competidor', error);
+    }
+}
+
+export const postInfoTerceros = async (data) => { 
+    try{
+        const response = await Http.post('semestral/cargueTerceros', data);
+        return response;
+    }
+    catch(error){
+        console.log('error al enviar data csv competidor', error);
     }
 }

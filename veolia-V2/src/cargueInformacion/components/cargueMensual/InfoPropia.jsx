@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { columnsPropiaMen } from '../data';
 import { TablaComponentes } from '../../../ui/components/TablaComponentes';
+import { PostPropiaMensual } from '../../service/cargueMensualService';
 import Papa from 'papaparse';
-import { PostCargueMensual } from '../../service/cargueMensualService';
 
 export const InfoPropia = () => {
     const [filemonthChose, setFilemonthChose] = useState([]);
@@ -15,17 +15,16 @@ export const InfoPropia = () => {
     const [messages, setMessages] = useState([]);
     console.log('InfoPropia', procesedFilemonth);
     
-    const stapsSeleccionado = 'APS_SELECCIONADO'; // Asigna el valor adecuado
-    const emprSelected = { emprempr: 'EMPRESA_SELECCIONADA' }; // Asigna el valor adecuado
-    const stYear = 2024; // Cambia esto según tu lógica
-    const stSemester = 2; // Cambia esto según tu lógica
+    const stapsSeleccionado = 'APS_SELECCIONADO';
+    const emprSelected = { emprempr: 'EMPRESA_SELECCIONADA' };
+    const stYear = 2024;
+    const stSemester = 2;
 
     const addMessages = (type, text) => {
         setMessages((prev) => [...prev, { type, text }]);
     };
 
     const generarPreviewMonth = (data) => {
-        // Tu lógica para generar el preview
         console.log('Generando preview con:', data);
     };
      
@@ -42,13 +41,13 @@ export const InfoPropia = () => {
                 const data = results.data;
                 setProcesedFilemonth(data);
 
-                setApsFilemonth(data[0].CODAPS);
-                setEmprFilemonth(data[0].CODEMPRESA);
+                // setApsFilemonth(data[0].CODAPS);
+                // setEmprFilemonth(data[0].CODEMPRESA);
 
                 const tmpYear = stYear;
 
-                setDateyFilemonth(data[0].ANNO);
-                setDatemFilemonth(data[0].MES);
+                // setDateyFilemonth(data[0].ANNO);
+                // setDatemFilemonth(data[0].MES);
 
                 let hasErrors = false;
 
@@ -77,15 +76,14 @@ export const InfoPropia = () => {
                     generarPreviewMonth(data);
                 }
 
-                setErrors(hasErrors);
+                // setErrors(hasErrors);
             }
         });
     };
 
     const onGuardarCSV = async() => {
         try {
-            // const dataToSend = { data: procesedFilemonth };
-            await PostCargueMensual(procesedFilemonth[0]);
+            await PostPropiaMensual(procesedFilemonth[0]);
         } catch (error) {
             console.error('Error al guardar el archivo', error);
         }
