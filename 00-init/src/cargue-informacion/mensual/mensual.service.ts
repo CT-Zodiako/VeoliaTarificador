@@ -29,11 +29,29 @@ export class MensualService {
     }
   }
 
-  async carguePropias(data) {
+  async carguePropias(data, usuario) {
     try {
-      const {resumesem, usucre} = data;
+      const { aps,
+        empr,
+        anno,
+        mes,
+        qrt,
+        qlu,
+        qna,
+        qbl,
+        qr,
+        qrs,
+        lbl,
+        vl,
+        esce,
+        ctlmx,
+        cpe,
+        naa,
+        tafa,
+        crtpro,
+        cdfpro,
+      } = data;
 
-      for (let element of resumesem) {
         let sqlDelete = `
           DELETE FROM 
             AUCO_CARGUEPROPIOSEM 
@@ -42,41 +60,179 @@ export class MensualService {
             PROP_ANNO = :2 AND 
             PROP_MES = :3
         `;
-        await this.semestralRepository.query(sqlDelete, [element.aps, element.anno, element.mes]);
+        await this.semestralRepository.query(sqlDelete, [ aps,   anno,   mes]);
 
         const sqlResumenMensual = `INSERT INTO TARIFICADOR.AUCO_CARGUEPROPIOSEM
         (APSA_ID, EMPR_EMPR, PROP_ANNO, PROP_MES, PROP_QRT, PROP_QLU, PROP_QNA, PROP_QBL, PROP_QR, PROP_QRS, PROP_LBL, PROP_VL, PROP_ESCENARIO, PROP_CTLMX, PROP_CPE, PROP_NAA, PROP_TAFA, PROP_CRTPROPIO, PROP_CDFPROPIO, PROP_FECCREA, USUA_USUARIO)
         VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15, :16, :17, :18, :19, sysdate, :20)`;
 
         await this.semestralRepository.query(sqlResumenMensual, [ 
-          element.aps,
-          element.empr,
-          element.anno,
-          element.mes,
-          element.qrt,
-          element.qlu,
-          element.qna,
-          element.qbl,
-          element.qr,
-          element.qrs,
-          element.lbl,
-          element.vl,
-          element.esce,
-          element.ctlmx,
-          element.cpe,
-          element.naa,
-          element.tafa,
-          element.crtpro,
-          element.cdfpro,
-          usucre,
+          aps,
+          empr,
+          anno,
+          mes,
+          qrt,
+          qlu,
+          qna,
+          qbl,
+          qr,
+          qrs,
+          lbl,
+          vl,
+          esce,
+          ctlmx,
+          cpe,
+          naa,
+          tafa,
+          crtpro,
+          cdfpro,
+          usuario,
         ]);
 
         return 'carguePropias semestral exitoso';
 
-      }
 
     } catch (error) {
       return `error carguePropias semestral ${error}`;
     }
   }
+
+  async cargueInfCompetidor(data, usuario) {
+    try {
+      const {
+        aps, 
+        empr, 
+        anno, 
+        mes,
+        n,
+        na,
+        nd,
+        qlu,
+        qna,
+        qbl,
+        qr,
+        cblj,
+        lbl,
+        crtcomp,
+        cdfcomp,
+        qrtz,
+      } = data;
+          
+          await this.semestralRepository.query(
+            `
+              DELETE FROM 
+                AUCO_CARGUECOMPESEM 
+              WHERE 
+                APSA_ID = :1 and 
+                EMPR_EMPR = :2 AND 
+                COMP_ANNO = :3 AND 
+                COMP_MES = :4`,
+            [aps, empr, anno, mes]
+          );
+  
+  
+          const sqlResumemes = `INSERT INTO TARIFICADOR.AUCO_CARGUECOMPESEM
+          (APSA_ID, EMPR_EMPR, COMP_ANNO, COMP_MES, COMP_N, COMP_NAA, COMP_NDA, COMP_QLU, COMP_QNA, COMP_QBL, COMP_QR, COMP_CBLJ, COMP_LBLCOM, COMP_CRTVBA, COMP_CDFVBA, COMP_QRT, COMP_FECCREA, USUA_USUARIO)
+          VALUES (:1, :2, :3, :4 ,:5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15, :16, SYSDATE, :17)`;
+  
+          await this.semestralRepository.query(
+            sqlResumemes,
+            [
+              aps,
+              empr,
+              anno,
+              mes,
+              n,
+              na,
+              nd,
+              qlu,
+              qna,
+              qbl,
+              qr,
+              cblj,
+              lbl,
+              crtcomp,
+              cdfcomp,
+              qrtz,
+              usuario,
+            ]
+          );
+          return 'cargueInfCompetidor semestral exitoso';
+        }
+    catch (err) {
+       console.error(err);
+        return `error cargueInfCompetidor semestral ${err}`;
+    }
+  }
+
+  async cargueUsuarios(data, usuario) {
+    try {
+      const {
+        codaps,
+        aps,
+        anno,
+        semestre,
+        coduso,
+        nomuso,
+        codfactor,
+        nomfact,
+        codtipo,
+        nomtipo,
+        susm1,
+        susm2,
+        susm3,
+        susm4,
+        susm5,
+        susm6,
+        afom1,
+        afom2,
+        afom3,
+        afom4,
+        afom5,
+        afom6,
+      }= data
+
+        let sqlDelete = `DELETE FROM AUCO_CARGUEUSUSEM WHERE CAUS_CODAPS = :1 AND CAUS_ANNO = :2 AND CAUS_SEMESTRE = :3`;
+  
+        await this.semestralRepository.query(sqlDelete, [aps, anno, semestre]);
+  
+          const sqlResumenMensual = `INSERT INTO TARIFICADOR.AUCO_CARGUEUSUSEM
+          (CAUS_CODAPS, CAUS_APSNOM, CAUS_ANNO, CAUS_SEMESTRE, CAUS_CODCU, CAUS_NOMCU, CAUS_CODFACTOR, CAUS_NOMFACTOR, CAUS_CODTIPO, CAUS_NOMTIPO, CAUS_CANTM1, CAUS_CANTM2, CAUS_CANTM3, CAUS_CANTM4, CAUS_CANTM5, CAUS_CANTM6, CAUS_TONM1, CAUS_TONM2, CAUS_TONM3, CAUS_TONM4, CAUS_TONM5, CAUS_TONM6, CAUS_FECRE, CAUS_USUCRE)
+          VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15, :16, :17, :18, :19, :20, :21, :22, sysdate, :23)`;
+  
+          await this.semestralRepository.query(
+            sqlResumenMensual,
+            [
+              codaps,
+              aps,
+              anno,
+              semestre,
+              coduso,
+              nomuso,
+              codfactor,
+              nomfact,
+              codtipo,
+              nomtipo,
+              susm1,
+              susm2,
+              susm3,
+              susm4,
+              susm5,
+              susm6,
+              afom1,
+              afom2,
+              afom3,
+              afom4,
+              afom5,
+              afom6,
+              usuario,
+            ],
+          );
+        
+      return 'cargueUsuarios semestral exitoso';
+      
+    } catch (error) {
+      return 'error cargueUsuarios semestral';
+    }
+}
 }
