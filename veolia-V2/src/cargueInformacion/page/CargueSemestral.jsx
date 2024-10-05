@@ -1,39 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useAnnoSelector, useApsSelector, useMesSelector } from '../../store/storeSelectors';
-import { getCargueSemestral } from '../service/cargueSemestralService';
+import React, { useState } from 'react'
 import { Selectores } from '../../ui/components/Selectores';
 import { TabTable } from '../../ui/components/TabTable';
 import { InfoPropia } from '../components/cargueSemestral/InfoPropia';
 import { InfoCompetidor } from '../components/cargueSemestral/InfoCompetidor';
 import { InfoUsuario } from '../components/cargueSemestral/InfoUsuario';
  
-export const CargueSemestral = () => {
-    const aps = useApsSelector(state => state.aps);
-    const anno = useAnnoSelector(state => state.anno);
-    const mes = useMesSelector(state => state.mes);
-
+export const CargueSemestral = () => {    
     const [pestañaActiva, setPestañaActiva] = useState(0); 
     const [titulo, setTitulo] = useState('')
-
-    const data = {
-        APSA_ID : aps,
-        propia: 1,
-    }
-
-    const onCargueSemestral = async() => {
-        try{
-            const cargue = await getCargueSemestral(data);
-            console.log('cargue', cargue);
-        } catch {
-            console.error('error en data cargue');
-        }
-    }
-
-    useEffect(()=>{
-        if (aps){
-            onCargueSemestral();
-        }
-    }, [aps])
 
     const titulosTabs = [
         { titulo: 'info. Propia', info: InfoPropia },
@@ -54,7 +28,7 @@ export const CargueSemestral = () => {
                     <h3>Cargue Semestral</h3>
                 </div>
                 <div className="selector">
-                    <Selectores selectorAps={true} selectorFecha={true}/>
+                    <Selectores selectorAps={true} selectorFecha={true} selectorSemestre={true}/>
                 </div>
             </div>
             <div className="bodyComponent">

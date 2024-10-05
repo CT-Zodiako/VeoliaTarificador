@@ -166,6 +166,7 @@ export class MensualService {
   }
 
   async cargueUsuarios(data, usuario) {
+    console.log('data', data);
     try {
       const {
         codaps,
@@ -195,7 +196,7 @@ export class MensualService {
         let sqlDelete = `DELETE FROM AUCO_CARGUEUSUSEM WHERE CAUS_CODAPS = :1 AND CAUS_ANNO = :2 AND CAUS_SEMESTRE = :3`;
   
         await this.semestralRepository.query(sqlDelete, [aps, anno, semestre]);
-  
+        
           const sqlResumenMensual = `INSERT INTO TARIFICADOR.AUCO_CARGUEUSUSEM
           (CAUS_CODAPS, CAUS_APSNOM, CAUS_ANNO, CAUS_SEMESTRE, CAUS_CODCU, CAUS_NOMCU, CAUS_CODFACTOR, CAUS_NOMFACTOR, CAUS_CODTIPO, CAUS_NOMTIPO, CAUS_CANTM1, CAUS_CANTM2, CAUS_CANTM3, CAUS_CANTM4, CAUS_CANTM5, CAUS_CANTM6, CAUS_TONM1, CAUS_TONM2, CAUS_TONM3, CAUS_TONM4, CAUS_TONM5, CAUS_TONM6, CAUS_FECRE, CAUS_USUCRE)
           VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15, :16, :17, :18, :19, :20, :21, :22, sysdate, :23)`;

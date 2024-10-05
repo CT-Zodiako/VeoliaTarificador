@@ -20,6 +20,50 @@ export const columnsPropiaSem = [
     { head: "CDFPRO", body: "cdfpro" },
   ];
 
+  export const columnsCompetidorSem = [
+    { head: "APS", body: "aps" },
+    { head: "EMPRESA", body: "empr" },
+    { head: "AÑO", body: "anno" },
+    { head: "MES", body: "mes" },
+    { head: "N", body: "n" },
+    { head: "NA", body: "na" },
+    { head: "ND", body: "nd" },
+    { head: "QLU", body: "qlu" },
+    { head: "QNA", body: "qna" },
+    { head: "QBL", body: "qbl" },
+    { head: "QR", body: "qr" },
+    { head: "CBLJ", body: "cblj" },
+    { head: "LBL", body: "lbl" },
+    { head: "CRTCOMP", body: "crtcomp" },
+    { head: "CDFCOMP", body: "cdfcomp" },
+    { head: "QRTZ", body: "qrtz" }
+];
+
+export const columnsUsuarioSem = [
+    { head: "Cod. Aps", body: "codaps" },
+    { head: "APS", body: "aps" },
+    { head: "Año", body: "anno" },
+    { head: "Semestre", body: "semestre" },
+    { head: "Cod. CU", body: "coduso" },
+    { head: "Nombre CU", body: "nomuso" },
+    { head: "Cod. Factor", body: "codfactor" },
+    { head: "Nom. Factor", body: "nomfact" },
+    { head: "Cod. Tipo", body: "codtipo" },
+    { head: "Nom. Tipo", body: "nomtipo" },
+    { head: "Sus M1", body: "susm1" },
+    { head: "Sus M2", body: "susm2" },
+    { head: "Sus M3", body: "susm3" },
+    { head: "Sus M4", body: "susm4" },
+    { head: "Sus M5", body: "susm5" },
+    { head: "Sus M6", body: "susm6" },
+    { head: "Afo M1", body: "afom1" },
+    { head: "Afo M2", body: "afom2" },
+    { head: "Afo M3", body: "afom3" },
+    { head: "Afo M4", body: "afom4" },
+    { head: "Afo M5", body: "afom5" },
+    { head: "Afo M6", body: "afom6" }
+  ];
+  
 
 export const columnsPropiaMen = [
     { head: "APS", body: "aps" },

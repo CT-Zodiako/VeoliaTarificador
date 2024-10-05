@@ -23,7 +23,6 @@ export class SemestralService {
   }
 
   async carguePropia(data, usuario) {
-    console.log('data', data);
     const {aps,
       empr,
       anno,

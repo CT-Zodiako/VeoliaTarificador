@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { columnsCompetidorMen } from '../data';
 import { TablaComponentes } from '../../../ui/components/TablaComponentes';
-import { PostCompetidorMensual } from '../../service/cargueMensualService';
+import { postCompetidorMensual } from '../../service/cargueMensualService';
 import { useAnnoSelector, useApsSelector, useMesSelector } from '../../../store/storeSelectors';
+import { useGetCargueEmpresa } from '../../../hooks/useGetCargueEmpresa';
+import { SelectCargueInformacion } from '../selectCargueInformacion';
 import Papa from 'papaparse';
 
 export const InfoCompetidor = () => {
@@ -10,85 +12,107 @@ export const InfoCompetidor = () => {
   const anno = useAnnoSelector((state) => state.anno);
   const mes = useMesSelector((state) => state.mes);
 
+  const { empresas, onCargueSemestral } = useGetCargueEmpresa();
+  const [selectEmpre, setSelectEmpre] = useState('');
   const [filemonthChose, setFilemonthChose] = useState([]);
-  const [procesedFilemonth, setProcesedFilemonth] = useState([]);
-  const [apsFilemonth, setApsFilemonth] = useState('');
-  const [emprFilemonth, setEmprFilemonth] = useState('');
-  const [dateyFilemonth, setDateyFilemonth] = useState('');
-  const [datemFilemonth, setDatemFilemonth] = useState('');
+  const [filemonthActive, setFilemonthActive] = useState(false);
+  const [preViewTabla, setPreViewTabla] = useState([]);   
   const [errors, setErrors] = useState(false);
   const [messages, setMessages] = useState([]);
-  console.log('InfoCompetidor', procesedFilemonth);
-  
-  const stapsSeleccionado = 'APS_SELECCIONADO';
-  const emprSelected = { emprempr: 'EMPRESA_SELECCIONADA' };
-  const stYear = 2024;
-  const stSemester = 2;
+
+  useEffect(()=>{
+    if (aps){
+        onCargueSemestral();
+    }
+}, [aps])
+
+  const empreSeleccionada = (empre) => {
+    setSelectEmpre(empre); 
+  }
+
+  const filemonthSelected = (event) => {
+    const files = event.target.files || event.dataTransfer.files;
+    setFilemonthChose(files);
+
+    if (!files || files.length === 0) {
+      setFilemonthActive(false);
+      setFilemonthChose(null);
+    } else {
+      setFilemonthActive(true);
+    }
+  };
+
+  const cancelarArchivo = () => {
+    setFilemonthActive(false);
+    setFilemonthChose('');
+  };
 
   const addMessages = (type, text) => {
-      setMessages((prev) => [...prev, { type, text }]);
+    setMessages((prev) => [...prev, { type, text }]);
   };
 
   const generarPreviewMonth = (data) => {
-      console.log('Generando preview con:', data);
+    const preview = data.map((element) => ({
+        aps: Number(element.CODAPS),
+        empr: Number(element.CODEMPRESA),
+        anno: Number(element.ANNO),
+        mes: Number(element.MES),
+        cp: Number(element.CP),
+        mt3agua: Number(element.MT3AGUA),
+        m2cc: Number(element.M2CC),
+        m2lav: Number(element.M2LAV),
+        ti: Number(element.TI),
+        tm: Number(element.TM),
+        klp: Number(element.KLP),
+        cblj: Number(element.CBLJ)
+      }));
+    setPreViewTabla(preview);
   };
    
   const procesarMonthArchivo = async () => {
-      setMessages([]);
+    setMessages([]);
 
-      if (!filemonthChose.length) return;
+    if (!filemonthChose.length) return;
 
-      const file = filemonthChose[0];
-      Papa.parse(file, {
-          header: true,
-          skipEmptyLines: true,
-          complete: async (results) => {
-              const data = results.data;
-              setProcesedFilemonth(data);
+    const file = filemonthChose[0];
+    Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: async (results) => {
+            const data = results.data;
 
-              // setApsFilemonth(data[0].CODAPS);
-              // setEmprFilemonth(data[0].CODEMPRESA);
+            let hasErrors = false;
 
-              const tmpYear = stYear;
+            for (const element of data) {
+                if (element.CODAPS != aps) {
+                    addMessages("error", "El APS Seleccionado no concuerda con el APS del archivo!");
+                    hasErrors = true;
+                    break;
+                } else if (element.CODEMPRESA !== selectEmpre) {
+                    addMessages("error", "La Empresa Seleccionada no concuerda con la Empresa del archivo!");
+                    hasErrors = true;
+                    break;
+                } else if (element.ANNO != anno || element.MES != mes) {
+                    addMessages("error", "El AÑO Seleccionado no concuerda con los del archivo!");
+                    hasErrors = true;
+                    break;
+                } else {
+                    console.log('no hay errores');
+                }
+            }
 
-              // setDateyFilemonth(data[0].ANNO);
-              // setDatemFilemonth(data[0].MES);
+            if (!hasErrors) {
+                generarPreviewMonth(data);
+            }
 
-              let hasErrors = false;
-
-              for (const element of data) {
-                  if (element.CODAPS !== stapsSeleccionado) {
-                      addMessages("error", "El APS Seleccionado no concuerda con el APS del archivo!");
-                      hasErrors = true;
-                      break;
-                  } else if (element.CODEMPRESA !== emprSelected.emprempr) {
-                      addMessages("error", "La Empresa Seleccionada no concuerda con la Empresa del archivo!");
-                      hasErrors = true;
-                      break;
-                  } else if (element.ANNO !== tmpYear) {
-                      addMessages("error", "El AÑO Seleccionado no concuerda con los del archivo!");
-                      hasErrors = true;
-                      break;
-                  } else if (Math.ceil(element.MES / 6) !== stSemester) {
-                      console.log(`${Math.ceil(element.MES / 6)} != ${stSemester}`);
-                      addMessages("error", "Existen meses fuera del rango del semestre seleccionado que no concuerdan con los del archivo!");
-                      hasErrors = true;
-                      break;
-                  }
-              }
-
-              if (!hasErrors) {
-                  generarPreviewMonth(data);
-              }
-
-              // setErrors(hasErrors);
-          }
-      });
+            // setErrors(hasErrors);
+        }
+    });
   };
 
   const onGuardarCSV = async() => {
       try {
-          await PostCompetidorMensual(procesedFilemonth[0]);
+          await postCompetidorMensual(preViewTabla[0]);
       } catch (error) {
           console.error('Error al guardar el archivo', error);
       }
@@ -100,13 +124,24 @@ export const InfoCompetidor = () => {
           <h3>Cargue de Informacion Propia</h3>
           <div>
               <h4>Datos Semestrales</h4>
-              {/* <Selectores /> */}
+              <SelectCargueInformacion opciones={empresas} label='Seleccionar Empresa ' seleccion={empreSeleccionada}/>
               <input
                   type="file"
-                  onChange={(e) => setFilemonthChose(e.target.files)}
+                  onChange={filemonthSelected}
               />
+              <button 
+                onClick={cancelarArchivo}
+                disabled={!filemonthActive}
+              >
+                Cancelar
+              </button>
+              <button 
+                onClick={procesarMonthArchivo}
+                disabled={!filemonthActive}
 
-              <button onClick={procesarMonthArchivo}>Procesar archivo</button>
+              >
+                Procesar archivo
+              </button>
 
               {messages.map((message, index) => (
                   <div key={index} className={`message-${message.type}`}>
@@ -116,7 +151,7 @@ export const InfoCompetidor = () => {
           </div>
           <div>
               <h4>Vista Previa</h4>
-              <TablaComponentes colums={columnsCompetidorMen} data={procesedFilemonth}/>
+              <TablaComponentes colums={columnsCompetidorMen} data={preViewTabla}/>
           </div>
           <button
               className="btn btn-primary btn-md"

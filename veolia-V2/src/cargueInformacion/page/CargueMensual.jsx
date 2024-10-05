@@ -4,37 +4,11 @@ import { InfoCompetidor } from '../components/cargueMensual/InfoCompetidor';
 import { InfoUsuario } from '../components/cargueMensual/InfoUsuario';
 import { InfoTerceros } from '../components/cargueMensual/InfoTerceros';
 import { TabTable } from "../../ui/components/TabTable";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
-import { getCargueSemestral } from "../service/cargueMensualService";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export const CargueMensual = () => {
-    const aps = useApsSelector(state => state.aps);
-    const anno = useAnnoSelector(state => state.anno);
-    const mes = useMesSelector(state => state.mes);
-
     const [pestañaActiva, setPestañaActiva] = useState(0); 
     const [titulo, setTitulo] = useState('')
-
-    const data = {
-        APSA_ID : aps,
-        propia: 1,
-    }
-
-    const onCargueSemestral = async() => {
-        try{
-            const cargue = await getCargueSemestral(data);
-            console.log('cargue', cargue);
-        } catch {
-            console.error('error en data cargue');
-        }
-    }
-
-    useEffect(()=>{
-        if (aps){
-            onCargueSemestral();
-        }
-    }, [aps])
 
     const titulosTabs = [
         { titulo: 'info. Propia', info: InfoPropia },

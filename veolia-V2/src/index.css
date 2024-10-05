@@ -605,3 +605,30 @@
 .boton-area:active {
   background-color: #285a85;
 }
+
+/*CARGUE INFORMACION*/
+/* Oculta el input original */
+input[type="file"] {
+  display: none;
+}
+
+/* Estilos para el label que reemplaza al input */
+.custom-file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.custom-file-label:hover {
+  background-color: #0056b3;
+}
+
+.custom-file-label:active {
+  background-color: #003f7f;
+}
+

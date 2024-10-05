@@ -20,7 +20,7 @@ export const postPropiaMensual = async (data) => {
     }
 }
 
-export const PostCompetidorMensual = async (data) => { 
+export const postCompetidorMensual = async (data) => { 
     try{
         const response = await Http.post('semestral/cargueInfCompetidor', data);
         return response;
