@@ -45,42 +45,46 @@ export const InfoTerceros = () => {
 
     return(
     <>
-     <div>
-        <h3>Cargue de Terceros</h3>
-        <div>
-            <div>
-                <input 
-                    type="number" 
-                    name="cdfter"
-                    value={infoTerceros.cdfter}
-                    placeholder='CDF'
-                    onChange={onFormulario}
-                />
+     <div className="componenTable inf-terceros">
+        <div className="inf-terceros-container">
+            <div style={{ width: '100%' }}>
+                <h3>Cargue de Terceros</h3>
             </div>
-            <div>
-                <input 
-                    type="number" 
-                    name="ctlter"
-                    value={infoTerceros.ctlter}
-                    placeholder='CTL'
-                    onChange={onFormulario}
-                />
+            <div className="form-container">
+                <div>
+                    <input 
+                        type="number" 
+                        name="cdfter"
+                        value={infoTerceros.cdfter}
+                        placeholder='CDF'
+                        onChange={onFormulario}
+                    />
+                </div>
+                <div>
+                    <input 
+                        type="number" 
+                        name="ctlter"
+                        value={infoTerceros.ctlter}
+                        placeholder='CTL'
+                        onChange={onFormulario}
+                    />
+                </div>
+                <div>
+                    <input 
+                        type="number" 
+                        name="incenter"
+                        value={infoTerceros.incenter}
+                        placeholder='Incen. CDF'
+                        onChange={onFormulario}
+                    />
+                </div>
+                <button
+                    className="btn btn-primary btn-md"
+                    onClick={onGuardarTerceros}
+                >
+                    Guardar
+                </button>
             </div>
-            <div>
-                <input 
-                    type="number" 
-                    name="incenter"
-                    value={infoTerceros.incenter}
-                    placeholder='Incen. CDF'
-                    onChange={onFormulario}
-                />
-            </div>
-            <button
-                className="btn btn-primary btn-md"
-                onClick={onGuardarTerceros}
-            >
-                Guardar
-            </button>
         </div>
      </div>
     </>

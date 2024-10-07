@@ -6,6 +6,7 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from '../../../store/
 import { SelectCargueInformacion } from '../selectCargueInformacion';
 import { useGetCargueEmpresa } from '../../../hooks/useGetCargueEmpresa';
 import Papa from 'papaparse';
+import { InputCargueFile } from '../InputCargueFile';
 
 export const InfoPropia = () => {
     const aps = useApsSelector(state => state.aps);
@@ -15,7 +16,6 @@ export const InfoPropia = () => {
     const { empresas, onCargueSemestral } = useGetCargueEmpresa();
     const [selectEmpre, setSelectEmpre] = useState('');
     const [filemonthChose, setFilemonthChose] = useState('');
-    const [filemonthActive, setFilemonthActive] = useState(false);
     const [preViewTabla, setPreViewTabla] = useState([]);   
     const [errors, setErrors] = useState(false);
     const [messages, setMessages] = useState([]);
@@ -30,21 +30,8 @@ export const InfoPropia = () => {
         setSelectEmpre(empre);
     }
 
-    const filemonthSelected = (event) => {
-        const files = event.target.files || event.dataTransfer.files;
+    const cargarArchivo = (files) => {
         setFilemonthChose(files);
-    
-        if (!files || files.length === 0) {
-          setFilemonthActive(false);
-          setFilemonthChose(null);
-        } else {            
-          setFilemonthActive(true);
-        }
-    };
-
-    const cancelarArchivo = () => {
-        setFilemonthActive(false);
-        setFilemonthChose('');
     }
 
     const addMessages = (type, text) => {
@@ -122,35 +109,23 @@ export const InfoPropia = () => {
     
     return(
     <>
-        <div>
+        <div className="componenTable">
             <h3>Cargue de Informacion Propia</h3>
-            <div>
+            <div className='bodyComponent datos-cargue'>
                 <h4>Datos Semestrales</h4>
-                <SelectCargueInformacion opciones={empresas} label='Seleccionar Empresa ' seleccion={empreSeleccionada}/>
-                <input
-                    type="file"
-                    onChange={filemonthSelected}
-                />
-                <button 
-                    onClick={cancelarArchivo}
-                    disabled={!filemonthActive}
-                >
-                    Cancelar
-                </button>
-                <button 
-                    onClick={procesarMonthArchivo}
-                    disabled={!filemonthActive}
-                >
-                    Procesar archivo
-                </button>
-
+                <hr />
+                <div className='archivo-cargue'>
+                    <SelectCargueInformacion opciones={empresas} label='Seleccionar Empresa ' seleccion={empreSeleccionada}/>
+                    <InputCargueFile file={cargarArchivo} procesar={procesarMonthArchivo}/>
+                </div>
+                
                 {messages.map((message, index) => (
                     <div key={index} className={`message-${message.type}`}>
                         {message.text}
                     </div>
                 ))}
             </div>
-            <div>
+            <div className='bodyComponent vista-previa'>
                 <h4>Vista Previa</h4>
                 <TablaComponentes colums={columnsPropiaMen} data={preViewTabla}/>
             </div>

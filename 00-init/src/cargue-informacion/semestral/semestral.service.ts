@@ -137,6 +137,7 @@ export class SemestralService {
   };
 
     async cargueUsuarios(data, usuario) {
+      console.log('data', data);
       const {
         aps, 
         anno, 
@@ -165,7 +166,7 @@ export class SemestralService {
             CCOM_CODAPS = :1 AND 
             CCOM_ANNO = :2 AND 
             CCOM_MES = :3 
-        `,[aps, anno, mes]);
+        `,[codaps, anno, mes]);
 
 
         await this.semestralRepository.query(`
@@ -175,7 +176,7 @@ export class SemestralService {
             APSA_ID =:1 AND 
             RCOM_ANNO =:2 AND 
             RCOM_MES =:3
-        `,[aps, anno, mes]);
+        `,[codaps, anno, mes]);
 
         const pkvalue = await this.semestralRepository.query(`
           SELECT SAUCO_RESCOMERCIAL.nextval FROM DUAL

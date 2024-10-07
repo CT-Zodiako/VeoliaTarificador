@@ -19,7 +19,6 @@ import { SelectPaginacionTabla } from "./SelectPaginacionTabla";
 return (
     <div className='componenTable'>
       <div className="tableBorde">
-      <div className="acctionTable"/>
         <div className="card-body">
           <div className="table-responsive" style={{ overflowY: 'auto' }}>
             <table className="table table-striped table-bordered" style={{ fontSize: '2vh' }}>

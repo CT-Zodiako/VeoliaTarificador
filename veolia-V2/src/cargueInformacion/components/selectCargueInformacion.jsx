@@ -16,9 +16,8 @@ export const SelectCargueInformacion = ({opciones, label, seleccion}) => {
     return(
     <>
       <div className='mt-1'>
-            {/* <label htmlFor="aps"className="labelSelect" >Proyecciones:</label> */}
             <select 
-                className="form-select form-select-sm selectores" 
+                className="form-select form-select-sm select_empresa" 
                 aria-label="Small select example" 
                 value={selected} 
                 onChange={onSeleccionar}

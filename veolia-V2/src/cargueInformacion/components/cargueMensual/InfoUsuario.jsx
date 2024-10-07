@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { columnsEstratoMen, columnsUsuarioMen, columnsVariables } from '../data';
 import { useAnnoSelector, useApsSelector, useMesSelector } from '../../../store/storeSelectors';
 import { postInfoUsuarios } from '../../service/cargueMensualService';
 import Papa from 'papaparse';
+import { InputCargueFile } from '../InputCargueFile';
+import { TablaComponentes } from '../../../ui/components/TablaComponentes';
 
 export const InfoUsuario = () => {
   const aps = useApsSelector(state => state.aps);
@@ -12,12 +15,19 @@ export const InfoUsuario = () => {
   const [messages, setMessages] = useState([]);
   const [procesedFile, setProcesedFile] = useState([]);
   const [crosResumeFile, setCrosResumeFile] = useState('');
-  const [resumeVariables, setResumeVariables] = useState('');
+  const [resumeVariables, setResumeVariables] = useState([]);
+  console.log('resumeVariables: ', resumeVariables);
   const [resumeEstratoFile, setResumeEstratoFile] = useState([]);
+  console.log('resumeEstratoFile: ', resumeEstratoFile);
   const [filePreview, setFilePreview] = useState([]);
+  console.log('vista previa: ', filePreview);
+
+  const cargarArchivo = (files) => {
+    setFileChose(files);
+  };
   
-  const addMessages = (type, message) => {
-    setMessages((prevMessages) => [...prevMessages, { type, message }]);
+  const addMessages = (type, text) => {
+    setMessages((prevMessages) => [...prevMessages, { type, text }]);
   };
 
   const generarPreview = (data) => {
@@ -94,12 +104,22 @@ export const InfoUsuario = () => {
         const apsFile = results.data[0].CODAPS;
         const dateyFile = results.data[0].ANNO;
         const datemFile = results.data[0].MES;
+
+        let foundError = false;
         
         if (apsFile != aps) {
+          console.log('APS');
           addMessages("error", "El APS Seleccionado no concuerda con el APS del archivo!");
+          foundError = true;
+          return false;
         } else if (dateyFile != anno || datemFile != mes) {
+          console.log('AÑO y MES');
           addMessages("error", "El AÑO y MES Seleccionado no concuerda con los del archivo!");
-        } else {
+          foundError = true;
+          return false;
+        } 
+        if (!foundError) {
+          console.log('archivo procesado');
           calcularResumen(results.data);
           calcularResumenxestrato(results.data);
           generarPreview(results.data);
@@ -110,7 +130,7 @@ export const InfoUsuario = () => {
 
   const enviarInfoUsuario = async () => {
     const data = {
-      aps: aps,
+      aps: filePreview[0].aps,
       anno: anno,
       mes: mes,
       N: crosResumeFile.N,
@@ -123,7 +143,7 @@ export const InfoUsuario = () => {
       codfactor: Number(filePreview[0].codfactor),
       codtipo: Number(filePreview[0].codtipo),
       tipo: Number(filePreview[0].tipo),
-      tiponom: Number(filePreview[0].tiponom),
+      tiponom: filePreview[0].tiponom,
       cantidad: Number(filePreview[0].cantidad),
       toneladas: Number(filePreview[0].toneladas),
     };
@@ -140,27 +160,29 @@ export const InfoUsuario = () => {
       <div>
         <h2>Usuario mensual</h2>
         <div>
-              <h4>Datos Semestrales</h4>
-              {/* <Selectores /> */}
-              <input
-                  type="file"
-                  onChange={(e) => setFileChose(e.target.files)}
-              />
-
-              <button onClick={procesarArchivo}>Procesar archivo</button>
-
-              {/* {messages.map((message, index) => (
-                  <div key={index} className={`message-${message.type}`}>
-                      {message.text}
-                  </div>
-              ))} */}
+            <h4>Datos Semestrales</h4>
+            <InputCargueFile file={cargarArchivo} procesar={procesarArchivo}/>
+            {messages.map((message, index) => (
+                <div key={index} className={`message-${message.type}`}>
+                    {message.text}
+                </div>
+            ))}
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div style={{ width: '40%' }}>
+            <TablaComponentes colums={columnsVariables} data={resumeVariables}/>
+            <TablaComponentes colums={columnsEstratoMen} data={resumeEstratoFile}/>        
           </div>
-          <button
-              className="btn btn-primary btn-md"
-              onClick={enviarInfoUsuario}
-          >
-            Guardar
-          </button>
+          <div style={{ width: '60%' }}>
+            <TablaComponentes colums={columnsUsuarioMen} data={filePreview}/>
+          </div>
+        </div>
+        <button
+            className="btn btn-primary btn-md"
+            onClick={enviarInfoUsuario}
+        >
+          Guardar
+        </button>
       </div>
     </>
   )

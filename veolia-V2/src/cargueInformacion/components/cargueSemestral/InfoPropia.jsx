@@ -4,8 +4,9 @@ import { TablaComponentes } from '../../../ui/components/TablaComponentes';
 import { SelectCargueInformacion } from '../selectCargueInformacion';
 import { useAnnoSelector, useApsSelector, useSemestreSelector } from '../../../store/storeSelectors';
 import { useGetCargueEmpresa } from '../../../hooks/useGetCargueEmpresa';
-import Papa from 'papaparse';
 import { postPropiaSemestral } from '../../service/cargueSemestralService';
+import { InputCargueFile } from '../InputCargueFile';
+import Papa from 'papaparse';
 
 export const InfoPropia = () => {
     const aps = useApsSelector(state => state.aps);
@@ -15,11 +16,10 @@ export const InfoPropia = () => {
     const { empresas, onCargueSemestral } = useGetCargueEmpresa();
     const [selectEmpre, setSelectEmpre] = useState('');
     const [filemonthChose, setFilemonthChose] = useState('');
-    const [filemonthActive, setFilemonthActive] = useState(false);
     const [preViewTabla, setPreViewTabla] = useState([]);   
     const [errors, setErrors] = useState(false);
     const [messages, setMessages] = useState([]);
-
+    
     useEffect(()=>{
         if (aps){
             onCargueSemestral();
@@ -29,21 +29,9 @@ export const InfoPropia = () => {
     const empreSeleccionada = (empre) => {
         setSelectEmpre(empre);
     }
-    const filemonthSelected = (event) => {
-        const files = event.target.files || event.dataTransfer.files;
-        setFilemonthChose(files);
-    
-        if (!files || files.length === 0) {
-          setFilemonthActive(false);
-          setFilemonthChose(null);
-        } else {            
-          setFilemonthActive(true);
-        }
-    };
 
-    const cancelarArchivo = () => {
-        setFilemonthActive(false);
-        setFilemonthChose('');
+    const cargarArchivo = (files) => {
+        setFilemonthChose(files);
     }
 
     const addMessages = (type, text) => {
@@ -85,7 +73,7 @@ export const InfoPropia = () => {
           skipEmptyLines: true,
           complete: (results) => {
             const parsedData = results.data;
-            console.log(parsedData);
+
             let foundError = false;
     
             parsedData.every((element) => {
@@ -128,36 +116,24 @@ export const InfoPropia = () => {
 
     return(
     <>
-        <div>
+        <div className="componenTable">
             <h3>Cargue de Informacion Propia</h3>
-            <div>
+            <div className='bodyComponent datos-cargue'>
                 <h4>Datos Semestrales</h4>
-                <SelectCargueInformacion opciones={empresas} label='Seleccionar Empresa ' seleccion={empreSeleccionada}/>
-                <input
-                    type="file"
-                    onChange={filemonthSelected}
-                />
-                <button 
-                    onClick={cancelarArchivo}
-                    disabled={!filemonthActive}
-                >
-                    Cancelar
-                </button>
-                <button 
-                    onClick={procesarMonthArchivo}
-                    disabled={!filemonthActive}
-                >
-                    Procesar archivo
-                </button>
-
+                <hr />
+                <div className='archivo-cargue'>
+                    <SelectCargueInformacion opciones={empresas} label='Seleccionar Empresa ' seleccion={empreSeleccionada}/>
+                    <InputCargueFile file={cargarArchivo} procesar={procesarMonthArchivo}/>
+                </div>
                 {messages.map((message, index) => (
                     <div key={index} className={`message-${message.type}`}>
                         {message.text}
                     </div>
                 ))}
             </div>
-            <div>
+            <div className='bodyComponent vista-previa'>
                 <h4>Vista Previa</h4>
+                <hr />
                 <TablaComponentes colums={columnsPropiaSem} data={preViewTabla}/>
             </div>
             <button

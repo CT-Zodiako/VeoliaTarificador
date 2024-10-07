@@ -96,3 +96,30 @@ export const columnsCompetidorMen = [
     { head: "KLP", body: "klp" },
     { head: "CBLJ", body: "cblj" },
 ];
+
+export const columnsUsuarioMen = [
+  { head: "Cod. Aps", body: "codaps" },
+  { head: "APS", body: "aps" },
+  { head: "Año", body: "anno" },
+  { head: "Mes", body: "mes" },
+  { head: "Cod. CU", body: "coduso" },
+  { head: "Nombre CU", body: "nomuso" },
+  { head: "Cod. Factor", body: "codfactor" },
+  { head: "Cod. Tipo", body: "codtipo" },
+  { head: "Tipo", body: "tipo" },
+  { head: "Nom. Tipo", body: "tiponom" },
+  { head: "Cantidad", body: "cantidad" },
+  { head: "Toneladas", body: "toneladas" }
+];
+
+export const columnsEstratoMen = [
+  { head: "Estrato", body: "Estrato" },
+  { head: "Cantidad", body: "Cantidad" },
+  { head: "Toneladas", body: "TonTotales" }
+];
+
+export const columnsVariables = [
+  { head: "Variable", body: "Var" },
+  { head: "Total", body: "Total" }
+];
+

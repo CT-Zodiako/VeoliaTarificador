@@ -4,6 +4,7 @@ import { useAnnoSelector, useApsSelector, useSemestreSelector } from '../../../s
 import { TablaComponentes } from '../../../ui/components/TablaComponentes';
 import Papa from 'papaparse';
 import { postUsuariosSemestral } from '../../service/cargueSemestralService';
+import { InputCargueFile } from '../InputCargueFile';
 
 export const InfoUsuario = () => {
   const aps = useApsSelector(state => state.aps);
@@ -11,27 +12,13 @@ export const InfoUsuario = () => {
   const semestre = useSemestreSelector((state) => state.semestre);
 
   const [filemonthChose, setFilemonthChose] = useState('');
-  const [filemonthActive, setFilemonthActive] = useState(false);
   const [preViewTabla, setPreViewTabla] = useState([]); 
   const [errors, setErrors] = useState(false);
   const [messages, setMessages] = useState([]);
 
-  const filemonthSelected = (event) => {
-    const files = event.target.files || event.dataTransfer.files;
+  const cargarArchivo = (files) => {
     setFilemonthChose(files);
-
-    if (!files || files.length === 0) {
-      setFilemonthActive(false);
-      setFilemonthChose(null);
-    } else {            
-      setFilemonthActive(true);
-    }
-  };
-
-  const cancelarArchivo = () => {
-    setFilemonthActive(false);
-    setFilemonthChose('');
-  };
+  }
 
   const addMessages = (type, text) => {
     setMessages((prev) => [...prev, { type, text }]);
@@ -87,9 +74,9 @@ export const InfoUsuario = () => {
             addMessages("error", "El AÑO Seleccionado no concuerda con los del archivo!");
             foundError = true;
             return false;
-          } else if (element.SEMESTRE !== semestre) {
+          } else if (element.SEMESTRE != semestre) {
             addMessages('error', 'Existen meses fuera del rango del semestre Seleccionado no concuerda con los del archivo!');
-            setErrors(true);
+            foundError = true;
             return false;
           }
           return true;
@@ -104,7 +91,6 @@ export const InfoUsuario = () => {
     });
   };
 
-
   const onGuardarCSV = async() => {
     try {
         await postUsuariosSemestral(preViewTabla[0]);
@@ -115,35 +101,23 @@ export const InfoUsuario = () => {
 
   return(
     <>
-        <div>
+        <div className="componenTable">
             <h3>Cargue de Informacion Propia</h3>
-            <div>
+            <div className='bodyComponent datos-cargue'>
                 <h4>Datos Semestrales</h4>
-                <input
-                    type="file"
-                    onChange={filemonthSelected}
-                />
-                <button 
-                    onClick={cancelarArchivo}
-                    disabled={!filemonthActive}
-                >
-                    Cancelar
-                </button>
-                <button 
-                    onClick={procesarMonthArchivo}
-                    disabled={!filemonthActive}
-                >
-                    Procesar archivo
-                </button>
-
+                <hr />
+                <div className='archivo-cargue'>
+                  <InputCargueFile file={cargarArchivo} procesar={procesarMonthArchivo}/>
+                </div>
                 {messages.map((message, index) => (
                     <div key={index} className={`message-${message.type}`}>
                         {message.text}
                     </div>
                 ))}
             </div>
-            <div>
+            <div className='bodyComponent vista-previa'>
                 <h4>Vista Previa</h4>
+                <hr />
                 <TablaComponentes colums={columnsUsuarioSem} data={preViewTabla}/>
             </div>
             <button
