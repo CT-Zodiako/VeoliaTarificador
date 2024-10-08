@@ -16,7 +16,6 @@ export const IndicesCRA = () => {
     const actualizarTabla = async () => {
         const data = await getIndicesCRA(anno, mes);
         setData(data);
-        
     }
 
         
@@ -30,7 +29,7 @@ export const IndicesCRA = () => {
             };
         }
         fetchData();
-    }, [anno, mes,data]);
+    }, [anno, mes]);
 
     const getIndiceText = (item) => {
         if (item.PARA_INDICE20011 === 1) {

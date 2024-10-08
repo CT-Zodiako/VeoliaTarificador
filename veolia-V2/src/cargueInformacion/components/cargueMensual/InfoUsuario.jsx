@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { columnsEstratoMen, columnsUsuarioMen, columnsVariables } from '../data';
 import { useAnnoSelector, useApsSelector, useMesSelector } from '../../../store/storeSelectors';
 import { postInfoUsuarios } from '../../service/cargueMensualService';
-import Papa from 'papaparse';
 import { InputCargueFile } from '../InputCargueFile';
 import { TablaComponentes } from '../../../ui/components/TablaComponentes';
+import Papa from 'papaparse';
 
 export const InfoUsuario = () => {
   const aps = useApsSelector(state => state.aps);

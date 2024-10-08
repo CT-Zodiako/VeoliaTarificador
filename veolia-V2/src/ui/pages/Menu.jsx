@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { serviceMenu } from "../services/serviceMenu";
 
 export const Menu = () => {
 
     const [showOffcanvas, setShowOffcanvas] = useState(false);
-
+    const menu = serviceMenu();
+    console.log('menu', menu);
     const onMenu = () => {
         setShowOffcanvas(!showOffcanvas);
     };
@@ -56,13 +58,13 @@ export const Menu = () => {
                                     Suministros
                                 </a>
                                 <ul className="dropdown-menu optionMenu">
-                                    <li><Link className="dropdown-item" to="/indicesCRA">Indices CRA</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-con">Subsidios y Contribuciones</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-verf">Verificación</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-aproch">Activar Aprovechamiento</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-costPoda">Costo Poda</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-ajutProd">Ajustes Productividad</Link></li>
-                                    <li><Link className="dropdown-item" to="/sub-desCost">Descuento Costo</Link></li>
+                                    <li><Link className="dropdown-item" to="/cra">Indices CRA</Link></li>
+                                    <li><Link className="dropdown-item" to="/subcon">Subsidios y Contribuciones</Link></li>
+                                    <li><Link className="dropdown-item" to="/verificacion">Verificación</Link></li>
+                                    <li><Link className="dropdown-item" to="/aprovechamiento">Activar Aprovechamiento</Link></li>
+                                    <li><Link className="dropdown-item" to="/costoPoda">Costo Poda</Link></li>
+                                    <li><Link className="dropdown-item" to="/productividad">Ajustes Productividad</Link></li>
+                                    <li><Link className="dropdown-item" to="/descuento">Descuento Costo</Link></li>
                                 </ul>
                             </li>
 
@@ -80,7 +82,7 @@ export const Menu = () => {
                                     Informes comerciales
                                 </a>
                                 <ul className="dropdown-menu optionMenu">
-                                    <li><Link className="dropdown-item" to="/dataDetalladoTarifasCo">Detallado Tarifas</Link></li>
+                                    <li><Link className="dropdown-item" to="/tarifas">Detallado Tarifas</Link></li>
                                     <li><Link className="dropdown-item" to="/facturacion">Detallado Facturacion</Link></li>
                                     <li><Link className="dropdown-item" to="/histCertificacion">Historial de Certificacion</Link></li>
                                     <li><Link className="dropdown-item" to="/histProductividad">Historial de Productividad</Link></li>
@@ -92,11 +94,11 @@ export const Menu = () => {
                                     Informes gerenciales
                                 </a>
                                 <ul className="dropdown-menu optionMenu">
-                                    <li><Link className="dropdown-item" to="/dataDetalladoTarifas">Detallado Tarifas</Link></li>
-                                    <li><Link className="dropdown-item" to="/detalladoCostos">Detallado de costo</Link></li>
-                                    <li><Link className="dropdown-item" to="/dataDetalladoSubAport">Detallado Sub y Aportes</Link></li>
-                                    <li><Link className="dropdown-item" to="/dashBoardTarifas">DashBoard</Link></li>
-                                    <li><Link className="dropdown-item" to="/costoPodaInfo">Costo Poda</Link></li>
+                                    <li><Link className="dropdown-item" to="/gentarifas">Detallado Tarifas</Link></li>
+                                    <li><Link className="dropdown-item" to="/detcostos">Detallado de costo</Link></li>
+                                    <li><Link className="dropdown-item" to="/detsubaporte">Detallado Sub y Aportes</Link></li>
+                                    <li><Link className="dropdown-item" to="/dashboardtarifas">DashBoard</Link></li>
+                                    <li><Link className="dropdown-item" to="/costopodagerencial">Costo Poda</Link></li>
                                 </ul>
                           
                             </li>
@@ -117,9 +119,9 @@ export const Menu = () => {
                                     Reporteador Sui
                                 </a>
                                 <ul className="dropdown-menu optionMenu">
-                                    <li><Link className="dropdown-item" to="/formatosFormularios">Formatos y Formularios</Link></li>
-                                    <li><Link className="dropdown-item" to="/DashBoardSUI">DashBoard</Link></li>
-                                    <li><Link className="dropdown-item" to="/resmunenFormatosFormularios">Resumen Formatos y Formularios</Link></li>
+                                    <li><Link className="dropdown-item" to="/suisui">Formatos y Formularios</Link></li>
+                                    <li><Link className="dropdown-item" to="/SuiDashBoard">DashBoard</Link></li>
+                                    <li><Link className="dropdown-item" to="/resumenFormatos">Resumen Formatos y Formularios</Link></li>
                                     <li><Link className="dropdown-item" to="/reversiones_sui">Reversiones</Link></li>
                                 </ul>
                             </li>
@@ -131,7 +133,7 @@ export const Menu = () => {
                                 <ul className="dropdown-menu optionMenu">
                                     <li><Link className="dropdown-item" to="/crear">Crear</Link></li>
                                     <li><Link className="dropdown-item" to="/crecimientovariables">Crecimiento Variables</Link></li>
-                                    <li><Link className="dropdown-item" to="/lineasTiempo">Lineas de Tiempo</Link></li>
+                                    <li><Link className="dropdown-item" to="/lineastiempo">Lineas de Tiempo</Link></li>
                                     <li><Link className="dropdown-item" to="/subsidioscontribuciones">Subsidios y Contribuciones</Link></li>
                                 </ul>
                             </li>
@@ -141,7 +143,7 @@ export const Menu = () => {
                                     Informes Proyecciones
                                 </a>
                                 <ul className="dropdown-menu optionMenu">
-                                    <li><Link className="dropdown-item" to="/informesProyecciones">Formatos y Formularios</Link></li>
+                                    <li><Link className="dropdown-item" to="/generales">Formatos y Formularios</Link></li>
                                 </ul>
                             </li>
 
@@ -150,9 +152,9 @@ export const Menu = () => {
                                     PGIRS
                                 </a>
                                 <ul className="dropdown-menu optionMenu">
-                                    <li><Link className="dropdown-item" to="/variablesPGIRS">Variables PGIRS</Link></li>
-                                    <li><Link className="dropdown-item" to="/informePGIRS">Informe PGIRS</Link></li>
-                                    <li><Link className="dropdown-item" to="/resumenPGIRS">Resumen Variables PGIRS</Link></li>
+                                    <li><Link className="dropdown-item" to="/variablespgris">Variables PGIRS</Link></li>
+                                    <li><Link className="dropdown-item" to="/infopgirs">Informe PGIRS</Link></li>
+                                    <li><Link className="dropdown-item" to="/informepgirs">Resumen Variables PGIRS</Link></li>
                                 </ul>
                             </li>
 
@@ -162,9 +164,9 @@ export const Menu = () => {
                                 </a>
                                 <ul className="dropdown-menu optionMenu">
                                     <li><Link className="dropdown-item" to="/reversiones">Reversiones</Link></li>
-                                    <li><Link className="dropdown-item" to="/auth_reversiones">Autorizacion Reversiones</Link></li>
-                                    <li><Link className="dropdown-item" to="/detalles_reversiones">Detalles Reversiones</Link></li>
-                                    <li><Link className="dropdown-item" to="/detalles_autorizacion">Detalles Autorizacion</Link></li>
+                                    <li><Link className="dropdown-item" to="/reversion_auth">Autorizacion Reversiones</Link></li>
+                                    <li><Link className="dropdown-item" to="/detareversiones">Detalles Reversiones</Link></li>
+                                    <li><Link className="dropdown-item" to="/detautorizacion">Detalles Autorizacion</Link></li>
                                 </ul>
                             </li>
 
