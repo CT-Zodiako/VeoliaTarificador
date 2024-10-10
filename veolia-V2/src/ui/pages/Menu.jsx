@@ -1,13 +1,21 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { serviceMenu } from "../services/serviceMenu";
 
 export const Menu = () => {
+    const navigate = useNavigate();
+
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     const menu = serviceMenu();
     const inicio = menu[0];
+
     const onMenu = () => {
         setShowOffcanvas(!showOffcanvas);
+    };
+
+    const cerrarSesion = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
     };
 
     return (
@@ -50,6 +58,14 @@ export const Menu = () => {
                                 )}
                                 </li>
                             ))}
+                            <li>
+                                <button
+                                    className="btn btn-secondary"
+                                    onClick={cerrarSesion}    
+                                >
+                                    Cerrar Sesión
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>
