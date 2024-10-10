@@ -4,7 +4,6 @@ import { getMenuService } from "./menuService";
 
 export const serviceMenu = () => {
     const [menu, setMenu] = useState([]);
-
     const usr = localStorage.getItem("token");
 
     useEffect(() => {
@@ -12,7 +11,6 @@ export const serviceMenu = () => {
             let initialMenu = Menu;
             if (usr) {
                 const usrMenu = await getMenuService();
-                console.log('usrMenu', usrMenu);
                 if (usrMenu) {
                   let auxMenu = [];
                   initialMenu.forEach((element) => {
@@ -35,7 +33,6 @@ export const serviceMenu = () => {
                         }
                         break;
                       }
-                      
                     }
                   });
                   initialMenu = auxMenu;

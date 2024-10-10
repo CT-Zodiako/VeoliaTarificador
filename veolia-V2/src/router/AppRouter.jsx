@@ -36,7 +36,6 @@ import { Crear } from "../proyecciones/pages/Crear";
 import { LineasTiempo } from "../proyecciones/pages/LineasTiempo";
 import { SubsidiosContribuciones } from "../proyecciones/pages/SubsidiosContribuciones";
 import { CreciemientoVariables } from "../proyecciones/pages/CreciemientoVariables";
-// import { PrivateRouters } from "./PrivateRouters";
 import { DetalladoFacturacion } from "../informesComerciales/pages/DetalladoFacturacion";
 import { CargueSemestral } from "../cargueInformacion/page/CargueSemestral";
 import { CargueMensual } from "../cargueInformacion/page/CargueMensual";
@@ -52,10 +51,8 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <VeoliaApp />,
-        // element: <PrivateRouters><VeoliaApp /></PrivateRouters>,
         errorElement: <h1>error</h1>,
         children: [
-            // configuracion
             {
                 path: "/aps",
                 element: <APSpage />,
