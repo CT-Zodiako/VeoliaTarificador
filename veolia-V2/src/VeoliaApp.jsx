@@ -10,12 +10,25 @@ export const VeoliaApp = () => {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-        if(token) {
-            setAutentificacion(true);
+        if (token) {
+            try {
+                const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+                const expirationTime = tokenPayload.exp * 1000; // La expiración está en segundos, la convertimos a milisegundos
+
+                if (Date.now() >= expirationTime) {
+                    localStorage.removeItem("token");
+                    navigate('/login');
+                } else {
+                    setAutentificacion(true);
+                }
+            } catch (error) {
+                localStorage.removeItem("token");
+                navigate('/login');
+            }
         } else {
             navigate('/login');
         }
-    }, []);
+    }, [navigate]);
 
     return (
         <>

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { TableRellenos } from "../components/TableRellenos";
+// import { TableRellenos } from "../components/TableRellenos";
 import TableComponent from "../components/UsuarioTable";
 import { PermisoPorAPS } from './PermisoPorAPS';
+import { PermisoPorOpciones } from './PermisoPorOpciones';
 
 export const UsuariosPage = () => {
   const [activeTab, setActiveTab] = useState('active-tab');
@@ -50,10 +51,7 @@ export const UsuariosPage = () => {
           <PermisoPorAPS />
         </div>
         <div className={`tab-pane fade ${activeTab === 'link2-tab' ? 'show active' : ''}`} id="link2-tab">
-          {/* Contenido para la tercera pestaña */}
-        </div>
-        <div className="tab-pane fade" id="disabled-tab">
-          {/* Contenido para la pestaña deshabilitada */}
+          <PermisoPorOpciones />
         </div>
       </div>
     </div>
