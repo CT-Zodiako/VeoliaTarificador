@@ -47,63 +47,66 @@ export const AsignacionAPS = ({usuarioAps}) => {
   
   return (
     <>
-    <div style={{ display: 'flex' }}>
-        <div className='col' style={{border:"3px solid red", width: '45%',}}>
-            <h3>Sin asignar</h3>
-            <button
-              style={{ margin: '0', width: '5rem', height: '2rem', background: 'blue', borderRadius: '6px', border: '1px solid rgb(0, 0, 0, 0.3)' }}
-              onClick={handleGuardar}
-            >
-              Guardar
-            </button>
+    <div style={{ display: 'flex', margin: '1rem 0' }}>
+        <div className='col contenedor-opciones'>
+          <h3>Sin asignar</h3> 
           {sinAsignar &&
           sinAsignar.map((item) => (
             <div key={item.APSA_ID} style={{ display: 'inline-flex', alignItems: 'center', padding: '5px', margin: '0.2rem 0.4rem', borderRadius: '6px', border: '1px solid rgb(0, 0, 0, 0.3)' }}>
               <input
+                className="custom-checkbox"
                 type="checkbox"
                 id={`checkbox-${item.APSA_ID}`}
                 value={item.APSA_ID}
                 defaultChecked={item.checked || false}
                 onChange={()=> handleCheck(item.APSA_ID)}
               />
-              <label htmlFor={`checkbox-${item.APSA_ID}`}>{item.APSA_NOMAPS}</label>
+              <label style={{ marginLeft: '0.5rem' }} htmlFor={`checkbox-${item.APSA_ID}`}>{item.APSA_NOMAPS}</label>
             </div>
             ))}
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <div>
-                    <button
-                      style={{ margin: '0', width: '5rem', height: '2rem', background: 'blue', borderRadius: '6px', border: '1px solid rgb(0, 0, 0, 0.3)' }}
-                      onClick={handleAsignarAps}
-                    >
-                        Siguiente
-                    </button>
-                </div>
-                <div>
-                    <button
-                      style={{ margin: '0', width: '5rem', height: '2rem', background: 'blue', borderRadius: '6px', border: '1px solid rgb(0, 0, 0, 0.3)' }}
-                      onClick={handleQuitarAps}
-                    >
-                        Anterior
-                    </button>
-                </div>
+        <div className="contenedor-acciones">
+            <div>
+                <button
+                  className="boton-accion"
+                  onClick={handleAsignarAps}
+                >
+                    {'>>'}
+                </button>
             </div>
-        <div className='col' style={{border:"3px solid green", width: '45%',}}><h3>Asignadas</h3>
+            <div>
+                <button
+                  className="boton-accion"
+                  onClick={handleQuitarAps}
+                >
+                    {'<<'}
+                </button>
+            </div>
+        </div>
+        <div className='col contenedor-opciones'>
+            <h3>Asignadas</h3>
             {asignadas &&
             asignadas.map((item)=> (
                   <div key={item.APSA_ID} style={{ display: 'inline-flex', alignItems: 'center', padding: '5px', margin: '0.2rem 0.4rem', borderRadius: '6px', border: '1px solid rgb(0, 0, 0, 0.3)' }}>
                     <input
+                      className="custom-checkbox"
                       type="checkbox"
                       id={`checkbox-${item.APSA_ID}`}
                       value={item.APSA_ID}
                       defaultChecked={item.checked || true}
                       onChange={()=> handleCheck(item.APSA_ID)}
                     />
-                    <label htmlFor={`checkbox-${item.APSA_ID}`}>{item.APSA_NOMAPS}</label>
+                    <label style={{ marginLeft: '0.5rem' }} htmlFor={`checkbox-${item.APSA_ID}`}>{item.APSA_NOMAPS}</label>
                   </div>
               ))} 
         </div>
     </div>
+    <button
+              style={{ margin: '0', width: '5rem', height: '2rem', background: 'blue', borderRadius: '6px', border: '1px solid rgb(0, 0, 0, 0.3)' }}
+              onClick={handleGuardar}
+            >
+              Guardar
+            </button>
     </>
   )
 }

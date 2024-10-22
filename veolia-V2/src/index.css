@@ -845,4 +845,96 @@ input[type="file"] {
 }
 
 
-/*MENU OPCIONES*/
+/*MENU OPCIONES SELECCION*/
+.contenedor-opciones {
+  width: 40%;
+  max-height: 45rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.menu-opciones {
+  width: 20px;
+  height: 20px;
+  border-radius: 20%;
+  border: 1px solid rgb(0, 0, 0, 0.5);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor-acciones {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13rem 0; 
+  /* gap: 1rem; */
+}
+
+.boton-accion {
+  width: 5rem;
+  height: 2rem;
+  background-color: blue;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.boton-accion:hover {
+  background-color: rgb(0, 0, 229);
+}
+
+
+.boton-guardar {
+  margin: 0;
+  width: 5rem;
+  height: 2rem;
+  background-color: blue;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.boton-guardar:hover {
+  background-color: rgb(0, 0, 219);
+}
+
+.boton-guardar:active {
+  transform: scale(0.95);
+}
+
+.custom-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgb(0, 0, 0, 0.5);
+  border-radius: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.custom-checkbox:checked {
+  background-color: rgb(0, 0, 0, 0.5);
+  color: white;
+}
+
+.custom-checkbox:checked::before {
+  content: '✓';
+}
+
+.custom-checkbox:not(:checked)::before {
+  content: '✗';
+  color: black;
+}
+

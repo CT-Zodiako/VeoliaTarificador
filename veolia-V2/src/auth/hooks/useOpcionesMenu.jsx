@@ -31,6 +31,6 @@ export const useOpcionesMenu = (Menu) => {
         });
         return { opciones, restante };
     };
-      
+    
     return {opcionesUsuario};
 };
