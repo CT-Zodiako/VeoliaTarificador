@@ -23,7 +23,8 @@ export class SemestralService {
   }
 
   async carguePropia(data, usuario) {
-    const {aps,
+    const {
+      aps,
       empr,
       anno,
       mes,
@@ -36,10 +37,9 @@ export class SemestralService {
       klp,
       t,
       qa,
-      escenario,} = data;    
+      escenario,
+    } = data;   
     try {
-
-      if (data) {
         await this.semestralRepository.query(`
           DELETE FROM 
             AUCO_CARGUEPROPIO 
@@ -53,7 +53,8 @@ export class SemestralService {
         INSERT INTO AUCO_CARGUEPROPIO
           (APSA_ID, EMPR_EMPR, PROP_ANNO, PROP_MES, PROP_CP, PROP_MT3AGUA, PROP_M2CC, PROP_M2LAV, PROP_TI, PROP_TM, PROP_KLP, PROP_T, PROP_QA, PROP_ESCENARIO, PROP_FECCREA, USUA_USUARIO)
         VALUES 
-          (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, sysdate, :15)`,
+          (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, sysdate, :15)
+        `,
         [
           aps,
           empr,
@@ -72,8 +73,8 @@ export class SemestralService {
           usuario
         ]
       )
-      }
       return 'carguePropia con exito';
+
     } catch (err) {
       return `error al carguePropia: ${err}`
     }
