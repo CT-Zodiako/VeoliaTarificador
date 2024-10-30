@@ -76,6 +76,7 @@ export class AuthController {
   @UseGuards(AuthGuard())
   getMenuUser(@GetUser() user: any) {
     const sisuId = user?.SISU_ID;
+    console.log(sisuId);
     return this.authService.getMenuUser(sisuId);
   }
 
@@ -91,6 +92,13 @@ export class AuthController {
   getMenuUserOptions(@GetUser() user: any,) {
     const sisuId = user?.SISU_ID;
     return this.authService.getMenuUserOptions(sisuId);
+  }
+  
+  @Get('getMenuByUser')
+  @UseGuards(AuthGuard())
+  getMenuByUser(@Body() data) {
+    const { sisuId } = data;
+    return this.authService.getMenuByUser(sisuId);
   }
 
   @Get('getMenuPadreHijos')

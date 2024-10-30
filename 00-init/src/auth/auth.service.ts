@@ -218,6 +218,19 @@ export class AuthService {
 
     return menuUser.map((menu) => menu.MENU_ID);
   }
+  
+  async getMenuByUser(sisuId: number) {
+    try {
+      const menuUser = await this.menuUserRepository
+      .query(`SELECT MENU_ID FROM AUGE_USUAMENU au WHERE USME_ESTADO = 1 AND SISU_ID = '${sisuId}' ORDER BY 1
+    `);
+
+    return menuUser.map((menu) => menu.MENU_ID);
+    } catch (error) {
+      console.log('error getMenuByUser', error);
+    }
+   
+  }
 
   async getMenuPadreHijos() {
     try {
