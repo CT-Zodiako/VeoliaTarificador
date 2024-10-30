@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react"
 import { getUsuarios } from "../services/usuariosService"
 
-export const SelectorUsuarios = () => {
+export const SelectorUsuarios = ({handleUsuarioAps}) => {
 
     const [data, setData] = useState([])
     const [selectedUser, setSelectedUser] = useState('')
-
 
     const fetchData = async () => {
         try {
@@ -19,18 +18,12 @@ export const SelectorUsuarios = () => {
 
     useEffect(() => {
       fetchData();
-    
-      
     }, [])
-
-    console.log(data)
 
     const handleChange = (event) => {
         setSelectedUser(event.target.value);
-      };
-    
-    
-
+        handleUsuarioAps(event.target.value);
+    };
 
   return (
     <div className="col-3 mt-1">

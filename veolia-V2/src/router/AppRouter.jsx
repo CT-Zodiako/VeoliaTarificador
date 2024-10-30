@@ -36,10 +36,11 @@ import { Crear } from "../proyecciones/pages/Crear";
 import { LineasTiempo } from "../proyecciones/pages/LineasTiempo";
 import { SubsidiosContribuciones } from "../proyecciones/pages/SubsidiosContribuciones";
 import { CreciemientoVariables } from "../proyecciones/pages/CreciemientoVariables";
-import { PrivateRouters } from "./PrivateRouters";
 import { DetalladoFacturacion } from "../informesComerciales/pages/DetalladoFacturacion";
 import { CargueSemestral } from "../cargueInformacion/page/CargueSemestral";
 import { CargueMensual } from "../cargueInformacion/page/CargueMensual";
+import { HistorialCertificacion } from "../informesComerciales/pages/HistorialCertificacion";
+import { HistorialProductividad } from "../informesComerciales/pages/HistorialProductividad";
 
 export const router = createBrowserRouter([
     {
@@ -50,10 +51,8 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <VeoliaApp />,
-        // element: <PrivateRouters><VeoliaApp /></PrivateRouters>,
         errorElement: <h1>error</h1>,
         children: [
-            // configuracion
             {
                 path: "/aps",
                 element: <APSpage />,
@@ -76,44 +75,44 @@ export const router = createBrowserRouter([
             },
             //Suministros
             {
-                path: "/indicesCRA",
+                path: "/cra",
                 element: <IndicesCRA />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/sub-con",
+                path: "/subcon",
                 element: <SubConPage/>,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/sub-verf",
+                path: "/verificacion",
                 element: <Verificacion/>,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/sub-aproch",
+                path: "/aprovechamiento",
                 element: <ActivarAprovechamiento/>,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/sub-costPoda",
+                path: "/costoPoda",
                 element: <CostoPoda/>,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/sub-ajutProd",
+                path: "/productividad",
                 element: <AjustesProductividad/>,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/sub-desCost",
+                path: "/descuento",
                 element: <DescuentoCosto/>,
                 errorElement: <h1>error</h1>,
             },
 
             //Informes Comerciales
             {
-                path: "/dataDetalladoTarifasCo",
+                path: "/tarifas",
                 element: <DetalladoTarifasComerciales />,
                 errorElement: <h1>error</h1>,
             },
@@ -122,30 +121,40 @@ export const router = createBrowserRouter([
                 element: <DetalladoFacturacion />,
                 errorElement: <h1>error</h1>,
             },
+            {
+                path: "/histCertificacion",
+                element: <HistorialCertificacion />,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/histProductividad",
+                element: <HistorialProductividad />,
+                errorElement: <h1>error</h1>,
+            },
 
             //Informes Gerenciales
             {
-                path: "/dataDetalladoTarifas",
+                path: "/gentarifas",
                 element: <DetalladoTarifasGerenciales />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/dataDetalladoSubAport",
+                path: "/detsubaporte",
                 element: <DataDetalladoSubAport />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/detalladoCostos",
+                path: "/detcostos",
                 element: <DetalladoCosto />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/dashBoardTarifas",
+                path: "/dashboardtarifas",
                 element: <DashBoardTarifas />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/costoPodaInfo",
+                path: "/costopodagerencial",
                 element: <CostoPodainfo />,
                 errorElement: <h1>error</h1>,
             },
@@ -164,17 +173,17 @@ export const router = createBrowserRouter([
 
             //Reporteador Sui
             {
-                path: "/formatosFormularios",
+                path: "/suisui",
                 element: <FormatosFormularios />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/DashBoardSUI",
+                path: "/SuiDashBoard",
                 element: <DashBoardSUI />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/resmunenFormatosFormularios",
+                path: "/resumenFormatos",
                 element: <ResumenFormatosFormularios />,
                 errorElement: <h1>error</h1>,
             },
@@ -191,7 +200,7 @@ export const router = createBrowserRouter([
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/lineasTiempo",
+                path: "/lineastiempo",
                 element: <LineasTiempo/>,
                 errorElement: <h1>error</h1>,
             },
@@ -208,23 +217,23 @@ export const router = createBrowserRouter([
 
             // Informes Proyecciones
             {
-                path: "/informesProyecciones",
+                path: "/generales",
                 element: <InformesProyecciones />,
                 errorElement: <h1>error</h1>,
             },
-            //
+            //PGIRS
             {
-                path: "/informePGIRS",
+                path: "/infopgirs",
                 element: <InformePGIRSPage />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/resumenPGIRS",
+                path: "/informepgirs",
                 element: <ResumenPGIRS />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/variablesPGIRS",
+                path: "/variablespgris",
                 element: <VariablesPGIRS />,
                 errorElement: <h1>error</h1>,
             },
@@ -236,17 +245,17 @@ export const router = createBrowserRouter([
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/auth_reversiones",
+                path: "/reversion_auth",
                 element: <AutorizacionReversiones />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/detalles_reversiones",
+                path: "/detareversiones",
                 element: <DetallesReversion />,
                 errorElement: <h1>error</h1>,
             },
             {
-                path: "/detalles_autorizacion",
+                path: "/detautorizacion",
                 element: <DetallesAutorizacion />,
                 errorElement: <h1>error</h1>,
             },

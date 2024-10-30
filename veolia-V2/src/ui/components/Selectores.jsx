@@ -5,8 +5,9 @@ import { MonthSelector } from './MonthSelector';
 import { SelectProyecciones } from './SelectProyecciones'
 import { SelectDescripcion } from './SelectDescripcion';
 import { SelectHorizontes } from './SelectHorizontes';
+import { SemestreSelect } from './SemestreSelect';
 
-export const Selectores = ({ selectorAps = false, selectorFecha = false, selectorProy = false, selectDrescripcion = false, selectHorizonte = false }) => {
+export const Selectores = ({ selectorAps = false, selectorFecha = false, selectorProy = false, selectDrescripcion = false, selectHorizonte = false, selectorSemestre = false }) => {
 
     // const handleYearChange = (year) => {
     //     handleYearMonthChange(year);
@@ -26,6 +27,7 @@ export const Selectores = ({ selectorAps = false, selectorFecha = false, selecto
                     {selectorFecha && <div className={`${selectDrescripcion === true ? 'select-item-2' : 'select-item' }`}><YearSelector /></div>}
                     {selectorFecha && <div className={`${selectDrescripcion === true ? 'select-item-2' : 'select-item' }`}><MonthSelector /></div>}
                     {selectorProy && <div className={`${selectDrescripcion === true ? 'select-item-2' : 'select-item' }`}><SelectProyecciones /></div>}
+                    {selectorSemestre && <div className={`${selectDrescripcion === true ? 'select-item-2' : 'select-item' }`}><SemestreSelect /></div>}
                 </div>
                 <div className={`${selectDrescripcion === true ? 'd-flex-rows-2' : 'd-flex-rows' }`}>
                     {selectDrescripcion && <div className={`${selectDrescripcion === true ? 'select-item-2' : 'select-item' } select-descripcion`}><SelectDescripcion /></div>}

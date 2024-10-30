@@ -333,4 +333,37 @@ export const formatoDetFacDINC = {
 };
 
 
+export const columnsHistCertificacion = [
+    { head: "CODIGO APS", body: "CODAPS" },
+    { head: "APS", body: "NOMAPS" },
+    { head: "FECHA CERTIFICACIÓN", body: "FECHCERTIFICA" },
+    { head: "FECHA INTEGRACIÓN", body: "FECHINTEGRA" },
+    { head: "CORREO", body: "SISU_CORREO" },
+];
 
+export const formatoHistCertificacion = {
+    'CODAPS': { name: 'CODIGO APS', filtre: false },
+    'NOMAPS': { name: 'APS', filtre: true },
+    'FECHCERTIFICA': { name: 'FECHA CERTIFICACIÓN', filtre: false },
+    'FECHINTEGRA': { name: 'FECHA INTEGRACIÓN', filtre: false },
+    'SISU_CORREO': { name: 'CORREO', filtre: false },
+};
+
+
+export const columnsHistProductividad = [
+    { head: "CODIGO APS", body: "CODAPS" },
+    { head: "APS", body: "NOMAPS" },
+    { head: "EMPRESA", body: "NOMEMPRESA" },
+    { head: "COSTO", body: "COSTO" },
+    { head: "VALOR", body: "PR22_VALOR" },
+    { head: "CORREO", body: "SISU_CORREO" },
+];
+
+export const formatoHistProductividad = {
+    'CODAPS': { name: 'CODIGO APS', filtre: false },
+    'NOMAPS': { name: 'APS', filtre: true },
+    'NOMEMPRESA': { name: 'EMPRESA', filtre: true },
+    'COSTO': { name: 'COSTO', filtre: false },
+    'PR22_VALOR': { name: 'VALOR', filtre: false },
+    'SISU_CORREO': { name: 'CORREO', filtre: false },
+};

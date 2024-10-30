@@ -50,3 +50,10 @@ export const useHorizonteHasta = create((set) => {
         cambioHorizonteHasta: (horizonteHasta) => set({horizonteHasta: horizonteHasta}),
     }
 });
+
+export const useSemestreSelector = create((set) => {
+    return{
+        semestre: 1,
+        cambioSelectorSemestre: (semestre) => set({semestre: Number(semestre)}),
+    }
+});

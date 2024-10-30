@@ -40,6 +40,7 @@ export class SemestralService {
       escenario,
     } = data;   
     try {
+
         await this.semestralRepository.query(`
           DELETE FROM 
             AUCO_CARGUEPROPIO 
@@ -54,7 +55,7 @@ export class SemestralService {
           (APSA_ID, EMPR_EMPR, PROP_ANNO, PROP_MES, PROP_CP, PROP_MT3AGUA, PROP_M2CC, PROP_M2LAV, PROP_TI, PROP_TM, PROP_KLP, PROP_T, PROP_QA, PROP_ESCENARIO, PROP_FECCREA, USUA_USUARIO)
         VALUES 
           (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, sysdate, :15)
-        `,
+          `,
         [
           aps,
           empr,
@@ -139,6 +140,7 @@ export class SemestralService {
   };
 
     async cargueUsuarios(data, usuario) {
+      console.log('data', data);
       const {
         aps, 
         anno, 
@@ -147,7 +149,6 @@ export class SemestralService {
         ND,
         NA,
         TAFNA,
-        usucre,
         codaps,
         coduso, 
         nomuso, 
@@ -157,7 +158,6 @@ export class SemestralService {
         tiponom,  
         cantidad, 
         toneladas 
-
       } = data;
 
       try {
@@ -169,7 +169,7 @@ export class SemestralService {
             CCOM_CODAPS = :1 AND 
             CCOM_ANNO = :2 AND 
             CCOM_MES = :3 
-        `,[aps, anno, mes]);
+        `,[codaps, anno, mes]);
 
 
         await this.semestralRepository.query(`
@@ -179,7 +179,7 @@ export class SemestralService {
             APSA_ID =:1 AND 
             RCOM_ANNO =:2 AND 
             RCOM_MES =:3
-        `,[aps, anno, mes]);
+        `,[codaps, anno, mes]);
 
         const pkvalue = await this.semestralRepository.query(`
           SELECT SAUCO_RESCOMERCIAL.nextval FROM DUAL
@@ -199,7 +199,7 @@ export class SemestralService {
           ND,
           NA,
           TAFNA,
-          usucre,
+          usuario,
         ]);
 
 
@@ -251,15 +251,14 @@ export class SemestralService {
             AUCO_CARGUETERCERO 
           WHERE 
             APSA_ID = :1 AND 
-            TERC_ANNO = :2 AND T
-            ERC_MES = :3
+            TERC_ANNO = :2 AND
+            TERC_MES = :3
         `,[aps, anno, mes]);
 
         await this.semestralRepository.query(`
-          INSERT INTO 
-            AUCO_CARGUETERCERO 
-          VALUES
-            (:1, :2, :3, :4, :5, :6, sysdate, :7)
+          INSERT INTO  AUCO_CARGUETERCERO
+            (APSA_ID, TERC_ANNO, TERC_MES, TERC_CDF, TERC_CTL, TERC_INCENTIVOCDF, TERC_FECCREA, USUA_USUARIO)
+          VALUES(:1, :2, :3, :4 , :5 , :6 , SYSDATE, :7)
         `, 
         [
           aps, 

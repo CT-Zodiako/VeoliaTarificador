@@ -1,32 +1,61 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { columnsPropiaMen } from '../data';
 import { TablaComponentes } from '../../../ui/components/TablaComponentes';
+import { postPropiaMensual } from '../../service/cargueMensualService';
+import { useAnnoSelector, useApsSelector, useMesSelector } from '../../../store/storeSelectors';
+import { SelectCargueInformacion } from '../selectCargueInformacion';
+import { useGetCargueEmpresa } from '../../../hooks/useGetCargueEmpresa';
 import Papa from 'papaparse';
-import { PostCargueMensual } from '../../service/cargueMensualService';
+import { InputCargueFile } from '../InputCargueFile';
 
 export const InfoPropia = () => {
-    const [filemonthChose, setFilemonthChose] = useState([]);
-    const [procesedFilemonth, setProcesedFilemonth] = useState([]);
-    const [apsFilemonth, setApsFilemonth] = useState('');
-    const [emprFilemonth, setEmprFilemonth] = useState('');
-    const [dateyFilemonth, setDateyFilemonth] = useState('');
-    const [datemFilemonth, setDatemFilemonth] = useState('');
+    const aps = useApsSelector(state => state.aps);
+    const anno = useAnnoSelector((state) => state.anno);
+    const mes = useMesSelector((state) => state.mes);
+
+    const { empresas, onCargueSemestral } = useGetCargueEmpresa();
+    const [selectEmpre, setSelectEmpre] = useState('');
+    const [filemonthChose, setFilemonthChose] = useState('');
+    const [preViewTabla, setPreViewTabla] = useState([]);   
     const [errors, setErrors] = useState(false);
     const [messages, setMessages] = useState([]);
-    console.log('InfoPropia', procesedFilemonth);
-    
-    const stapsSeleccionado = 'APS_SELECCIONADO'; // Asigna el valor adecuado
-    const emprSelected = { emprempr: 'EMPRESA_SELECCIONADA' }; // Asigna el valor adecuado
-    const stYear = 2024; // Cambia esto según tu lógica
-    const stSemester = 2; // Cambia esto según tu lógica
+
+    useEffect(()=>{
+        if (aps){
+            onCargueSemestral();
+        }
+    }, [aps])
+
+    const empreSeleccionada = (empre) => {
+        setSelectEmpre(empre);
+    }
+
+    const cargarArchivo = (files) => {
+        setFilemonthChose(files);
+    }
 
     const addMessages = (type, text) => {
         setMessages((prev) => [...prev, { type, text }]);
     };
 
     const generarPreviewMonth = (data) => {
-        // Tu lógica para generar el preview
-        console.log('Generando preview con:', data);
+        const preview = data.map((element) => ({
+            aps: Number(element.CODAPS),
+            empr: Number(element.CODEMPRESA),
+            anno: Number(element.ANNO),
+            mes: Number(element.MES),
+            cp: Number(element.CP),
+            mt3agua: Number(element.MT3AGUA),
+            m2cc: Number(element.M2CC),
+            m2lav: Number(element.M2LAV),
+            ti: Number(element.TI),
+            tm: Number(element.TM),
+            klp: Number(element.KLP),
+            t: Number(element.T),
+            qa: Number(element.QA),
+            escenario: Number(element.ESCENARIO),
+          }));
+        setPreViewTabla(preview);
     };
      
     const procesarMonthArchivo = async () => {
@@ -40,36 +69,24 @@ export const InfoPropia = () => {
             skipEmptyLines: true,
             complete: async (results) => {
                 const data = results.data;
-                setProcesedFilemonth(data);
-
-                setApsFilemonth(data[0].CODAPS);
-                setEmprFilemonth(data[0].CODEMPRESA);
-
-                const tmpYear = stYear;
-
-                setDateyFilemonth(data[0].ANNO);
-                setDatemFilemonth(data[0].MES);
 
                 let hasErrors = false;
 
                 for (const element of data) {
-                    if (element.CODAPS !== stapsSeleccionado) {
+                    if (element.CODAPS != aps) {
                         addMessages("error", "El APS Seleccionado no concuerda con el APS del archivo!");
                         hasErrors = true;
                         break;
-                    } else if (element.CODEMPRESA !== emprSelected.emprempr) {
+                    } else if (element.CODEMPRESA !== selectEmpre) {
                         addMessages("error", "La Empresa Seleccionada no concuerda con la Empresa del archivo!");
                         hasErrors = true;
                         break;
-                    } else if (element.ANNO !== tmpYear) {
+                    } else if (element.ANNO != anno || element.MES != mes) {
                         addMessages("error", "El AÑO Seleccionado no concuerda con los del archivo!");
                         hasErrors = true;
                         break;
-                    } else if (Math.ceil(element.MES / 6) !== stSemester) {
-                        console.log(`${Math.ceil(element.MES / 6)} != ${stSemester}`);
-                        addMessages("error", "Existen meses fuera del rango del semestre seleccionado que no concuerdan con los del archivo!");
-                        hasErrors = true;
-                        break;
+                    } else {
+                        console.log('no hay errores');
                     }
                 }
 
@@ -77,15 +94,14 @@ export const InfoPropia = () => {
                     generarPreviewMonth(data);
                 }
 
-                setErrors(hasErrors);
+                // setErrors(hasErrors);
             }
         });
     };
 
     const onGuardarCSV = async() => {
         try {
-            // const dataToSend = { data: procesedFilemonth };
-            await PostCargueMensual(procesedFilemonth[0]);
+            await postPropiaMensual(preView[0]);
         } catch (error) {
             console.error('Error al guardar el archivo', error);
         }
@@ -93,27 +109,25 @@ export const InfoPropia = () => {
     
     return(
     <>
-        <div>
+        <div className="componenTable">
             <h3>Cargue de Informacion Propia</h3>
-            <div>
+            <div className='bodyComponent datos-cargue'>
                 <h4>Datos Semestrales</h4>
-                {/* <Selectores /> */}
-                <input
-                    type="file"
-                    onChange={(e) => setFilemonthChose(e.target.files)}
-                />
-
-                <button onClick={procesarMonthArchivo}>Procesar archivo</button>
-
+                <hr />
+                <div className='archivo-cargue'>
+                    <SelectCargueInformacion opciones={empresas} label='Seleccionar Empresa ' seleccion={empreSeleccionada}/>
+                    <InputCargueFile file={cargarArchivo} procesar={procesarMonthArchivo}/>
+                </div>
+                
                 {messages.map((message, index) => (
                     <div key={index} className={`message-${message.type}`}>
                         {message.text}
                     </div>
                 ))}
             </div>
-            <div>
+            <div className='bodyComponent vista-previa'>
                 <h4>Vista Previa</h4>
-                <TablaComponentes colums={columnsPropiaMen} data={procesedFilemonth}/>
+                <TablaComponentes colums={columnsPropiaMen} data={preViewTabla}/>
             </div>
             <button
                 className="btn btn-primary btn-md"

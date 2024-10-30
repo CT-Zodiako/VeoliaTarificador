@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAnnoSelector, useMesSelector } from "../../store/storeSelectors";
 import { columnsTarifasPlena, columnsTarifaSubCon, formatoTarifasPlena, formatoATarifaSubCon } from '../components/data';
 import { getTarifasGerenciales } from '../service/detalladoTarifasGerenciales';
@@ -50,10 +50,10 @@ export const DetalladoTarifasGerenciales = () => {
         }
     }, [anno, mess])
 
-    const titulosTabs = [
+    const titulosTabs = useMemo(() => [
         { titulo: 'Plena', datos: dataTarifaPlena, encabezado: columnsTarifasPlena },
-        { titulo: 'Sub & Con', datos: dataTarifaSubCon, encabezado: columnsTarifaSubCon },
-    ];
+        { titulo: 'Sub & Con', datos: dataTarifaSubCon, encabezado: columnsTarifaSubCon }
+    ], [dataTarifaPlena, dataTarifaSubCon]);
 
     const handleClickTab = (index, titulo) => {
         setPestañaActiva(index);

@@ -12,7 +12,6 @@ import { mesesAno } from "../../informeProyecciones/components/data";
     const setHorizonteHasta = useHorizonteHasta(state => state.cambioHorizonteHasta);
 
     const [ proyecciones, setProyecciones ] = useState([]);
-    console.log('proy state: ', selectedProy);
         
     const data = {
         APSA_ID : aps
