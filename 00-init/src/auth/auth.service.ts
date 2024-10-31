@@ -279,6 +279,7 @@ export class AuthService {
   }
 
   async AsignarMenu(body: any) {
+    console.log(body);
     try {
       const { sisuId,  opcionesSinAsignar, opcionesAsignada} = body;
       const sqlUpdt = `
@@ -294,7 +295,7 @@ export class AuthService {
       const sqlDesmarcar = `
         DELETE FROM 
           TARIFICADOR.AUGE_USUAMENU
-        WHERE SISU_ID = :1 , MENU_ID = :2`;
+        WHERE SISU_ID = :1 AND MENU_ID = :2`;
       for (const opcion of opcionesAsignada) {
         await this.menuUserRepository.query(sqlDesmarcar, [sisuId, opcion]);
       }
