@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from 'react'
-import { getOpcionesUsuario } from '../services/asignacionOpcionesMenu';
+import { useEffect, useState } from 'react'
+import { asignarAps, getOpcionesUsuario } from '../services/asignacionOpcionesMenu';
 import { Menu } from '../../ui/components/datas';
 import { useOpcionesMenu } from '../hooks/useOpcionesMenu';
 import { usePermisosMenu } from '../hooks/usePermisosMenu';
 import { OpcionesMenu } from './OpcionesMenu';
 
-export const AsignacionOpciones = () => {
+export const AsignacionOpciones = ({usuarioAps}) => {        
     const [ opcionesAsignadas, setOpcionesAsignadas ] = useState();
     const [ opcionesRestantes, setOpcionesRestantes ] = useState();
     const [ porAsignar, setPorAsignar ] = useState([]);
@@ -18,7 +18,7 @@ export const AsignacionOpciones = () => {
 
     const onOpcionesMenu = async() => {
         try {
-            const response = await getOpcionesUsuario();
+            const response = await getOpcionesUsuario(usuarioAps);
             const {opciones, restante} = opcionesUsuario(response);
             setOpcionesAsignadas(opciones);
             setOpcionesRestantes(restante);
@@ -29,7 +29,7 @@ export const AsignacionOpciones = () => {
 
     useEffect(() => {
         onOpcionesMenu();
-    }, []);
+    }, [usuarioAps]);
 
     const onSelectorAsignadas = (id, isChild = false) => {
         const elementoPadre = opcionesAsignadas.find((menu) => menu.items?.some((item) => item.id === id));
@@ -152,10 +152,16 @@ export const AsignacionOpciones = () => {
 
     const onMenuOpciones = () => {
         const {asignadas, sinAsignar} = newArreglosMenu(opcionesAsignadas, opcionesRestantes);
-        const opcionesAsignadas = asignadas;
-        const opcioneSinAsignar = sinAsignar;
-        console.log(opcionesAsignadas);
-        console.log(opcioneSinAsignar); 
+        const opcionesAsignada = asignadas;
+        const opcionesSinAsignar = sinAsignar;
+        
+        const data = {
+            sisuId: usuarioAps,
+            opcionesAsignada,
+            opcionesSinAsignar,
+        };
+
+        asignarAps(data);
     };
 
     // const iconoOpcionPadre = (padre) => {

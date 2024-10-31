@@ -100,23 +100,29 @@ import { useMemo } from "react";
     };
 
     const cambiarAsignacionItems = (array, newArray) => {
-        const opcionesFiltradas = array.map((menu) => {
-            const menuPorQuitar = newArray.find((item) => item.id === menu.id);
-            if (menuPorQuitar && menu.items) {
-                const itemsFiltrados = menu.items.filter(
-                    (itemMenu) => !menuPorQuitar.items.some((itemAsignado) => itemAsignado.id === itemMenu.id)
-                );
-                return { ...menu, items: itemsFiltrados };
-            }
-            return menu;
-        })
-        .filter((menu) => {
-            return menu.items ? menu.items.length > 0 : false;
-        });
+        const opcionesFiltradas = array
+            .map((menu) => {
+                const menuPorQuitar = newArray.find((item) => item.id === menu.id);
+                if (menu.id === 100 && menuPorQuitar && menuPorQuitar.checked == menu.checked) {
+                    return null;
+                }    
+                if (menuPorQuitar && menu.items) {
+                    const itemsFiltrados = menu.items.filter(
+                        (itemMenu) => !menuPorQuitar.items.some((itemAsignado) => itemAsignado.id === itemMenu.id)
+                    );
+                    return { ...menu, items: itemsFiltrados };
+                }
+                return menu;
+            })
+            .filter((menu) => menu !== null)
+            .filter((menu) => {
+                return menu.id === 100 || (menu.items && menu.items.length > 0);
+            });
+        
         return opcionesFiltradas;
     };
     
-
+    
     const newArreglosMenu = (opcionesMenu, opcionesRestantes) => {
         const asignadas = [];
         const sinAsignar = [];
