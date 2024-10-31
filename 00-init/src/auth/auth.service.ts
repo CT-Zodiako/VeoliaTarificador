@@ -291,6 +291,16 @@ export class AuthService {
         await this.menuUserRepository.query(sqlDesmarcar, [sisuId, opcion]);
       }
 
+      const apsYaAsignadas = await this.getMenuByUser(sisuId);
+
+      const filtro = opcionesAsignada.filter((opcion: number) => !apsYaAsignadas.includes(opcion));
+
+      for (const opt of filtro) {
+        let sqlInsert = `INSERT INTO AUGE_USUAMENU (USME_ID, SISU_ID, MENU_ID, USME_ESTADO) VALUES (SAUGE_USUAMENU.NEXTVAL, :1, :2, 1)`;
+        await this.menuUserRepository.query(sqlInsert, [sisuId, opt]);
+      }
+
+
       return { message: 'Menu asignado exitosamente' };    
 
     } catch (error) {
