@@ -281,27 +281,23 @@ export class AuthService {
   async AsignarMenu(body: any) {
     try {
       const { sisuId,  opcionesSinAsignar, opcionesAsignada} = body;
-      const sqlUpdt = `UPDATE AUGE_USUAMENU SET USME_ESTADO = 1 WHERE SISU_ID = :1 AND MENU_ID = :2`;
+      const sqlUpdt = `
+        INSERT INTO 
+          TARIFICADOR.AUGE_USUAMENU
+          (USME_ID, SISU_ID, MENU_ID, USME_ESTADO)
+        VALUES
+          (SAUGE_USUAMENU.NEXTVAL, :1, :2, 1)`;
       for (const opcion of opcionesAsignada) {
         await this.menuUserRepository.query(sqlUpdt, [sisuId, opcion]);
       }
 
-      const sqlDesmarcar = `UPDATE AUGE_USUAMENU SET USME_ESTADO = 0 WHERE SISU_ID = :1 AND MENU_ID = :2`;
+      const sqlDesmarcar = `
+        DELETE FROM 
+          TARIFICADOR.AUGE_USUAMENU
+        WHERE SISU_ID = :1 , MENU_ID = :2`;
       for (const opcion of opcionesSinAsignar) {
         await this.menuUserRepository.query(sqlDesmarcar, [sisuId, opcion]);
       }
-
-      let apsYaAsignadas = await this.getMenuByUser(sisuId);
-
-      var filtro = apsYaAsignadas.filter((e) => {
-        return apsYaAsignadas.indexOf(e) == -1;
-      });
-
-      for (const opt of filtro) {
-        let sqlInsert = `INSERT INTO AUGE_USUAMENU (USME_ID, SISU_ID, MENU_ID, USME_ESTADO) VALUES (SAUGE_USUAMENU.NEXTVAL, :1, :2, 1)`;
-        await this.menuUserRepository.query(sqlInsert, [sisuId, opt]);
-      }
-
 
       return { message: 'Menu asignado exitosamente' };    
 
