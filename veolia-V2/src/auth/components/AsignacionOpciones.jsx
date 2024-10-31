@@ -153,12 +153,12 @@ export const AsignacionOpciones = ({usuarioAps}) => {
     const onMenuOpciones = () => {
         const {asignadas, sinAsignar} = newArreglosMenu(opcionesAsignadas, opcionesRestantes);
         const opcionesAsignada = asignadas;
-        const opcioneSinAsignar = sinAsignar;
+        const opcionesSinAsignar = sinAsignar;
         
         const data = {
             sisuId: usuarioAps,
             opcionesAsignada,
-            opcioneSinAsignar,
+            opcionesSinAsignar,
         };
 
         asignarAps(data);
