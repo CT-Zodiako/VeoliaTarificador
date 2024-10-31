@@ -114,6 +114,12 @@ export class AuthController {
     return this.authService.setApsUser(body.sisuId, body.fueraAps, body.dentroAps);
   }
 
+  @Post('asignarMenu')
+  @UseGuards(AuthGuard())
+  AsignarMenu(@Body() body){
+    return this.authService.AsignarMenu(body);
+  }
+
 
 
   @Get('private')
