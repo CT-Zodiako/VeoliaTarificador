@@ -287,7 +287,7 @@ export class AuthService {
           (USME_ID, SISU_ID, MENU_ID, USME_ESTADO)
         VALUES
           (SAUGE_USUAMENU.NEXTVAL, :1, :2, 1)`;
-      for (const opcion of opcionesAsignada) {
+      for (const opcion of opcionesSinAsignar) {
         await this.menuUserRepository.query(sqlUpdt, [sisuId, opcion]);
       }
 
@@ -295,7 +295,7 @@ export class AuthService {
         DELETE FROM 
           TARIFICADOR.AUGE_USUAMENU
         WHERE SISU_ID = :1 , MENU_ID = :2`;
-      for (const opcion of opcionesSinAsignar) {
+      for (const opcion of opcionesAsignada) {
         await this.menuUserRepository.query(sqlDesmarcar, [sisuId, opcion]);
       }
 
