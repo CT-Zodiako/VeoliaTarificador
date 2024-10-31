@@ -4,6 +4,7 @@ import { getMenuService } from "./menuService";
 
 export const serviceMenu = () => {
     const [menu, setMenu] = useState([]);
+    
     const usr = localStorage.getItem("token");
 
     useEffect(() => {

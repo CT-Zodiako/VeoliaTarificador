@@ -8,6 +8,7 @@ import {
   Param,
   Put,
   Patch,
+  Query,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDTO, LoginUserDTO } from './dto';
@@ -96,7 +97,7 @@ export class AuthController {
   
   @Get('getMenuByUser')
   @UseGuards(AuthGuard())
-  getMenuByUser(@Body() data) {
+  getMenuByUser(@Query() data) {
     const { sisuId } = data;
     return this.authService.getMenuByUser(sisuId);
   }

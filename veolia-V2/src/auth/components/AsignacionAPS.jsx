@@ -39,7 +39,10 @@ export const AsignacionAPS = ({usuarioAps}) => {
       const data = {
         apsSinAsignar: apsSinAsignar,
         apsAsignadas: apsAsignadas,
-      }
+      }; 
+
+      console.log('Data APS: :', data);
+      
     } catch (error) {
       console.error('Error saving data:', error);
     }
