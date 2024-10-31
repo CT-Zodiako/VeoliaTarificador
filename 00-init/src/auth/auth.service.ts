@@ -282,12 +282,14 @@ export class AuthService {
     try {
       const { sisuId,  opcionesSinAsignar, opcionesAsignada} = body;
 
+      const eliminarTodos: number[] = [...opcionesSinAsignar, ...opcionesAsignada];
+
       const sqlDesmarcar = `
       DELETE FROM 
         TARIFICADOR.AUGE_USUAMENU
       WHERE SISU_ID = :1 AND MENU_ID = :2`;
 
-      for (const opcion of opcionesSinAsignar) {
+      for (const opcion of eliminarTodos) {
       await this.menuUserRepository.query(sqlDesmarcar, [sisuId, opcion]);
       }
       const sqlUpdt = `
