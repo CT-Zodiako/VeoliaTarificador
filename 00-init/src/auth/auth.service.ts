@@ -218,7 +218,7 @@ export class AuthService {
 
     return menuUser.map((menu) => menu.MENU_ID);
   }
-  
+
   async getMenuByUser(sisuId: number) {
     try {
       const menuUser = await this.menuUserRepository
@@ -275,6 +275,26 @@ export class AuthService {
       return { message: 'Aps asignadas exitosamente' };
     } catch (error) {
       console.log('error setApsUser', error);
+    }
+  }
+
+  async AsignarMenu(body: any) {
+    try {
+      const { sisuId,  opcionesSinAsignar, opcionesAsignada} = body;
+      const sqlUpdt = `UPDATE AUGE_USUAMENU SET USME_ESTADO = 1 WHERE SISU_ID = :1 AND MENU_ID = :2`;
+      for (const opcion of opcionesAsignada) {
+        await this.menuUserRepository.query(sqlUpdt, [sisuId, opcion]);
+      }
+
+      const sqlDesmarcar = `UPDATE AUGE_USUAMENU SET USME_ESTADO = 0 WHERE SISU_ID = :1 AND MENU_ID = :2`;
+      for (const opcion of opcionesSinAsignar) {
+        await this.menuUserRepository.query(sqlDesmarcar, [sisuId, opcion]);
+      }
+
+      return { message: 'Menu asignado exitosamente' };    
+
+    } catch (error) {
+      console.log('error AsignarMenu', error);
     }
   }
 }
