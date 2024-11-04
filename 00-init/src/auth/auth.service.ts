@@ -301,13 +301,35 @@ export class AuthService {
       for (const opcion of opcionesAsignada) {
         await this.menuUserRepository.query(sqlUpdt, [sisuId, opcion]);
       }
-
-
-
       return { message: 'Menu asignado exitosamente' };    
-
     } catch (error) {
       console.log('error AsignarMenu', error);
+    }
+  }
+
+  async AsignarAps(body: any) {
+    try {
+      const { sisuId, apsSinAsignar, apsAsignadas } = body;
+
+      const eliminarTodos: number[] = [...apsSinAsignar, ...apsAsignadas];
+
+      const sqlDesmarcar = ` DELETE FROM TARIFICADOR.AUCO_APSUSUARIOS
+      WHERE APSA_ID= :1 AND SISU_ID= :2`;
+
+      for (const aps of eliminarTodos) {
+        await this.apsUserRepository.query(sqlDesmarcar, [aps, sisuId]);
+      }
+
+      const sqlUpdt = `INSERT INTO TARIFICADOR.AUCO_APSUSUARIOS (APSA_ID, SISU_ID, APSI_ESTADO, APSI_FECREA) VALUES (:1, :2, 1, sysdate)`;
+
+      for (const aps of apsAsignadas) {
+        await this.apsUserRepository.query(sqlUpdt, [aps, sisuId]);
+      }
+
+      return { message: 'Aps asignadas exitosamente' };
+
+    } catch (error) {
+      console.log('error AsignarAps', error);
     }
   }
 }

@@ -120,6 +120,12 @@ export class AuthController {
     return this.authService.AsignarMenu(body);
   }
 
+  @Post('asignarAps')
+  @UseGuards(AuthGuard())
+  AsignarAps(@Body() body){
+    return this.authService.AsignarAps(body);
+  }
+
 
 
   @Get('private')
