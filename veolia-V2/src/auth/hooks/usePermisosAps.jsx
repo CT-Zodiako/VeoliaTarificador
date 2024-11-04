@@ -71,13 +71,13 @@ import { useState } from "react";
 
     const handleApsAsignadas = () => {
         return asignadas.map(({ checked, ...rest }) => {    
-            return rest;
+            return rest.APSA_ID;
         });
     }; 
 
     const handleApsSinAsignar = () => {
         return sinAsignar.map(({ checked, ...rest }) => {
-            return rest;
+            return rest.APSA_ID;
         });
     };
 

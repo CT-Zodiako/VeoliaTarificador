@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { apsAsignadas, postAsignarAps } from "../services/usuariosService"
 import { usePermisosAps } from "../hooks/usePermisosAps"
 
@@ -41,6 +41,7 @@ export const AsignacionAPS = ({usuarioAps}) => {
         apsSinAsignar: apsSinAsignar,
         apsAsignadas: apsAsignadas,
       }; 
+      console.log('data', data);
       postAsignarAps(data);
     } catch (error) {
       console.error('Error saving data:', error);

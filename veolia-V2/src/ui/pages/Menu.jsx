@@ -8,7 +8,6 @@ export const Menu = () => {
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     const menu = serviceMenu();
     const inicio = menu[0];
-    console.log('Mi menu: ', menu);
     const onMenu = () => {
         setShowOffcanvas(!showOffcanvas);
     };
