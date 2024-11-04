@@ -12,7 +12,7 @@ export const getOpcionesUsuario = async (id) => {
   }
 }
 
-export const asignarAps = async (data) => {
+export const asignarMenu = async (data) => {
   try {
     const response = await Http.post('auth/asignarMenu', data);
     console.log('response', response);

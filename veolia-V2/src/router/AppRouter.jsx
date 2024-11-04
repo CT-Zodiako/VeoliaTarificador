@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import { PrivateRoute } from "./PrivateRouters";
 import { VeoliaApp } from "../VeoliaApp";
 import { LoginPage } from "../auth/pages/LoginPage";
 import { APSpage } from "../auth/pages/APSpage";
@@ -196,7 +197,8 @@ export const router = createBrowserRouter([
             //Proyecciones
             {
                 path: "/crear",
-                element: <Crear/>,
+                // element: <Crear/>,
+                element: <PrivateRoute path="/crear" element={<Crear />} />,
                 errorElement: <h1>error</h1>,
             },
             {

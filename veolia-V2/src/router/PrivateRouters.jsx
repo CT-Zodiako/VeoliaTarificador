@@ -1,34 +1,27 @@
 import { Navigate } from "react-router-dom";
+import { serviceMenu } from "../ui/services/serviceMenu";
 
-const PrivateRoute = ({ element, requiresAuth, isAdmin }) => {
+export const PrivateRoute = ({ path, element }) => {
     const token = localStorage.getItem("token");
-    const user = JSON.parse(localStorage.getItem("user"));
+    const menu = serviceMenu();
 
-    if (requiresAuth && !token) {
+    const opcion = menu.some((item) => 
+        item.items && item.items.some((subItem) => subItem.to === path)
+    );
+    console.log('opcion', opcion);
+    
+    if (!token) {
         return <Navigate to="/login" />;
-    }
+    };
 
-    if (isAdmin && (!user || user.is_admin !== 1)) {
+    // setTimeout(() => {
+    //     if (!opcion) {
+    //         return <Navigate to="/" />;
+    //     };
+    // }, 2000);
+    if (!opcion) {
         return <Navigate to="/" />;
-    }
+    };
 
     return element;
 };
-
-// import { useEffect, useState } from "react";
-// import { Navigate } from "react-router-dom";
- 
-// export const PrivateRouters = ({children}) => {
-//     const[auth, setAuth] = useState(false);
-
-//     useEffect(() => {
-//         const autorizado = localStorage.getItem("autorizado") === true;
-//         setAuth(autorizado);
-//     }, []);
-
-//     if (!auth) {
-//         return <Navigate to="/login" />;
-//       }
-    
-//       return children;
-// };

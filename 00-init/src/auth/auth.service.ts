@@ -279,7 +279,6 @@ export class AuthService {
   }
 
   async AsignarMenu(body: any) {
-    console.log(body);
     try {
       const { sisuId,  opcionesSinAsignar, opcionesAsignada} = body;
 

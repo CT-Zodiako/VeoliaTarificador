@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { apsAsignadas } from "../services/usuariosService"
+import { apsAsignadas, postAsignarAps } from "../services/usuariosService"
 import { usePermisosAps } from "../hooks/usePermisosAps"
 
 export const AsignacionAPS = ({usuarioAps}) => {
@@ -37,12 +37,11 @@ export const AsignacionAPS = ({usuarioAps}) => {
       const apsAsignadas = handleApsAsignadas();
 
       const data = {
+        sisuId: usuarioAps,
         apsSinAsignar: apsSinAsignar,
         apsAsignadas: apsAsignadas,
       }; 
-
-      console.log('Data APS: :', data);
-      
+      postAsignarAps(data);
     } catch (error) {
       console.error('Error saving data:', error);
     }
@@ -105,11 +104,11 @@ export const AsignacionAPS = ({usuarioAps}) => {
         </div>
     </div>
     <button
-              style={{ margin: '0', width: '5rem', height: '2rem', background: 'blue', borderRadius: '6px', border: '1px solid rgb(0, 0, 0, 0.3)' }}
-              onClick={handleGuardar}
-            >
-              Guardar
-            </button>
+      style={{ margin: '0', width: '5rem', height: '2rem', background: 'blue', borderRadius: '6px', border: '1px solid rgb(0, 0, 0, 0.3)' }}
+      onClick={handleGuardar}
+    >
+      Guardar
+    </button>
     </>
   )
 }

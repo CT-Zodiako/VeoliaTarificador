@@ -1,15 +1,15 @@
 import { useState } from "react";
 
  export const usePermisosAps = () => {
-  const [asignadas, setAsignadas] = useState([])
-  const [sinAsignar, setSinAsignar] = useState([])
-  const [porAsignar, setPorAsignar] = useState([])
-  const [porQuitar, setPorQuitar] = useState([])  
-  
-  const dataAsignadas = (response) => {
-        return response.apsAsignadas.map((item) => {
-              return { ...item, checked: true };
-        });
+    const [asignadas, setAsignadas] = useState([])
+    const [sinAsignar, setSinAsignar] = useState([])
+    const [porAsignar, setPorAsignar] = useState([])
+    const [porQuitar, setPorQuitar] = useState([])  
+
+    const dataAsignadas = (response) => {
+      return response.apsAsignadas.map((item) => {
+            return { ...item, checked: true };
+      });
     };
 
     const dataSinAsignar = (response)=> {
@@ -47,19 +47,26 @@ import { useState } from "react";
         }
     };
 
-    const handleQuitarAps = () => {        setSinAsignar([...sinAsignar, ...porQuitar]);
-        setAsignadas(asignadas.filter(aps => 
+    const handleQuitarAps = () => {        
+      const nuevosSinAsignar = [...sinAsignar, ...porQuitar].sort((a, b) =>
+          a.APSA_DESCRIPCION.localeCompare(b.APSA_DESCRIPCION)
+      );
+      setSinAsignar(nuevosSinAsignar);
+      setAsignadas(asignadas.filter(aps => 
           !porQuitar.some(item => item.APSA_ID === aps.APSA_ID)
-        ));
-        setPorQuitar([]);
+      ));
+      setPorQuitar([]);
     };
     
-      const handleAsignarAps = () => {
-          setAsignadas([...asignadas, ...porAsignar]);
-          setSinAsignar(sinAsignar.filter(aps => 
-            !porAsignar.some(item => item.APSA_ID === aps.APSA_ID)
-          ));
-          setPorAsignar([]);
+    const handleAsignarAps = () => {
+      const nuevasAsignadas = [...asignadas, ...porAsignar].sort((a, b) =>
+          a.APSA_DESCRIPCION.localeCompare(b.APSA_DESCRIPCION)
+      );
+      setAsignadas(nuevasAsignadas);
+      setSinAsignar(sinAsignar.filter(aps => 
+          !porAsignar.some(item => item.APSA_ID === aps.APSA_ID)
+      ));
+      setPorAsignar([]);
     };
 
     const handleApsAsignadas = () => {

@@ -1,4 +1,4 @@
- export const OpcionesMenu = ({opcionesRestantes, opcionesAsignadas, onSelectorAsignadas, onSelectorRestantes, onOpcionesAsignadas, onOpcionesRestantes, onMenuOpciones}) => {
+ export const OpcionesMenu = ({opcionesRestantes, opcionesAsignadas, onSelectorAsignadas, onSelectorRestantes, onOpcionesAsignadas, onOpcionesRestantes, onMenuOpciones, onAsignacionesMenu}) => {
     const inicio = opcionesRestantes && opcionesRestantes.find((menu) => menu.id === 100) ? true : false;
     const inicioMenu = opcionesAsignadas && opcionesAsignadas.find((menu) => menu.id === 100) ? true : false;
     return(
@@ -81,6 +81,14 @@
                             onClick={onOpcionesAsignadas}
                         >
                             {'>>'}
+                        </button>
+                    </div>
+                    <div>
+                        <button
+                            className="boton-accion"
+                            onClick={onAsignacionesMenu}
+                        >
+                            {'↺'}
                         </button>
                     </div>
                     <div>
