@@ -1,0 +1,23 @@
+# nixpacks.yml
+
+# Configuración de instalación
+install:
+  # Usar npm ci para una instalación limpia
+  command: npm ci --legacy-peer-deps
+
+# Configuración de construcción
+build:
+  # Forzar la instalación de dependencias de producción
+  command: npm install --legacy-peer-deps && npm run build
+
+# Configuración de inicio
+start:
+  # Comando para iniciar el backend en producción
+  command: npm run start:prod
+
+# Definir el directorio raíz donde se encuentra el backend (si es un monorepo)
+root: ./00-init
+
+# Caché de npm para mejorar la velocidad de construcción
+cache:
+  - /root/.npm
