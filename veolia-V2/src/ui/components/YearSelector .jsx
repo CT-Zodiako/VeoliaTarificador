@@ -13,10 +13,10 @@ export const YearSelector = () => {
     };
 
     return (
-        <div className='mt-1'>
-            <label htmlFor="year" className='labelSelect'>Año:</label>
+        <div className='mt-1 container-select'>
+            <label htmlFor="year" className='label-select'>Año:</label>
             <select 
-                className="form-select form-select-sm selectores" 
+                className="form-select form-select-sm style-selector" 
                 aria-label="Small select example" 
                 value={miAnno} 
                 onChange={handleChange}

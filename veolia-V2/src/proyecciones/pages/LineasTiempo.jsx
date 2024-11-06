@@ -43,7 +43,7 @@ import { TablaEditarLinTiemp } from "../components/TablaEditarLinTiemp";
             <div className="headerComponent">
                 <div className="tituloComponent"/>
                 <div className="selector">
-                    <Selectores selectorAps={true} selectorProy={true} selectDrescripcion={true} selectHorizonte={true}/>
+                    <Selectores selectorAps={true} selectorProy={true} selectDrescripcion={true} selectHorizonte={true} />
                 </div>
             </div>
             <div className="bodyComponent" >

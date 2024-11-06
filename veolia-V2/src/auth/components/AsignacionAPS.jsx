@@ -31,17 +31,20 @@ export const AsignacionAPS = ({usuarioAps}) => {
     }
   }, [usuarioAps])
 
+  const onAsignacionesAps = async() => {
+    await handleAsignarAps();
+    await handleQuitarAps();
+  };
+
   const handleGuardar = () => {
     try {
       const apsSinAsignar = handleApsSinAsignar();
       const apsAsignadas = handleApsAsignadas();
-
       const data = {
         sisuId: usuarioAps,
         apsSinAsignar: apsSinAsignar,
         apsAsignadas: apsAsignadas,
       }; 
-      console.log('data', data);
       postAsignarAps(data);
     } catch (error) {
       console.error('Error saving data:', error);
@@ -75,6 +78,14 @@ export const AsignacionAPS = ({usuarioAps}) => {
                   onClick={handleAsignarAps}
                 >
                     {'>>'}
+                </button>
+            </div>
+            <div>
+                <button
+                    className="boton-accion"
+                    onClick={onAsignacionesAps}
+                >
+                    {'↺'}
                 </button>
             </div>
             <div>

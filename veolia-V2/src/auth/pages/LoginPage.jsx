@@ -47,6 +47,7 @@ export const LoginPage = () => {
       <div className='login'>
         <div className='sesion'>
           <h2>Iniciar sesión</h2>
+          {/* <img src="../assets/Veolia_sml.png" alt="Veolia" style={{ height: '80px', width: 'auto' }} /> */}
           <form onSubmit={handleLogin}>
             <div>
               <label htmlFor="sisuCorreo">Correo electrónico:</label>

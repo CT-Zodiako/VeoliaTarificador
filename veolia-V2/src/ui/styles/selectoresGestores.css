@@ -1,0 +1,73 @@
+.componen-opcion {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: stretch;
+  padding: 0 40px;
+}
+
+.componen-opcion-2 {
+  width: 90%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.container-selects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.container-selects-2 {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.container-descripcion{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.select-item {
+  flex: 1 1 auto;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  padding: 0 auto;
+}
+
+.select-item-2 {
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  padding: 0 auto;
+}
+
+.container-select {
+  height: 4rem;
+  padding: 0.2rem;
+}
+
+.style-selector {
+  height: 1.5rem;
+  width: 12rem;
+  font-size: 0.7rem;
+}
+
+.label-select {
+  font-size: 2vh;
+  margin-bottom: 0.5rem;
+  color: #343a40;
+}

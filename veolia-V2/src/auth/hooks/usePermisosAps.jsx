@@ -48,26 +48,36 @@ import { useState } from "react";
     };
 
     const handleQuitarAps = () => {        
-      const nuevosSinAsignar = [...sinAsignar, ...porQuitar].sort((a, b) =>
-          a.APSA_DESCRIPCION.localeCompare(b.APSA_DESCRIPCION)
-      );
-      setSinAsignar(nuevosSinAsignar);
-      setAsignadas(asignadas.filter(aps => 
-          !porQuitar.some(item => item.APSA_ID === aps.APSA_ID)
-      ));
+      setSinAsignar(prevSinAsignar => {
+          const nuevosSinAsignar = [...prevSinAsignar, ...porQuitar].sort((a, b) =>
+              a.APSA_DESCRIPCION.localeCompare(b.APSA_DESCRIPCION)
+          );
+          return nuevosSinAsignar;
+      });
+      setAsignadas(prevAsignadas => {
+          return prevAsignadas.filter(aps => 
+              !porQuitar.some(item => item.APSA_ID === aps.APSA_ID)
+          );
+      });
       setPorQuitar([]);
     };
+  
     
     const handleAsignarAps = () => {
-      const nuevasAsignadas = [...asignadas, ...porAsignar].sort((a, b) =>
-          a.APSA_DESCRIPCION.localeCompare(b.APSA_DESCRIPCION)
-      );
-      setAsignadas(nuevasAsignadas);
-      setSinAsignar(sinAsignar.filter(aps => 
-          !porAsignar.some(item => item.APSA_ID === aps.APSA_ID)
-      ));
+      setAsignadas(prevAsignadas => {
+          const nuevasAsignadas = [...prevAsignadas, ...porAsignar].sort((a, b) =>
+              a.APSA_DESCRIPCION.localeCompare(b.APSA_DESCRIPCION)
+          );
+          return nuevasAsignadas;
+      });
+      setSinAsignar(prevSinAsignar => {
+          return prevSinAsignar.filter(aps => 
+              !porAsignar.some(item => item.APSA_ID === aps.APSA_ID)
+          );
+      });
       setPorAsignar([]);
     };
+
 
     const handleApsAsignadas = () => {
         return asignadas.map(({ checked, ...rest }) => {    

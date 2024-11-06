@@ -203,7 +203,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/lineastiempo",
-                element: <LineasTiempo/>,
+                // element: <LineasTiempo/>,
+                element: <PrivateRoute path="/lineastiempo" element={<LineasTiempo />} />,
                 errorElement: <h1>error</h1>,
             },
             {
