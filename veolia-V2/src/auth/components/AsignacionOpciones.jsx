@@ -4,6 +4,7 @@ import { Menu } from '../../ui/components/datas';
 import { useOpcionesMenu } from '../hooks/useOpcionesMenu';
 import { usePermisosMenu } from '../hooks/usePermisosMenu';
 import { OpcionesMenu } from './OpcionesMenu';
+import '../styles/permisos.css';
 
 export const AsignacionOpciones = ({usuarioAps}) => {        
     const [ opcionesAsignadas, setOpcionesAsignadas ] = useState();

@@ -24,7 +24,7 @@ export const CuadriculaCosto = ({ costoResult }) => {
     };
 
     return(
-        <div className="p-grid panel" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+        <div className="p-grid" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
         {costoResult.map((item, index) => (
           <div
             key={index}

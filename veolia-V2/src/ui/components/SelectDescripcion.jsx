@@ -6,7 +6,7 @@ import { useDescripcion } from "../../store/storeSelectors";
     return(
     <>
         <div className="custom-container">
-            <label htmlFor="descripcion" className='labelSelect'>Descripción:</label>
+            <label htmlFor="descripcion" className='label-select'>Descripción:</label>
             <textarea
                 id="descripcion"
                 value={selecteDescripcion}

@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { apsAsignadas, postAsignarAps } from "../services/usuariosService"
 import { usePermisosAps } from "../hooks/usePermisosAps"
+import '../styles/permisos.css';
 
 export const AsignacionAPS = ({usuarioAps}) => {
   const {

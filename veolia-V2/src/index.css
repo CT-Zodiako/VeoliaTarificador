@@ -16,6 +16,14 @@ input[type="number"]::-webkit-inner-spin-button {
   flex-direction: column;
   height: 100vh;
   width: 100%;
+
+}
+
+.veolia {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-left: 15rem; 
 }
 
 .cabezote {
@@ -51,14 +59,6 @@ input[type="number"]::-webkit-inner-spin-button {
   height: 65%;
   padding-top: 1rem;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -181,7 +181,7 @@ input[type="number"]::-webkit-inner-spin-button {
   padding: 0 auto;
 } */
 
-.select-descripcion {
+/* .select-descripcion {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -190,7 +190,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .select-horizonte {
   display: flex;
   justify-content: center;
-}
+} */
 
 /* .selectores {
   height: 1.5rem;
@@ -203,6 +203,7 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-bottom: 0.5rem;
   color: #343a40;
 } */
+
 
 /*MENU*/
 .optionMenu {
@@ -242,7 +243,9 @@ input[type="number"]::-webkit-inner-spin-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 0.13rem solid rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  background: transparent;
 }
 
 .custom-navbar {
@@ -266,7 +269,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .nav-item.dropdown.show .text-nav,
 .text-nav:focus 
 {
-    color: rgb(213, 208, 208) !important;
+    color: rgb(228, 223, 223) !important;
     outline: none;
 }
 
@@ -280,27 +283,18 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 
-
 /*GRAFICOS*/
-.graficos {
+/* .graficos {
   width: 320px;
   height: 224px;
   margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-
-
-
-
-
-
-
+} */
 
 /*ETIQUETAS DE COSTO*/
-#lista-tarjeta{
+/* #lista-tarjeta{
   list-style: none;
 }
 .panel{
@@ -361,10 +355,10 @@ input[type="number"]::-webkit-inner-spin-button {
   height: 25%;
   margin: auto;
   text-align: center;
-}
+} */
 
 /*TABLA COSTOS*/
-.tableCosto {
+/* .tableCosto {
   border-collapse: collapse;
   margin: 20px 0;
   font-size: 12px;
@@ -409,10 +403,10 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .tableCosto td {
   color: #333;
-}
+} */
 
 /*BORDE TABLA COSTO*/
-.tabla-con-titulo {
+/* .tabla-con-titulo {
   position: relative;
   border: 2px solid #ccc;
   padding-top: 20px;
@@ -430,10 +424,10 @@ input[type="number"]::-webkit-inner-spin-button {
   padding: 0 10px;
   font-weight: bold;
   font-size: 1.2rem;
-}
+} */
 
 /*BARRA DE PROGRESOS*/
-.progress-bar-container {
+/* .progress-bar-container {
   width: 100%;
   background-color: rgb(224, 224, 224);
   border-radius: 4px;
@@ -460,10 +454,10 @@ input[type="number"]::-webkit-inner-spin-button {
   color: rgb(0, 0, 0);
   font-weight: bold;
   z-index: 2;
-}
+} */
 
 /*SELECT DESCRIPCION*/
-.custom-container {
+/* .custom-container {
   margin-bottom: 1.5rem;
 }
 
@@ -478,10 +472,10 @@ input[type="number"]::-webkit-inner-spin-button {
 .custom-textarea:focus {
   border-color: #007bff;
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
-}
+} */
 
 /*SELECT HORIZONTE*/
-.custom-form-group {
+/* .custom-form-group {
   margin-bottom: 0.3rem;
 }
 
@@ -492,7 +486,7 @@ input[type="number"]::-webkit-inner-spin-button {
   padding: 0.5rem;
   border: 1px solid #ced4da;
   border-radius: 4px;
-}
+} */
 
 /*PESTAÑAS DE NAVEGACION*/
 .custom-tabs {
@@ -838,8 +832,10 @@ input[type="file"] {
 }
 
 
+
+
 /*MENU OPCIONES SELECCION*/
-.contenedor-opciones {
+/* .contenedor-opciones {
   width: 40%;
   height: 35rem;
   padding: 1rem;
@@ -866,7 +862,6 @@ input[type="file"] {
   align-items: center;
   justify-content: space-between;
   padding: 13rem 0; 
-  /* gap: 1rem; */
 }
 
 .boton-accion {
@@ -883,7 +878,6 @@ input[type="file"] {
 .boton-accion:hover {
   background-color: rgb(0, 0, 229);
 }
-
 
 .boton-guardar {
   margin: 0;
@@ -930,4 +924,4 @@ input[type="file"] {
   content: '✗';
   color: black;
 }
-
+ */
