@@ -6,14 +6,7 @@ ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, T
 export const GraficoComportamientoClus = ({dataCompClus}) => {
     return(
     <>
-        <div style={
-            { 
-                width: '100%',
-                height: '100%',
-                display: 'flex', 
-                justifyContent: 'center', 
-                alignItems: 'center'
-        }}>
+        <div className="w-100 h-100 d-flex justify-content-center align-items-center">
             {dataCompClus.length === 0 ? (
                 <h2>grafica Comportamiento Clus</h2>
             ) : (

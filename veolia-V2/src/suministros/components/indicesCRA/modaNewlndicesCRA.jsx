@@ -1,82 +1,52 @@
-import { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
-import { modalHook } from '../hooks/useModalHook';
-import { getIndicesCRA } from '../service/indicesCRAService';
-import { actualizarIndicesCRA } from '../service/indicesCRAService';
-import { useAnnoSelector, useMesSelector } from '../../store/storeSelectors';
+import  { NewIndiceCRAModalHook } from '../../hooks/useNewIndiceCRAModalHook'
+import { crearIndicesCRA } from '../../service/indicesCRAService';
 
-export const ModalEditIndiceCRA = ({ show, handleClose ,actualizarTabla}) => {
-
-    const anno = useAnnoSelector((state) => state.anno);
-    const mes = useMesSelector((state) => state.mes);
-    const { data, setData, estadoInputs, prepararDatosParaBackend } = modalHook({
+export const  ModalNewIndiceCRA = ({ show, handleClose }) => {
+    const { dataNewIndiceCRA, setData, estadoInputs ,prepararDatosParaBackend} = NewIndiceCRAModalHook({
         ipc: "",
         smlv: "",
         ipcc: "",
         ioexp: ""
     });
 
-
-    const { ipc, smlv, ipcc, ioexp } = data;
-
+    const { ipc, smlv, ipcc, ioexp } = dataNewIndiceCRA;
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const result = await getIndicesCRA(anno, mes);
-
-                if (!result) {
-                    return;
-                }
-                const newData = { ...data }; 
-                result.forEach(item => {
-                    if (item.PARA_INDICE20011 === 1) {
-                        newData.ipc = item.INDI_VALOR;
-                    }
-                    if (item.PARA_INDICE20011 === 2) {
-                        newData.smlv = item.INDI_VALOR;
-                    }
-                    if (item.PARA_INDICE20011 === 3) {
-                        newData.ipcc = item.INDI_VALOR;
-                    }
-                    if (item.PARA_INDICE20011 === 4) {
-                        newData.ioexp = item.INDI_VALOR;                        
-                    }
-                });
-                setData(newData);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchData();
-    }, [setData, anno, mes]);
-
-  
+        if (!show) {
+            setData({
+                ipc: "",
+                smlv: "",
+                ipcc: "",
+                ioexp: ""
+            });
+        }
+    }, [show]);
     
-
     const handleCancelar = () => {
         handleClose();
     };
 
+    const nuevoIndiceCRA = prepararDatosParaBackend();
 
     const handleGuardar = async () => {
-        actualizarTabla();
+        await crearIndicesCRA(nuevoIndiceCRA);
         handleClose();
-        const datosEditIndice = prepararDatosParaBackend();
-        await actualizarIndicesCRA(datosEditIndice);        
     };
 
     return (
         <>
             <Modal show={show} onHide={handleCancelar}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Editar Indice</Modal.Title>
+                <Modal.Header closeButton className="custom-navbar">
+                    <Modal.Title>Registrar Nuevo Indice</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-3" controlId="recipient-name">
                             <Form.Label>IPC:</Form.Label>
                             <Form.Control
+                                className="mb-2"
                                 type="number"
                                 name='ipc'
                                 value={ipc}
@@ -84,6 +54,7 @@ export const ModalEditIndiceCRA = ({ show, handleClose ,actualizarTabla}) => {
                             />
                             <Form.Label>SMLV:</Form.Label>
                             <Form.Control
+                                className="mb-2"
                                 type="number"
                                 name='smlv'
                                 value={smlv}
@@ -91,6 +62,7 @@ export const ModalEditIndiceCRA = ({ show, handleClose ,actualizarTabla}) => {
                             />
                             <Form.Label>IPCC:</Form.Label>
                             <Form.Control
+                                className="mb-2"
                                 type="number"
                                 name='ipcc'
                                 value={ipcc}
@@ -98,6 +70,7 @@ export const ModalEditIndiceCRA = ({ show, handleClose ,actualizarTabla}) => {
                             />
                             <Form.Label>IOEXP:</Form.Label>
                             <Form.Control
+                                className="mb-2"
                                 type="number"
                                 name='ioexp'
                                 value={ioexp}
@@ -106,8 +79,8 @@ export const ModalEditIndiceCRA = ({ show, handleClose ,actualizarTabla}) => {
                         </Form.Group>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={handleCancelar}>
+                <Modal.Footer className="d-flex justify-content-end">
+                    <Button variant="danger" onClick={handleCancelar} className="me-2">
                         Cancelar
                     </Button>
                     <Button variant="success" onClick={handleGuardar}>
