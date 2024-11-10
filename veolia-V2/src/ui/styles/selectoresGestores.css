@@ -5,6 +5,7 @@
 
 .componen-opcion {
   width: 90%;
+  max-width: 1800px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -13,6 +14,7 @@
 }
 
 .componen-opcion-2 {
+  max-width: 1800px;
   width: 90%;
   padding: 0.5rem;
   display: flex;
@@ -73,7 +75,7 @@
 
 .label-select {
   font-weight: bold;
-  font-size: 2vh;
+  font-size: 12px;
   margin-bottom: 0.5rem;
   color: #343a40;
 }

@@ -2,13 +2,12 @@ import {
     GraficoQrt, GraficoQa, GraficoTafna, GraficoLbl, GraficoTrna, 
     GraficoUsuarios, GraficoTarifas, CuadriculaCosto, TablaCostos
 } from "../components";
-import { useServiciosGraficas } from "../hook/useServiciosGraficas";
 import '../styles/calculo.css';
 
-export const GraficasCalculo = ({ costo, costoJson, periodoCosto }) => {
-    const { dataQrt, dataQa, dataTafna, dataLBL, 
-        dataTrna, dataUsuarios, optionUsuarios, 
-        dataTarifas} = useServiciosGraficas();
+export const GraficasCalculo = ({ 
+    costo, costoJson, periodoCosto, dataQrt, dataQa, dataTafna, 
+    dataLBL, dataTrna, dataUsuarios, optionUsuarios, dataTarifas
+}) => {
 
     return(
     <>

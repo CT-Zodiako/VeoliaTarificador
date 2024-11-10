@@ -1,51 +1,20 @@
-import { useEffect, useMemo, useState } from "react";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
-// import { getQaChart, getQrtChart, getTafnaChart, getLblChart, getTrnaChart, getUsuariosChart, getTarifasChart } from "../service/calculoGraficasService";
-// import { 
-//     GraficoQrt, GraficoQa, GraficoTafna, GraficoLbl, GraficoTrna, 
-//     GraficoUsuarios, GraficoTarifas, CuadriculaCosto, TablaCostos
-// } from "../components";
-import { getCostoJSON, getCostos } from "../service/costosService";
+import { useEffect } from "react";
 import { Selectores } from "../../ui/components/Selectores";
-// import '../styles/calculo.css';
-import { useServiciosGraficas } from "../hook/useServiciosGraficas";
+import { useCalculoGraficas } from "../hook/useCalculoGraficas";
 import { GraficasCalculo } from "../components/GraficasCalculo";
+import { useSelectStore } from "../../hooks/useSelectStore";
 
  export const Calculo = () => {
-    const mess = useMesSelector(state => state.mes);
-    const anno = useAnnoSelector(state => state.anno);
-    const aps = useApsSelector(state => state.aps);
+    const { anno, mess, aps, data } = useSelectStore();
 
-    const[costo, setCosto] = useState([]);
-    const[costoJson, setCostoJson] = useState([]);
-    const[periodoCosto, setPeriodoCosto] = useState([]);
-
-    const { qrtData, qaData, tafnaData, lblData, 
-        trnaData, usuariosData, tarifasData } = useServiciosGraficas();
-    
-    const data = useMemo(() => ({
-        APSA_ID: aps,
-        ANNO: anno,
-        MES: mess,
-    }), [aps, anno, mess]);
-
-    const onCosto = async() => {
-        try{
-            const costos = await getCostos(data);
-            setCosto(costos);
-
-            const Json = await getCostoJSON(data);
-            setCostoJson(Json[0].JSON_DOCUMENT.dataset);
-            setPeriodoCosto(Json[0].JSON_DOCUMENT.semestre);
-            
-        } catch {         
-            console.error('error en data costo');
-        }
-    };
+    const { costo, costoJson, periodoCosto, dataQrt, dataQa, dataTafna, dataLBL, dataTrna, 
+        dataUsuarios, optionUsuarios, dataTarifas, onCosto, onJsonCosto, qrtData, qaData, 
+        tafnaData, lblData, trnaData, usuariosData, tarifasData } = useCalculoGraficas(data);
 
     useEffect(() => {
         if(anno && mess && aps) {
-            // onDataGraficas();
+            onCosto();
+            onJsonCosto();
             qrtData();
             qaData();
             tafnaData();
@@ -53,7 +22,6 @@ import { GraficasCalculo } from "../components/GraficasCalculo";
             trnaData();
             usuariosData();
             tarifasData();
-            onCosto();
         }
     }, [anno, mess, aps])
 
@@ -65,7 +33,12 @@ import { GraficasCalculo } from "../components/GraficasCalculo";
                 <Selectores selectorFecha={true} selectorAps={true}/>
             </div>
         </div>
-        <GraficasCalculo costo={costo} costoJson={costoJson} periodoCosto={periodoCosto} />
+        <GraficasCalculo
+            costo={costo} costoJson={costoJson} periodoCosto={periodoCosto}
+            dataQrt={dataQrt} dataQa={dataQa} dataTafna={dataTafna} dataLBL={dataLBL} 
+            dataTrna={dataTrna} dataUsuarios={dataUsuarios} optionUsuarios={optionUsuarios} 
+            dataTarifas={dataTarifas}
+        />
     </>
   )
 };

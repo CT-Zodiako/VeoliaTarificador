@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { getQaChart, getQrtChart, getTafnaChart, getLblChart, getTrnaChart, getUsuariosChart, getTarifasChart } from "../service/calculoGraficasService";
+import { getCostoJSON, getCostos } from "../service/costosService";
 
-export const useServiciosGraficas = () => {
+export const useCalculoGraficas = (data = null) => {
+    const[costo, setCosto] = useState([]);
+    const[costoJson, setCostoJson] = useState([]);
+    const[periodoCosto, setPeriodoCosto] = useState([]);
     const[dataQrt, setDataQrt] = useState([]);
     const[dataQa, setDataQa] = useState([]);
     const[dataTafna, setDataTafna] = useState([]);
@@ -10,6 +14,25 @@ export const useServiciosGraficas = () => {
     const[dataUsuarios, setDataUsuarios] = useState([]);
     const[optionUsuarios, setOptionUsuarios] = useState([]);
     const[dataTarifas, setDataTarifas]=useState([]);
+
+    const onCosto = async() => {
+        try{
+            const costos = await getCostos(data);
+            setCosto(costos);
+        } catch {         
+            console.error('error en data costo');
+        }
+    };
+
+    const onJsonCosto = async() => {
+        try{
+            const Json = await getCostoJSON(data);
+            setCostoJson(Json[0].JSON_DOCUMENT.dataset);
+            setPeriodoCosto(Json[0].JSON_DOCUMENT.semestre);
+        } catch {
+            console.error('error en data json costo');
+        }
+    };
 
     const qrtData = async() => {
         try{
@@ -80,9 +103,8 @@ export const useServiciosGraficas = () => {
         }
     };
 
-    return{ dataQrt, dataQa, dataTafna, dataLBL, 
-        dataTrna, dataUsuarios, optionUsuarios, 
-        dataTarifas, qrtData, qaData, tafnaData, 
-        lblData, trnaData, usuariosData, tarifasData 
+    return{ costo, costoJson, periodoCosto, dataQrt, dataQa, dataTafna, dataLBL, 
+        dataTrna, dataUsuarios, optionUsuarios, dataTarifas, onCosto, onJsonCosto, 
+        qrtData, qaData, tafnaData, lblData, trnaData, usuariosData, tarifasData 
     };
 };

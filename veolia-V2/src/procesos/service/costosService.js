@@ -92,7 +92,6 @@ export const getCosClusChart= async(clus) => {
   }
 
 const getCompClus = async(data) => {
-    console.log('data comportamiento: ', data);
     try {
         const response = await Http.get('procesos/comportamientoClus', data);
         return response;
