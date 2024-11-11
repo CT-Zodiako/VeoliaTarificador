@@ -1,22 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getIndicesCRA } from '../service/indicesCRAService';
-import { ModalNewIndiceCRA } from '../components/indicesCRA/modaNewlndicesCRA';
-import { ModalEditIndiceCRA } from '../components/indicesCRA/modaEditlndicesCRA';
 import { Selectores } from '../../ui/components/Selectores';
-import { useAnnoSelector, useMesSelector } from '../../store/storeSelectors';
-import { TablaCRA } from '../components/indicesCRA/TablaCRA';
 import { TituloVista } from '../../ui/components/TituloVista';
+import { useSelectStore } from '../../hooks/useSelectStore';
+import { ModalNewIndiceCRA, ModalEditIndiceCRA, TablaCRA } from '../components/indicesCRA';
 
 export const IndicesCRA = () => {
-    const anno = useAnnoSelector((state) => state.anno);
-    const mes = useMesSelector((state) => state.mes);
-
+    const { anno, mes, dataAnnoMes } = useSelectStore();
     const [data, setData] = useState(null);
     const [modal, setModal] = useState(false);
     const [modalNew, setModalNew] = useState(false);
 
     const actualizarTabla = async () => {
-        const data = await getIndicesCRA(anno, mes);
+        const data = await getIndicesCRA(dataAnnoMes);
         setData(data);
     };
   

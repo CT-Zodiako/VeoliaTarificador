@@ -2,7 +2,6 @@
     return(
     <>
         <div className="d-flex justify-content-center mt-4 bodyComponent">
-            <div className="acctionTable"/>
                 <section className="width-Component">
                     <div className="row justify-content-center align-items-center">
                         <div className="col-md-8">

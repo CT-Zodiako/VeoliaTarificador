@@ -6,17 +6,17 @@ import { useSelectStore } from "../../hooks/useSelectStore";
 import '../styles/costo.css';
 
  export const Costo = () => {
-    const { anno, mess, aps, data } = useSelectStore();
+    const { anno, mes, aps, data } = useSelectStore();
 
     const { dataClus, tablaClus, compClus, onClusGrafica, onTablaClus, onCompClus } = useCostoGraficas(data);
 
     useEffect(()=>{
-        if(anno && mess && aps) {
+        if(anno && mes && aps) {
             onClusGrafica();
             onTablaClus();
             onCompClus();
         }
-    }, [anno, mess, aps])
+    }, [anno, mes, aps])
 
     return(
     <>

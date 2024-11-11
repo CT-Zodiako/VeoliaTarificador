@@ -3,17 +3,16 @@ import { Selectores } from "../../ui/components/Selectores";
 import { useCalculoGraficas } from "../hook/useCalculoGraficas";
 import { GraficasCalculo } from "../components/GraficasCalculo";
 import { useSelectStore } from "../../hooks/useSelectStore";
-import { TituloVista } from "../../ui/components/TituloVista";
 
  export const Calculo = () => {
-    const { anno, mess, aps, data } = useSelectStore();
+    const { anno, mes, aps, data } = useSelectStore();
 
     const { costo, costoJson, periodoCosto, dataQrt, dataQa, dataTafna, dataLBL, dataTrna, 
         dataUsuarios, optionUsuarios, dataTarifas, onCosto, onJsonCosto, qrtData, qaData, 
         tafnaData, lblData, trnaData, usuariosData, tarifasData } = useCalculoGraficas(data);
 
     useEffect(() => {
-        if(anno && mess && aps) {
+        if(anno && mes && aps) {
             onCosto();
             onJsonCosto();
             qrtData();
@@ -24,7 +23,7 @@ import { TituloVista } from "../../ui/components/TituloVista";
             usuariosData();
             tarifasData();
         }
-    }, [anno, mess, aps])
+    }, [anno, mes, aps])
 
     return(
     <>

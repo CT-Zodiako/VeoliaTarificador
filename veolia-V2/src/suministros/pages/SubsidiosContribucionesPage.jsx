@@ -1,43 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
-import { getSubCon,updateSubCon } from '../service/subsidiosContribucionesService'; // Asegúrate de que esta ruta sea correcta
-import { useAnnoSelector, useMesSelector, useApsSelector } from '../../store/storeSelectors';
+import { useCallback, useEffect, useState } from 'react';
+import { getSubCon, updateSubCon } from '../service/subsidiosContribucionesService';
 import { Selectores } from '../../ui/components/Selectores';
+import { TituloVista } from '../../ui/components/TituloVista';
+import { ModalEditarSubCon, TablaSubCon } from '../components/subsidiosContribuciones';
+import { useSelectStore } from '../../hooks/useSelectStore';
 
 export const SubConPage = () => {
-    const anno = useAnnoSelector((state) => state.anno);
-    const mes = useMesSelector((state) => state.mes);
-    const aps = useApsSelector((state) => state.aps);
+    const {anno, mes, aps, dataSubCon} = useSelectStore();
 
     const [data, setData] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
+    const onDataSubCon = async () => {
+        try {
+            const result = await getSubCon(dataSubCon);
+            setData(result);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                console.log(`Fetching data with anno: ${anno}, mes: ${mes}, aps: ${aps}`);
-                const result = await getSubCon(aps, anno, mes);
-                setData(result);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-        fetchData();
+        if (anno && mes && aps) {
+            onDataSubCon();
+        }
     }, [anno, mes, aps]);
 
     const handleShowModal = () => {
-        setShowModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
+        setShowModal(!showModal);
     };
 
     const handleSave = async () => {
-        
         try {
             await updateSubCon(data);
-            handleCloseModal();
+            handleShowModal();
         } catch (error) {
             console.error('Error guardando los datos:', error);
         }
@@ -49,7 +45,7 @@ export const SubConPage = () => {
         setData(newData);
     };
 
-    const getClaseText = (clase) => {
+    const getClaseText = useCallback((clase) => {
         switch (clase) {
             case 1:
                 return 'Estrato 1';
@@ -72,98 +68,20 @@ export const SubConPage = () => {
             default:
                 return 'Desconocido';
         }
-    };
+    }, [data]);
     
-
     return (
         <>
             <div className="headerComponent">
-                <div className="tituloComponent">
-                    <h1>Porcentajes de Subsidios y Contribuciones</h1>
+                <div className="selector">
+                    <TituloVista titulo="Porcentajes de Subsidios y Contribuciones" />
                 </div>
                 <div className="selector">
                     <Selectores selectorAps={true} selectorFecha={true} />
                 </div>
             </div>
-
-
-            <div className="bodyComponent">
-                <div className='componenTable'>
-                    <section>
-                        <div className="row justify-content-center align-items-center">
-                            <div className="col-md-8">
-                                <div className='acctionTable'>
-                                    <Button variant="primary" onClick={handleShowModal}>Editar Índices</Button>
-                                </div>
-                                <div className="card rounded">
-                                    <div className="card-body">
-                                        <div className="table-responsive" style={{ maxHeight: '40rem', overflowY: 'auto' }}>
-                                            <table className="table table-striped table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Clase</th>
-                                                        <th>Valor</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {data.map((item, index) => (
-                                                        <tr key={item.SUCO_ID}>
-                                                            <td>{getClaseText(item.CLAS_CLASE)}</td>
-                                                            <td className='text-end'>
-                                                                <strong>$</strong> {item.SUCO_VALOR}
-                                                            </td>
-                                                        </tr>
-                                                    ))}
-                                                </tbody>
-
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <Modal show={showModal} onHide={handleCloseModal}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Editar Índices</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                {data.map((item, index) => (
-                                    <Form key={item.SUCO_ID}>
-                                        <Form.Group className="row">
-                                            <Form.Label className="col-sm-3">Clase</Form.Label>
-                                            <div className="col-sm-9">
-                                                <Form.Control
-                                                    type="number"
-                                                    name="CLAS_CLASE"
-                                                    value={item.CLAS_CLASE}
-                                                    onChange={(e) => handleChange(index, 'CLAS_CLASE', e.target.value)}
-                                                    disabled
-                                                />
-                                            </div>
-                                        </Form.Group>
-                                        <Form.Group className="row">
-                                            <Form.Label className="col-sm-3">Valor</Form.Label>
-                                            <div className="col-sm-9">
-                                                <Form.Control
-                                                    type="number"
-                                                    name="SUCO_VALOR"
-                                                    value={item.SUCO_VALOR}
-                                                    onChange={(e) => handleChange(index, 'SUCO_VALOR', e.target.value)}
-                                                />
-                                            </div>
-                                        </Form.Group>
-                                        <hr />
-                                    </Form>
-                                ))}
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleCloseModal}>Cerrar</Button>
-                                <Button variant="primary" onClick={handleSave}>Guardar Cambios</Button>
-                            </Modal.Footer>
-                        </Modal>
-            </div>
+            <TablaSubCon data={data} handleShowModal={handleShowModal} getClaseText={getClaseText}/>
+            <ModalEditarSubCon data={data} showModal={showModal}  handleCloseModal={handleShowModal} handleChange={handleChange} handleSave={handleSave}/>
         </>
     );
 };

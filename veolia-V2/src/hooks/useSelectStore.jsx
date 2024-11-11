@@ -1,15 +1,26 @@
 import { useAnnoSelector, useApsSelector, useMesSelector } from "../store/storeSelectors";
 
  export const useSelectStore = () => {
-    const mess = useMesSelector(state => state.mes);
+    const mes = useMesSelector(state => state.mes);
     const anno = useAnnoSelector(state => state.anno);
     const aps = useApsSelector(state => state.aps);
 
     const data = {
         APSA_ID: aps,
         ANNO: anno,
-        MES: mess
+        MES: mes
     };
 
-    return{ anno, mess, aps, data }
+    const dataAnnoMes = {
+        ANNO: anno,
+        MES: mes
+    };
+
+    const dataSubCon = {
+        APSA_ID: aps,
+        SUCO_ANNO: anno,
+        SUCO_MES: mes
+    };
+
+    return{ anno, mes, aps, data, dataAnnoMes, dataSubCon };
 };

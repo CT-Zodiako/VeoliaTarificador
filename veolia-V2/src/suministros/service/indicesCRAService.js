@@ -1,7 +1,8 @@
 import {Http} from '../../helpers/axiosHelper'
 
-export const getIndicesCRA = async (ANNO, MES) => {
+export const getIndicesCRA = async (data) => {
     try {
+        const { ANNO, MES } = data;
         if (ANNO === undefined || MES === undefined) return
         
         const response = await Http.get('indice-cra/', {
