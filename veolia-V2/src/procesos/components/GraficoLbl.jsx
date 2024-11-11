@@ -6,11 +6,14 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
  export const GraficoLbl = ({dataLBL}) => {
     const option = {
         indexAxis: 'y', 
-    }
+    };
 
     return(
     <>
         <div className='graficos'>
+            <div className="tituloCosto">
+                LBL
+            </div>
             {dataLBL.length === 0 ? (
                 <h2>grafica LBL</h2>
             ) : (

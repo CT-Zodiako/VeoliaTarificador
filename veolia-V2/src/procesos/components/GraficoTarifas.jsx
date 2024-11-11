@@ -7,10 +7,13 @@ ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
     return(
     <>
         <div className='graficos'>
+            <div className="tituloCosto">
+                TARIFAS
+            </div>
             {dataTarifas.length === 0 ? (
                 <h2>grafica Tarifas</h2>
             ) : (
-                <PolarArea data={dataTarifas}/>
+                <PolarArea data={dataTarifas} className='grafica-pastel'/>
             )}
         </div>
     </>

@@ -3,6 +3,7 @@ import { Selectores } from "../../ui/components/Selectores";
 import { useCalculoGraficas } from "../hook/useCalculoGraficas";
 import { GraficasCalculo } from "../components/GraficasCalculo";
 import { useSelectStore } from "../../hooks/useSelectStore";
+import { TituloVista } from "../../ui/components/TituloVista";
 
  export const Calculo = () => {
     const { anno, mess, aps, data } = useSelectStore();
@@ -28,7 +29,6 @@ import { useSelectStore } from "../../hooks/useSelectStore";
     return(
     <>
         <div className="headerComponent">
-            <div className="tituloComponent"/>
             <div className="selector">
                 <Selectores selectorFecha={true} selectorAps={true}/>
             </div>

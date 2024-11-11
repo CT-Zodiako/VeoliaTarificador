@@ -21,7 +21,7 @@ export const Selectores = ({ selectorAps = false, selectorFecha = false, selecto
         activeSelectors >= 3 ? 'container-descripcion' : 'container-selects';
 
     return (
-        <div className="col-12 d-flex justify-content-center .width-Component">
+        <div className="col-12 d-flex justify-content-center">
             <div className={`headers-components col-10 ${selectDrescripcion === true ? `${containerHeaders}` : 'componen-opcion'}`} >
                 <div className={`${selectDrescripcion === true ? `${containerSelects}` : 'container-selects' }`}>
                     {selectorAps && <div className={`${selectDrescripcion === true ? 'select-item-2' : 'select-item' }`}><ApsSelector /></div>}

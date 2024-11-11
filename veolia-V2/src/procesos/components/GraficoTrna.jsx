@@ -7,6 +7,9 @@ export const GraficoTrna = ({dataTrna}) => {
     return(
     <>
         <div className='graficos'>
+            <div className="tituloCosto">
+                TRNA
+            </div>
             {dataTrna.length === 0 ? (
                 <h2>grafica Trna</h2>
             ) : (

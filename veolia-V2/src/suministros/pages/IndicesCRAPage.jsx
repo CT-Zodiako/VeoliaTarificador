@@ -5,6 +5,7 @@ import { ModalEditIndiceCRA } from '../components/indicesCRA/modaEditlndicesCRA'
 import { Selectores } from '../../ui/components/Selectores';
 import { useAnnoSelector, useMesSelector } from '../../store/storeSelectors';
 import { TablaCRA } from '../components/indicesCRA/TablaCRA';
+import { TituloVista } from '../../ui/components/TituloVista';
 
 export const IndicesCRA = () => {
     const anno = useAnnoSelector((state) => state.anno);
@@ -47,20 +48,16 @@ export const IndicesCRA = () => {
 
     const accionBoton = useCallback(() => {
         if (data && data.length === 0) {
-            return <button onClick={handleShowModalNew} className="btn btn-success">Agregar</button>;
+            return <button onClick={handleShowModalNew} className="btn btn-success" style={{ width: '6rem' }}>Agregar</button>;
         }
-        return <button onClick={handleShowModal} className="btn btn-warning">Editar</button>;
+        return <button onClick={handleShowModal} className="btn btn-warning" style={{ width: '6rem' }}>Editar</button>;
     }, [data]);
 
     return (
     <>
         <div className="headerComponent">
             <div className="selector">
-                <div className="col-12 d-flex justify-content-center">
-                    <div className="width-Component">
-                        <h1>Indices Publicados por la CRA</h1>
-                    </div>
-                </div>
+                <TituloVista titulo="Indices Publicados por la CRA" />
             </div>
             <div className="selector">
                 <Selectores selectorFecha={true} />

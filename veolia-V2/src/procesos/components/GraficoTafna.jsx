@@ -7,6 +7,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
     return(
     <>
         <div className='graficos'>
+            <div className="tituloCosto">
+                TAFNA
+            </div>
             {dataTafna.length === 0 ? (
                 <h2>grafica Tafna</h2>
             ) : (

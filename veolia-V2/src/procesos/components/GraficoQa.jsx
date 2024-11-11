@@ -7,6 +7,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
     return(
     <>  
         <div className='graficos'>
+            <div className="tituloCosto">
+                QA
+            </div>
             {dataQa.length === 0 ? (
                 <h2>grafica Qa</h2>
             ) : (
