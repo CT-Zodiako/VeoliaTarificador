@@ -1,31 +1,24 @@
 import { useEffect, useState } from "react";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { Selectores } from "../../ui/components/Selectores";
 import { ValorProductividad } from "../components/ajusteProductividad/ValorProductividad";
 import { getAjuestesProductividad, patchAjuestesProductividad, postAjuestesProductividad } from "../service/ajustesProductividadService";
+import { TituloVista } from "../../ui/components/TituloVista";
+import { useSelectStore } from "../../hooks/useSelectStore";
 
  export const AjustesProductividad = () => {
-    const aps = useApsSelector(state => state.aps);
-    const anno = useAnnoSelector((state) => state.anno);
-    const mes = useMesSelector((state) => state.mes);
+    const { anno, mes, aps, dataAjusteProd } = useSelectStore();
     const [datos, setDatos] = useState([]);
+    const [estadoAjuste, setEstadoAjuste] = useState(false);
     const [ajusteProductividad, setAjusteProductividad] = useState({
         APSA_ID: 0,
         PROD_ANNO: 0,
         PROD_MES: 0,
         PROD_VALOR: 0
     });    
-    const [estadoAjuste, setEstadoAjuste] = useState(false);
-    
-    const data = {
-        APSA_ID: aps,
-        PROD_ANNO: anno,
-        PROD_MES: mes
-    }
 
     const fetchData = async () => {
         try {
-            const response = await getAjuestesProductividad(data);
+            const response = await getAjuestesProductividad(dataAjusteProd);
             setDatos(response);
             if (response.length > 0) {
                 setEstadoAjuste(true)
@@ -50,7 +43,7 @@ import { getAjuestesProductividad, patchAjuestesProductividad, postAjuestesProdu
         catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const onServicioAjustes = async (data) => {
         try {
@@ -61,21 +54,24 @@ import { getAjuestesProductividad, patchAjuestesProductividad, postAjuestesProdu
         catch (error) {
             console.error(error);
         }
-    }
+    };
 
     useEffect(() => {
-        fetchData();
+        if(aps && anno && mes) {
+            fetchData();
+        };
     },[aps, anno, mes]);
 
     return(
     <>
         <div className="headerComponent">
-            <div className="tituloComponent"/>
+            <div className="selector">
+                <TituloVista titulo="Ajuste Productividad" />
+            </div>
             <div className="selector">
                 <Selectores selectorAps={true} selectorFecha={true} />
             </div>
         </div>
-        <div className="bodyComponent">
             <ValorProductividad 
                 datos={datos}
                 aps={aps}
@@ -83,7 +79,6 @@ import { getAjuestesProductividad, patchAjuestesProductividad, postAjuestesProdu
                 onServicioAjustes={onServicioAjustes}
                 fetchData={fetchData}
             />
-        </div>
     </>
   )
 };

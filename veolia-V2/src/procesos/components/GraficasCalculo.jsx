@@ -8,7 +8,7 @@ export const GraficasCalculo = ({
     costo, costoJson, periodoCosto, dataQrt, dataQa, dataTafna, 
     dataLBL, dataTrna, dataUsuarios, optionUsuarios, dataTarifas
 }) => {
-    
+
     return(
     <>
         <div className="bodyComponent container-calculo">
@@ -20,26 +20,36 @@ export const GraficasCalculo = ({
                     }
                 </div> 
             }
-            {periodoCosto.length !== 0 ?
+            {periodoCosto.length == 0 ?
                 (
-                    <div className="panel container-tablas width-Component">
-                        {costoJson &&
-                            costoJson.map((item, index) => {
-                                return <div key={index} style={{ width: '100%' }}>
-                                            <TablaCostos data={item}/>
-                                        </div>
-                            })
-                        }
+                    <div className="panel-graficas width-Component">
+                        <div className="titulo-graficas">
+                            <p>{periodoCosto}</p>
+                        </div>
+                        <div className="container-tablas">
+                            {costoJson &&
+                                costoJson.map((item, index) => {
+                                    return <div key={index} style={{ width: '100%' }}>
+                                                <TablaCostos data={item}/>
+                                            </div>
+                                })
+                            }
+                        </div>
                     </div>
                 ) : (
-                    <div className="panel container-graficas width-Component">
-                            <GraficoQrt dataQrt={dataQrt}/>
-                            <GraficoQa dataQa={dataQa}/>
-                            <GraficoTafna dataTafna={dataTafna}/>
-                            <GraficoLbl dataLBL={dataLBL}/>
-                            <GraficoTrna dataTrna={dataTrna}/>
-                            <GraficoUsuarios dataUsuarios={dataUsuarios} options={optionUsuarios}/>
-                            <GraficoTarifas dataTarifas={dataTarifas}/>
+                    <div className="panel-graficas width-Component">
+                            <div className="titulo-graficas">
+                                <p>Toneladas</p>
+                            </div>
+                            <div className="container-graficas">
+                                <GraficoQrt dataQrt={dataQrt}/>
+                                <GraficoQa dataQa={dataQa}/>
+                                <GraficoTafna dataTafna={dataTafna}/>
+                                <GraficoLbl dataLBL={dataLBL}/>
+                                <GraficoTrna dataTrna={dataTrna}/>
+                                <GraficoUsuarios dataUsuarios={dataUsuarios} options={optionUsuarios}/>
+                                <GraficoTarifas dataTarifas={dataTarifas}/>
+                            </div>
                     </div>
                 )
             }

@@ -36,7 +36,7 @@ import { useSelectStore } from "../../hooks/useSelectStore";
             costo={costo} costoJson={costoJson} periodoCosto={periodoCosto}
             dataQrt={dataQrt} dataQa={dataQa} dataTafna={dataTafna} dataLBL={dataLBL} 
             dataTrna={dataTrna} dataUsuarios={dataUsuarios} optionUsuarios={optionUsuarios} 
-            dataTarifas={dataTarifas}
+            dataTarifas={dataTarifas} anno={anno}
         />
     </>
   )

@@ -13,7 +13,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
             {dataUsuarios.length === 0 ? (
                 <h2>grafica Usuarios</h2>
             ) : (
-                <Bar data={dataUsuarios} options={options}/>
+                <div className='grafica-barras'>
+                    <Bar data={dataUsuarios} options={options}/>
+                </div>
             )}
         </div>
     </>

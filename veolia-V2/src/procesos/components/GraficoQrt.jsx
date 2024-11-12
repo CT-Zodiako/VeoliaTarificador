@@ -12,7 +12,9 @@ export const GraficoQrt = ({dataQrt}) => {
             {dataQrt.length === 0 ? (
                 <h2>grafica Qrt</h2>
             ) : (
-                <Doughnut data={dataQrt} className="grafica-pastel"/>
+                <div className="grafica-pastel">
+                    <Doughnut data={dataQrt} />
+                </div>
             )}
         </div>
     );

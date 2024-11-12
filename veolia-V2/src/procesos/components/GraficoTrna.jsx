@@ -13,7 +13,9 @@ export const GraficoTrna = ({dataTrna}) => {
             {dataTrna.length === 0 ? (
                 <h2>grafica Trna</h2>
             ) : (
-                <Line data={dataTrna} />
+                <div className='grafica-barras'>
+                    <Line data={dataTrna} />
+                </div>
             )}
         </div>
     </>

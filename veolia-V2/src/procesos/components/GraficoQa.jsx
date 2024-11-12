@@ -13,7 +13,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
             {dataQa.length === 0 ? (
                 <h2>grafica Qa</h2>
             ) : (
-                <Bar data={dataQa} />
+                <div className='grafica-barras'>
+                    <Bar data={dataQa} />
+                </div>
             )}
         </div>
     </>

@@ -13,7 +13,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
             {dataTafna.length === 0 ? (
                 <h2>grafica Tafna</h2>
             ) : (
-                <Bar data={dataTafna} />
+                <div className='grafica-barras'>
+                    <Bar data={dataTafna} />
+                </div>
             )}
         </div>
     </>
