@@ -28,5 +28,11 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../store/storeS
         PROD_MES: mes
     };
 
-    return{ anno, mes, aps, data, dataAnnoMes, dataSubCon, dataAjusteProd };
+    const dataVerificacion = {
+        APSA_ID: aps,
+        INED_ANNO: anno,
+        INED_MES: mes
+    };
+
+    return{ anno, mes, aps, data, dataAnnoMes, dataSubCon, dataAjusteProd, dataVerificacion };
 };

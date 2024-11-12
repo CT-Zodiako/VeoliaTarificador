@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useStyleTablaComponent } from "../../hooks/useStyleTablaComponent";
 import { SelectPaginacionTabla } from "./SelectPaginacionTabla";
 
- export const TablaComponentes = ({colums, data}) => {
+ export const TablaComponentes = ({colums, data, page}) => {
   const {BackgroundColumn, onAjustarFecha} = useStyleTablaComponent();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,13 +17,12 @@ import { SelectPaginacionTabla } from "./SelectPaginacionTabla";
   }
 
 return (
-    <div className='componenTable'>
-      <div className="tableBorde">
+    <div className='panel mb-4'>
         <div className="card-body">
-          <div className="table-responsive" style={{ overflowY: 'auto' }}>
-            <table className="table table-striped table-bordered" style={{ fontSize: '2vh' }}>
+          <div className="table-responsive" style={{ overflowY: 'auto', overflowX: 'auto' }}>
+            <table className="table table-striped table-bordered" style={{ fontSize: '12px' }}>
               <thead>
-                <tr>
+                <tr className="text-center">
                   {colums &&
                     colums.map((item, index) => (
                       <th key={index}>{item.head}</th>
@@ -52,23 +51,24 @@ return (
               </tbody>
             </table>
           </div>
-            <div className="pagination-buttons">
-              <button 
-                onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)} 
-                disabled={currentPage === 1}
-              >
-                ‹
-              </button>
-              <button 
-                onClick={() => setCurrentPage(currentPage < Math.ceil(data.length / itemsPerPage) ? currentPage + 1 : currentPage)}
-                disabled={currentPage === Math.ceil(data.length / itemsPerPage)}
-              >
-                ›
-              </button>
-              <SelectPaginacionTabla paginacionTable={paginacionTable}/>
-            </div>
+          { page &&
+          <div className="pagination-buttons">
+            <button 
+              onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)} 
+              disabled={currentPage === 1}
+            >
+              ‹
+            </button>
+            <button 
+              onClick={() => setCurrentPage(currentPage < Math.ceil(data.length / itemsPerPage) ? currentPage + 1 : currentPage)}
+              disabled={currentPage === Math.ceil(data.length / itemsPerPage)}
+            >
+              ›
+            </button>
+            <SelectPaginacionTabla paginacionTable={paginacionTable}/>
+          </div>
+          }
         </div>
-      </div>
     </div>
   );
 };
