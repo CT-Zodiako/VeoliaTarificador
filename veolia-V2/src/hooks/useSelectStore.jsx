@@ -11,45 +11,52 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../store/storeS
         MES: mes
     };
 
-    const dataAnnoMes = {
+    const requestAnnoMes = {
         ANNO: anno,
         MES: mes
     };
 
-    const dataSubCon = {
+    const requestSubCon = {
         APSA_ID: aps,
         SUCO_ANNO: anno,
         SUCO_MES: mes
     };
 
-    const dataAjusteProd = {
+    const requestAjusteProd = {
         APSA_ID: aps,
         PROD_ANNO: anno,
         PROD_MES: mes
     };
 
-    const dataVerificacion = {
+    const requestVerif = {
         APSA_ID: aps,
         INED_ANNO: anno,
         INED_MES: mes
     };
 
-    const dataAprov = {
+    const requestAprov = {
         APSID: aps,
         APROANNO: anno,
         APROMES: mes,
     };
 
-    const dataCosPoda = {
+    const requestCosPoda = {
         APSA_ID: aps,
         CPTE_ANNO: anno,
         CPTE_MES: mes,
     };
 
+    const requestDesCos = {
+        APSA_ID: aps,
+        DESC_ANNO: anno,
+        DESC_MES: mes
+    };
+
     return{ 
         anno, mes, aps, data, 
-        dataAnnoMes, dataSubCon, 
-        dataAjusteProd, dataVerificacion, 
-        dataAprov, dataCosPoda 
+        requestAnnoMes, requestSubCon, 
+        requestAjusteProd, requestVerif, 
+        requestAprov, requestCosPoda,
+        requestDesCos
     };
 };

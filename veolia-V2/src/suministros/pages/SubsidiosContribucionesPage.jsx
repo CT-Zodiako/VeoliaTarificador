@@ -1,33 +1,28 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getSubCon, updateSubCon } from '../service/subsidiosContribucionesService';
 import { Selectores } from '../../ui/components/Selectores';
 import { TituloVista } from '../../ui/components/TituloVista';
 import { ModalEditarSubCon, TablaSubCon } from '../components/subsidiosContribuciones';
 import { useSelectStore } from '../../hooks/useSelectStore';
+import { useFuncionalidadesSubCon } from '../hooks/useFuncionalidadesSubCon';
 
 export const SubConPage = () => {
-    const {anno, mes, aps, dataSubCon} = useSelectStore();
-
+    const {anno, mes, aps, requestSubCon} = useSelectStore();
     const [data, setData] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const { getClaseText } = useFuncionalidadesSubCon(data);
+    
+    const handleShowModal = () => {
+        setShowModal(!showModal);
+    };
 
     const onDataSubCon = async () => {
         try {
-            const result = await getSubCon(dataSubCon);
+            const result = await getSubCon(requestSubCon);
             setData(result);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
-    };
-
-    useEffect(() => {
-        if (anno && mes && aps) {
-            onDataSubCon();
-        }
-    }, [anno, mes, aps]);
-
-    const handleShowModal = () => {
-        setShowModal(!showModal);
     };
 
     const handleSave = async () => {
@@ -45,31 +40,12 @@ export const SubConPage = () => {
         setData(newData);
     };
 
-    const getClaseText = useCallback((clase) => {
-        switch (clase) {
-            case 1:
-                return 'Estrato 1';
-            case 2:
-                return 'Estrato 2';
-            case 3:
-                return 'Estrato 3';
-            case 4:
-                return 'Estrato 4';
-            case 5:
-                return 'Estrato 5';
-            case 6:
-                return 'Estrato 6';
-            case 7:
-                return 'Comercial';
-            case 8:
-                return 'Industrial';
-            case 9:
-                return 'Oficial';
-            default:
-                return 'Desconocido';
+    useEffect(() => {
+        if (anno && mes && aps) {
+            onDataSubCon();
         }
-    }, [data]);
-    
+    }, [anno, mes, aps]);
+
     return (
         <>
             <div className="headerComponent">

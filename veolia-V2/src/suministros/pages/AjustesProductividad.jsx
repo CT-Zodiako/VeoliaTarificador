@@ -4,9 +4,10 @@ import { ValorProductividad } from "../components/ajusteProductividad/ValorProdu
 import { getAjuestesProductividad, patchAjuestesProductividad, postAjuestesProductividad } from "../service/ajustesProductividadService";
 import { TituloVista } from "../../ui/components/TituloVista";
 import { useSelectStore } from "../../hooks/useSelectStore";
+import { useFuncionalidadesAjustProd } from "../hooks/useFuncionalidadesAjustProd";
 
  export const AjustesProductividad = () => {
-    const { anno, mes, aps, dataAjusteProd } = useSelectStore();
+    const { anno, mes, aps, requestAjusteProd } = useSelectStore();
     const [datos, setDatos] = useState([]);
     const [estadoAjuste, setEstadoAjuste] = useState(false);
     const [ajusteProductividad, setAjusteProductividad] = useState({
@@ -15,30 +16,13 @@ import { useSelectStore } from "../../hooks/useSelectStore";
         PROD_MES: 0,
         PROD_VALOR: 0
     });    
+    const { estodAjusteProdut } = useFuncionalidadesAjustProd(setEstadoAjuste, setAjusteProductividad, aps, anno, mes);
 
     const fetchData = async () => {
         try {
-            const response = await getAjuestesProductividad(dataAjusteProd);
+            const response = await getAjuestesProductividad(requestAjusteProd);
             setDatos(response);
-            if (response.length > 0) {
-                setEstadoAjuste(true)
-                setAjusteProductividad(prevState => ({
-                    ...prevState,
-                    APSA_ID: aps,
-                    PROD_ANNO: anno,
-                    PROD_MES: mes,
-                    PROD_VALOR: response[0].PROD_VALOR
-                }));
-            } else {
-                setEstadoAjuste(false)
-                setAjusteProductividad(prevState => ({
-                    ...prevState,
-                    APSA_ID: aps,
-                    PROD_ANNO: anno,
-                    PROD_MES: mes,
-                    PROD_VALOR: 0
-                }));
-            }
+            estodAjusteProdut(response);
         }
         catch (error) {
             console.error(error);
@@ -72,13 +56,12 @@ import { useSelectStore } from "../../hooks/useSelectStore";
                 <Selectores selectorAps={true} selectorFecha={true} />
             </div>
         </div>
-            <ValorProductividad 
-                datos={datos}
-                aps={aps}
-                ajusteProductividad={ajusteProductividad}
-                onServicioAjustes={onServicioAjustes}
-                fetchData={fetchData}
-            />
+        <ValorProductividad 
+            datos={datos} aps={aps}
+            ajusteProductividad={ajusteProductividad}
+            onServicioAjustes={onServicioAjustes}
+            fetchData={fetchData}
+        />
     </>
   )
 };

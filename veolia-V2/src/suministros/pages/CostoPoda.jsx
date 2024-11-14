@@ -6,13 +6,13 @@ import { TituloVista } from "../../ui/components/TituloVista";
 import { useSelectStore } from "../../hooks/useSelectStore";
 
  export const CostoPoda = () => {
-    const { aps, anno, mes, dataCosPoda } = useSelectStore();
+    const { aps, anno, mes, requestCosPoda } = useSelectStore();
 
     const [dataCostoPoda, setCostoPoda] = useState([]);
 
     const fetchData = async() => {
         try {
-            const response = await getCostoPoda(dataCosPoda);
+            const response = await getCostoPoda(requestCosPoda);
             setCostoPoda(response);
         } catch (error) {
             console.error(error);

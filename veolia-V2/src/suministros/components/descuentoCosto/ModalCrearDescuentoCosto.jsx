@@ -10,7 +10,6 @@ import { SelectorDescuentoCosto } from "./SelectorDescuentoCosto";
         PARA_COSTO20010: 0, 
         DESC_VALOR: 0
     });
-    console.log('formulario enviar: ', formulario);
     
     const onFormChange = (event) => {
         const {name, value} = event.target;

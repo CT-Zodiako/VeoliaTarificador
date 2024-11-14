@@ -6,12 +6,12 @@ import { useAprovechamientoConsultas } from "../hooks/useAprovechamientoConsulta
 import { useSelectStore } from "../../hooks/useSelectStore";
 
  export const ActivarAprovechamiento = () => {
-    const { anno, mes, aps, dataAprov } = useSelectStore();
+    const { anno, mes, aps, requestAprov } = useSelectStore();
 
     const { 
         dataAprovechamiento, fetchDataAndUpdateState, 
         onAprovechamiento, onResumenAprovechamiento 
-    } = useAprovechamientoConsultas(dataAprov, aps, anno, mes);   
+    } = useAprovechamientoConsultas(requestAprov, aps, anno, mes);   
 
     useEffect(() => {
         if(anno && mes && aps) {

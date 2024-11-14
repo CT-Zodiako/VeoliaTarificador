@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getResumenAprovechamiento, patchResumenAprovechamiento, postResumenAprovechamiento } from "../service/resumenAprovechamientoService";
 
-export const useAprovechamientoConsultas = ( data = null, aps = null, anno = null, mes = null ) => {
+export const useAprovechamientoConsultas = ( requestAprov = null, aps = null, anno = null, mes = null ) => {
     const [estadoData, setEstadoData] = useState(false);
     const [dataAprovechamiento, setDataAprovechamiento] = useState(
         {
@@ -36,7 +36,7 @@ export const useAprovechamientoConsultas = ( data = null, aps = null, anno = nul
 
     const fetchDataAndUpdateState = async () => {
         try {
-            const response = await getResumenAprovechamiento(data);   
+            const response = await getResumenAprovechamiento(requestAprov);   
             onDataAprovechamiento(response);
         } catch (error) {
             console.error(error);

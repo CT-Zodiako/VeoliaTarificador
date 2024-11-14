@@ -7,8 +7,8 @@ import { useVerificacionConsultas } from "../hooks/useVerificacionConsultas";
 import { useSelectStore } from "../../hooks/useSelectStore";
 
  export const Verificacion = () => {
-    const {anno, mes, aps, dataVerificacion } = useSelectStore();
-    const { verificacionEmpresa, verificacionAPS, verificacionRelleno, dataEmpresa, dataAPS, dataRelleno } = useVerificacionConsultas(dataVerificacion);   
+    const {anno, mes, aps, requestVerif } = useSelectStore();
+    const { verificacionEmpresa, verificacionAPS, verificacionRelleno, dataEmpresa, dataAPS, dataRelleno } = useVerificacionConsultas(requestVerif);   
 
     useEffect(() => {
         if(aps && anno && mes){

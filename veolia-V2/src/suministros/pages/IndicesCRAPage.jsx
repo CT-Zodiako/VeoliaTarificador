@@ -4,35 +4,14 @@ import { Selectores } from '../../ui/components/Selectores';
 import { TituloVista } from '../../ui/components/TituloVista';
 import { useSelectStore } from '../../hooks/useSelectStore';
 import { ModalNewIndiceCRA, ModalEditIndiceCRA, TablaCRA } from '../components/indicesCRA';
+import { useFuncionalidadesIndicesCRA } from '../hooks/useFuncionalidadesIndicesCRA';
 
 export const IndicesCRA = () => {
-    const { anno, mes, dataAnnoMes } = useSelectStore();
+    const { anno, mes, requestAnnoMes } = useSelectStore();
     const [data, setData] = useState(null);
     const [modal, setModal] = useState(false);
     const [modalNew, setModalNew] = useState(false);
-
-    const actualizarTabla = async () => {
-        const data = await getIndicesCRA(dataAnnoMes);
-        setData(data);
-    };
-  
-    useEffect(() => {
-        actualizarTabla();  
-    }, [anno, mes]);
-
-    const getIndiceText = useCallback((item) => {
-        if (item.PARA_INDICE20011 === 1) {
-            return 'IPC';
-        } else if (item.PARA_INDICE20011 === 2) {
-            return 'SMLV';
-        } else if (item.PARA_INDICE20011 === 3) {
-            return 'IPCC';
-        } else if (item.PARA_INDICE20011 === 4) {
-            return 'IOEXP';
-        } else {
-            return 'Desconocido';
-        }
-    }, [data]);
+    const { getIndiceText } = useFuncionalidadesIndicesCRA(data);
 
     const handleShowModal = () => {
         setModal(!modal);
@@ -42,15 +21,24 @@ export const IndicesCRA = () => {
         setModalNew(!modalNew);
     };
 
+    const actualizarTabla = async () => {
+        const data = await getIndicesCRA(requestAnnoMes);
+        setData(data);
+    };
+    
     const accionBoton = useCallback(() => {
         if (data && data.length === 0) {
             return <button onClick={handleShowModalNew} className="btn btn-success" style={{ width: '6rem' }}>Agregar</button>;
         }
         return <button onClick={handleShowModal} className="btn btn-warning" style={{ width: '6rem' }}>Editar</button>;
     }, [data]);
+    
+    useEffect(() => {
+        actualizarTabla();  
+    }, [anno, mes]);
 
     return (
-    <>
+        <>
         <div className="headerComponent">
             <div className="selector">
                 <TituloVista titulo="Indices Publicados por la CRA" />
