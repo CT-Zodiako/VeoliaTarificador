@@ -1,113 +1,106 @@
 import { useEffect, useState } from "react";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { Selectores } from "../../ui/components/Selectores";
 import { TabTable } from "../../ui/components/TabTable";
 import { getDetFac, getDetFacClus, getDetFacDinc, getFacturacion } from "../service/detalladoFacturacion";
 import { columnsDetFac, columnsDetFacClus, columnsDetFacDINC, columnsFacturacion, formatoDetFac, formatoDetFacClus, formatoDetFacDINC, formatoFacturacion } from "../components/data";
 import { TablaInformesGerenciales } from "../../informesGerenciales/components/TablaInformesGerenciales";
+import { TituloVista } from "../../ui/components/TituloVista";
+import { useSelectStore } from "../../hooks/useSelectStore";
+import { useFuncionalidadesFacturacion } from "../hook/useFuncionalidadesFacturacion";
  
 export const DetalladoFacturacion = () => {
-    const aps = useApsSelector(state => state.aps);
-    const mess = useMesSelector(state => state.mes);
-    const anno = useAnnoSelector(state => state.anno);
-
+    const { aps, anno, mes, request } = useSelectStore();
     const [pestañaActiva, setPestañaActiva] = useState(0); 
     const [dataFacturacion, setDataFacturacion] = useState({
         formato:{},
         datos:[]
     });
-    console.log('dataFacturacion', dataFacturacion);
     
     const [dataDetFac, setDataDetFac] = useState({
         formato:{},
         datos:[]
     });
-    console.log('dataDetFac', dataDetFac);
     
     const [dataDetFacClus, setDataDetFacClus] = useState({
         formato:{},
         datos:[]
     });
-    console.log('dataDetFacClus', dataDetFacClus);
     
     const [dataDetFacDinc, setDataDetFacDinc] = useState({
         formato:{},
         datos:[]
-    });
-    console.log('dataDetFacDinc', dataDetFacDinc);
-    
+    });    
 
-    const data = {
-        APS_ID: aps,
-        ANNO: anno,
-        MES: mess
-    }
+    const { titulosTabs } = useFuncionalidadesFacturacion(dataFacturacion, dataDetFac, dataDetFacClus, 
+        dataDetFacDinc, columnsFacturacion, columnsDetFac, columnsDetFacClus, columnsDetFacDINC);
 
-    const dataTablasFacturacion = async() => {
-        try{
-            const facturacion = await getFacturacion(data);
-            setDataFacturacion({
-                ...dataFacturacion,
+    const onDataFacturacion = async() => {
+        const facturacion = await getFacturacion(request);
+        setDataFacturacion({
+            ...dataFacturacion,
                 formato: formatoFacturacion,
                 datos: facturacion
-            });
+        });
+    };
 
-            const detFac = await getDetFac(data);
-            setDataDetFac({
-                ...dataDetFac,
+    const onDataDetFac = async() => {
+        const detFac = await getDetFac(request);
+        setDataDetFac({
+            ...dataDetFac,
                 formato: formatoDetFac,
                 datos: detFac
-            });
+        });
+    };
 
-            const detFacClus = await getDetFacClus(data);
-            setDataDetFacClus({
-                ...dataDetFacClus,
+    const onDataDetFacClus = async() => {
+        const detFacClus = await getDetFacClus(request);
+        setDataDetFacClus({
+            ...dataDetFacClus,
                 formato: formatoDetFacClus,
                 datos: detFacClus
-            });
+        });
+    };
 
-            const detFacDinc = await getDetFacDinc(data);
-            setDataDetFacDinc({
-                ...dataDetFacDinc,
+    const onDataDetFacDinc = async() => {
+        const detFacDinc = await getDetFacDinc(request);
+        setDataDetFacDinc({
+            ...dataDetFacDinc,
                 formato: formatoDetFacDINC,
                 datos: detFacDinc
-            });
-        } catch {
-            console.error('data de las tablas no encontrada'); 
-        }
-    }
+        });
+    };
 
     useEffect(()=>{
-        if (aps && mess && anno){
-            dataTablasFacturacion();
+        if (aps && mes && anno){
+            onDataDetFac();
+            onDataDetFacClus();
+            onDataDetFacDinc();
+            onDataFacturacion();
         }
-    }, [aps, mess, anno])
+    }, [aps, mes, anno]);
 
-    const titulosTabs = [
-        { titulo: 'Facturacion', datos: dataFacturacion, encabezado: columnsFacturacion },
-        { titulo: 'Det Facturacion', datos: dataDetFac, encabezado: columnsDetFac},
-        { titulo: 'Det Facturacion CLUS', datos: dataDetFacClus, encabezado: columnsDetFacClus },
-        { titulo: 'Det Facturacion DINC', datos: dataDetFacDinc, encabezado: columnsDetFacDINC }
-    ];
-
-    const handleClickTab = (index, titulo) => {
+    const handleClickTab = (index) => {
         setPestañaActiva(index);
     };
 
     return(
     <>
-        <div>
-            <div className="headerComponent">
-                <div className="tituloComponent"/>
-                <div className="selector">
-                    <Selectores selectorAps={true} selectorFecha={true} />
-                </div>
+        <div className="headerComponent">
+            <div className="selector">
+                <TituloVista titulo="Detallado Facturación" />
             </div>
-            <div className="bodyComponent" >
-                <div className='listTable'>
-                    <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+            <div className="selector">
+                <Selectores selectorAps={true} selectorFecha={true} />
+            </div>
+        </div>
+        <div className="d-flex justify-content-center mt-4 bodyComponent" >
+            <div className='width-Component'>
+                <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+                <div className="borde-table">
+                    <TablaInformesGerenciales 
+                        datos={titulosTabs[pestañaActiva].datos} tituloTabla={titulosTabs[pestañaActiva].titulo} 
+                        colums={titulosTabs[pestañaActiva].encabezado} page={true} />
                 </div>
-                <TablaInformesGerenciales datos={titulosTabs[pestañaActiva].datos} tituloTabla={titulosTabs[pestañaActiva].titulo} colums={titulosTabs[pestañaActiva].encabezado} />
             </div>
         </div>
     </>

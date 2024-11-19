@@ -10,7 +10,7 @@ export const GraficoComportamientoClus = ({dataCompClus}) => {
             {dataCompClus.length === 0 ? (
                 <h2>grafica Comportamiento Clus</h2>
             ) : (
-                <Line data={dataCompClus} style={{ height: '24rem', maxHeight: '30rem', maxWidth: '80%' }}/>
+                <Line data={dataCompClus} style={{ height: '24rem', maxHeight: '50rem', maxWidth: '80%' }}/>
             )}
         </div>
     </>

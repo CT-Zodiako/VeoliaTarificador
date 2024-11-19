@@ -1,14 +1,42 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Selectores } from "../../ui/components/Selectores";
-import { GraficoClus, GraficoComportamientoClus, TablaCostos } from "../components";
-import { useCostoGraficas } from "../hook/useCostoGraficas";
+import { getClusJson, getCompClusChart, getCosClusChart } from "../service/costosService";
 import { useSelectStore } from "../../hooks/useSelectStore";
+import { AnalisisCosto } from "../components/costo/AnalisisCosto";
 import '../styles/costo.css';
 
  export const Costo = () => {
     const { anno, mes, aps, data } = useSelectStore();
+    const[dataClus, setDataClus] = useState([]);
+    const[tablaClus, setTablaClus] = useState([]);
+    const[compClus, setComportamientoClus] = useState([]);
 
-    const { dataClus, tablaClus, compClus, onClusGrafica, onTablaClus, onCompClus } = useCostoGraficas(data);
+    const onClusGrafica = async() => {
+        try{
+            const graficaClus = await getCosClusChart(data);
+            setDataClus(graficaClus);
+        } catch {
+            console.error('error en data grafica clus');
+        }
+    };
+
+    const onTablaClus = async() => {
+        try{
+            const tabla = await getClusJson(data);
+            setTablaClus(tabla[0].JSON_DOCUMENT.dataset[0]);
+        } catch {
+            console.error('error en data tabla clus');
+        }
+    };
+
+    const onCompClus = async() => {
+        try{
+            const comportamiento = await getCompClusChart(data);
+            setComportamientoClus(comportamiento);
+        } catch {
+            console.error('error en data comportamiento clus');
+        }
+    };
 
     useEffect(()=>{
         if(anno && mes && aps) {
@@ -25,27 +53,7 @@ import '../styles/costo.css';
                 <Selectores selectorFecha={true} selectorAps={true}/>
             </div>
         </div>
-        <div className="d-flex justify-content-center">
-            <div className="d-flex align-items-center justify-content-center flex-column width-Component">
-                <div className="panel" style={{ marginTop: '2rem', width: '100%' }}>
-                    <h3>Costo de Limpieza Urbana</h3>
-                    <div className="d-flex flex-wrap justify-content-evenly">
-                        <div className="estruct-items" style={{ width: '22rem', marginTop: '1rem' }}>
-                            <GraficoClus dataClus={dataClus}/>
-                        </div>
-                        <div className="estruct-items" style={{ width: '35rem', marginTop: '1rem' }}>
-                            <TablaCostos data={tablaClus}/>
-                        </div>
-                    </div>
-                </div>
-                <div className="mt-4 panel" style={{ width: '100%' }}>
-                    <h3>Comportamiento CLUS</h3>
-                    <div className="w-100 mt-4">
-                        <GraficoComportamientoClus dataCompClus={compClus}/>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <AnalisisCosto dataClus={dataClus} tablaClus={tablaClus} compClus={compClus}/>
     </>
   )
 };

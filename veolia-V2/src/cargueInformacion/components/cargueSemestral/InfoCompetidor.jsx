@@ -138,7 +138,7 @@ export const InfoCompetidor = () => {
                 className="btn btn-primary btn-md"
                 onClick={onGuardarCSV}
             >
-                guardar
+                Guardar Información Competidor
             </button>
         </div>
     </>

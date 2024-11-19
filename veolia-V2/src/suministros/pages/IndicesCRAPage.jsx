@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getIndicesCRA } from '../service/indicesCRAService';
 import { Selectores } from '../../ui/components/Selectores';
 import { TituloVista } from '../../ui/components/TituloVista';
@@ -11,28 +11,22 @@ export const IndicesCRA = () => {
     const [data, setData] = useState(null);
     const [modal, setModal] = useState(false);
     const [modalNew, setModalNew] = useState(false);
-    const { getIndiceText } = useFuncionalidadesIndicesCRA(data);
-
+    
     const handleShowModal = () => {
         setModal(!modal);
     };
-
+    
     const handleShowModalNew = () => {
         setModalNew(!modalNew);
     };
+
+    const { getIndiceText, accionBoton } = useFuncionalidadesIndicesCRA(data, handleShowModalNew, handleShowModal);
 
     const actualizarTabla = async () => {
         const data = await getIndicesCRA(requestAnnoMes);
         setData(data);
     };
-    
-    const accionBoton = useCallback(() => {
-        if (data && data.length === 0) {
-            return <button onClick={handleShowModalNew} className="btn btn-success" style={{ width: '6rem' }}>Agregar</button>;
-        }
-        return <button onClick={handleShowModal} className="btn btn-warning" style={{ width: '6rem' }}>Editar</button>;
-    }, [data]);
-    
+
     useEffect(() => {
         actualizarTabla();  
     }, [anno, mes]);

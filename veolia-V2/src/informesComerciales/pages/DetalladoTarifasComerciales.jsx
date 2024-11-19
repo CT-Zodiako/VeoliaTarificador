@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { columnsTarifasPlena, columnsTarifasSC, formatoTarifasPlena, formatoTarifasSC } from '../components/data';
 import { getTarifasComerciales } from '../service/detalladoTarifasComerciales';
 import { Selectores } from "../../ui/components/Selectores";
 import { TabTable } from "../../ui/components/TabTable";
 import { TablaInformesGerenciales } from "../../informesGerenciales/components/TablaInformesGerenciales";
+import { useSelectStore } from "../../hooks/useSelectStore";
+import { useFuncionalidadesTarifComerc } from "../hook/useFuncionalidadesTarifComerc";
+import { TituloVista } from "../../ui/components/TituloVista";
+import '../style/detalladoTarifas.css'
 
 export const DetalladoTarifasComerciales = () => {
-    const aps = useApsSelector(state => state.aps);
-    const mess = useMesSelector(state => state.mes);
-    const anno = useAnnoSelector(state => state.anno);
-
+    const { anno, mes, requestAnnoMes } = useSelectStore();
     const [pestañaActiva, setPestañaActiva] = useState(0); 
-    const [titulo, setTitulo] = useState('')
     const [dataTarifaPlena, setDataTarifaPlena] = useState({
         formato:{},
         datos:[]
@@ -21,61 +20,48 @@ export const DetalladoTarifasComerciales = () => {
         formato:{},
         datos:[]
     });    
-
-    const data = {
-        // APS: aps,
-        ANNO: 2023,
-        MES: 2
-    }  
+    
+    const { asignacionData, titulosTabs } = useFuncionalidadesTarifComerc(
+        setDataTarifaPlena, setDataTarifaSubCon, dataTarifaPlena,
+        dataTarifaSubCon, formatoTarifasPlena, formatoTarifasSC, 
+        columnsTarifasPlena, columnsTarifasSC
+    );
 
     const dataTablasGerenciales = async() => {
         try{
-            const infoGerenciales = await getTarifasComerciales(data);
-            setDataTarifaPlena({
-                ...dataTarifaPlena,
-                formato: formatoTarifasPlena,
-                datos: infoGerenciales
-            });
-            setDataTarifaSubCon({
-                ...dataTarifaSubCon,
-                formato: formatoTarifasSC,
-                datos: infoGerenciales
-            })
+            const infoGerenciales = await getTarifasComerciales(requestAnnoMes);
+            asignacionData(infoGerenciales);
         } catch {
             console.error('data de las tablas no encontrada'); 
         }
-    }
+    };
+    
+    const handleClickTab = (index) => {
+        setPestañaActiva(index);
+    };
 
     useEffect(()=> {
-        if(anno && mess){
+        if(anno && mes){
             dataTablasGerenciales();
-        }
-    }, [anno, mess])
-
-    const titulosTabs = [
-        { titulo: 'Plena', datos: dataTarifaPlena, encabezado: columnsTarifasPlena },
-        { titulo: 'Sub & Con', datos: dataTarifaSubCon, encabezado: columnsTarifasSC },
-    ];
-
-    const handleClickTab = (index, titulo) => {
-        setPestañaActiva(index);
-        setTitulo(titulo)
-    };
+        };
+    }, [anno, mes]);
 
     return(
     <>
-        <div>
-            <div className="headerComponent">
-                <div className="tituloComponent"/>
-                <div className="selector">
-                    <Selectores selectorFecha={true} />
-                </div>
+        <div className="headerComponent">
+            <div className="selector">
+                <TituloVista titulo="Detallado de Tarifas" />
             </div>
-            <div className="bodyComponent" >
-                <div className='listTable'>
-                    <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+            <div className="selector">
+                <Selectores selectorFecha={true} />
+            </div>
+        </div>
+        <div className="d-flex justify-content-center mt-4 bodyComponent">
+            <div className="width-Component">
+                <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+                <div className="borde-table">
+                    <TablaInformesGerenciales datos={titulosTabs[pestañaActiva].datos} tituloTabla={titulosTabs[pestañaActiva].titulo} colums={titulosTabs[pestañaActiva].encabezado} />
                 </div>
-                <TablaInformesGerenciales datos={titulosTabs[pestañaActiva].datos} tituloTabla={titulosTabs[pestañaActiva].titulo} colums={titulosTabs[pestañaActiva].encabezado} />
             </div>
         </div>
     </>

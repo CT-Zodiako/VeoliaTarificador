@@ -5,8 +5,8 @@ import { postPropiaMensual } from '../../service/cargueMensualService';
 import { useAnnoSelector, useApsSelector, useMesSelector } from '../../../store/storeSelectors';
 import { SelectCargueInformacion } from '../selectCargueInformacion';
 import { useGetCargueEmpresa } from '../../../hooks/useGetCargueEmpresa';
-import Papa from 'papaparse';
 import { InputCargueFile } from '../InputCargueFile';
+import Papa from 'papaparse';
 
 export const InfoPropia = () => {
     const aps = useApsSelector(state => state.aps);
@@ -105,7 +105,7 @@ export const InfoPropia = () => {
         } catch (error) {
             console.error('Error al guardar el archivo', error);
         }
-    }
+    };
     
     return(
     <>
@@ -118,7 +118,6 @@ export const InfoPropia = () => {
                     <SelectCargueInformacion opciones={empresas} label='Seleccionar Empresa ' seleccion={empreSeleccionada}/>
                     <InputCargueFile file={cargarArchivo} procesar={procesarMonthArchivo}/>
                 </div>
-                
                 {messages.map((message, index) => (
                     <div key={index} className={`message-${message.type}`}>
                         {message.text}
@@ -127,13 +126,14 @@ export const InfoPropia = () => {
             </div>
             <div className='bodyComponent vista-previa'>
                 <h4>Vista Previa</h4>
+                <hr />
                 <TablaComponentes colums={columnsPropiaMen} data={preViewTabla}/>
             </div>
             <button
                 className="btn btn-primary btn-md"
                 onClick={onGuardarCSV}
             >
-                guardar
+                Guardar Información Propia
             </button>
         </div>
     </>

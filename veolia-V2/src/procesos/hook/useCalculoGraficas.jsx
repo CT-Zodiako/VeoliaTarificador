@@ -15,6 +15,16 @@ export const useCalculoGraficas = (data = null) => {
     const[optionUsuarios, setOptionUsuarios] = useState([]);
     const[dataTarifas, setDataTarifas]=useState([]);
 
+    const asignacionUsuarios = (response) => {
+        if (response != null) {
+            setDataUsuarios(response.chart);
+            setOptionUsuarios(response.options);
+        } else {
+            setDataUsuarios(null);
+            setOptionUsuarios(null);
+        }
+    };
+
     const onCosto = async() => {
         try{
             const costos = await getCostos(data);
@@ -82,13 +92,7 @@ export const useCalculoGraficas = (data = null) => {
     const usuariosData = async() => {
         try{
             const Usuarios = await getUsuariosChart(data);
-            if (Usuarios != null) {
-                setDataUsuarios(Usuarios.chart);
-                setOptionUsuarios(response.options);
-            } else {
-                setDataUsuarios(null);
-                setOptionUsuarios(null);
-            }
+            asignacionUsuarios(Usuarios);
         } catch {
             console.error('error en data usuarios');
         }

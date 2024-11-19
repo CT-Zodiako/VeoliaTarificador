@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Selectores } from "../../ui/components/Selectores";
 import { useCalculoGraficas } from "../hook/useCalculoGraficas";
-import { GraficasCalculo } from "../components/GraficasCalculo";
+import { GraficasCalculo } from "../components/calculo/GraficasCalculo";
 import { useSelectStore } from "../../hooks/useSelectStore";
 
  export const Calculo = () => {

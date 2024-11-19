@@ -4,9 +4,8 @@ import { SelectPaginacionTabla } from "./SelectPaginacionTabla";
 
  export const TablaComponentes = ({colums, data, page}) => {
   const {BackgroundColumn, onAjustarFecha} = useStyleTablaComponent();
-
   const [currentPage, setCurrentPage] = useState(1);
-  const[itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -14,10 +13,10 @@ import { SelectPaginacionTabla } from "./SelectPaginacionTabla";
 
   const paginacionTable = (pag) => {
     setItemsPerPage(pag)
-  }
+  };
 
 return (
-    <div className='panel mb-4'>
+    <div className='panel-tablas mb-4'>
         <div className="card-body">
           <div className="table-responsive" style={{ overflowY: 'auto', overflowX: 'auto' }}>
             <table className="table table-striped table-bordered" style={{ fontSize: '12px' }}>
@@ -31,7 +30,43 @@ return (
                 </tr>
               </thead>
               <tbody>
-                {dataF &&
+                { page ? (
+                  dataF &&
+                    dataF.map((item, index) => (
+                      <tr key={index}>
+                        {colums.map((body, colIndex) => (
+                          <td 
+                            style={{ background: BackgroundColumn(body.body, item[body.body]) }}
+                            key={colIndex}
+                          >
+                            {body.body === 'TARI_FECHACREACION' ?
+                              onAjustarFecha(item[body.body]) :
+                              item[body.body]
+                            }
+                          </td>
+                        ))}
+                      </tr>
+                    ))
+                ) : (
+                  data &&
+                    data.map((item, index) => (
+                      <tr key={index}>
+                        {colums.map((body, colIndex) => (
+                          <td 
+                            style={{ background: BackgroundColumn(body.body, item[body.body]) }}
+                            key={colIndex}
+                          >
+                            {body.body === 'TARI_FECHACREACION' ?
+                              onAjustarFecha(item[body.body]) :
+                              item[body.body]
+                            }
+                          </td>
+                        ))}
+                      </tr>
+                    ))
+                )
+                }
+                {/* {dataF &&
                   dataF.map((item, index) => (
                     <tr key={index}>
                       {colums.map((body, colIndex) => (
@@ -47,7 +82,7 @@ return (
                       ))}
                     </tr>
                   ))
-                }
+                } */}
               </tbody>
             </table>
           </div>

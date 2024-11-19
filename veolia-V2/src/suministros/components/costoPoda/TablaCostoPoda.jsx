@@ -27,53 +27,10 @@ import { useFuncionalidadesTable } from '../../hooks/useFuncionalidadesTable.jsx
                                     <tr key={index}>
                                         <td>{item.EMPR_NOMBRE}</td>
                                         <td>{columnValorSui(item, index)}
-                                            {/* {
-                                            editar === index ? (
-                                                <input
-                                                    type="number"
-                                                    name='CPTE_VALORSUI'
-                                                    value={podaEditar.CPTE_VALORSUI}
-                                                    onChange={(event) => onEditarSIU(event)}
-                                                />
-                                            ) : 
-                                            (
-                                                <div>
-                                                    {item.CPTE_VALORSUI}
-                                                </div>
-                                            )
-                                            } */}
                                         </td>
                                         <td>{item.CPTE_VALORFACT}</td>
                                         <td>{tipoIngreso(item.CPTE_TIPINGRESO)}</td>
                                         <td>{onAccionBoton(index)}
-                                            {/* {
-                                                editar === index ? (
-                                                    <div>
-                                                        <button
-                                                            className="btn btn-success"
-                                                            onClick={onEditarPoda}
-                                                        >
-                                                            Guardar
-                                                        </button>
-                                                        <button
-                                                            className="btn btn-danger"
-                                                            onClick={() => setEditar(null)}
-                                                        >
-                                                            Cancelar
-                                                        </button>
-                                                    </div>
-                                                )
-                                                : (
-                                                    <div>
-                                                        <button
-                                                            className="btn btn-warning"
-                                                            onClick={() => onCostoPoda(index)}
-                                                        >
-                                                            Editar
-                                                        </button>
-                                                    </div>
-                                                )
-                                            } */}
                                         </td>
                                     </tr>
                                 ))

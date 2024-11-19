@@ -11,9 +11,20 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../store/storeS
         MES: mes
     };
 
+    const request = {
+        APS_ID: aps,
+        ANNO: anno,
+        MES: mes
+    };
+
     const requestAnnoMes = {
         ANNO: anno,
         MES: mes
+    };
+
+    const requestFecha = {
+        anno: anno,
+        mes: mes
     };
 
     const requestSubCon = {
@@ -53,10 +64,7 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../store/storeS
     };
 
     return{ 
-        anno, mes, aps, data, 
-        requestAnnoMes, requestSubCon, 
-        requestAjusteProd, requestVerif, 
-        requestAprov, requestCosPoda,
-        requestDesCos
+        anno, mes, aps, data, request, requestAnnoMes, requestFecha, requestSubCon, 
+        requestAjusteProd, requestVerif, requestAprov, requestCosPoda, requestDesCos
     };
 };

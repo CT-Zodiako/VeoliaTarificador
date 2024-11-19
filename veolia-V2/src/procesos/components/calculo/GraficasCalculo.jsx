@@ -1,8 +1,9 @@
 import { 
-    GraficoQrt, GraficoQa, GraficoTafna, GraficoLbl, GraficoTrna, 
-    GraficoUsuarios, GraficoTarifas, CuadriculaCosto, TablaCostos
-} from "../components";
-import '../styles/calculo.css';
+    GraficoQrt, GraficoQa, GraficoTafna, GraficoLbl, 
+    GraficoTrna, GraficoUsuarios, GraficoTarifas
+} from ".";
+import { CuadriculaCosto, TablaCostos } from "..";
+import '../../styles/calculo.css';
 
 export const GraficasCalculo = ({ 
     costo, costoJson, periodoCosto, dataQrt, dataQa, dataTafna, 
@@ -13,14 +14,14 @@ export const GraficasCalculo = ({
     <>
         <div className="bodyComponent container-calculo">
             {periodoCosto &&
-                <div className="panel width-Component">
+                <div className="panel width-Component mb-4">
                     {costo.length !== 0 ?
                         <CuadriculaCosto costoResult={costo}/> :
                         <h3>No hay datos</h3> 
                     }
                 </div> 
             }
-            {periodoCosto.length == 0 ?
+            {periodoCosto.length !== 0 ?
                 (
                     <div className="panel-graficas width-Component">
                         <div className="titulo-graficas">

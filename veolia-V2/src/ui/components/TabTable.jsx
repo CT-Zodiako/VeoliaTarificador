@@ -3,9 +3,9 @@ import { useState } from 'react';
 export const TabTable = ({ titulosTabs, onTabClick }) => {
     const [activeTab, setActiveTab] = useState(0);
 
-    const handleTabClick = (index, titulo) => {
+    const handleTabClick = (index) => {
         setActiveTab(index);
-        onTabClick(index, titulo);
+        onTabClick(index);
     };
 
     return (
@@ -14,7 +14,7 @@ export const TabTable = ({ titulosTabs, onTabClick }) => {
                 {titulosTabs.map((tab, index) => (
                     <li key={index} className="nav-item">
                         <a 
-                            onClick={() => handleTabClick(index, tab.titulo)} 
+                            onClick={() => handleTabClick(index)} 
                             className={`nav-link custom-nav-link nav-tabs nav-links ${activeTab === index ? 'active-tab' : ''}`} 
                             aria-current="page"
                         >

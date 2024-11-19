@@ -5,7 +5,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const GraficoClus = ({ dataClus }) => {
     return (
-        <div style={{ height: '21rem', width: '21rem' }}>
+        <div style={{ height: '20rem', width: '20rem' }}>
             {dataClus.length === 0 ? (
                 <h2>grafica Qrt</h2>
             ) : (

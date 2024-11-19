@@ -1,17 +1,4 @@
-import { useState } from "react";
-import { getResumenAprovechamiento, patchResumenAprovechamiento, postResumenAprovechamiento } from "../service/resumenAprovechamientoService";
-
-export const useAprovechamientoConsultas = ( requestAprov = null, aps = null, anno = null, mes = null ) => {
-    const [estadoData, setEstadoData] = useState(false);
-    const [dataAprovechamiento, setDataAprovechamiento] = useState(
-        {
-            APSID: 0,
-            APROANNO: 0,
-            APROMES: 0,
-            ACTIVAR: 0,
-        }
-    );  
-
+export const useAprovechamientoConsultas = ( setEstadoData, setDataAprovechamiento, aps = null, anno = null, mes = null ) => {
     const onDataAprovechamiento = (data) => {
         if (data.length > 0) {
             setEstadoData(true);
@@ -34,15 +21,6 @@ export const useAprovechamientoConsultas = ( requestAprov = null, aps = null, an
         }
     };
 
-    const fetchDataAndUpdateState = async () => {
-        try {
-            const response = await getResumenAprovechamiento(requestAprov);   
-            onDataAprovechamiento(response);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     const onAprovechamiento = (valor) => {
         valor === true ?
             setDataAprovechamiento(prevState => ({
@@ -55,15 +33,5 @@ export const useAprovechamientoConsultas = ( requestAprov = null, aps = null, an
             }));
     };
 
-    const onResumenAprovechamiento = async () => {
-        try {
-            estadoData === true ? 
-                await patchResumenAprovechamiento(dataAprovechamiento) 
-                : postResumenAprovechamiento(dataAprovechamiento);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    return { estadoData, dataAprovechamiento, fetchDataAndUpdateState, onAprovechamiento, onResumenAprovechamiento };
+    return { onAprovechamiento, onDataAprovechamiento };
 };

@@ -5,13 +5,13 @@ import { getTarifasGerenciales } from '../service/detalladoTarifasGerenciales';
 import { Selectores } from "../../ui/components/Selectores";
 import { TablaInformesGerenciales } from "../components/TablaInformesGerenciales";
 import { TabTable } from "../../ui/components/TabTable";
+import { TituloVista } from "../../ui/components/TituloVista";
 
 export const DetalladoTarifasGerenciales = () => {
     const mess = useMesSelector(state => state.mes);
     const anno = useAnnoSelector(state => state.anno);
 
     const [pestañaActiva, setPestañaActiva] = useState(0); 
-    const [titulo, setTitulo] = useState('')
     const [dataTarifaPlena, setDataTarifaPlena] = useState({
         formato:{},
         datos:[]
@@ -24,7 +24,7 @@ export const DetalladoTarifasGerenciales = () => {
     const data = {
         ANNO: 2023,
         MES: 2
-    }  
+    };  
 
     const dataTablasGerenciales = async() => {
         try{
@@ -55,25 +55,28 @@ export const DetalladoTarifasGerenciales = () => {
         { titulo: 'Sub & Con', datos: dataTarifaSubCon, encabezado: columnsTarifaSubCon }
     ], [dataTarifaPlena, dataTarifaSubCon]);
 
-    const handleClickTab = (index, titulo) => {
+    const handleClickTab = (index) => {
         setPestañaActiva(index);
-        setTitulo(titulo)
     };
 
     return(
     <>
-        <div>
-            <div className="headerComponent">
-                <div className="tituloComponent"/>
-                <div className="selector">
-                    <Selectores selectorFecha={true} />
-                </div>
+        <div className="headerComponent">
+            <div className="selector">
+                <TituloVista titulo="Detallado Tarifas" />
             </div>
-            <div className="bodyComponent" >
-                <div className='listTable'>
-                    <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+            <div className="selector">
+                <Selectores selectorAps={true} selectorFecha={true} />
+            </div>
+        </div>
+        <div className="d-flex justify-content-center mt-4 bodyComponent" >
+            <div className='width-Component'>
+                <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+                <div className="borde-table">
+                    <TablaInformesGerenciales 
+                        datos={titulosTabs[pestañaActiva].datos} tituloTabla={titulosTabs[pestañaActiva].titulo} 
+                        colums={titulosTabs[pestañaActiva].encabezado} page={true}/>
                 </div>
-                <TablaInformesGerenciales datos={titulosTabs[pestañaActiva].datos} tituloTabla={titulosTabs[pestañaActiva].titulo} colums={titulosTabs[pestañaActiva].encabezado} />
             </div>
         </div>
     </>

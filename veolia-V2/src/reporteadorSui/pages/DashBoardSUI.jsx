@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useAnnoSelector, useMesSelector } from "../../store/storeSelectors";
 import { Selectores } from "../../ui/components/Selectores";
-import {  getDashBoardSUI } from '../service/dashBoardService';
+import { getDashBoardSUI } from '../service/dashBoardService';
 import { columnsDashBoardSUI } from '../components/data';
 import { TablaComponentes } from "../../ui/components/TablaComponentes";
+import { TituloVista } from "../../ui/components/TituloVista";
  
 export const DashBoardSUI = () => {
     const mess = useMesSelector(state => state.mes);
@@ -23,7 +24,7 @@ export const DashBoardSUI = () => {
         } catch {
             console.error('error en data dashBoard SUI');
         }
-    }
+    };
 
     useEffect(() =>{
         if (anno && mess){
@@ -34,13 +35,17 @@ export const DashBoardSUI = () => {
     return(
     <>
         <div className="headerComponent">
-            <div className="tituloComponent"/>
+            <div className="selector">
+                <TituloVista titulo="Dashboard" />
+            </div>
             <div className="selector">
                 <Selectores selectorFecha={true}/>
             </div>
         </div>
-        <div className="bodyComponent" >
-            <TablaComponentes colums={columnsDashBoardSUI} data={dataDashBoardSUI} />
+        <div className="d-flex justify-content-center mt-4 bodyComponent">
+            <div className='width-Component'>
+                <TablaComponentes colums={columnsDashBoardSUI} data={dataDashBoardSUI} page={true}/>
+            </div>
         </div>
     </>
   )

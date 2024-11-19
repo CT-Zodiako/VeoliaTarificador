@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { Selectores } from '../../ui/components/Selectores';
 import { TabTable } from '../../ui/components/TabTable';
-import { InfoPropia } from '../components/cargueSemestral/InfoPropia';
-import { InfoCompetidor } from '../components/cargueSemestral/InfoCompetidor';
-import { InfoUsuario } from '../components/cargueSemestral/InfoUsuario';
+import { InfoPropia, InfoCompetidor, InfoUsuario } from '../components/cargueSemestral';
+import { TituloVista } from '../../ui/components/TituloVista';
  
 export const CargueSemestral = () => {    
     const [pestañaActiva, setPestañaActiva] = useState(0); 
-    const [titulo, setTitulo] = useState('')
 
     const titulosTabs = [
         { titulo: 'info. Propia', info: InfoPropia },
@@ -15,27 +13,26 @@ export const CargueSemestral = () => {
         { titulo: 'info. Usuario', info: InfoUsuario },
     ];
 
-    const handleClickTab = (index, titulo) => {
+    const handleClickTab = (index) => {
         setPestañaActiva(index);
-        setTitulo(titulo)
     };
 
     return(
     <>
         <div>
-            <div>
-                <div className="tituloComponent">
-                    <h3>Cargue Semestral</h3>
-                </div>
-                <div className="selector">
-                    <Selectores selectorAps={true} selectorFecha={true} selectorSemestre={true}/>
-                </div>
+            <div className="selector">
+                <TituloVista titulo="Cargue Semestral" />
             </div>
-            <div className="bodyComponent">
-                <div className='listTable'>
-                    <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+            <div className="selector">
+                <Selectores selectorAps={true} selectorFecha={true} selectorSemestre={true}/>
+            </div>
+        </div>
+        <div className="d-flex justify-content-center mt-4 bodyComponent">
+            <div className="width-Component">
+                <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+                <div className="borde-table">
+                    {titulosTabs[pestañaActiva].info &&  React.createElement(titulosTabs[pestañaActiva].info)}
                 </div>
-                {titulosTabs[pestañaActiva].info &&  React.createElement(titulosTabs[pestañaActiva].info)}
             </div>
         </div>
     </>

@@ -7,7 +7,6 @@ import { useSelectStore } from "../../hooks/useSelectStore";
 
  export const CostoPoda = () => {
     const { aps, anno, mes, requestCosPoda } = useSelectStore();
-
     const [dataCostoPoda, setCostoPoda] = useState([]);
 
     const fetchData = async() => {

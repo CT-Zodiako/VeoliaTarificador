@@ -82,7 +82,7 @@ export const InfoTerceros = () => {
                     className="btn btn-primary btn-md"
                     onClick={onGuardarTerceros}
                 >
-                    Guardar
+                    Guardar Información Terceros
                 </button>
             </div>
         </div>
