@@ -1,15 +1,15 @@
 import { useState } from "react";
 
  export const usePermisosAps = () => {
-  const [asignadas, setAsignadas] = useState([])
-  const [sinAsignar, setSinAsignar] = useState([])
-  const [porAsignar, setPorAsignar] = useState([])
-  const [porQuitar, setPorQuitar] = useState([])  
-  
-  const dataAsignadas = (response) => {
-        return response.apsAsignadas.map((item) => {
-              return { ...item, checked: true };
-        });
+    const [asignadas, setAsignadas] = useState([])
+    const [sinAsignar, setSinAsignar] = useState([])
+    const [porAsignar, setPorAsignar] = useState([])
+    const [porQuitar, setPorQuitar] = useState([])  
+
+    const dataAsignadas = (response) => {
+      return response.apsAsignadas.map((item) => {
+            return { ...item, checked: true };
+      });
     };
 
     const dataSinAsignar = (response)=> {
@@ -47,30 +47,47 @@ import { useState } from "react";
         }
     };
 
-    const handleQuitarAps = () => {        setSinAsignar([...sinAsignar, ...porQuitar]);
-        setAsignadas(asignadas.filter(aps => 
-          !porQuitar.some(item => item.APSA_ID === aps.APSA_ID)
-        ));
-        setPorQuitar([]);
+    const handleQuitarAps = () => {        
+      setSinAsignar(prevSinAsignar => {
+          const nuevosSinAsignar = [...prevSinAsignar, ...porQuitar].sort((a, b) =>
+              a.APSA_DESCRIPCION.localeCompare(b.APSA_DESCRIPCION)
+          );
+          return nuevosSinAsignar;
+      });
+      setAsignadas(prevAsignadas => {
+          return prevAsignadas.filter(aps => 
+              !porQuitar.some(item => item.APSA_ID === aps.APSA_ID)
+          );
+      });
+      setPorQuitar([]);
     };
+  
     
-      const handleAsignarAps = () => {
-          setAsignadas([...asignadas, ...porAsignar]);
-          setSinAsignar(sinAsignar.filter(aps => 
-            !porAsignar.some(item => item.APSA_ID === aps.APSA_ID)
-          ));
-          setPorAsignar([]);
+    const handleAsignarAps = () => {
+      setAsignadas(prevAsignadas => {
+          const nuevasAsignadas = [...prevAsignadas, ...porAsignar].sort((a, b) =>
+              a.APSA_DESCRIPCION.localeCompare(b.APSA_DESCRIPCION)
+          );
+          return nuevasAsignadas;
+      });
+      setSinAsignar(prevSinAsignar => {
+          return prevSinAsignar.filter(aps => 
+              !porAsignar.some(item => item.APSA_ID === aps.APSA_ID)
+          );
+      });
+      setPorAsignar([]);
     };
+
 
     const handleApsAsignadas = () => {
         return asignadas.map(({ checked, ...rest }) => {    
-            return rest;
+            return rest.APSA_ID;
         });
     }; 
 
     const handleApsSinAsignar = () => {
         return sinAsignar.map(({ checked, ...rest }) => {
-            return rest;
+            return rest.APSA_ID;
         });
     };
 

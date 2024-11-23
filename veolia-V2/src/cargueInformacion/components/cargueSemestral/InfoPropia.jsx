@@ -112,7 +112,7 @@ export const InfoPropia = () => {
         } catch (error) {
             console.error('Error al guardar el archivo', error);
         }
-    }
+    };
 
     return(
     <>
@@ -122,8 +122,8 @@ export const InfoPropia = () => {
                 <h4>Datos Semestrales</h4>
                 <hr />
                 <div className='archivo-cargue'>
-                    <SelectCargueInformacion opciones={empresas} label='Seleccionar Empresa ' seleccion={empreSeleccionada}/>
-                    <InputCargueFile file={cargarArchivo} procesar={procesarMonthArchivo}/>
+                  <SelectCargueInformacion opciones={empresas} label='Seleccionar Empresa ' seleccion={empreSeleccionada}/>
+                  <InputCargueFile file={cargarArchivo} procesar={procesarMonthArchivo}/>
                 </div>
                 {messages.map((message, index) => (
                     <div key={index} className={`message-${message.type}`}>
@@ -140,7 +140,7 @@ export const InfoPropia = () => {
                 className="btn btn-primary btn-md"
                 onClick={onGuardarCSV}
             >
-                guardar
+                Guardar Información Propia
             </button>
         </div>
     </>

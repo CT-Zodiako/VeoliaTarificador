@@ -15,7 +15,7 @@ export const SelectCargueInformacion = ({opciones, label, seleccion}) => {
     
     return(
     <>
-      <div className='mt-1'>
+      <div className='mt-1' style={{ width: '100%', marginLeft: '1.5rem' }}>
             <select 
                 className="form-select form-select-sm select_empresa" 
                 aria-label="Small select example" 

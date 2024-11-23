@@ -1,14 +1,11 @@
-import { Selectores } from "../../ui/components/Selectores";
-import { InfoPropia } from '../components/cargueMensual/InfoPropia';
-import { InfoCompetidor } from '../components/cargueMensual/InfoCompetidor';
-import { InfoUsuario } from '../components/cargueMensual/InfoUsuario';
-import { InfoTerceros } from '../components/cargueMensual/InfoTerceros';
-import { TabTable } from "../../ui/components/TabTable";
 import React, { useState } from "react";
+import { Selectores } from "../../ui/components/Selectores";
+import { InfoPropia, InfoCompetidor, InfoUsuario, InfoTerceros } from '../components/cargueMensual';
+import { TabTable } from "../../ui/components/TabTable";
+import { TituloVista } from "../../ui/components/TituloVista";
 
 export const CargueMensual = () => {
     const [pestañaActiva, setPestañaActiva] = useState(0); 
-    const [titulo, setTitulo] = useState('')
 
     const titulosTabs = [
         { titulo: 'info. Propia', info: InfoPropia },
@@ -17,27 +14,26 @@ export const CargueMensual = () => {
         { titulo: 'info. Terceros', info: InfoTerceros },
     ];
 
-    const handleClickTab = (index, titulo) => {
+    const handleClickTab = (index) => {
         setPestañaActiva(index);
-        setTitulo(titulo)
     };
 
     return(
     <>
         <div>
-            <div>
-                <div className="tituloComponent">
-                    <h3>Cargue Mensual</h3>
-                </div>
-                <div className="selector">
-                    <Selectores selectorAps={true} selectorFecha={true}/>
-                </div>
+            <div className="selector">
+                <TituloVista titulo="Cargue Mensual" />
             </div>
-            <div className="bodyComponent">
-                <div className='listTable'>
-                    <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+            <div className="selector">
+                <Selectores selectorAps={true} selectorFecha={true}/>
+            </div>
+        </div>
+        <div className="d-flex justify-content-center mt-4 bodyComponent">
+            <div className="width-Component">
+                <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+                <div className="borde-table">
+                    {titulosTabs[pestañaActiva].info &&  React.createElement(titulosTabs[pestañaActiva].info)}
                 </div>
-                {titulosTabs[pestañaActiva].info &&  React.createElement(titulosTabs[pestañaActiva].info)}
             </div>
         </div>
     </>

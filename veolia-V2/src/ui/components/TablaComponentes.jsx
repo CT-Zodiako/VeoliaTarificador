@@ -2,11 +2,10 @@ import { useState } from "react";
 import { useStyleTablaComponent } from "../../hooks/useStyleTablaComponent";
 import { SelectPaginacionTabla } from "./SelectPaginacionTabla";
 
- export const TablaComponentes = ({colums, data}) => {
+ export const TablaComponentes = ({colums, data, page}) => {
   const {BackgroundColumn, onAjustarFecha} = useStyleTablaComponent();
-
   const [currentPage, setCurrentPage] = useState(1);
-  const[itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -14,16 +13,15 @@ import { SelectPaginacionTabla } from "./SelectPaginacionTabla";
 
   const paginacionTable = (pag) => {
     setItemsPerPage(pag)
-  }
+  };
 
 return (
-    <div className='componenTable'>
-      <div className="tableBorde">
+    <div className='panel-tablas mb-4'>
         <div className="card-body">
-          <div className="table-responsive" style={{ overflowY: 'auto' }}>
-            <table className="table table-striped table-bordered" style={{ fontSize: '2vh' }}>
+          <div className="table-responsive" style={{ overflowY: 'auto', overflowX: 'auto' }}>
+            <table className="table table-striped table-bordered" style={{ fontSize: '12px' }}>
               <thead>
-                <tr>
+                <tr className="text-center">
                   {colums &&
                     colums.map((item, index) => (
                       <th key={index}>{item.head}</th>
@@ -32,7 +30,43 @@ return (
                 </tr>
               </thead>
               <tbody>
-                {dataF &&
+                { page ? (
+                  dataF &&
+                    dataF.map((item, index) => (
+                      <tr key={index}>
+                        {colums.map((body, colIndex) => (
+                          <td 
+                            style={{ background: BackgroundColumn(body.body, item[body.body]) }}
+                            key={colIndex}
+                          >
+                            {body.body === 'TARI_FECHACREACION' ?
+                              onAjustarFecha(item[body.body]) :
+                              item[body.body]
+                            }
+                          </td>
+                        ))}
+                      </tr>
+                    ))
+                ) : (
+                  data &&
+                    data.map((item, index) => (
+                      <tr key={index}>
+                        {colums.map((body, colIndex) => (
+                          <td 
+                            style={{ background: BackgroundColumn(body.body, item[body.body]) }}
+                            key={colIndex}
+                          >
+                            {body.body === 'TARI_FECHACREACION' ?
+                              onAjustarFecha(item[body.body]) :
+                              item[body.body]
+                            }
+                          </td>
+                        ))}
+                      </tr>
+                    ))
+                )
+                }
+                {/* {dataF &&
                   dataF.map((item, index) => (
                     <tr key={index}>
                       {colums.map((body, colIndex) => (
@@ -48,27 +82,28 @@ return (
                       ))}
                     </tr>
                   ))
-                }
+                } */}
               </tbody>
             </table>
           </div>
-            <div className="pagination-buttons">
-              <button 
-                onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)} 
-                disabled={currentPage === 1}
-              >
-                ‹
-              </button>
-              <button 
-                onClick={() => setCurrentPage(currentPage < Math.ceil(data.length / itemsPerPage) ? currentPage + 1 : currentPage)}
-                disabled={currentPage === Math.ceil(data.length / itemsPerPage)}
-              >
-                ›
-              </button>
-              <SelectPaginacionTabla paginacionTable={paginacionTable}/>
-            </div>
+          { page &&
+          <div className="pagination-buttons">
+            <button 
+              onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)} 
+              disabled={currentPage === 1}
+            >
+              ‹
+            </button>
+            <button 
+              onClick={() => setCurrentPage(currentPage < Math.ceil(data.length / itemsPerPage) ? currentPage + 1 : currentPage)}
+              disabled={currentPage === Math.ceil(data.length / itemsPerPage)}
+            >
+              ›
+            </button>
+            <SelectPaginacionTabla paginacionTable={paginacionTable}/>
+          </div>
+          }
         </div>
-      </div>
     </div>
   );
 };

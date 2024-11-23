@@ -28,10 +28,10 @@ import { useSemestreSelector } from "../../store/storeSelectors";
 
     return(
     <>
-      <div className='mt-1'>
-            <label htmlFor="aps"className="labelSelect" >Semestre</label>
+      <div className='mt-1 container-select'>
+            <label htmlFor="aps"className="label-select" >Semestre</label>
             <select 
-                className="form-select form-select-sm selectores" 
+                className="form-select form-select-sm style-selector" 
                 aria-label="Small select example" 
                 value={semestre} 
                 onChange={onSeleccionar}

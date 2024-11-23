@@ -124,7 +124,7 @@ export const InfoUsuario = () => {
                 className="btn btn-primary btn-md"
                 onClick={onGuardarCSV}
             >
-                guardar
+                Guardar Información Usuario
             </button>
         </div>
     </>

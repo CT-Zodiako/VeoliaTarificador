@@ -7,13 +7,17 @@ import { useHorizonteDesde, useHorizonteHasta } from "../../store/storeSelectors
     return(
     <>
       <div className='mt-1'>
-        <h6 className="labelSelect">Horizonte</h6>
+        <h6 className="label-select">Horizonte</h6>
         <div className="custom-form-group">
-          <label htmlFor="aps1" className="labelSelect">Desde:</label>
+          <div className="label-horizonte">
+            <label htmlFor="aps1" className="label-select">Desde:</label>
+          </div>
           <input type="text" id="aps1" className="form-select-sm custom-input" value={selecteHorizonteDesde} readOnly/>
         </div>
         <div className="custom-form-group">
-          <label htmlFor="aps2" className="labelSelect">Hasta:</label>
+          <div className="label-horizonte">
+            <label htmlFor="aps2" className="label-select">Hasta:</label>
+          </div>
           <input type="text" id="aps2" className="form-select-sm custom-input" value={selecteHorizonteHasta} readOnly/>
         </div>
       </div>

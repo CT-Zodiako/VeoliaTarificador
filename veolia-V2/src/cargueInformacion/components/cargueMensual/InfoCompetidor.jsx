@@ -108,7 +108,7 @@ export const InfoCompetidor = () => {
   return(
   <>
       <div className="componenTable">
-          <h3>Cargue de Informacion Propia</h3>
+          <h3>Cargue de Informacion Competidor</h3>
           <div className='bodyComponent datos-cargue'>
               <h4>Datos Semestrales</h4>
               <hr />
@@ -131,7 +131,7 @@ export const InfoCompetidor = () => {
               className="btn btn-primary btn-md"
               onClick={onGuardarCSV}
           >
-              guardar
+              Guardar Información Competidor
           </button>
       </div>
   </>

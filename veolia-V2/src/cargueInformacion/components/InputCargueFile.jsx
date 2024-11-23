@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../style/index.css';
 
 export const InputCargueFile = ({ file, procesar }) => {
     const [filemonthActive, setFilemonthActive] = useState(false);
@@ -25,7 +26,7 @@ export const InputCargueFile = ({ file, procesar }) => {
 
     return(
     <>
-        <div className="archivo-cargue" style={{ width: '60rem' }}>
+        <div className="archivo-cargue" style={{ width: '100%' }}>
             <div className={`file-upload ${filemonthActive ? 'active' : ''}`}>
                 <div className="file-select">
                     <div
@@ -46,7 +47,7 @@ export const InputCargueFile = ({ file, procesar }) => {
                     />
                 </div>
             </div>
-            <div>
+            <div style={{ display: "flex", padding: '5px' }}>
                 <button 
                     className='cancelarCargue'
                     onClick={cancelarArchivo}

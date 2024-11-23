@@ -15,10 +15,10 @@ export const MonthSelector = () => {
     };
 
     return (
-        <div className='mt-1'>
-            <label htmlFor="month" className='labelSelect'>Mes:</label>
+        <div className='mt-1 container-select'>
+            <label htmlFor="month" className='label-select'>Mes:</label>
             <select 
-                className="form-select form-select-sm selectores" 
+                className="form-select form-select-sm style-selector" 
                 aria-label="Small select example" 
                 value={miMes} 
                 onChange={handleChange}

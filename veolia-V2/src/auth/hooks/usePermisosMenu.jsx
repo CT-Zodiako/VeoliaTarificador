@@ -1,22 +1,6 @@
 import { useMemo } from "react";
 
  export const usePermisosMenu = (opcionesMenu, opcionesRestantes) => {
-    // const  asignacionOpcionPadre = (elemento, setArray, accion) =>{
-    //     const isChecked = !elemento.checked;
-    //       const updatedItems = elemento.items.map(item => ({ ...item, checked: isChecked }));
-    //       const updatedParent = { ...elemento, checked: isChecked };
-    //       setArray((prev) => {
-    //         if (isChecked) {
-    //           return prev.filter((menu) => menu.id !== updatedParent.id);
-    //         } else if (!updatedParent.items) {
-    //           return [...prev, updatedParent];
-    //         } 
-    //         else {
-    //           return [...prev, { ...updatedParent, items: updatedItems }];
-    //         }        
-    //     });
-    // };
-
     const cambioEstadoOpcionMenu = (opcionesMenu, id) => {
         const reset = opcionesMenu.map(menu => {
             if (menu.id === id) {
@@ -121,7 +105,6 @@ import { useMemo } from "react";
         
         return opcionesFiltradas;
     };
-    
     
     const newArreglosMenu = (opcionesMenu, opcionesRestantes) => {
         const asignadas = [];

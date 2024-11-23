@@ -1,56 +1,33 @@
 import { useEffect, useState } from "react";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { Selectores } from "../../ui/components/Selectores";
 import { ValorProductividad } from "../components/ajusteProductividad/ValorProductividad";
 import { getAjuestesProductividad, patchAjuestesProductividad, postAjuestesProductividad } from "../service/ajustesProductividadService";
+import { TituloVista } from "../../ui/components/TituloVista";
+import { useSelectStore } from "../../hooks/useSelectStore";
+import { useFuncionalidadesAjustProd } from "../hooks/useFuncionalidadesAjustProd";
 
  export const AjustesProductividad = () => {
-    const aps = useApsSelector(state => state.aps);
-    const anno = useAnnoSelector((state) => state.anno);
-    const mes = useMesSelector((state) => state.mes);
+    const { anno, mes, aps, requestAjusteProd } = useSelectStore();
     const [datos, setDatos] = useState([]);
+    const [estadoAjuste, setEstadoAjuste] = useState(false);
     const [ajusteProductividad, setAjusteProductividad] = useState({
         APSA_ID: 0,
         PROD_ANNO: 0,
         PROD_MES: 0,
         PROD_VALOR: 0
     });    
-    const [estadoAjuste, setEstadoAjuste] = useState(false);
-    
-    const data = {
-        APSA_ID: aps,
-        PROD_ANNO: anno,
-        PROD_MES: mes
-    }
+    const { estodAjusteProdut } = useFuncionalidadesAjustProd(setEstadoAjuste, setAjusteProductividad, aps, anno, mes);
 
     const fetchData = async () => {
         try {
-            const response = await getAjuestesProductividad(data);
+            const response = await getAjuestesProductividad(requestAjusteProd);
             setDatos(response);
-            if (response.length > 0) {
-                setEstadoAjuste(true)
-                setAjusteProductividad(prevState => ({
-                    ...prevState,
-                    APSA_ID: aps,
-                    PROD_ANNO: anno,
-                    PROD_MES: mes,
-                    PROD_VALOR: response[0].PROD_VALOR
-                }));
-            } else {
-                setEstadoAjuste(false)
-                setAjusteProductividad(prevState => ({
-                    ...prevState,
-                    APSA_ID: aps,
-                    PROD_ANNO: anno,
-                    PROD_MES: mes,
-                    PROD_VALOR: 0
-                }));
-            }
+            estodAjusteProdut(response);
         }
         catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const onServicioAjustes = async (data) => {
         try {
@@ -61,29 +38,30 @@ import { getAjuestesProductividad, patchAjuestesProductividad, postAjuestesProdu
         catch (error) {
             console.error(error);
         }
-    }
+    };
 
     useEffect(() => {
-        fetchData();
+        if(aps && anno && mes) {
+            fetchData();
+        };
     },[aps, anno, mes]);
 
     return(
     <>
         <div className="headerComponent">
-            <div className="tituloComponent"/>
+            <div className="selector">
+                <TituloVista titulo="Ajuste Productividad" />
+            </div>
             <div className="selector">
                 <Selectores selectorAps={true} selectorFecha={true} />
             </div>
         </div>
-        <div className="bodyComponent">
-            <ValorProductividad 
-                datos={datos}
-                aps={aps}
-                ajusteProductividad={ajusteProductividad}
-                onServicioAjustes={onServicioAjustes}
-                fetchData={fetchData}
-            />
-        </div>
+        <ValorProductividad 
+            datos={datos} aps={aps}
+            ajusteProductividad={ajusteProductividad}
+            onServicioAjustes={onServicioAjustes}
+            fetchData={fetchData}
+        />
     </>
   )
 };

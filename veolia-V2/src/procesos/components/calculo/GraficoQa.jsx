@@ -3,14 +3,19 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
- export const GraficoTafna = ({dataTafna}) => {
+ export const GraficoQa = ({dataQa}) => {
     return(
-    <>
+    <>  
         <div className='graficos'>
-            {dataTafna.length === 0 ? (
-                <h2>grafica Tafna</h2>
+            <div className="tituloCosto">
+                QA
+            </div>
+            {dataQa.length === 0 ? (
+                <h2>grafica Qa</h2>
             ) : (
-                <Bar data={dataTafna} />
+                <div className='grafica-barras'>
+                    <Bar data={dataQa} />
+                </div>
             )}
         </div>
     </>

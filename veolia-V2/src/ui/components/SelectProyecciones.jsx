@@ -64,10 +64,10 @@ import { mesesAno } from "../../informeProyecciones/components/data";
 
     return(
     <>
-        <div className='mt-1'>
-            <label htmlFor="aps"className="labelSelect" >Proyecciones:</label>
+        <div className='mt-1 container-select'>
+            <label htmlFor="aps"className="label-select" >Proyecciones:</label>
             <select 
-                className="form-select form-select-sm selectores" 
+                className="form-select form-select-sm style-selector" 
                 aria-label="Small select example" 
                 value={selectedProy} 
                 onChange={handleChange}

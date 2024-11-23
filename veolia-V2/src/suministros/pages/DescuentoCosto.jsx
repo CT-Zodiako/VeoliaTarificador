@@ -1,30 +1,23 @@
 import { useEffect, useState } from "react";
 import { getDescuentoCosto, patchDescuentoCosto, postDescuentoCosto } from "../service/descuentoCostoServicio";
 import { TablaDescuentoCosto } from "../components/descuentoCosto/TablaDescuentoCosto";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { Selectores } from "../../ui/components/Selectores";
+import { TituloVista } from "../../ui/components/TituloVista";
+import { useSelectStore } from "../../hooks/useSelectStore";
 
  export const DescuentoCosto = () => {
-    const aps = useApsSelector(state => state.aps);
-    const anno = useAnnoSelector((state) => state.anno);
-    const mes = useMesSelector((state) => state.mes);
+    const { aps, anno, mes, requestDesCos } = useSelectStore();
     const [dataDescuento, setDataDescuento] = useState([]); 
-    
-    const data = {
-        APSA_ID: aps,
-        DESC_ANNO: anno,
-        DESC_MES: mes
-    }
 
     const fetchData = async () => {
         try {
-            const dataCosto = await getDescuentoCosto(data);
+            const dataCosto = await getDescuentoCosto(requestDesCos);
             setDataDescuento(dataCosto);
         }
         catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const onAgregarDescuentoCosto = async(agregar) => {
         try {
@@ -33,7 +26,7 @@ import { Selectores } from "../../ui/components/Selectores";
         } catch (error) {
             console.error(error);
         }
-    }   
+    }; 
 
     const onEditarDescuentoCosto = async(editar) => {
         try {
@@ -41,7 +34,7 @@ import { Selectores } from "../../ui/components/Selectores";
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     useEffect(() => {
         fetchData();
@@ -50,20 +43,20 @@ import { Selectores } from "../../ui/components/Selectores";
     return(
     <>
         <div className="headerComponent">
-            <div className="tituloComponent"/>
+            <div className="selector">
+                <TituloVista titulo="Descuento Costo" />
+            </div>
             <div className="selector">
                 <Selectores selectorAps={true} selectorFecha={true} />
             </div>
         </div>
-        <div className="bodyComponent">
-            <TablaDescuentoCosto
-                dataDescuento={dataDescuento}
-                onAgregarDescuentoCosto={onAgregarDescuentoCosto}
-                onEditarDescuentoCosto={onEditarDescuentoCosto}
-                fetchData={fetchData}
-                data={data}
-            />
-        </div>
+        <TablaDescuentoCosto
+            dataDescuento={dataDescuento}
+            onAgregarDescuentoCosto={onAgregarDescuentoCosto}
+            onEditarDescuentoCosto={onEditarDescuentoCosto}
+            fetchData={fetchData}
+            data={requestDesCos}
+        />
     </>
   )
 };

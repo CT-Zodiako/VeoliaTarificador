@@ -36,3 +36,13 @@ export const apsAsignadas = async (data) => {
     }
   
 }
+
+export const postAsignarAps = async (data) => {
+  try {
+    const response = await Http.post("auth/asignarAps",data);
+    return response;
+  }catch (error) {
+      console.error("Error fetching data:", error);
+  }
+
+}

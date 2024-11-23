@@ -8,7 +8,6 @@ export const Menu = () => {
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     const menu = serviceMenu();
     const inicio = menu[0];
-
     const onMenu = () => {
         setShowOffcanvas(!showOffcanvas);
     };
@@ -21,19 +20,36 @@ export const Menu = () => {
     return (
         <nav className="navbar fixed-top custom-navbar">
             <div className="container-fluid" style={{ height: '1.8rem' }}>
-                <h6>Veolia App</h6>
                 <button
-                    className="navbar-toggler botonMenu"
+                    className="botonMenu"
                     type="button"
                     onClick={onMenu}
                     aria-label="Toggle navigation"
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className={`offcanvas offcanvas-end ${showOffcanvas ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style={{ width: '16rem', fontSize: '15px', color: 'rgb(213,208,208)', background: 'rgb(110,110,112)' }}>
+                <h6>Veolia App</h6>
+                {/* <div className={`offcanvas offcanvas-start ${showOffcanvas ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style={{ width: '16rem', fontSize: '15px', color: 'rgb(213,208,208)', background: 'rgb(110,110,112)' }}> */}
+                <div
+                    className="sidebar-menu"
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        height: '100vh',
+                        width: '15rem',
+                        fontSize: '15px',
+                        color: 'rgb(213,208,208)',
+                        background: 'rgb(110,110,112)',
+                        padding: '1rem',
+                        overflowY: 'visible',
+                        // overflowY: 'auto',
+                        // zIndex: 1,
+                    }}
+                >
                     <div className="offcanvas-header">
-                        <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                        <button type="button" className="btn-close" onClick={onMenu} aria-label="Close"></button>
+                        <h5 className="offcanvas-title" id="offcanvasNavbarLabel">VEOLIA</h5>
+                        {/* <button type="button" className="btn-close" onClick={onMenu} aria-label="Close"></button> */}
                     </div>
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -58,7 +74,7 @@ export const Menu = () => {
                                             {item.label}
                                         </a>
                                         {item.items && (
-                                            <ul className="dropdown-menu optionMenu">
+                                            <ul className="dropdown-menu optionMenu lista-menu">
                                                 {item.items.map((rut, index)=> (
                                                     <li key={index}><Link className="dropdown-item" to={rut.to}>{rut.label}</Link></li>
                                                 ))}

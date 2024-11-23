@@ -5,7 +5,7 @@ export const TableCofiguracion = ({ datos, acciones, tituloTabla }) => {
         
     return (
         <div className="componenTable">
-            <div className='acctionTable'/>
+            {/* <div className='acctionTable'/> */}
             <div className="tableBorde">
                 <div className="card-body">
                     <h5 className="card-title">{tituloTabla}</h5>

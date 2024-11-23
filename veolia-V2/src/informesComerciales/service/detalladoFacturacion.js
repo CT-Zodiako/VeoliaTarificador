@@ -33,7 +33,6 @@ export const getDetFacClus = async (data) => {
 export const getDetFacDinc = async (data) => { 
     try{
         const response = await Http.get('facturacion-informes-comerciales/facturacionDinc', data);
-        console.log('response DINC: ', response); 
         return response;
     }
     catch(error){

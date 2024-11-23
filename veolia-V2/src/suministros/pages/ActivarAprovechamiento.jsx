@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { Selectores } from "../../ui/components/Selectores";
-import { SelectorAprovechamiento } from "../components/aprovechamiento/SelectorAprovechamiento";
+import { TituloVista } from "../../ui/components/TituloVista";
+import { AccionAprovechamiento } from "../components/aprovechamiento/AccionAprovechamiento";
+import { useAprovechamientoConsultas } from "../hooks/useAprovechamientoConsultas";
 import { getResumenAprovechamiento, patchResumenAprovechamiento, postResumenAprovechamiento } from "../service/resumenAprovechamientoService";
+import { useSelectStore } from "../../hooks/useSelectStore";
 
  export const ActivarAprovechamiento = () => {
-    const aps = useApsSelector(state => state.aps);
-    const anno = useAnnoSelector((state) => state.anno);
-    const mes = useMesSelector((state) => state.mes);
-
+    const { anno, mes, aps, requestAprov } = useSelectStore();
+    const [estadoData, setEstadoData] = useState(false);
     const [dataAprovechamiento, setDataAprovechamiento] = useState(
         {
             APSID: 0,
@@ -16,32 +16,17 @@ import { getResumenAprovechamiento, patchResumenAprovechamiento, postResumenApro
             APROMES: 0,
             ACTIVAR: 0,
         }
-    );    
-    const [estadoData, setEstadoData] = useState(false);
-    
-    const data = {
-        APSID: aps,
-        APROANNO: anno,
-        APROMES: mes,
-    }
+    );  
+    const { onAprovechamiento, onDataAprovechamiento } = useAprovechamientoConsultas(setEstadoData, setDataAprovechamiento, aps, anno, mes);  
 
-    const onAprovechamiento = (valor) => {
-        valor === true ?
-            setDataAprovechamiento(prevState => ({
-                ...prevState,
-                APSID: aps,
-                APROANNO: anno,
-                APROMES: mes,
-                ACTIVAR: 1,
-            }))
-            : setDataAprovechamiento(prevState => ({
-                ...prevState,
-                APSID: aps,
-                APROANNO: anno,
-                APROMES: mes,
-                ACTIVAR: 0,
-            }));
-    }
+    const fetchDataAndUpdateState = async () => {
+        try {
+            const response = await getResumenAprovechamiento(requestAprov);   
+            onDataAprovechamiento(response);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const onResumenAprovechamiento = async () => {
         try {
@@ -51,72 +36,28 @@ import { getResumenAprovechamiento, patchResumenAprovechamiento, postResumenApro
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     useEffect(() => {
-        const fetchDataAndUpdateState = async () => {
-            try {
-                const response = await getResumenAprovechamiento(data);                
-                if (response.length > 0) {
-                    setEstadoData(true);
-                    setDataAprovechamiento(prevState => ({
-                        ...prevState,
-                        APSID: aps,
-                        APROANNO: anno,
-                        APROMES: mes,
-                        ACTIVAR: response[0].APROACTIVAR,
-                    }));
-                } else {
-                    setEstadoData(false);
-                    setDataAprovechamiento(prevState => ({
-                        ...prevState,
-                        APSID: aps,
-                        APROANNO: anno,
-                        APROMES: mes,
-                        ACTIVAR: 0,
-                    }));
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchDataAndUpdateState();    
+        if(anno && mes && aps) {
+            fetchDataAndUpdateState();    
+        };
     }, [anno, mes, aps]);
 
   return(
     <>
         <div className="headerComponent">
-            <div className="tituloComponent"/>
+            <div className="selector">
+                <TituloVista titulo="Activar Aprovechamiento" />
+            </div>
             <div className="selector">
                 <Selectores selectorAps={true} selectorFecha={true} />
             </div>
         </div>
-
-        <div className="bodyComponent">
-            <div className="componenTable">
-                {
-                    aps === '' ? null 
-                        :(
-                            <>
-                                <div className="d-flex justify-content-center acctionTable">
-                                    <SelectorAprovechamiento 
-                                        dataAprovechamiento={dataAprovechamiento.ACTIVAR === 0 ? false : true}
-                                        onAprovechamiento={onAprovechamiento}
-                                    />
-                                </div>
-                                <div style={{ width: '200px', margin: '30px 0px 0px 250px' }}>
-                                    <button
-                                        onClick={onResumenAprovechamiento}
-                                        className="btn btn-success"
-                                    >
-                                        Activar
-                                    </button>
-                                </div>
-                            </>
-                        )
-                }
-            </div>
-        </div>
+        <AccionAprovechamiento 
+            aps={aps} dataAprovechamiento={dataAprovechamiento} 
+            onAprovechamiento={onAprovechamiento} onResumenAprovechamiento={onResumenAprovechamiento}
+        />
     </>
   )
 };

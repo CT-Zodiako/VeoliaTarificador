@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
- export const SelectorAprovechamiento = ({dataAprovechamiento, onAprovechamiento}) => {    
+ export const SelectorAprovechamiento = ({dataAprovechamiento, onAprovechamiento}) => {  
     const [aprovechamiento, setAprovechamiento] = useState(false);
-    
+
     const onSelectorAprovechamiento = () => {
         const newAprovechamiento = !aprovechamiento;
         setAprovechamiento(newAprovechamiento);
@@ -10,8 +10,7 @@ import { useEffect, useState } from "react";
     }
 
     useEffect(() => {
-        dataAprovechamiento &&
-            setAprovechamiento(dataAprovechamiento);
+        setAprovechamiento(dataAprovechamiento);
     }, [dataAprovechamiento]);
 
   return(
@@ -19,7 +18,7 @@ import { useEffect, useState } from "react";
         <div className="form-check form-switch w-75 d-flex align-items-center">
             <input 
                 className="form-check-input" 
-                style={{ width: '125px', height: '50px', marginRight: '20px'}}
+                style={{ width: '75px', height: '30px', marginRight: '20px'}}
                 type="checkbox" role="switch" 
                 id="flexSwitchCheckChecked" 
                 checked={aprovechamiento}
@@ -27,7 +26,7 @@ import { useEffect, useState } from "react";
             />
             <label 
                 className="form-check-label"
-                style={{ fontSize: '30px' }} 
+                style={{ fontSize: '18px' }} 
                 htmlFor="flexSwitchCheckChecked"
             >
                 {

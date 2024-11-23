@@ -1,18 +1,59 @@
-export const dataResmunenFormatosFormularios19  = {
+import { Http } from "../../helpers/axiosHelper";
 
+export const getResumenFormulario19 = async (data) => { 
+    try{
+        const response = await Http.get('resumen-formatos-formularios/f19', data);
+        return response;
+    }
+    catch(error){
+        console.log('error en data proyeccion', error);
+    }
+}
+
+export const getResumenFormulario23 = async (data) => {    
+    try{
+        const response = await Http.get('resumen-formatos-formularios/f23', data);
+        return response;
+    }
+    catch(error){
+        console.log('error en data proyeccion', error);
+    }
+}
+
+export const getResumenFormulario24 = async (data) => {    
+    try{
+        const response = await Http.get('resumen-formatos-formularios/f24', data);
+        return response;
+    }
+    catch(error){
+        console.log('error en data proyeccion', error);
+    }
+}
+
+export const getResumenFormulario35 = async (data) => {    
+    try{
+        const response = await Http.get('resumen-formatos-formularios/f35', data);
+        return response;
+    }
+    catch(error){
+        console.log('error en data proyeccion', error);
+    }
+}
+
+export const getResumenFormulario36 = async (data) => {    
+    try{
+        const response = await Http.get('resumen-formatos-formularios/f36', data);
+        return response;
+    }
+    catch(error){
+        console.log('error en data proyeccion', error);
+    }
+}
+
+
+
+export const dataResmunenFormatosFormularios19  = {
     formato:{
-        // "AÑO":true,
-        // "MES":false,
-        // "NJ":false,
-        // "NDJ":false,
-        // "CRTJ": false,
-        // "CDFJ":false,
-        // "QRTJ": false,
-        // "QRJ": false,
-        // "QBLJ": false,
-        // "QLUJ": false,
-        // "QNAZ": false,
-        // "QAJ": false,
         "F19_ANNO": {
             name: "AÑO",
             filtre:true,

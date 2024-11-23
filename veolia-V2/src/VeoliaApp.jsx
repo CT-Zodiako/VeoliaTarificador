@@ -6,14 +6,14 @@ import { LoginPage } from './auth/pages/LoginPage'
 
 export const VeoliaApp = () => {
     const navigate = useNavigate();
-    const [autentificacion, setAutentificacion] = useState(false)
+    const [autentificacion, setAutentificacion] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
             try {
                 const tokenPayload = JSON.parse(atob(token.split('.')[1]));
-                const expirationTime = tokenPayload.exp * 1000; // La expiración está en segundos, la convertimos a milisegundos
+                const expirationTime = tokenPayload.exp * 1000;
 
                 if (Date.now() >= expirationTime) {
                     localStorage.removeItem("token");
@@ -35,13 +35,15 @@ export const VeoliaApp = () => {
             {autentificacion ?
                 <div className='veoliaComponents'>
                     <Menu />
-                    <nav className='cabezote'/>
-                    <main className='bodyVeolia'>
-                        <Outlet />
-                    </main>
-                    <footer className='footerVeolia'>
-                        <Footer />
-                    </footer>
+                    <div className='veolia'>
+                        <nav className='cabezote'/>
+                        <main className='bodyVeolia'>
+                            <Outlet />
+                        </main>
+                        <footer className='footerVeolia'>
+                            <Footer />
+                        </footer>
+                    </div>
                 </div>
             : <LoginPage />
             }

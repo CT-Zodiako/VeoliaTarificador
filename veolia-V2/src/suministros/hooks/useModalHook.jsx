@@ -12,20 +12,16 @@ export const modalHook = (inicial={}) => {
             [name]: evento.target.value
         })
     }
-    console.log("midata",data)
 
     const prepararDatosParaBackend = () => {
-        // Construir un array de objetos en el formato requerido
         const datosParaBackend = Object.keys(data).map(key => ({
-            
-            ANNO: anno, // Ajustar el valor del año según sea necesario
-            MES: mes, // Ajustar el valor del mes según sea necesario
-            VALOR: data[key], // El valor del campo del formulario
+            ANNO: anno,
+            MES: mes,
+            VALOR: data[key],
             PARA_INDICES20011: key === 'ipc' ? 1 : key === 'smlv' ? 2 : key === 'ipcc' ? 3 : key === 'ioexp' ? 4 : 0
         }));
         return datosParaBackend;
     };
-
 
   return {
         data,

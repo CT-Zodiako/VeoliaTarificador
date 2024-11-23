@@ -16,11 +16,8 @@ export const InfoUsuario = () => {
   const [procesedFile, setProcesedFile] = useState([]);
   const [crosResumeFile, setCrosResumeFile] = useState('');
   const [resumeVariables, setResumeVariables] = useState([]);
-  console.log('resumeVariables: ', resumeVariables);
   const [resumeEstratoFile, setResumeEstratoFile] = useState([]);
-  console.log('resumeEstratoFile: ', resumeEstratoFile);
   const [filePreview, setFilePreview] = useState([]);
-  console.log('vista previa: ', filePreview);
 
   const cargarArchivo = (files) => {
     setFileChose(files);
@@ -157,10 +154,11 @@ export const InfoUsuario = () => {
 
     return(
     <>
-      <div>
-        <h2>Usuario mensual</h2>
-        <div>
+      <div className="componenTable">
+        <h3>Usuario mensual</h3>
+        <div className='bodyComponent datos-cargue'>
             <h4>Datos Semestrales</h4>
+            <hr />
             <InputCargueFile file={cargarArchivo} procesar={procesarArchivo}/>
             {messages.map((message, index) => (
                 <div key={index} className={`message-${message.type}`}>
@@ -168,8 +166,8 @@ export const InfoUsuario = () => {
                 </div>
             ))}
         </div>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <div style={{ width: '40%' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', marginTop: '1rem' }}>
+          <div style={{ width: '38%', marginRight: '1rem' }}>
             <TablaComponentes colums={columnsVariables} data={resumeVariables}/>
             <TablaComponentes colums={columnsEstratoMen} data={resumeEstratoFile}/>        
           </div>
@@ -181,7 +179,7 @@ export const InfoUsuario = () => {
             className="btn btn-primary btn-md"
             onClick={enviarInfoUsuario}
         >
-          Guardar
+          Guardar Información Usuario
         </button>
       </div>
     </>

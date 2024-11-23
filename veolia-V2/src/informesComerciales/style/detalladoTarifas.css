@@ -1,0 +1,10 @@
+.borde-table {
+    border: 1px;
+    border-color: #C9C9C9;
+    border-style: solid;
+    border-radius: 4px;
+    padding: 0.7rem;
+    box-shadow:0px 0px 5px 1px #C9C9C9;
+    -webkit-box-shadow:2px 2px 5px 5x #C9C9C9;
+    -moz-box-shadow:2px 2px 5px 5px #C9C9C9;
+  }

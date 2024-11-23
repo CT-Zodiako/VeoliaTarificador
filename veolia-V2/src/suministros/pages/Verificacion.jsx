@@ -1,80 +1,67 @@
 import { useEffect, useState } from "react";
 import { Selectores } from "../../ui/components/Selectores";
 import { columsEmpresa, columsAps, columsRelleno } from "../components/data";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
-import { getVerificacionAPS, getVerificacionEmpresa, getVerificacinRelleno } from "../service/verificacionService";
-import { TablaComponentes } from "../../ui/components/TablaComponentes";
+import { TituloVista } from "../../ui/components/TituloVista";
+import { TablasVerificacion } from "../components/verificacion/TablasVerificacion";
+import { getVerificacinRelleno, getVerificacionAPS, getVerificacionEmpresa } from "../service/verificacionService";
+import { useSelectStore } from "../../hooks/useSelectStore";
 
  export const Verificacion = () => {
-    const aps = useApsSelector(state => state.aps);
-    const anno = useAnnoSelector((state) => state.anno);
-    const mes = useMesSelector((state) => state.mes);
+    const {anno, mes, aps, requestVerif } = useSelectStore();
     const [verificacionEmpresa, setVerificacionEmpresa] = useState([]);
     const [verificacionAPS, setVerificacionAPS] = useState([]);
     const [verificacionRelleno, setVerificacionRelleno] = useState([]);
-        
-    const data = {
-        APSA_ID: aps,
-        INED_ANNO: anno,
-        INED_MES: mes,
-    }
 
-    const onDataVerificacion = async () => {
+    const dataEmpresa = async() => {
         try {
-            const empresa = await getVerificacionEmpresa(data);
+            const empresa = await getVerificacionEmpresa(requestVerif);
             setVerificacionEmpresa(empresa);
-
-            const APS = await getVerificacionAPS(data);
-            setVerificacionAPS(APS);
-
-            const relleno = await getVerificacinRelleno(data);
-            setVerificacionRelleno(relleno);
-
         } catch (error) {
-            console.error(error);
+            console.error('error en data empresa: ',error);
         }
-    }
+    }; 
+
+    const dataAPS = async() => {
+        try {
+            const APS = await getVerificacionAPS(requestVerif);
+            setVerificacionAPS(APS);
+        } catch (error) {
+            console.error('error en data APS: ',error);
+        }
+    };
+
+    const dataRelleno = async() => {
+        try {
+            const relleno = await getVerificacinRelleno(requestVerif);
+            setVerificacionRelleno(relleno);
+        } catch (error) {
+            console.error('error en data relleno: ',error);
+        }
+    };
 
     useEffect(() => {
-        onDataVerificacion();
+        if(aps && anno && mes){
+            dataEmpresa();
+            dataAPS();
+            dataRelleno();
+        };
     },[aps, anno, mes]);
 
   return(
     <>
         <div className="headerComponent">
-            <div className="tituloComponent"/>
+            <div className="selector">
+                <TituloVista titulo="Periodo de liquidación" />
+            </div>
             <div className="selector">
                 <Selectores selectorAps={true} selectorFecha={true} />
             </div>
         </div>
-        
-        <div className="bodyComponent">
-            <div className="componenTable">
-                <div className="acctionTable">
-                    <h3>Variables de ejecución corriente (MM/AA)</h3>
-                </div>
-                <div className="table-responsive tableVerificacion" style={{ maxHeight: '34rem', overflowY: 'auto' }}>
-                    <div className="tableVerificacion">
-                        <TablaComponentes 
-                            colums={columsEmpresa}
-                            data={verificacionEmpresa}
-                        />
-                    </div>
-                    <div className="tableVerificacion">
-                        <TablaComponentes 
-                            colums={columsAps}
-                            data={verificacionAPS}
-                        />
-                    </div>
-                    <div className="tableVerificacion">
-                        <TablaComponentes 
-                            colums={columsRelleno}
-                            data={verificacionRelleno}
-                        />
-                    </div>
-                </div>
-            </div>
-        </div>
+        <TablasVerificacion 
+            columsEmpresa={columsEmpresa} verificacionEmpresa={verificacionEmpresa}
+            columsAps={columsAps} verificacionAPS={verificacionAPS}
+            columsRelleno={columsRelleno} verificacionRelleno={verificacionRelleno}
+        />
     </>
   )
 };

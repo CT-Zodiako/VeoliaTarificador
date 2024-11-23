@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { asignarAps, getOpcionesUsuario } from '../services/asignacionOpcionesMenu';
+import { asignarMenu, getOpcionesUsuario } from '../services/asignacionOpcionesMenu';
 import { Menu } from '../../ui/components/datas';
 import { useOpcionesMenu } from '../hooks/useOpcionesMenu';
 import { usePermisosMenu } from '../hooks/usePermisosMenu';
 import { OpcionesMenu } from './OpcionesMenu';
+import '../styles/permisos.css';
 
 export const AsignacionOpciones = ({usuarioAps}) => {        
     const [ opcionesAsignadas, setOpcionesAsignadas ] = useState();
@@ -82,11 +83,16 @@ export const AsignacionOpciones = ({usuarioAps}) => {
         }
     };
 
-    const onOpcionesRestantes = () => {
-        const nuevasOpcionesRestantes = filtrarItemsMenu(opcionesRestantes, porAsignar);
-        const opcionesFiltradas = cambiarAsignacionItems(opcionesAsignadas, porAsignar);
-        setOpcionesRestantes(nuevasOpcionesRestantes);
-        setOpcionesAsignadas(opcionesFiltradas);
+    const onOpcionesRestantes = async () => {
+        setOpcionesRestantes((prevOpcionesRestantes) => {
+            const nuevasOpcionesRestantes = filtrarItemsMenu(prevOpcionesRestantes, porAsignar);
+            return nuevasOpcionesRestantes;
+        });
+    
+        setOpcionesAsignadas((prevOpcionesAsignadas) => {
+            const opcionesFiltradas = cambiarAsignacionItems(prevOpcionesAsignadas, porAsignar);
+            return opcionesFiltradas;
+        });
         setPorAsignar([]);
     };
 
@@ -99,7 +105,6 @@ export const AsignacionOpciones = ({usuarioAps}) => {
         setOpcionesRestantes(reset);
 
         if (!isChild) {
-            // asignacionOpcionPadre(elemento, setPorAsignar, false);
             const isChecked = !elemento.checked;
             const updatedItems = elemento.items && elemento.items.map(item => ({ ...item, checked: isChecked }));
             const updatedParent = { ...elemento, checked: isChecked };
@@ -142,26 +147,33 @@ export const AsignacionOpciones = ({usuarioAps}) => {
         }
     };
 
-    const onOpcionesAsignadas = () => {
-        const nuevasOpcionesAsignadas = filtrarItemsMenu(opcionesAsignadas, porQuitar);
-        const opcionesFiltradas = cambiarAsignacionItems(opcionesRestantes, porQuitar);
-        setOpcionesAsignadas(nuevasOpcionesAsignadas);
-        setOpcionesRestantes(opcionesFiltradas);
+    const onOpcionesAsignadas = async () => {
+        setOpcionesAsignadas((prevOpcionesAsignadas) => {
+            const nuevasOpcionesAsignadas = filtrarItemsMenu(prevOpcionesAsignadas, porQuitar);
+            return nuevasOpcionesAsignadas;
+        });
+        setOpcionesRestantes((prevOpcionesRestantes) => {
+            const opcionesFiltradas = cambiarAsignacionItems(prevOpcionesRestantes, porQuitar);
+            return opcionesFiltradas;
+        });
         setPorQuitar([]);
+    };
+
+    const onAsignacionesMenu = async () => {
+        await onOpcionesAsignadas();
+        await onOpcionesRestantes();
     };
 
     const onMenuOpciones = () => {
         const {asignadas, sinAsignar} = newArreglosMenu(opcionesAsignadas, opcionesRestantes);
         const opcionesAsignada = asignadas;
-        const opcionesSinAsignar = sinAsignar;
-        
+        const opcionesSinAsignar = sinAsignar; 
         const data = {
             sisuId: usuarioAps,
             opcionesAsignada,
             opcionesSinAsignar,
         };
-
-        asignarAps(data);
+        asignarMenu(data);
     };
 
     // const iconoOpcionPadre = (padre) => {
@@ -180,6 +192,7 @@ export const AsignacionOpciones = ({usuarioAps}) => {
             onOpcionesAsignadas={onOpcionesAsignadas}
             onOpcionesRestantes={onOpcionesRestantes}
             onMenuOpciones={onMenuOpciones}
+            onAsignacionesMenu={onAsignacionesMenu}
         />
     </>
   )

@@ -3,18 +3,19 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
- export const GraficoLbl = ({dataLBL}) => {
-    const option = {
-        indexAxis: 'y', 
-    }
-
+ export const GraficoTafna = ({dataTafna}) => {
     return(
     <>
         <div className='graficos'>
-            {dataLBL.length === 0 ? (
-                <h2>grafica LBL</h2>
+            <div className="tituloCosto">
+                TAFNA
+            </div>
+            {dataTafna.length === 0 ? (
+                <h2>grafica Tafna</h2>
             ) : (
-                <Bar data={dataLBL} options={option}/>
+                <div className='grafica-barras'>
+                    <Bar data={dataTafna} />
+                </div>
             )}
         </div>
     </>
