@@ -37,6 +37,7 @@ import { SubsidiosContribucionesProyeccionesModule } from './proyecciones/subsid
 import { CrecimientoVaraiblesModule } from './proyecciones/crecimiento-varaibles/crecimiento-varaibles.module';
 import { SemestralModule } from './cargue-informacion/semestral/semestral.module';
 import { MensualModule } from './cargue-informacion/mensual/mensual.module';
+import { ProyectarModule } from './proyecciones/proyectar/proyectar.module';
 
 @Module({
   imports: [
@@ -86,6 +87,7 @@ import { MensualModule } from './cargue-informacion/mensual/mensual.module';
     CrecimientoVaraiblesModule,
     SemestralModule,
     MensualModule,
+    ProyectarModule,
 
   ],
 })
