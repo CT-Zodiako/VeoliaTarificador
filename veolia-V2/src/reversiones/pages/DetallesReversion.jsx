@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getDetalladoReversiones } from "../service/detalladoReversionService";
 import { TablaInformesGerenciales } from "../../informesGerenciales/components/TablaInformesGerenciales";
 import { columnsDetaReversiones, formatoDetaReversiones } from '../components/data'; 
+import { TituloVista } from "../../ui/components/TituloVista";
 
  export const DetallesReversion = () => {
     const [dataDetalleReversiones, setDataDetalleReversiones] = useState({
@@ -21,19 +22,24 @@ import { columnsDetaReversiones, formatoDetaReversiones } from '../components/da
         } catch {
             console.error('error en data detalle reversiones');
         }
-    }
+    };
 
     useEffect(() =>{
         onTablaReversiones();
-    }, [])
+    }, []);
 
     return(
     <>
-        <div>
-            <div>
-                {/* <div className='listTable'>
-                </div> */}
-                <TablaInformesGerenciales datos={dataDetalleReversiones} tituloTabla='Detalles de Reversiones' colums={columnsDetaReversiones} />
+        <div className="headerComponent">
+            <div className="selector">
+                <TituloVista titulo="Detalles de Reversiones" />
+            </div>
+        </div>
+        <div className="d-flex justify-content-center mt-4 bodyComponent" >
+            <div className='width-Component'>
+                <div className="panel">
+                    <TablaInformesGerenciales datos={dataDetalleReversiones} colums={columnsDetaReversiones} page={true} />
+                </div>
             </div>
         </div>
     </>

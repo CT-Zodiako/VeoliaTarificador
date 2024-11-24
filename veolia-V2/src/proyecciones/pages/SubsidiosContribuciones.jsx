@@ -45,8 +45,10 @@ import { TablaComponentes } from "../../ui/components/TablaComponentes";
                     <Selectores selectorFecha={true} selectorAps={true} selectorProy={true} selectDrescripcion={true}/>
                 </div>
             </div>
-            <div className="bodyComponent" >
-                <TablaComponentes colums={columnsSubContri} data={dataSubCon}/>
+            <div className="d-flex justify-content-center mt-4 bodyComponent">
+                <div className='width-Component'>
+                    <TablaComponentes colums={columnsSubContri} data={dataSubCon}/>
+                </div>
             </div>
         </div>
     </>

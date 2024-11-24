@@ -5,6 +5,7 @@ import { useApsSelector, useProyeccionesSelector } from "../../store/storeSelect
 import { getEnergia, getAcueducto, getCosto, getTarifas } from '../service/informesProyeccionesService';
 import { columsEnergia, columsAcueducto, columsCostos, columsTarifa } from '../components/data';
 import { TablaComponentes } from "../../ui/components/TablaComponentes";
+import { TituloVista } from "../../ui/components/TituloVista";
 
 export const InformesProyecciones = () => {
     const aps = useApsSelector(state => state.aps);
@@ -20,7 +21,7 @@ export const InformesProyecciones = () => {
     const data = {
         APSA_ID : aps,
         PROY_ID: proy
-    }
+    };
 
     const dataTablasProyecciones = async() => {
         try{
@@ -38,7 +39,7 @@ export const InformesProyecciones = () => {
         } catch {
             console.error('data de las tablas no encontrada'); 
         }
-    }
+    };
 
     useEffect(()=>{
         if (aps && proy){
@@ -59,21 +60,23 @@ export const InformesProyecciones = () => {
     };
 
     return (
-        <div>
-            <div>
-                <div className="tituloComponent">
-                    <h3>INFORME PROYECCIONES - GENERALES</h3>
+        <>
+            <div className="headerComponent">
+                <div className="selector">
+                    <TituloVista titulo="INFORME PROYECCIONES - GENERALES" />
                 </div>
                 <div className="selector">
                     <Selectores selectorAps={true} selectorProy={true} selectDrescripcion={true} selectHorizonte={true}/>
                 </div>
             </div>
-            <div className="bodyComponent">
-                <div className='listTable'>
+            <div className="d-flex justify-content-center mt-4 bodyComponent">
+                <div className="width-Component">
                     <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+                    <div className="panel">
+                        <TablaComponentes colums={titulosTabs[pestañaActiva].encabezado} data={titulosTabs[pestañaActiva].datos} page={true}/>
+                    </div>
                 </div>
-                <TablaComponentes colums={titulosTabs[pestañaActiva].encabezado} data={titulosTabs[pestañaActiva].datos}/>
             </div>
-        </div>
+        </>
     );
 }

@@ -1,107 +1,133 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { TabTable } from '../../ui/components/TabTable'
-import { TableCofiguracion } from '../../ui/components/TableCofiguracion'
-import { dataResmunenFormatosFormularios19, dataResmunenFormatosFormularios23, dataResmunenFormatosFormularios24, 
-    dataResmunenFormatosFormularios35, dataResmunenFormatosFormularios36,
+import {
     getResumenFormulario19, getResumenFormulario23, getResumenFormulario24,
     getResumenFormulario35, getResumenFormulario36
 } from '../service/ResemunFormatosFormulariosService';
 import { formatoFormulario19, formatoFormulario23, formatoFormulario24, 
-    formatoFormulario35, formatoFormulario36 
+    formatoFormulario35, formatoFormulario36, columnsFormulario19, columnsFormulario23,
+    columnsFormulario24, columnsFormulario36, columnsFormulario35,
 } from '../components/data';
 import { TituloVista } from '../../ui/components/TituloVista';
 import { Selectores } from '../../ui/components/Selectores';
+import { useSelectStore } from '../../hooks/useSelectStore';
+import { TablaInformesGerenciales } from '../../informesGerenciales/components/TablaInformesGerenciales';
 
 export const ResumenFormatosFormularios = () => {
-    const [titulo, setTitulo] = useState('')
+    const { aps } = useSelectStore();
     const [pestañaActiva, setPestañaActiva] = useState(0);
     const [dataResumenFormulario19, setDataResumenFormulario19] = useState({
-        formato: formatoFormulario19,
+        formato: {},
         datos: []
     }); 
     const [dataResumenFormulario23, setDataResumenFormulario23] = useState({
-        formato: formatoFormulario23,
+        formato: {},
         datos: []
     });
     const [dataResumenFormulario24, setDataResumenFormulario24] = useState({
-        formato: formatoFormulario24,
+        formato: {},
         datos: []
     });
     const [dataResumenFormulario35, setDataResumenFormulario35] = useState({
-        formato: formatoFormulario35,
+        formato: {},
         datos: []
     });
     const [dataResumenFormulario36, setDataResumenFormulario36] = useState({
-        formato: formatoFormulario36,
+        formato: {},
         datos: []
     });
 
-    const onDataFormulario19 = () => {
+    const request = {
+        APSA_ID: aps
+    };
+
+    const onDataFormulario19 = async() => {
         try {
-            const response = getResumenFormulario19();
-            setDataResumenFormulario19(response);
+            const response = await getResumenFormulario19(request);
+            setDataResumenFormulario19({
+                ...dataResumenFormulario19,
+                formato: formatoFormulario19,
+                datos: response
+            });
         } catch (error) {
             console.log('error en la data de formulario 19',error);
         }
     };
 
-    const onDataFormulario23 = () => {
+    const onDataFormulario23 = async() => {
         try {
-            const response = getResumenFormulario23();
-            setDataResumenFormulario23(response);
+            const response = await getResumenFormulario23(request);
+            setDataResumenFormulario23({
+                ...dataResumenFormulario23,
+                formato: formatoFormulario23,
+                datos: response
+            });
         } catch (error) {
             console.log('error en la data de formulario 23',error);
         }
     };
 
-    const onDataFormulario24 = () => {
+    const onDataFormulario24 = async() => {
         try {
-            const response = getResumenFormulario24();
-            setDataResumenFormulario24(response);
+            const response = await getResumenFormulario24(request);
+            setDataResumenFormulario24({
+                ...dataResumenFormulario24,
+                formato: formatoFormulario24,
+                datos: response
+            });
         } catch (error) {
             console.log('error en la data de formulario 24',error);
         }
     };
 
-    const onDataFormulario35 = () => {
+    const onDataFormulario35 = async() => {
         try {
-            const response = getResumenFormulario35();
-            setDataResumenFormulario35(response);
+            const response = await getResumenFormulario35(request);
+            setDataResumenFormulario35({
+                ...dataResumenFormulario35,
+                formato: formatoFormulario35,
+                datos: response
+            });
         } catch (error) {
             console.log('error en la data de formulario 35',error);
         }
     };
 
-    const onDataFormulario36 = () => {
+    const onDataFormulario36 = async() => {
         try {
-            const response = getResumenFormulario36();
-            setDataResumenFormulario36(response);
+            const response = await getResumenFormulario36(request);
+            setDataResumenFormulario36({
+                ...dataResumenFormulario36,
+                formato: formatoFormulario36,
+                datos: response
+            });
         } catch (error) {
             console.log('error en la data de formulario 36',error);     
         }
     };
 
     const titulosTabs = useMemo(() => [
-        { titulo: 'Formulario 19', datos: dataResmunenFormatosFormularios19 },
-        { titulo: 'Formulario 23', datos: dataResmunenFormatosFormularios23},
-        { titulo: 'Formulario 24', datos: dataResmunenFormatosFormularios24},
-        { titulo: 'Formulario 35', datos: dataResmunenFormatosFormularios35},
-        { titulo: 'Formulario 36', datos: dataResmunenFormatosFormularios36}
-    ], [dataResmunenFormatosFormularios19, dataResmunenFormatosFormularios23, dataResmunenFormatosFormularios24, dataResmunenFormatosFormularios35, dataResmunenFormatosFormularios36]);
+        { titulo: 'Formulario 19', datos: dataResumenFormulario19, colums: columnsFormulario19 },
+        { titulo: 'Formulario 23', datos: dataResumenFormulario23, colums: columnsFormulario23 },
+        { titulo: 'Formulario 24', datos: dataResumenFormulario24, colums: columnsFormulario24 },
+        { titulo: 'Formulario 35', datos: dataResumenFormulario35, colums: columnsFormulario35 },
+        { titulo: 'Formulario 36', datos: dataResumenFormulario36, colums: columnsFormulario36 }
+    ], [dataResumenFormulario19, dataResumenFormulario23, dataResumenFormulario24, 
+        dataResumenFormulario35, dataResumenFormulario36]);
 
-    // const titulosTabs = useMemo(() => [
-    //     { titulo: 'Formulario 19', datos: dataResumenFormulario19 },
-    //     { titulo: 'Formulario 23', datos: dataResumenFormulario23},
-    //     { titulo: 'Formulario 24', datos: dataResumenFormulario24},
-    //     { titulo: 'Formulario 35', datos: dataResumenFormulario35},
-    //     { titulo: 'Formulario 36', datos: dataResumenFormulario36}
-    // ], [dataResumenFormulario19, dataResumenFormulario23, dataResumenFormulario24, 
-    //     dataResumenFormulario35, dataResumenFormulario36]);
-
-    const handleClickTab = (index, titulo) => {
+    const handleClickTab = (index) => {
         setPestañaActiva(index);
-        setTitulo(titulo)
     };
+
+    useEffect(() => {
+        if (aps) {
+            onDataFormulario19();
+            onDataFormulario23();
+            onDataFormulario24();
+            onDataFormulario35();
+            onDataFormulario36();
+        }
+    }, [aps])
 
     return (
         <>
@@ -116,8 +142,8 @@ export const ResumenFormatosFormularios = () => {
             <div className="d-flex justify-content-center mt-4 bodyComponent" >
                 <div className='width-Component'>
                     <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
-                    <div className="borde-table">
-                        <TableCofiguracion tituloTabla={titulosTabs[pestañaActiva].titulo} datos={titulosTabs[pestañaActiva].datos} />
+                    <div className="panel">
+                        <TablaInformesGerenciales tituloTabla={titulosTabs[pestañaActiva].titulo} datos={titulosTabs[pestañaActiva].datos} colums={titulosTabs[pestañaActiva].colums} page={true}/>
                     </div>
                 </div>
             </div>

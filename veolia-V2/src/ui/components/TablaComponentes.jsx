@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStyleTablaComponent } from "../../hooks/useStyleTablaComponent";
 import { SelectPaginacionTabla } from "./SelectPaginacionTabla";
 
@@ -16,10 +16,11 @@ import { SelectPaginacionTabla } from "./SelectPaginacionTabla";
   };
 
 return (
-    <div className='panel-tablas mb-4'>
+    <div className='componenTable'>
+      <div className="tableBorde">
         <div className="card-body">
           <div className="table-responsive" style={{ overflowY: 'auto', overflowX: 'auto' }}>
-            <table className="table table-striped table-bordered" style={{ fontSize: '12px' }}>
+            <table className="table table-striped table-bordered custom-table">
               <thead>
                 <tr className="text-center">
                   {colums &&
@@ -31,8 +32,7 @@ return (
               </thead>
               <tbody>
                 { page ? (
-                  dataF &&
-                    dataF.map((item, index) => (
+                  dataF && dataF.map((item, index) => (
                       <tr key={index}>
                         {colums.map((body, colIndex) => (
                           <td 
@@ -66,23 +66,6 @@ return (
                     ))
                 )
                 }
-                {/* {dataF &&
-                  dataF.map((item, index) => (
-                    <tr key={index}>
-                      {colums.map((body, colIndex) => (
-                        <td 
-                          style={{ background: BackgroundColumn(body.body, item[body.body]) }}
-                          key={colIndex}
-                        >
-                          {body.body === 'TARI_FECHACREACION' ?
-                            onAjustarFecha(item[body.body]) :
-                            item[body.body]
-                          }
-                        </td>
-                      ))}
-                    </tr>
-                  ))
-                } */}
               </tbody>
             </table>
           </div>
@@ -104,6 +87,7 @@ return (
           </div>
           }
         </div>
+      </div>
     </div>
   );
 };

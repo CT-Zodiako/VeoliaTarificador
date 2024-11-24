@@ -36,7 +36,7 @@ export const DetalladoCosto = () => {
     <>
       <div className="headerComponent">
           <div className="selector">
-              <TituloVista titulo="Detallado Facturación" />
+              <TituloVista titulo="Detallado Costo" />
           </div>
           <div className="selector">
               <Selectores selectorFecha={true} />
@@ -45,7 +45,7 @@ export const DetalladoCosto = () => {
       <div className="d-flex justify-content-center mt-4 bodyComponent" >
         <div className='width-Component'>
             <div className="borde-table">
-              <TablaInformesGerenciales datos={dataDetalladoCosto} tituloTabla={'Detallado de costos'} colums={columnsAPSACosto} />
+              <TablaInformesGerenciales datos={dataDetalladoCosto} tituloTabla={'Detallado de costos'} colums={columnsAPSACosto} page={true}/>
             </div>
         </div>
       </div>

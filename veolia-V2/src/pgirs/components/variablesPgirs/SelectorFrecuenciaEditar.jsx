@@ -12,7 +12,8 @@ import { frecuencias } from "../data";
   return(
     <>
         <select 
-            className="form-select" 
+            className="form-select"
+            style={{ fontSize: '12px', width: '8rem' }} 
             aria-label="Default select example"
             name="PGRIFRECUENCIA"
             value={valorFrecuencia}

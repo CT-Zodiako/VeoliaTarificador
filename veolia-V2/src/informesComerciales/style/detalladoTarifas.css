@@ -1,4 +1,4 @@
-.borde-table {
+/* .borde-table {
     border: 1px;
     border-color: #C9C9C9;
     border-style: solid;
@@ -7,4 +7,16 @@
     box-shadow:0px 0px 5px 1px #C9C9C9;
     -webkit-box-shadow:2px 2px 5px 5x #C9C9C9;
     -moz-box-shadow:2px 2px 5px 5px #C9C9C9;
-  }
+  } */
+
+/* .borde-table {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.borde-table:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+} */

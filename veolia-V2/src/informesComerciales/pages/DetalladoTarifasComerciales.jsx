@@ -50,7 +50,7 @@ export const DetalladoTarifasComerciales = () => {
     <>
         <div className="headerComponent">
             <div className="selector">
-                <TituloVista titulo="Detallado de Tarifas" />
+                <TituloVista titulo="Detallado Comerciales" />
             </div>
             <div className="selector">
                 <Selectores selectorFecha={true} />
@@ -59,8 +59,8 @@ export const DetalladoTarifasComerciales = () => {
         <div className="d-flex justify-content-center mt-4 bodyComponent">
             <div className="width-Component">
                 <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
-                <div className="borde-table">
-                    <TablaInformesGerenciales datos={titulosTabs[pestañaActiva].datos} tituloTabla={titulosTabs[pestañaActiva].titulo} colums={titulosTabs[pestañaActiva].encabezado} />
+                <div className="panel">
+                    <TablaInformesGerenciales datos={titulosTabs[pestañaActiva].datos} tituloTabla={titulosTabs[pestañaActiva].titulo} colums={titulosTabs[pestañaActiva].encabezado} page={true}/>
                 </div>
             </div>
         </div>

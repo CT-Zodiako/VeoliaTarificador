@@ -3,16 +3,16 @@ import { Selectores } from "../../ui/components/Selectores";
 import { useApsSelector, useProyeccionesSelector } from "../../store/storeSelectors";
 import { getLineasTiempo, postLineasTiempo } from "../services/lineasTiempo";
 import { TablaEditarLinTiemp } from "../components/TablaEditarLinTiemp";
+import { TituloVista } from "../../ui/components/TituloVista";
 
  export const LineasTiempo = () => {
     const aps = useApsSelector(state => state.aps);
     const proy = useProyeccionesSelector(state => state.proy);
-
     const[dataLineasTimp, setDataLineasTimp] = useState([]);
     
     const data = {
         PROYID: proy,
-    }
+    };
 
     const onTablaLineasTimp = async() => {
         try{
@@ -21,7 +21,7 @@ import { TablaEditarLinTiemp } from "../components/TablaEditarLinTiemp";
         } catch {
             console.error('error en data lineas tiempo');
         }
-    }
+    };
 
     const onEditarLineaTiempo = async(data) => {
         try{
@@ -29,7 +29,7 @@ import { TablaEditarLinTiemp } from "../components/TablaEditarLinTiemp";
         } catch {
             console.error('error en editar linea tiempo');
         }
-    }
+    };
 
     useEffect(() => {
         if (aps && proy) {
@@ -41,14 +41,19 @@ import { TablaEditarLinTiemp } from "../components/TablaEditarLinTiemp";
     <>
         <div>
             <div className="headerComponent">
-                <div className="tituloComponent"/>
+                <div className="selector">
+                    <TituloVista titulo="Indices Publicados por la CRA" />
+                </div>
                 <div className="selector">
                     <Selectores selectorAps={true} selectorProy={true} selectDrescripcion={true} selectHorizonte={true} />
                 </div>
             </div>
-            <div className="bodyComponent" >
-                <TablaEditarLinTiemp data={dataLineasTimp} onEditarLineaTiempo={onEditarLineaTiempo} fetchData={onTablaLineasTimp}/>
-                {/* <TablaComponentes colums={columnsLineasTimp} data={dataLineasTimp}/> */}
+            <div className="d-flex justify-content-center mt-4 bodyComponent">
+                <div className="width-Component">
+                    <div className="borde-table">
+                        <TablaEditarLinTiemp data={dataLineasTimp} onEditarLineaTiempo={onEditarLineaTiempo} fetchData={onTablaLineasTimp}/>
+                    </div>
+                </div>
             </div>
         </div>
     </>

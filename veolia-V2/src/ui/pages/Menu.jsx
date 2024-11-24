@@ -33,18 +33,17 @@ export const Menu = () => {
                 <div
                     className="sidebar-menu"
                     style={{
+                        width: '15rem',
+                        background: 'rgb(110,110,112)',
+                        height: '100vh',
                         position: 'fixed',
                         top: 0,
                         left: 0,
-                        height: '100vh',
-                        width: '15rem',
+                        overflowY: 'visible',
+                        overflowX: 'hidden',
                         fontSize: '15px',
                         color: 'rgb(213,208,208)',
-                        background: 'rgb(110,110,112)',
                         padding: '1rem',
-                        overflowY: 'visible',
-                        // overflowY: 'auto',
-                        // zIndex: 1,
                     }}
                 >
                     <div className="offcanvas-header">

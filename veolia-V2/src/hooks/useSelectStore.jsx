@@ -65,6 +65,6 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../store/storeS
 
     return{ 
         anno, mes, aps, data, request, requestAnnoMes, requestFecha, requestSubCon, 
-        requestAjusteProd, requestVerif, requestAprov, requestCosPoda, requestDesCos
+        requestAjusteProd, requestVerif, requestAprov, requestCosPoda, requestDesCos    
     };
 };

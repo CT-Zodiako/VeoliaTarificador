@@ -1,43 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Button } from 'react-bootstrap';
 import { getInformePgirsClus } from '../../services/informePgirsService'
 import { useApsSelector } from '../../../store/storeSelectors';
-import '../../../index.css'
 
 export const TablePgirs = () => {
-
     const aps = useApsSelector(state => state.aps)
-
     const [clus, setClus] = useState([])
 
+    const data = {
+        APSA_ID : aps
+    };
 
     const fetchData = async () => {
         if (!aps) return;
-        const data = {
-            APSA_ID : aps
-        }
-
         const response = await getInformePgirsClus(data);
         setClus(response)
-    }
-
+    };
 
     useEffect(() => {
         fetchData()
-    
-    }, [aps])
-    
-
-
-
+    }, [aps]);
 
   return (
     <div className='componenTable'>
+        <h2 className="card-title">Clus</h2>
         <div className="tableBorde">
             <div className="card-body">
-                <h2 className="card-title">Clus</h2>
                 <div className="table-responsive" style={{ maxHeight: '40rem', overflowY: 'auto' }}>
-                    <Table className="table table-striped table-bordered">
+                    <table className="table table-striped table-bordered custom-table">
                         <thead>
                             <tr>
                                 <th>APS</th>
@@ -60,28 +49,28 @@ export const TablePgirs = () => {
                         <tbody>
                             {
                                 clus.map((item, index) => (
-                                    <tr key={item.APSID}>
+                                    <tr key={index}>
                                         <td>{item.APSID}</td>
                                         <td>{item.APSA_NOMAPS}</td>
                                         <td>{item.PERIODO}</td>
-                                        <td style={{background:'green'}}>{item.PODA}</td>
-                                        <td style={{background:'aqua'}} >{item.PODAPGIRS}</td>
-                                        <td style={{background:'red'}}>{item.CESPED}</td>
-                                        <td style={{background:'aqua'}}>{item.CESPEDPGIRS}</td>
-                                        <td style={{background:'red'}}>{item.LAVADO}</td>
-                                        <td style={{background:'aqua'}}>{item.LAVADOPGIRS}</td>
-                                        <td style={{background:'green'}}>{item.PLAYAS}</td>
-                                        <td style={{background:'aqua'}}>{item.PLAYASPGIRS}</td>
-                                        <td style={{background:'green'}}>{item.CESTASINS}</td>
-                                        <td style={{background:'aqua'}}>{item.CESTASINSPGIRS}</td>
-                                        <td style={{background:'green'}}>{item.CESTASMAN}</td>
-                                        <td style={{background:'aqua'}}>{item.CESTASMANPGIRS}</td>
+                                        <td style={{ background:'rgb(76, 175, 80, 0.6)' }}>{item.PODA}</td>
+                                        <td style={{ background:'rgb(33, 150, 243, 0.6)' }} >{item.PODAPGIRS}</td>
+                                        <td style={{ background:'rgb(244, 67, 54, 0.6)' }}>{item.CESPED}</td>
+                                        <td style={{ background:'rgb(33, 150, 243, 0.6)' }}>{item.CESPEDPGIRS}</td>
+                                        <td style={{ background:'rgb(244, 67, 54, 0.6)' }}>{item.LAVADO}</td>
+                                        <td style={{ background:'rgb(33, 150, 243, 0.6)' }}>{item.LAVADOPGIRS}</td>
+                                        <td style={{ background:'rgb(76, 175, 80, 0.6)' }}>{item.PLAYAS}</td>
+                                        <td style={{ background:'rgb(33, 150, 243, 0.6)' }}>{item.PLAYASPGIRS}</td>
+                                        <td style={{ background:'rgb(76, 175, 80, 0.6)' }}>{item.CESTASINS}</td>
+                                        <td style={{ background:'rgb(33, 150, 243, 0.6)' }}>{item.CESTASINSPGIRS}</td>
+                                        <td style={{ background:'rgb(76, 175, 80, 0.6)' }}>{item.CESTASMAN}</td>
+                                        <td style={{ background:'rgb(33, 150, 243, 0.6)' }}>{item.CESTASMANPGIRS}</td>
                                     </tr>
                                 ))
                             }
 
                         </tbody>
-                    </Table>
+                    </table>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import { getCrear, postCrear } from '../services/craerService';
 import { TablaInformesGerenciales } from '../../informesGerenciales/components/TablaInformesGerenciales';
 import { columnsCrear, formatoCrear } from '../components/data';
 import { ModalActualizarProy } from '../components/ModalActualizarProy';
+import { TituloVista } from '../../ui/components/TituloVista';
 
 export const Crear = () => {
     const[dataCrear, setDataCrear] = useState({
@@ -24,7 +25,7 @@ export const Crear = () => {
         } catch {
             console.error('error en data crear');
         }
-    }
+    };
 
     const onActualizarCrear = async(item) => {
         try {
@@ -34,40 +35,46 @@ export const Crear = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const abrirModal = (item, tipo) => {
         setModal(true);
         setItemEditar(item);
         setAccion(tipo);
-    }
+    };
 
     const cerrarModal = () => {
         setModal(false);
         setItemEditar('');
-    }
+    };
 
     useEffect(() =>{
         onDatosCrear();
-    }, [])
+    }, []);
 
     return(
     <>
-        <div>
-            <div className="bodyComponent" >
-                <button
-                    className="btn btn-primary btn-md"
-                    onClick={() => abrirModal('', true)}
-                >
-                    <h3>Nuevo</h3>
-                </button>
-                <TablaInformesGerenciales 
-                    datos={dataCrear} 
-                    tituloTabla={'PROYECCIONES DE SUBSIDIO / CONTRIBUCIÓN'} 
-                    colums={columnsCrear} 
-                    acciones={true}
-                    modal={abrirModal}
-                />
+        <div className="headerComponent">
+            <div className="selector">
+                <TituloVista titulo="PROYECCIONES DE SUBSIDIO / CONTRIBUCIÓN" />
+            </div>
+        </div>
+        <div className="d-flex justify-content-center mt-4 bodyComponent" >
+            <div className='width-Component'>
+                <div className="borde-table">
+                    <button
+                        className="btn btn-primary btn-md"
+                        onClick={() => abrirModal('', true)}
+                    >
+                        <h6>Nuevo</h6>
+                    </button>
+                    <TablaInformesGerenciales 
+                        datos={dataCrear} 
+                        colums={columnsCrear} 
+                        acciones={true}
+                        modal={abrirModal}
+                    />
+                </div>
                 {
                     accion ? (
                         <ModalActualizarProy show={modal} cerrar={cerrarModal} actualizar={onActualizarCrear}/>

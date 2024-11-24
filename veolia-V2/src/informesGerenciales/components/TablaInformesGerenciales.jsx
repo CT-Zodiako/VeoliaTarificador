@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useFiltroTablas } from "../../hooks/useFiltroTablas"
 import { SelectPaginacionTabla } from "../../ui/components/SelectPaginacionTabla";
+import '../../ui/styles/estilosTablas.css';
+import '../../ui/styles/paginacionTablas.css';
 
 export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums, modal, page = false }) => {
     const {filtro, onFiltroTabla, filtroName = []} = useFiltroTablas(datos);
@@ -22,81 +24,75 @@ export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums,
             <div className="tableBorde">
                 <div className="card-body">
                     <div className="table-responsive" style={{ maxHeight: '32.5rem', overflowY: 'auto' }}>
-                        <table className="table table-striped table-bordered">
+                        <table className="table table-striped table-bordered custom-table">
                             <thead>
-                                <tr>
+                                <tr className="table-header">
                                     {datos &&
                                         Object.entries(datos.formato).map(([key, value]) => (
-                                            <th key={key} >
-                                                {value.name}
-                                            </th>
-                                        ))
-                                    }
+                                            <th key={key}>{value.name}</th>
+                                        ))}
                                     {acciones && <th>Acciones</th>}
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr className="filter-row">
                                     {datos &&
                                         Object.entries(datos.formato).map(([key, value]) => (
-                                            <td key={key} >
-                                                {
-                                                    value.filtre &&
+                                            <td key={key}>
+                                                {value.filtre && (
                                                     <div className="input-group input-group-sm mb-3">
-                                                        <input 
-                                                            type="text" 
-                                                            className="form-control" 
-                                                            aria-label="Sizing example input" 
-                                                            aria-describedby="inputGroup-sizing-sm" 
-                                                            placeholder='Buscar'
-                                                            value={filtro[key] || ''} 
+                                                        <input
+                                                            type="text"
+                                                            className="form-control filter-input"
+                                                            aria-label="Sizing example input"
+                                                            aria-describedby="inputGroup-sizing-sm"
+                                                            placeholder="Buscar"
+                                                            value={filtro[key] || ''}
                                                             onChange={(event) => onFiltroTabla(key, event)}
                                                         />
                                                     </div>
-                                                }
+                                                )}
                                             </td>
-                                        ))
-                                    }
+                                        ))}
+                                    {acciones && <td></td>}
                                 </tr>
-                                {
-                                    page ? (
-                                        dataF.length > 0 && dataF.map((item, index) => (
-                                            <tr key={index}>
-                                                {colums.map((body, colIndex) => (
-                                                    <td key={colIndex}>{item[body.body]}</td>
-                                                ))}
-                                                {acciones && 
-                                                    <td>
-                                                        <button
-                                                            className="btn btn-primary"
-                                                            onClick={ () => modal(item, false) } 
-                                                        >
-                                                            Editar
-                                                        </button>
-                                                    </td>
-                                                }
-                                            </tr>
-                                        ))
-                                    ) : (
-                                        filtroName.length > 0 && filtroName.map((item, index) => (
-                                            <tr key={index}>
-                                                {colums.map((body, colIndex) => (
-                                                    <td key={colIndex}>{item[body.body]}</td>
-                                                ))}
-                                                {acciones && 
-                                                    <td>
-                                                        <button
-                                                            className="btn btn-primary"
-                                                            onClick={ () => modal(item, false) } 
-                                                        >
-                                                            Editar
-                                                        </button>
-                                                    </td>
-                                                }
-                                            </tr>
-                                        ))
-                                    )
-                                }
+                                {page
+                                    ? dataF.length > 0 &&
+                                    dataF.map((item, index) => (
+                                        <tr key={index} className="data-row">
+                                            {colums.map((body, colIndex) => (
+                                                <td key={colIndex}>{item[body.body]}</td>
+                                            ))}
+                                            {acciones && (
+                                                <td>
+                                                    <button
+                                                        className="btn btn-primary btn-action"
+                                                        onClick={() => modal(item, false)}
+                                                    >
+                                                        Editar
+                                                    </button>
+                                                </td>
+                                            )}
+                                        </tr>
+                                    ))
+                                    : filtroName.length > 0 &&
+                                    filtroName.map((item, index) => (
+                                        <tr key={index} className="data-row">
+                                            {colums.map((body, colIndex) => (
+                                                <td key={colIndex}>{item[body.body]}</td>
+                                            ))}
+                                            {acciones && (
+                                                <td>
+                                                    <button
+                                                        className="btn btn-primary btn-action"
+                                                        onClick={() => modal(item, false)}
+                                                    >
+                                                        Editar
+                                                    </button>
+                                                </td>
+                                            )}
+                                        </tr>
+                                    ))}
                             </tbody>
                         </table>
                     </div>

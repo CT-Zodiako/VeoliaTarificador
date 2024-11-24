@@ -3,38 +3,40 @@ import { TablePgirs } from '../components/infromePgirs/TablePgirs'
 import { TablaBarrido } from '../components/infromePgirs/TableBarrido'
 import { Selectores } from '../../ui/components/Selectores'
 import { TabTable } from '../../ui/components/TabTable'
+import { TituloVista } from '../../ui/components/TituloVista'
 
 export const InformePGIRSPage = () => {
   const [pestañaActiva, setPestañaActiva] = useState(0); 
-  const [titulo, setTitulo] = useState('')
+  const [titulo, setTitulo] = useState('Clus')
 
   const titulosTabs = [
-    {titulo: 'Clus'},
-    {titulo: 'Barrido'},
+    { titulo: 'Clus' },
+    { titulo: 'Barrido' },
   ];
 
   const handleClickTab = (index, titulo) => {
     setPestañaActiva(index);
     setTitulo(titulo)
   };
+
   return (
     <>
-      <div>
-        <div>
-          <div className="tituloComponent">
-            <h3>Informe PGIRS</h3>
+        <div className="headerComponent">
+          <div className="selector">
+              <TituloVista titulo="Informe PGIRS" />
           </div>
           <div className="selector">
             <Selectores selectorAps={true} />
           </div>
         </div>
-        <div className="bodyComponent">
-          <div className='listTable'>
-            <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+        <div className="d-flex justify-content-center mt-4 bodyComponent">
+            <div className="width-Component">
+              <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
+              <div className="panel">
+                { titulo === 'Clus' ? (<TablePgirs />) : (<TablaBarrido />)}
+              </div>
           </div>
-          {titulo === 'Clus' ? (<TablePgirs />) : (<TablaBarrido />)}
         </div>
-      </div>
     </>
   )
 }

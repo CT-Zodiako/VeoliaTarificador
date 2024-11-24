@@ -1,20 +1,18 @@
 import { useState } from "react";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
 import { Selectores } from "../../ui/components/Selectores";
 import { CampoDescripcionReversion } from "../components/CampoDescripcionReversion";
 import { postAutorizacionReversiones } from "../service/autorizacionReversionService";
+import { useSelectStore } from "../../hooks/useSelectStore";
+import { TituloVista } from "../../ui/components/TituloVista";
 
  export const AutorizacionReversiones = () => {
-    const mess = useMesSelector(state => state.mes);
-    const anno = useAnnoSelector(state => state.anno);
-    const aps = useApsSelector(state => state.aps);
-
+    const { aps, anno, mes } = useSelectStore();
     const [descripcionReversion, setDescripcionReversion] = useState();
     
     const data = {
         APSA_ID: aps,
         ANNO: anno,
-        MES: mess,
+        MES: mes,
         DESCRIPCION: descripcionReversion
     }
 
@@ -28,21 +26,23 @@ import { postAutorizacionReversiones } from "../service/autorizacionReversionSer
         } catch {
             console.error('error al guardar autorizacion reversion');
         }
-    }
+    };
 
     return(
     <>
-        <div>
-            <div>
-                <div className="tituloComponent">
-                    <h3>Detalle de Reversiones</h3>
-                </div>
-                <div className="selector">
-                    <Selectores selectorFecha={true} selectorAps={true}/>
-                </div>
+        <div className="headerComponent">
+            <div className="selector">
+                <TituloVista titulo="Detalle de Reversiones" />
             </div>
-            <div className="bodyComponent" >
-                <CampoDescripcionReversion onEstadoReversion={onDescripcionReversion} guardar={guardarAutorizacionReversion} textBoton='Guardar'/>
+            <div className="selector">
+                <Selectores selectorFecha={true} selectorAps={true}/>
+            </div>
+        </div>
+        <div className="d-flex justify-content-center mt-4 bodyComponent">
+            <div className="width-Component">
+                <div className="panel">
+                    <CampoDescripcionReversion onEstadoReversion={onDescripcionReversion} guardar={guardarAutorizacionReversion} textBoton='Guardar'/>
+                </div>
             </div>
         </div>
     </>

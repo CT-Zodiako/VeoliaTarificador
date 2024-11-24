@@ -12,22 +12,20 @@ import { useApsSelector, useProyeccionesSelector } from "../../store/storeSelect
     console.log('dataCrecimientoVarbl: ', dataCrecimientoVarbl);
     const data = {
         PROY_ID: proy
-    }
+    };
+
     const onTablaCrecimiento = async() => {
         try{
             const variables = await getCrecimientoVarbl(data);
-            setDataCrecimientoVarbl(variables);
-            console.log('variables: ', variables);
-            
+            setDataCrecimientoVarbl(variables);            
         } catch {
             console.error('error en data detalle reversiones');
         }
-    }
+    };
 
     useEffect(() =>{
         onTablaCrecimiento();
     }, [aps, proy]);
-
     
     // const titulosTabs = [
     //     { titulo: 'USUARIOS', datos: dataEnergia, encabezado: columsEnergia },

@@ -71,3 +71,19 @@ export const data = {
     PGRIANNO: '',
     PGRIMES: '',
   };
+
+  export const formatoResumenPgri = {
+    "APSA_ID": { name: "APS", filtre: true },
+    "PERIODO": { name: "INGRESO", filtre: true },
+    "PGRINGRESO": { name: "TIPO INGRESO", filtre: true },
+    "PGRIFECHA": { name: "FECHA INGRESO", filtre: false },
+    "SISU_CORREO": { name: "USUARIO", filtre: false },
+  };
+
+  export const columnsResumenPgri = [
+    { head: "APS", body: "APSA_NOMAPS" },
+    { head: "INGRESO", body: "PERIODO" },
+    { head: "TIPO INGRESO", body: "PGRINGRESO" },
+    { head: "FECHA INGRESO", body: "PGRIFECHA" },
+    { head: "USUARIO", body: "SISU_CORREO" },
+  ];

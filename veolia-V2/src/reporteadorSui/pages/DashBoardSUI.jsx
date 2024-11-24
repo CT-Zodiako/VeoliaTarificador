@@ -44,7 +44,9 @@ export const DashBoardSUI = () => {
         </div>
         <div className="d-flex justify-content-center mt-4 bodyComponent">
             <div className='width-Component'>
-                <TablaComponentes colums={columnsDashBoardSUI} data={dataDashBoardSUI} page={true}/>
+                <div className="panel">
+                    <TablaComponentes colums={columnsDashBoardSUI} data={dataDashBoardSUI} page={true}/>
+                </div>
             </div>
         </div>
     </>

@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { Selectores } from "../../ui/components/Selectores";
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../../store/storeSelectors";
+import { useSelectStore } from "../../hooks/useSelectStore";
 import { TablaVariablesPgirs } from "../components/variablesPgirs/TablaVariablesPgirs";
 import { getVariablesPgirs, updateVariablesPgirs } from "../services/variablesPgirsService";
 import '../../index.css'
+import { TituloVista } from "../../ui/components/TituloVista";
 
  export const VariablesPGIRS = () => {
-  const aps = useApsSelector(state => state.aps);
-  const anno = useAnnoSelector((state) => state.anno);
-  const mes = useMesSelector((state) => state.mes);
-
+  const { aps, anno, mes } = useSelectStore();
   const [datos, setDatos] = useState([]);
   
   const fetchData = async () => {
@@ -19,7 +17,7 @@ import '../../index.css'
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   const onActualizar = async(variableEditar) => {
     try {
@@ -28,7 +26,7 @@ import '../../index.css'
     catch (error) {
       console.error(error);
     } 
-  }
+  };
 
   useEffect(() => {
     fetchData();
@@ -36,24 +34,26 @@ import '../../index.css'
 
   return(
     <>
-      <div>
-        <div>
-          <div className="tituloComponent">
-            <h3>Variables PGIRS</h3>
-          </div>
-          <div className="selector">
-            <Selectores selectorAps={true} selectorFecha={true} />
-          </div>
+      <div className="headerComponent">
+        <div className="selector">
+            <TituloVista titulo="Variables PGIRS" />
         </div>
-        <div className="bodyComponent">
-          <TablaVariablesPgirs
-              aps={aps}
-              anno={anno}
-              mes={mes}
-              datos={datos}
-              fetchData={fetchData}
-              onActualizar={onActualizar}
-          />
+        <div className="selector">
+          <Selectores selectorAps={true} selectorFecha={true} />
+        </div>
+      </div>
+      <div className="d-flex justify-content-center mt-4 bodyComponent">
+        <div className='width-Component'>
+          <div className="panel">
+            <TablaVariablesPgirs
+                aps={aps}
+                anno={anno}
+                mes={mes}
+                datos={datos}
+                fetchData={fetchData}
+                onActualizar={onActualizar}
+            />
+          </div>
         </div>
       </div>
     </>

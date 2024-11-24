@@ -45,7 +45,7 @@ export const DataDetalladoSubAport = () => {
       <div className="d-flex justify-content-center mt-4 bodyComponent" >
         <div className='width-Component'>
           <div className="borde-table">
-            <TablaInformesGerenciales datos={dataSubAport} tituloTabla={'Detallado de Sub y Aporte'} colums={columnsAPSA} />
+            <TablaInformesGerenciales datos={dataSubAport} tituloTabla={'Detallado de Sub y Aporte'} colums={columnsAPSA} page={true}/>
           </div>
         </div>
       </div>

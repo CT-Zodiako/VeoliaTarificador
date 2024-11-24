@@ -96,7 +96,7 @@ export const FormatosFormularios = () => {
             <div className="d-flex justify-content-center mt-4 bodyComponent" >
                 <div className='width-Component'>
                     <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
-                    <div>
+                    <div className="panel">
                         <TablaComponentes colums={titulosTabs[pestañaActiva].encabezado} data={titulosTabs[pestañaActiva].datos}/>
                     </div>
                 </div>
