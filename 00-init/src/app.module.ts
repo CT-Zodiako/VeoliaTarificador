@@ -37,6 +37,8 @@ import { SubsidiosContribucionesProyeccionesModule } from './proyecciones/subsid
 import { CrecimientoVaraiblesModule } from './proyecciones/crecimiento-varaibles/crecimiento-varaibles.module';
 import { SemestralModule } from './cargue-informacion/semestral/semestral.module';
 import { MensualModule } from './cargue-informacion/mensual/mensual.module';
+import { ProyectarModule } from './proyecciones/proyectar/proyectar.module';
+import { CargueComplementarioModule } from './reporteador-sui/cargue-complementario/cargue-complementario.module';
 
 @Module({
   imports: [
@@ -86,7 +88,8 @@ import { MensualModule } from './cargue-informacion/mensual/mensual.module';
     CrecimientoVaraiblesModule,
     SemestralModule,
     MensualModule,
-
+    ProyectarModule,
+    CargueComplementarioModule,
   ],
 })
 export class AppModule {}
