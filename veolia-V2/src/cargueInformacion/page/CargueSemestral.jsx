@@ -30,7 +30,7 @@ export const CargueSemestral = () => {
         <div className="d-flex justify-content-center mt-4 bodyComponent">
             <div className="width-Component">
                 <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
-                <div className="borde-table">
+                <div className="panel">
                     {titulosTabs[pestañaActiva].info &&  React.createElement(titulosTabs[pestañaActiva].info)}
                 </div>
             </div>

@@ -41,9 +41,11 @@ export const Menu = () => {
                         left: 0,
                         overflowY: 'visible',
                         overflowX: 'hidden',
+                        overflow: 'visible',
                         fontSize: '15px',
                         color: 'rgb(213,208,208)',
                         padding: '1rem',
+                        zIndex: 1,
                     }}
                 >
                     <div className="offcanvas-header">
@@ -66,7 +68,7 @@ export const Menu = () => {
                                 </li>                            
                             )}
                             {menu.map((item, index)=>(
-                                <li className="nav-item dropdown" key={index}>
+                                <li className="nav-item dropdown" key={index} style={{ position: 'relative', zIndex: 1 }}>
                                 {item.label !== 'Inicio' && (
                                     <>
                                         <a className="text-nav nav-link dropdown-toggle" href="#" role="button" onClick={(e) => e.preventDefault()} data-bs-toggle="dropdown" aria-expanded="false">

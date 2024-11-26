@@ -16,7 +16,7 @@ export const InfoPropia = () => {
     const { empresas, onCargueSemestral } = useGetCargueEmpresa();
     const [selectEmpre, setSelectEmpre] = useState('');
     const [filemonthChose, setFilemonthChose] = useState('');
-    const [preViewTabla, setPreViewTabla] = useState([]);   
+    const [preViewTabla, setPreViewTabla] = useState([]); 
     const [errors, setErrors] = useState(false);
     const [messages, setMessages] = useState([]);
 

@@ -15,6 +15,10 @@ import { SelectPaginacionTabla } from "./SelectPaginacionTabla";
     setItemsPerPage(pag)
   };
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [data]);
+
 return (
     <div className='componenTable'>
       <div className="tableBorde">

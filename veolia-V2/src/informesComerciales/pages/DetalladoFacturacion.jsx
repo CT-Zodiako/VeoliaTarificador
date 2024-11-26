@@ -96,7 +96,7 @@ export const DetalladoFacturacion = () => {
         <div className="d-flex justify-content-center mt-4 bodyComponent" >
             <div className='width-Component'>
                 <TabTable titulosTabs={titulosTabs} onTabClick={handleClickTab} />
-                <div className="borde-table">
+                <div className="panel">
                     <TablaInformesGerenciales 
                         datos={titulosTabs[pestañaActiva].datos} tituloTabla={titulosTabs[pestañaActiva].titulo} 
                         colums={titulosTabs[pestañaActiva].encabezado} page={true} />

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 export const SelectCargueInformacion = ({opciones, label, seleccion}) => {
     const [opcion, setOpcion] = useState([]);
     const [selected, setSelected] = useState('');
-
+    
     const onSeleccionar = (event) => {
       setSelected(event.target.value);
       seleccion(event.target.value);

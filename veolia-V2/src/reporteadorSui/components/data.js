@@ -617,3 +617,29 @@ export const revFormato36 = {
     "F36_CTL": { name: "CTL", filtre: false },
     "F36_FACCTL": { name: "FACCTL", filtre: false }
 };
+
+
+export const columnsCargueComplementario = [
+    { head: "APS", body: "aps" },
+    { head: "AÑO", body: "anno" },
+    { head: "MES", body: "mes" },
+    { head: "DET", body: "det" },
+    { head: "F1ET", body: "f1et" },
+    { head: "CPEET", body: "cpeet" },
+    { head: "PRTZET", body: "prtzet" },
+    { head: "CEG", body: "ceg" },
+    { head: "CAMRERS", body: "camrers" },
+    { head: "INCCDFALT9", body: "inccdfalt9" },
+    { head: "PRCTCRRCP", body: "prctcrrcp" },
+    { head: "V0", body: "v0" },
+    { head: "VM", body: "vm" },
+    { head: "MCRS", body: "mcrs" },
+    { head: "ICRSM", body: "icrsm" },
+    { head: "ICCRS", body: "iccrs" },
+    { head: "FREIN", body: "frein" },
+    { head: "CAPPERDF", body: "capperdf" },
+    { head: "QRS_MES", body: "qrs_mes" },
+    { head: "DISPALT9", body: "dispalt9" },
+    { head: "VL_MES", body: "VL_MES" }
+  ];
+  

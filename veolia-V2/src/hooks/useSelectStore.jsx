@@ -1,9 +1,10 @@
-import { useAnnoSelector, useApsSelector, useMesSelector } from "../store/storeSelectors";
+import { useAnnoSelector, useApsSelector, useMesSelector, useProyeccionesSelector } from "../store/storeSelectors";
 
  export const useSelectStore = () => {
     const mes = useMesSelector(state => state.mes);
     const anno = useAnnoSelector(state => state.anno);
     const aps = useApsSelector(state => state.aps);
+    const proy = useProyeccionesSelector(state => state.proy);
 
     const data = {
         APSA_ID: aps,
@@ -63,8 +64,14 @@ import { useAnnoSelector, useApsSelector, useMesSelector } from "../store/storeS
         DESC_MES: mes
     };
 
+    const requestProyectar = {
+        proy_id: proy,
+        apsa_id: aps
+    };
+
     return{ 
-        anno, mes, aps, data, request, requestAnnoMes, requestFecha, requestSubCon, 
-        requestAjusteProd, requestVerif, requestAprov, requestCosPoda, requestDesCos    
+        anno, mes, aps, proy, data, request, requestAnnoMes, requestFecha, requestSubCon, 
+        requestAjusteProd, requestVerif, requestAprov, requestCosPoda, requestDesCos,
+        requestProyectar   
     };
 };

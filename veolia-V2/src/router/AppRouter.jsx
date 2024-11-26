@@ -13,6 +13,8 @@ import { InformePGIRSPage, ResumenPGIRS, VariablesPGIRS } from '../pgirs/pages';
 import { Reversion, AutorizacionReversiones, DetallesReversion, DetallesAutorizacion } from '../reversiones/pages';
 import { Calculo } from "../procesos/pages/Calculo";
 import { Costo } from "../procesos/pages/Costo";
+import { Proyectar } from "../proyecciones/pages/Proyectar";
+import { CargueComplementario } from "../reporteadorSui/pages/CargueComplementario";
 
 export const router = createBrowserRouter([
     {
@@ -160,6 +162,11 @@ export const router = createBrowserRouter([
                 errorElement: <h1>error</h1>,
             },
             {
+                path: "/carguecomplemento",
+                element: <CargueComplementario />,
+                errorElement: <h1>error</h1>,
+            },
+            {
                 path: "/reversiones_sui",
                 element: <Reversiones />,
                 errorElement: <h1>error</h1>,
@@ -181,6 +188,11 @@ export const router = createBrowserRouter([
             {
                 path: "/subsidioscontribuciones",
                 element: <SubsidiosContribuciones/>,
+                errorElement: <h1>error</h1>,
+            },
+            {
+                path: "/Proyectar",
+                element: <Proyectar/>,
                 errorElement: <h1>error</h1>,
             },
             {
