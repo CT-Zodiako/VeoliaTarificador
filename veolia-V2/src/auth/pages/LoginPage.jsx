@@ -11,13 +11,18 @@ export const LoginPage = () => {
   const navigate = useNavigate();
   const [sisuCorreo, setEmail] = useState('');
   const [sisuPass, setPassword] = useState('');
+  const [sistema, setSistema] = useState('');
 
   // Función para manejar el envío del formulario de inicio de sesión
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      console.log('correo: ',sisuCorreo);
+      console.log('pass: ',sisuPass);
+      console.log('sistema: ',sistema);
+      const idSistema = Number(sistema);
       // Enviar una solicitud HTTP POST al endpoint de inicio de sesión en el backend
-      const response = await axios.post('http://localhost:3000/api/auth/login', { sisuCorreo, sisuPass });
+      const response = await axios.post('http://localhost:3000/api/auth/login', { sisuCorreo, sisuPass, idSistema: idSistema });
 
       // Si la solicitud fue exitosa, obtener el token JWT de la respuesta
       const { token } = response.data;
@@ -35,7 +40,9 @@ export const LoginPage = () => {
         const usuarioId = decodedToken.sisuId;
         console.log('token id: ',usuarioId);
         const usuario = decodedToken.sisuCorreo;
-        console.log('token usuario: ',usuario);        
+        console.log('token usuario: ',usuario);     
+        const sistema = decodedToken.idSistema;
+        console.log('token sistema: ',idSistema);   
       };
       
       if (token){
@@ -78,7 +85,7 @@ export const LoginPage = () => {
               />
             </div>
             <div>
-              <SelectorSistema usuario={sisuCorreo}/>
+              <SelectorSistema usuario={sisuCorreo} sistema={sistema} setSistema={setSistema}/>
             </div>
             <button type="submit">Iniciar sesión</button>
           </form>
