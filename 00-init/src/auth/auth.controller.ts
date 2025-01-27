@@ -23,6 +23,11 @@ import { RandomPassUserDTO } from './dto/random-pass-user-dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Get('getSistemasUser')
+  getSistemasUser(@Query() data) {
+    return this.authService.getSistemasUser(data);
+  }
+
   @Post('register')
   @UseGuards(AuthGuard())
   createUser(@Body() createUserDTO: CreateUserDTO) {

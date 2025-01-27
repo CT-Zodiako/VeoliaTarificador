@@ -197,6 +197,37 @@ export class AuthService {
    `);
   }
 
+  async getSistemasUser(data) {
+
+    try {
+      const sisuId = data.sisuId;
+
+      const asignados = await this.userRepository.query(`
+      SELECT AS2.SIST_ID, AS2.SIST_NOMBRE 
+      FROM AUGE_SISTEMA as2
+      JOIN AUGE_USUASISTEMA b ON (AS2.SIST_ID = B.SIST_ID AND  B.USSI_ESTADO = 1)
+      WHERE B.USUA_ID = :1
+      `, [sisuId]);
+
+      const noAsignados = await this.userRepository.query(`
+      SELECT AS2.SIST_ID, AS2.SIST_NOMBRE 
+      FROM AUGE_SISTEMA as2
+      JOIN AUGE_USUASISTEMA b ON (AS2.SIST_ID = B.SIST_ID AND  B.USSI_ESTADO = 0)
+      WHERE B.USUA_ID = :1
+      `, [sisuId]);
+
+      return {
+        asignados,
+        noAsignados,
+      };
+
+      
+    } catch (error) {
+      return {message: 'Error al obtener los sistemas', error};
+    }
+
+  }
+
   async getApsAsignados(sisuId: number) {
     const apsAsignadas = await this.apsUserRepository.query(`
     SELECT aa.* FROM AUCO_APSASEO aa JOIN AUCO_APSUSUARIOS aa2 ON (aa.APSA_ID = aa2.APSA_ID AND aa2.APSI_ESTADO = 1) WHERE aa2.SISU_ID = ${sisuId} AND aa.APSA_ESTADO = 1 ORDER BY aa.APSA_NOMAPS asc
