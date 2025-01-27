@@ -79,7 +79,7 @@ export class AuthService {
 
   async login(LoginUserDTO: LoginUserDTO) {
     try {
-      const { sisuCorreo, sisuPass } = LoginUserDTO;
+      const { sisuCorreo, sisuPass, idSistema } = LoginUserDTO;
       const user = await this.userRepository
         .createQueryBuilder('User')
         .select(['User.sisuCorreo', 'User.sisuPass', 'User.sisuId'])
@@ -102,6 +102,7 @@ export class AuthService {
         token: this.getJwtToken({
           sisuId: user.sisuId,
           sisuCorreo: sisuCorreo,
+          idSistema: idSistema,
         }),
       };
     } catch (error) {

@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsNumber,
   IsString,
 } from 'class-validator';
 
@@ -10,4 +11,7 @@ export class LoginUserDTO {
 
   @IsString()
   sisuPass: string;
+
+  @IsNumber()
+  idSistema: number;
 }
