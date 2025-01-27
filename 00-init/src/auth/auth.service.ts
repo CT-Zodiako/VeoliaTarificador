@@ -332,4 +332,30 @@ export class AuthService {
       console.log('error AsignarAps', error);
     }
   }
+
+
+  async getSistemas(data){
+    try {
+      const correo = data.correo;
+      console.log(correo);
+
+      const idUsuario = await this.userRepository.query(`
+        select sisu_id from auge_sisusuario where sisu_correo = '${correo}'
+      `);
+
+      const id = idUsuario[0].SISU_ID;
+
+      return await this.apsUserRepository.query(`
+        SELECT AS2.SIST_ID, AS2.SIST_NOMBRE 
+        FROM AUGE_USUASISTEMA au 
+        INNER JOIN AUGE_SISTEMA as2 
+        ON (AU.SIST_ID = AS2.SIST_ID AND AS2.SIST_ESTADO = 1) 
+        WHERE usua_id = :1
+        `, [id]);     
+    } catch (error) {
+      return {message: 'Error al obtener los sistemas', error};
+      
+    }
+
+  }
 }

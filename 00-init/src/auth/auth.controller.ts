@@ -126,6 +126,11 @@ export class AuthController {
     return this.authService.AsignarAps(body);
   }
 
+  @Get('getSistemas')
+  getSistemas(@Query() data) {
+    return this.authService.getSistemas(data);
+  }
+
 
 
   @Get('private')
