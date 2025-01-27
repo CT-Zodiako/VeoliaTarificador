@@ -27,6 +27,16 @@ export const LoginPage = () => {
 
       // Configurar Axios para enviar el token en los encabezados de autorización
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      const tokenData = token.split(".")[1];
+      const decodedToken = JSON.parse(atob(tokenData));
+
+      if (decodedToken) {
+        const usuarioId = decodedToken.sisuId;
+        console.log('token id: ',usuarioId);
+        const usuario = decodedToken.sisuCorreo;
+        console.log('token usuario: ',usuario);        
+      };
       
       if (token){
         navigate('/');
