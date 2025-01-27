@@ -9,11 +9,10 @@ body, html {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(90deg, rgb(255, 0, 0) 0%, rgb(128, 128, 128) 100%);  
   }
   
   .sesion {
-    background-color: rgba(128, 128, 128, 0.15);
+    background-color: rgb(252, 252, 252, 0.5);
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(10px);
     padding: 40px;
@@ -43,14 +42,14 @@ body, html {
   .sesion label {
     margin-bottom: 5px;
     display: block;
-    color: #ffffff;
+    color: #000000;
   }
   
   .sesion input {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(107, 107, 107, 0.1);
     width: 100%;
     padding: 10px;
-    border: 1px solid rgb(255, 255, 255, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     box-sizing: border-box;
   }

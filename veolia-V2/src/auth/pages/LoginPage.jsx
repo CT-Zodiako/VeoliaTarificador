@@ -1,11 +1,10 @@
 import React from 'react'
+import { SelectorSistema } from '../components/SelectorSistema';
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import './style.css';
-
-
 
 export const LoginPage = () => {
   // Estado para almacenar el correo electrónico y la contraseña ingresados por el usuario
@@ -46,13 +45,12 @@ export const LoginPage = () => {
     <>
       <div className='login'>
         <div className='sesion'>
-          <h2>Iniciar sesión</h2>
-          {/* <img src="../assets/Veolia_sml.png" alt="Veolia" style={{ height: '80px', width: 'auto' }} /> */}
+          <img src="../assets/Veolia_sml.png" alt="Veolia" style={{ height: '80px', width: 'auto', marginBottom: '2rem' }} />
           <form onSubmit={handleLogin}>
             <div>
               <label htmlFor="sisuCorreo">Correo electrónico:</label>
               <input
-                type="sisuCorreo"
+                type="email"
                 id="sisuCorreo"
                 value={sisuCorreo}
                 onChange={(e) => setEmail(e.target.value)}
@@ -62,12 +60,15 @@ export const LoginPage = () => {
             <div>
               <label htmlFor="sisuPass">Contraseña:</label>
               <input
-                type="sisuPass"
+                type="password"
                 id="sisuPass"
                 value={sisuPass}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+            </div>
+            <div>
+              <SelectorSistema usuario={sisuCorreo}/>
             </div>
             <button type="submit">Iniciar sesión</button>
           </form>
@@ -75,67 +76,4 @@ export const LoginPage = () => {
       </div>
     </>
   );
-  
-
-
-    // const { form, onInputChange } = useForm({
-    //     email: '',
-    //     password: ''
-    // });
-
-
-    // const onSubmit = (e) => {
-    //     // envio usuario contraseña sies correcto
-    // }
-
-
-
-    // return (
-    //     <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-    //         <div className="card mb-3 col-6">
-    //             <div className="row g-0 d-flex align-items-center">
-    //                 <div className="col-lg-4 d-none d-lg-flex">
-    //                     <img
-    //                         src="/assets/veolia.jpg"
-    //                         alt="Trendy Pants and Shoes"
-    //                         className="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5"
-    //                     />
-    //                 </div>
-    //                 <div className="col-lg-8 ">
-    //                     <div className="card-body py-3 px-md-3">
-
-    //                         <form onSubmit={onSubmit}>
-    //                             <div className="form-outline mb-3">
-    //                                 <input
-    //                                     type="email"
-    //                                     className="form-control"
-    //                                     name='email'
-    //                                     value={form}
-    //                                     onChange={onInputChange} />
-    //                                 <label className="form-label">
-    //                                     Correo
-    //                                 </label>
-    //                             </div>
-
-    //                             <div className="form-outline mb-3">
-    //                                 <input
-    //                                     type="password"
-    //                                     className="form-control"
-    //                                     name='password'
-    //                                     value={form}
-    //                                     onChange={onInputChange} />
-    //                                 <label className="form-label">
-    //                                     Contraseña
-    //                                 </label>
-    //                             </div>
-
-    //                             <button type="submit" className="btn btn-primary btn-block aling'">Conectar</button>
-    //                         </form>
-
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
 }
