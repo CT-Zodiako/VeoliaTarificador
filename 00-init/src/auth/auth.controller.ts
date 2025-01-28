@@ -142,6 +142,12 @@ export class AuthController {
     return this.authService.getSistemas(data);
   }
 
+  @Get('allSistemas')
+  @UseGuards(AuthGuard())
+  allSistemas() {
+    return this.authService.allSistemas();
+  }
+
 
 
   @Get('private')

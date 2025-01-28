@@ -404,7 +404,15 @@ export class AuthService {
     }
   }
 
-
+  async allSistemas() {
+    try {
+      return await this.userRepository.query(`
+      SELECT SIST_ID, SIST_NOMBRE FROM AUGE_SISTEMA WHERE SIST_ESTADO = 1
+      `);
+    } catch (error) {
+      return {message: 'Error al obtener los sistemas', error};
+    }
+  }
   async getSistemas(data){
     try {
       const correo = data.correo;
