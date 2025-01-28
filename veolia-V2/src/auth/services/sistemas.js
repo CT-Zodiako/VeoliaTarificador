@@ -9,6 +9,15 @@ export const getSistemas = async (data) => {
   }
 }
 
+export const getSistemasSelect = async () => {
+  try {
+    const response = await Http.get("auth/allSistemas");
+    return response;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
 export const getAsinarSistemas = async (data) => {
   try {
     const response = await Http.get("auth/getSistemasUser", data);

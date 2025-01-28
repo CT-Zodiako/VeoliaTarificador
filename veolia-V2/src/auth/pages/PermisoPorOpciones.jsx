@@ -1,21 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SelectorUsuarios } from "../components/SelectorUsuarios";
 import { AsignacionOpciones } from "../components/AsignacionOpciones";
-import { SelectorSistema } from "../components/SelectorSistema";
+import { SelectorSistemas } from "../components/SelectorSistemas";
+import { getSistemasSelect } from "../services/sistemas";
  
 export const PermisoPorOpciones = () => {
-    const [usuarioAps, setUsuarioAps] = useState([])
-    // const [sistema, setSistema] = useState('');
-    
+    const [ usuarioAps, setUsuarioAps ] = useState([])
+    const [ dataSistemas, setSistemas ] = useState([]);
+    const [ sistema, setSistema ] = useState('');
+
+    const getDataSistemas = async() => {
+        try {
+            const response = await getSistemasSelect();
+            setSistemas(response);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
     const handleUsuarioAps = (aps) => {
         setUsuarioAps(aps)
     };
+
+    useEffect(() => {
+        getDataSistemas();
+    }, []);
 
     return(
     <>
         <div className='container'>
             <SelectorUsuarios handleUsuarioAps={handleUsuarioAps}/>
-            {/* <SelectorSistema usuario={sisuCorreo} sistema={sistema} setSistema={setSistema}/> */}
+            <SelectorSistemas dataSistemas={dataSistemas} sistema={sistema} setSistema={setSistema}/>
             <hr />
             <AsignacionOpciones usuarioAps={usuarioAps}/>
         </div>

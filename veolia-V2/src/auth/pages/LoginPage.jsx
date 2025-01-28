@@ -1,5 +1,5 @@
 import React from 'react'
-import { SelectorSistema } from '../components/SelectorSistema';
+import { SelectorSistemaLogin } from '../components/SelectorSistemaLogin';
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -80,7 +80,7 @@ export const LoginPage = () => {
               />
             </div>
             <div>
-              <SelectorSistema usuario={sisuCorreo} sistema={sistema} setSistema={setSistema}/>
+              <SelectorSistemaLogin usuario={sisuCorreo} sistema={sistema} setSistema={setSistema}/>
             </div>
             <button type="submit">Iniciar sesión</button>
           </form>

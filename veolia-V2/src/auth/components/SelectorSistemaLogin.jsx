@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSistemas } from "../services/sistemas";
 
-export const SelectorSistema = ({ usuario, sistema, setSistema }) => {
+export const SelectorSistemaLogin = ({ usuario, sistema, setSistema }) => {
     const [data, setData] = useState([]);
 
     const query = {
