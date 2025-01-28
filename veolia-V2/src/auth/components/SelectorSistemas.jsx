@@ -9,7 +9,8 @@ export const SelectorSistemas = ({ dataSistemas, sistema, setSistema }) => {
         <div>
             <label htmlFor="sistema">Sistema:</label>
             <select
-                className="form-select form-select-sm style-selector"
+                style={{ background: 'rgb(255, 255, 255)', padding: '5px', border: '1px solid rgba(0, 0, 0, 0.3)', borderRadius: '5px', width: '20rem' }}
+                className="form-select form-select-sm"
                 aria-label="Small select example"
                 value={sistema}
                 onChange={handleChange}

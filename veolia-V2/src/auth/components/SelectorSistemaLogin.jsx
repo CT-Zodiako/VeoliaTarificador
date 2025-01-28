@@ -27,10 +27,11 @@ export const SelectorSistemaLogin = ({ usuario, sistema, setSistema }) => {
 
     return(
     <>
-        <div>
+        <div className='mt-1 container-select'>
             <label htmlFor="sistema">Sistema:</label>
             <select
-                className="form-select form-select-sm style-selector"
+                style={{ background: 'rgba(150, 150, 150, 0.1)', padding: '10px', border: '1px solid rgba(0, 0, 0, 0.3)', borderRadius: '5px' }}
+                className="form-select form-select-sm" 
                 aria-label="Small select example"
                 value={sistema}
                 onChange={handleChange}

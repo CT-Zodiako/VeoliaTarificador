@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAsinarSistemas } from '../services/sistemas';
+import { getAsinarSistemas, postSistemasAsignar } from '../services/sistemas';
 import { usePermisosAps } from '../hooks/usePermisosAps';
 
 export const AsignacionSistemas = ({ sisuId }) => {
@@ -29,12 +29,12 @@ export const AsignacionSistemas = ({ sisuId }) => {
         try {
             const sistemasSinAsignar = handleApsSinAsignar('SIST_ID');
             const sistemasAsignados = handleApsAsignadas('SIST_ID');
-            // const data = {
-            //     sisuId: sisuId,
-            //     sistemasSinAsignar: sistemasSinAsignar,
-            //     sistemasAsignados: sistemasAsignados
-            // };
-            // postAsignarAps(data);
+            const data = {
+                sisuId: sisuId,
+                asignados: sistemasAsignados,
+                noAsignados: sistemasSinAsignar,
+            };
+            postSistemasAsignar(data);
         } catch (error) {
             console.error('Error saving data:', error);
         }

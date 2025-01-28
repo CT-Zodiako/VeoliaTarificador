@@ -6,12 +6,19 @@ export const serviceMenu = () => {
     const [menu, setMenu] = useState([]);
     
     const usr = localStorage.getItem("token");
+    const tokenData = usr.split(".")[1];
+    const decodedToken = JSON.parse(atob(tokenData));
+
+    const data = {
+      idSistema: Number(decodedToken.idSistema),
+    };
+    
 
     useEffect(() => {
         const fetchMenu = async () => {
             let initialMenu = Menu;
             if (usr) {
-                const usrMenu = await getMenuService();
+                const usrMenu = await getMenuService(data);
                 if (usrMenu) {
                   let auxMenu = [];
                   initialMenu.forEach((element) => {

@@ -1,8 +1,9 @@
 import { Http } from "../../helpers/axiosHelper";
 
-export const getOpcionesUsuario = async (id) => {
+export const getOpcionesUsuario = async (id, idSistema) => {
   const data = {
-    sisuId: id
+    sisuId: id, 
+    idSistema: idSistema
   };
   try {
     const response = await Http.get('auth/getMenuByUser', data);

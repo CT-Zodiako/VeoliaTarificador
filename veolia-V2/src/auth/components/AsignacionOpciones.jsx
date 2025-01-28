@@ -6,7 +6,7 @@ import { usePermisosMenu } from '../hooks/usePermisosMenu';
 import { OpcionesMenu } from './OpcionesMenu';
 import '../styles/permisos.css';
 
-export const AsignacionOpciones = ({usuarioAps}) => {        
+export const AsignacionOpciones = ({ usuarioAps, idSistema }) => {        
     const [ opcionesAsignadas, setOpcionesAsignadas ] = useState();
     const [ opcionesRestantes, setOpcionesRestantes ] = useState();
     const [ porAsignar, setPorAsignar ] = useState([]);
@@ -20,7 +20,7 @@ export const AsignacionOpciones = ({usuarioAps}) => {
 
     const onOpcionesMenu = async() => {
         try {
-            const response = await getOpcionesUsuario(usuarioAps);
+            const response = await getOpcionesUsuario(usuarioAps, idSistema);
             const {opciones, restante} = opcionesUsuario(response);
             setOpcionesAsignadas(opciones);
             setOpcionesRestantes(restante);
@@ -30,8 +30,10 @@ export const AsignacionOpciones = ({usuarioAps}) => {
     };
 
     useEffect(() => {
-        onOpcionesMenu();
-    }, [usuarioAps]);
+        if(usuarioAps && idSistema){
+            onOpcionesMenu();
+        }
+    }, [usuarioAps, idSistema]);
 
     const onSelectorAsignadas = (id, isChild = false) => {
         const elementoPadre = opcionesAsignadas.find((menu) => menu.items?.some((item) => item.id === id));

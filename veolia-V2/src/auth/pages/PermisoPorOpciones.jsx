@@ -29,10 +29,12 @@ export const PermisoPorOpciones = () => {
     return(
     <>
         <div className='container'>
-            <SelectorUsuarios handleUsuarioAps={handleUsuarioAps}/>
-            <SelectorSistemas dataSistemas={dataSistemas} sistema={sistema} setSistema={setSistema}/>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '200px' }}>
+                <SelectorUsuarios handleUsuarioAps={handleUsuarioAps}/>
+                <SelectorSistemas dataSistemas={dataSistemas} sistema={sistema} setSistema={setSistema}/>
+            </div>
             <hr />
-            <AsignacionOpciones usuarioAps={usuarioAps}/>
+            <AsignacionOpciones usuarioAps={usuarioAps} idSistema={sistema}/>
         </div>
     </>
   )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SelectorSistemaLogin } from '../components/SelectorSistemaLogin';
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,11 @@ export const LoginPage = () => {
   const [sisuCorreo, setEmail] = useState('');
   const [sisuPass, setPassword] = useState('');
   const [sistema, setSistema] = useState('');
+  const [estadoBoton, setEstadoBoton] = useState(false);
 
+  useEffect(() => {
+    setEstadoBoton(!(sisuCorreo && sisuPass && sistema));
+  }, [sisuCorreo, sisuPass, sistema]);
   // Función para manejar el envío del formulario de inicio de sesión
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -37,13 +41,13 @@ export const LoginPage = () => {
         const usuarioId = decodedToken.sisuId;
         const usuario = decodedToken.sisuCorreo;
         const sistema = decodedToken.idSistema;
-        console.log('token sistema: ',idSistema);   
       };
       
       if (token){
+        setEstadoBoton(true);
         navigate('/');
-      }
-      
+      };
+
       // Redireccionar a la página de inicio o realizar cualquier otra acción necesaria
       // Por ejemplo, puedes usar React Router para redireccionar a otra página
       // history.push('/dashboard');
@@ -82,7 +86,17 @@ export const LoginPage = () => {
             <div>
               <SelectorSistemaLogin usuario={sisuCorreo} sistema={sistema} setSistema={setSistema}/>
             </div>
-            <button type="submit">Iniciar sesión</button>
+            <button 
+              type="submit"
+              className="boton-login"
+              style={{
+                backgroundColor: estadoBoton ? 'rgba(225,31,31,0.5)' : 'rgb(225,31,31)',
+                cursor: estadoBoton ? 'not-allowed' : 'pointer'
+              }}
+              disabled={estadoBoton}
+            >
+              Iniciar sesión
+            </button>
           </form>
         </div>
       </div>
