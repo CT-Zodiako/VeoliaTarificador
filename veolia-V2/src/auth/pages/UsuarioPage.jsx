@@ -3,6 +3,7 @@ import { useState } from 'react';
 import TableComponent from "../components/UsuarioTable";
 import { PermisoPorAPS } from './PermisoPorAPS';
 import { PermisoPorOpciones } from './PermisoPorOpciones';
+import { PermisosPorSistema } from './PermisosPorSistema';
 
 export const UsuariosPage = () => {
   const [activeTab, setActiveTab] = useState('active-tab');
@@ -39,6 +40,15 @@ export const UsuariosPage = () => {
             href="#"
             onClick={() => handleTabClick('link2-tab')}
           >
+            Permisos por Sistema
+          </a>
+        </li>
+        <li className="nav-item">
+          <a
+            className={`nav-link ${activeTab === 'link3-tab' ? 'active' : ''}`}
+            href="#"
+            onClick={() => handleTabClick('link3-tab')}
+          >
             Permisos por Opciones
           </a>
         </li>
@@ -50,7 +60,10 @@ export const UsuariosPage = () => {
         <div className={`tab-pane fade ${activeTab === 'link1-tab' ? 'show active' : ''}`} id="link1-tab">
           <PermisoPorAPS />
         </div>
-        <div className={`tab-pane fade ${activeTab === 'link2-tab' ? 'show active' : ''}`} id="link2-tab">
+        <div className={`tab-pane fade ${activeTab === 'link2-tab' ? 'show active' : ''}`} id="link1-tab">
+          <PermisosPorSistema />
+        </div>
+        <div className={`tab-pane fade ${activeTab === 'link3-tab' ? 'show active' : ''}`} id="link2-tab">
           <PermisoPorOpciones />
         </div>
       </div>
