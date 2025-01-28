@@ -80,10 +80,10 @@ export class AuthController {
 
   @Get('menu')
   @UseGuards(AuthGuard())
-  getMenuUser(@GetUser() user: any) {
+  getMenuUser(@Query() data,@GetUser() user: any) {
     const sisuId = user?.SISU_ID;
-    console.log(sisuId);
-    return this.authService.getMenuUser(sisuId);
+    const { idSistema } = data;
+    return this.authService.getMenuUser(sisuId, idSistema);
   }
 
   @Get('getApsAsignados')

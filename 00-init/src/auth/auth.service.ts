@@ -191,10 +191,21 @@ export class AuthService {
     return user[0];
   }
 
-  async getMenuUser(sisuId: number) {
-    return await this.menuUserRepository.query(`
-   SELECT m.menu_id FROM AUGE_MENU m JOIN AUGE_USUAMENU au on m.menu_id=au.MENU_ID WHERE au.SISU_ID = ${sisuId} AND au.USME_ESTADO = 1 AND m.MENU_ESTADO = 1 ORDER BY m.menu_id ASC
-   `);
+  async getMenuUser(sisuId: number, idSistema: number) {
+    try {
+      return await this.menuUserRepository.query(`
+        SELECT a.MENU_ID
+        FROM AUGE_USUAMENU a
+        INNER JOIN AUGE_MENU b ON (a.MENU_ID = b.MENU_ID AND b.MENU_SISTEMA = :1)
+        WHERE a.SISU_ID = :2
+        AND a.USME_ESTADO = 1
+        AND b.MENU_ESTADO = 1
+        ORDER BY b.MENU_ID ASC
+     `, [idSistema, sisuId]);
+      
+    } catch (error) {
+      return {message: 'Error al obtener el menu', error};
+    }
   }
 
   async getSistemasUser(data) {
