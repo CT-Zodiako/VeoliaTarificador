@@ -103,8 +103,8 @@ export class AuthController {
   @Get('getMenuByUser')
   @UseGuards(AuthGuard())
   getMenuByUser(@Query() data) {
-    const { sisuId } = data;
-    return this.authService.getMenuByUser(sisuId);
+    const { sisuId, idSistema } = data;
+    return this.authService.getMenuByUser(sisuId,idSistema);
   }
 
   @Get('getMenuPadreHijos')
