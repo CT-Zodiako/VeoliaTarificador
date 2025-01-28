@@ -113,6 +113,12 @@ export class AuthController {
     return this.authService.getMenuPadreHijos();
   }
 
+  @Post('asignarSistema')
+  @UseGuards(AuthGuard())
+  asignarSistema(@Body() data: any){
+    return this.authService.asignarSistema(data.sisuId, data.asignados, data.noAsignados);
+  }
+
   @Post('setApsUser')
   @UseGuards(AuthGuard())
   setApsUser(@Body() body: any){

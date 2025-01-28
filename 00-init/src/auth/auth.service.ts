@@ -321,6 +321,34 @@ export class AuthService {
     }
   }
 
+  async asignarSistema(sisuId: number, asignados: number[], noAsignados: number[]) {
+    try {
+      await this.apsUserRepository.query(`
+      DELETE FROM TARIFICADOR.AUGE_USUASISTEMA WHERE USUA_ID = :1
+      `, [sisuId]);
+
+      for (const idSistema of asignados) {
+        await this.apsUserRepository.query(`
+        INSERT INTO TARIFICADOR.AUGE_USUASISTEMA
+        (SIST_ID, USUA_ID, USSI_ESTADO, USSI_FECHA)
+        VALUES(:1, :2, 1 , sysdate )
+        `, [idSistema, sisuId]);
+      }
+
+      for (const idSistema of noAsignados) {
+        await this.apsUserRepository.query(`
+        UPDATE TARIFICADOR.AUGE_USUASISTEMA
+        SET USSI_ESTADO=0 , USSI_FECHA=sysdate 
+        WHERE SIST_ID=:1 AND USUA_ID=:2
+        `, [idSistema, sisuId]);
+      }
+
+      return { message: 'Aps asignadas exitosamente' };
+    } catch (error) {
+      console.log('error setApsUser', error);
+    }
+  }
+
   async AsignarMenu(body: any) {
     try {
       const { sisuId,  opcionesSinAsignar, opcionesAsignada} = body;
