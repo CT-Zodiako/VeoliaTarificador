@@ -11,6 +11,7 @@ export const AsignacionOpciones = ({usuarioAps}) => {
     const [ opcionesRestantes, setOpcionesRestantes ] = useState();
     const [ porAsignar, setPorAsignar ] = useState([]);
     const [ porQuitar, setPorQuitar ] = useState([]);
+    
     const { opcionesUsuario } = useOpcionesMenu(Menu);
     const { cambioEstadoOpcionMenu, eliminarItemDeItemsPadre, 
     alternarCheckedItemHijo, cambioEstadoItemMenu, filtrarItemsMenu, 
