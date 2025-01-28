@@ -326,36 +326,22 @@ export class AuthService {
 
   async asignarSistema(sisuId: number, asignados: number[], noAsignados: number[]) {
     try {
-      const consultaExistencia = await this.userRepository.query(`
-      SELECT USUA_ID FROM AUGE_USUASISTEMA WHERE USUA_ID = ${sisuId}
-      `);
+     
+      const eliminar: number[] = [...asignados, ...noAsignados];
 
-      if (consultaExistencia.length === 0) {
-        for (const idSistema of asignados) {
-          await this.apsUserRepository.query(`
-          INSERT INTO TARIFICADOR.AUGE_USUASISTEMA
-          (SIST_ID, USUA_ID, USSI_ESTADO, USSI_FECHA)
-          VALUES(:1, :2, 0 , sysdate )
-          `, [idSistema, sisuId]);
-        }
-  
+      for (const idSistema of eliminar) {
+        await this.apsUserRepository.query(`
+        DELETE FROM TARIFICADOR.AUGE_USUASISTEMA
+        WHERE SIST_ID = :1 AND USUA_ID = :2
+        `, [idSistema, sisuId]);
       }
-      
+
       for (const idSistema of asignados) {
         await this.apsUserRepository.query(`
-        INSERT INTO TARIFICADOR.AUGE_USUASISTEMA
-        (SIST_ID, USUA_ID, USSI_ESTADO, USSI_FECHA)
-        VALUES(:1, :2, 0 , sysdate )
-        `, [idSistema, sisuId]);
+        INSERT INTO TARIFICADOR.AUGE_USUASISTEMA (USSI_ID, USUA_ID, SIST_ID, USSI_ESTADO) VALUES (SAUGE_USUASISTEMA.NEXTVAL, :1, :2, 1)
+        `, [sisuId, idSistema]);
       }
-
-      for (const idSistema of noAsignados) {
-        await this.apsUserRepository.query(`
-        UPDATE TARIFICADOR.AUGE_USUASISTEMA
-        SET USSI_ESTADO=0 , USSI_FECHA=sysdate 
-        WHERE SIST_ID=:1 AND USUA_ID=:2
-        `, [idSistema, sisuId]);
-      }
+      
 
       return { message: 'Aps asignadas exitosamente' };
     } catch (error) {
