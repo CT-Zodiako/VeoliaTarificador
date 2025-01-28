@@ -262,11 +262,14 @@ export class AuthService {
     return menuUser.map((menu) => menu.MENU_ID);
   }
 
-  async getMenuByUser(sisuId: number) {
+  async getMenuByUser(sisuId: number, idSistema: number) {
     try {
       const menuUser = await this.menuUserRepository
-      .query(`SELECT MENU_ID FROM AUGE_USUAMENU au WHERE USME_ESTADO = 1 AND SISU_ID = '${sisuId}' ORDER BY 1
-    `);
+      .query(`
+        SELECT a.MENU_ID  FROM AUGE_USUAMENU a 
+        JOIN AUGE_MENU b ON (a.MENU_ID = b.MENU_ID AND b.MENU_SISTEMA = :1)
+        WHERE USME_ESTADO = 1 AND SISU_ID = :2 ORDER BY 1
+    `, [idSistema, sisuId]);
 
     return menuUser.map((menu) => menu.MENU_ID);
     } catch (error) {
