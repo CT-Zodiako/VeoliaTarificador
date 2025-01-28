@@ -11,7 +11,7 @@ export const PermisosPorSistema = () => {
 
     return(
     <>
-        <div>
+        <div className='container'>
             <SelectorUsuarios handleUsuarioAps={handleUsuarioAps}/>
             <hr />
             <AsignacionSistemas sisuId={usuarioAps}/>

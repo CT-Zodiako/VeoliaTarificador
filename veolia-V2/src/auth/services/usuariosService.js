@@ -27,7 +27,7 @@ export const saveNewUsuario = async (data) => {
     }
 }
 
-export const apsAsignadas = async (data) => {
+export const getApsAsignadas = async (data) => {
     try {
       const response = await Http.get("aps/getApsAsignadas",data);
       return response;

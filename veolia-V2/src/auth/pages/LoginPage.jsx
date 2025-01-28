@@ -17,9 +17,6 @@ export const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      console.log('correo: ',sisuCorreo);
-      console.log('pass: ',sisuPass);
-      console.log('sistema: ',sistema);
       const idSistema = Number(sistema);
       // Enviar una solicitud HTTP POST al endpoint de inicio de sesión en el backend
       const response = await axios.post('http://localhost:3000/api/auth/login', { sisuCorreo, sisuPass, idSistema: idSistema });
@@ -38,9 +35,7 @@ export const LoginPage = () => {
 
       if (decodedToken) {
         const usuarioId = decodedToken.sisuId;
-        console.log('token id: ',usuarioId);
         const usuario = decodedToken.sisuCorreo;
-        console.log('token usuario: ',usuario);     
         const sistema = decodedToken.idSistema;
         console.log('token sistema: ',idSistema);   
       };

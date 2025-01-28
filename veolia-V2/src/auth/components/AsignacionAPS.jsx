@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { apsAsignadas, postAsignarAps } from "../services/usuariosService"
+import { getApsAsignadas, postAsignarAps } from "../services/usuariosService"
 import { usePermisosAps } from "../hooks/usePermisosAps"
 import '../styles/permisos.css';
 
@@ -16,10 +16,10 @@ export const AsignacionAPS = ({usuarioAps}) => {
 
   const fetchData = async () => {
     try {
-      const response = await apsAsignadas(sisuID);
-      const sinAsig = dataSinAsignar(response);
+      const response = await getApsAsignadas(sisuID);
+      const sinAsig = dataSinAsignar(response, 'apsSinAsignar');
+      const asig = dataAsignadas(response, 'apsAsignadas');
       setSinAsignar(sinAsig)
-      const asig = dataAsignadas(response);
       setAsignadas(asig)
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -33,14 +33,14 @@ export const AsignacionAPS = ({usuarioAps}) => {
   }, [usuarioAps])
 
   const onAsignacionesAps = async() => {
-    await handleAsignarAps();
-    await handleQuitarAps();
+    await handleAsignarAps('APSA_DESCRIPCION', 'APSA_ID');
+    await handleQuitarAps('APSA_DESCRIPCION', 'APSA_ID');
   };
 
   const handleGuardar = () => {
     try {
-      const apsSinAsignar = handleApsSinAsignar();
-      const apsAsignadas = handleApsAsignadas();
+      const apsSinAsignar = handleApsSinAsignar('APSA_ID');
+      const apsAsignadas = handleApsAsignadas('APSA_ID');
       const data = {
         sisuId: usuarioAps,
         apsSinAsignar: apsSinAsignar,
@@ -66,7 +66,7 @@ export const AsignacionAPS = ({usuarioAps}) => {
                 id={`checkbox-${item.APSA_ID}`}
                 value={item.APSA_ID}
                 defaultChecked={item.checked || false}
-                onChange={()=> handleCheck(item.APSA_ID)}
+                onChange={()=> handleCheck(item.APSA_ID, 'APSA_ID')}
               />
               <label style={{ marginLeft: '0.5rem' }} htmlFor={`checkbox-${item.APSA_ID}`}>{item.APSA_NOMAPS}</label>
             </div>
@@ -76,7 +76,7 @@ export const AsignacionAPS = ({usuarioAps}) => {
             <div>
                 <button
                   className="boton-accion"
-                  onClick={handleAsignarAps}
+                  onClick={()=>handleAsignarAps('APSA_DESCRIPCION', 'APSA_ID')}
                 >
                     {'>>'}
                 </button>
@@ -92,7 +92,7 @@ export const AsignacionAPS = ({usuarioAps}) => {
             <div>
                 <button
                   className="boton-accion"
-                  onClick={handleQuitarAps}
+                  onClick={()=>handleQuitarAps('APSA_DESCRIPCION', 'APSA_ID')}
                 >
                     {'<<'}
                 </button>
@@ -109,7 +109,7 @@ export const AsignacionAPS = ({usuarioAps}) => {
                       id={`checkbox-${item.APSA_ID}`}
                       value={item.APSA_ID}
                       defaultChecked={item.checked || true}
-                      onChange={()=> handleCheck(item.APSA_ID)}
+                      onChange={()=> handleCheck(item.APSA_ID, 'APSA_ID')}
                     />
                     <label style={{ marginLeft: '0.5rem' }} htmlFor={`checkbox-${item.APSA_ID}`}>{item.APSA_NOMAPS}</label>
                   </div>
