@@ -29,7 +29,7 @@ export const getAsinarSistemas = async (data) => {
 
 export const postSistemasAsignar = async (data) => {
   try {
-    const response = await Http.get("auth/asignarSistema", data);
+    const response = await Http.post("auth/asignarSistema", data);
     return response;
   } catch (error) {
     console.error("Error fetching data:", error);

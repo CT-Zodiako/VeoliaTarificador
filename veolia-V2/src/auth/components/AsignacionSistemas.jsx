@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getAsinarSistemas, postSistemasAsignar } from '../services/sistemas';
 import { usePermisosAps } from '../hooks/usePermisosAps';
 
@@ -107,6 +107,14 @@ export const AsignacionSistemas = ({ sisuId }) => {
                     </div>
                 ))} 
             </div>
+        </div>
+        <div>
+            <button
+                className="boton-guardar"
+                onClick={handleGuardar}
+            >
+                Guardar
+            </button>
         </div>
     </>
   )
