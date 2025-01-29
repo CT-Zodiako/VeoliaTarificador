@@ -11,7 +11,9 @@ export const PermisoPorAPS = () => {
 
   return (
     <div className='container'>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '200px' }}>
         <SelectorUsuarios handleUsuarioAps={handleUsuarioAps}/>
+      </div>
         <hr />
         <AsignacionAPS usuarioAps={usuarioAps}/>
     </div>

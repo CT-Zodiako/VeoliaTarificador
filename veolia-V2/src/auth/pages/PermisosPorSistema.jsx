@@ -12,7 +12,9 @@ export const PermisosPorSistema = () => {
     return(
     <>
         <div className='container'>
-            <SelectorUsuarios handleUsuarioAps={handleUsuarioAps}/>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '200px' }}>
+              <SelectorUsuarios handleUsuarioAps={handleUsuarioAps}/>
+          </div>
             <hr />
             <AsignacionSistemas sisuId={usuarioAps}/>
         </div>

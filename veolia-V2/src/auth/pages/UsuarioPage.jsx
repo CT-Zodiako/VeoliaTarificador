@@ -14,45 +14,80 @@ export const UsuariosPage = () => {
 
   return (
     <div>
-      <ul className="nav nav-pills">
-        <li className="nav-item">
-          <a
-            className={`nav-link ${activeTab === 'active-tab' ? 'active' : ''}`}
-            aria-current="page"
-            href="#"
-            onClick={() => handleTabClick('active-tab')}
-          >
-            Usuarios
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            className={`nav-link ${activeTab === 'link1-tab' ? 'active' : ''}`}
-            href="#"
-            onClick={() => handleTabClick('link1-tab')}
-          >
-            Permisos por APS
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            className={`nav-link ${activeTab === 'link2-tab' ? 'active' : ''}`}
-            href="#"
-            onClick={() => handleTabClick('link2-tab')}
-          >
-            Permisos por Sistema
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            className={`nav-link ${activeTab === 'link3-tab' ? 'active' : ''}`}
-            href="#"
-            onClick={() => handleTabClick('link3-tab')}
-          >
-            Permisos por Opciones
-          </a>
-        </li>
-      </ul>
+      <ul style={{ display: 'flex', justifyContent: 'center', gap: '20px', listStyle: 'none', padding: '0', margin: '0' }}>
+      <li>
+        <a
+          style={{
+            display: 'block',
+            fontWeight: 'bold',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.25rem',
+            backgroundColor: activeTab === 'active-tab' ? '#007bff' : 'transparent',
+            color: activeTab === 'active-tab' ? '#fff' : '#007bff',
+            textDecoration: 'none',
+            transition: 'background-color 0.3s, color 0.3s',
+          }}
+          href="#"
+          onClick={() => handleTabClick('active-tab')}
+        >
+          Usuarios
+        </a>
+      </li>
+      <li>
+        <a
+          style={{
+            display: 'block',
+            fontWeight: 'bold',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.25rem',
+            backgroundColor: activeTab === 'link1-tab' ? '#007bff' : 'transparent',
+            color: activeTab === 'link1-tab' ? '#fff' : '#007bff',
+            textDecoration: 'none',
+            transition: 'background-color 0.3s, color 0.3s',
+          }}
+          href="#"
+          onClick={() => handleTabClick('link1-tab')}
+        >
+          Permisos por APS
+        </a>
+      </li>
+      <li>
+        <a
+          style={{
+            display: 'block',
+            fontWeight: 'bold',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.25rem',
+            backgroundColor: activeTab === 'link2-tab' ? '#007bff' : 'transparent',
+            color: activeTab === 'link2-tab' ? '#fff' : '#007bff',
+            textDecoration: 'none',
+            transition: 'background-color 0.3s, color 0.3s',
+          }}
+          href="#"
+          onClick={() => handleTabClick('link2-tab')}
+        >
+          Permisos por Sistema
+        </a>
+      </li>
+      <li>
+        <a
+          style={{
+            display: 'block',
+            fontWeight: 'bold',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.25rem',
+            backgroundColor: activeTab === 'link3-tab' ? '#007bff' : 'transparent',
+            color: activeTab === 'link3-tab' ? '#fff' : '#007bff',
+            textDecoration: 'none',
+            transition: 'background-color 0.3s, color 0.3s',
+          }}
+          href="#"
+          onClick={() => handleTabClick('link3-tab')}
+        >
+          Permisos por Opciones
+        </a>
+      </li>
+    </ul>
       <div className="tab-content mt-3">
         <div className={`tab-pane fade ${activeTab === 'active-tab' ? 'show active' : ''}`} id="active-tab">
           <TableComponent />

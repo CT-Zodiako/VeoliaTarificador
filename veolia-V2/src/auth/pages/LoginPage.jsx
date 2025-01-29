@@ -91,7 +91,8 @@ export const LoginPage = () => {
               className="boton-login"
               style={{
                 backgroundColor: estadoBoton ? 'rgba(225,31,31,0.5)' : 'rgb(225,31,31)',
-                cursor: estadoBoton ? 'not-allowed' : 'pointer'
+                cursor: estadoBoton ? 'not-allowed' : 'pointer',
+                borderRadius: '10px',
               }}
               disabled={estadoBoton}
             >
