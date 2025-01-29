@@ -37,7 +37,7 @@ export const SelectorSistemaLogin = ({ usuario, sistema, setSistema }) => {
                 onChange={handleChange}
             >
                 <option value="" disabled>Selecionar Sistema</option>
-                {data.length > 0 && 
+                {data && data.length > 0 && 
                     data.map((item) => (
                     <option key={item.SIST_ID} value={item.SIST_ID}>
                         {item.SIST_NOMBRE}
