@@ -12,12 +12,14 @@ export const Menu = [
         id: 100,
         label: "Inicio",
         icon: "pi pi-fw pi-home",
+        idSistema: 1,
         to: "/",
     },
     {
         id: 200,
         label: "Configuración",
         icon: "pi pi-fw pi-th-large",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -50,6 +52,7 @@ export const Menu = [
         id: 300,
         label: "Suministros",
         icon: "pi pi-fw pi-cloud-upload",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -101,6 +104,7 @@ export const Menu = [
         id: 400,
         label: "Procesos",
         icon: "pi pi-fw pi-cog",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -115,6 +119,7 @@ export const Menu = [
         id: 500,
         label: "Informes Comerciales",
         icon: "pi pi-fw pi-chart-bar",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -147,6 +152,7 @@ export const Menu = [
         id: 600,
         label: "Informes Gerenciales",
         icon: "pi pi-fw pi-chart-bar",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -193,6 +199,7 @@ export const Menu = [
         id: 700,
         label: "Cargue de Informacion",
         icon: "pi pi-fw pi-chart-bar",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -213,6 +220,7 @@ export const Menu = [
         id: 800,
         label: "Reporteador SUI",
         icon: "pi pi-fw pi-chart-bar",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -251,6 +259,7 @@ export const Menu = [
         id: 900,
         label: "Proyecciones",
         icon: "pi pi-fw pi-chart-bar",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -289,6 +298,7 @@ export const Menu = [
         id: 1000,
         label: "Informes Proyecciones",
         icon: "pi pi-fw pi-chart-bar",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -304,6 +314,7 @@ export const Menu = [
         id: 2000,
         label: "PGIRS",
         icon: "pi pi-fw pi-chart-bar",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -330,6 +341,7 @@ export const Menu = [
         id: 3000,
         label: "Reversiones",
         icon: "pi pi-fw pi-chart-bar",
+        idSistema: 1,
         to: "",
         items: [
           {
@@ -357,6 +369,27 @@ export const Menu = [
             to: "/detautorizacion",
           },
         ],
-    }
+    },
+    {
+      id: 5000,
+      label: "Procesos",
+      icon: "pi pi-fw pi-chart-bar",
+      idSistema: 2,
+      to: "",
+      items: [
+        {
+          id: 5001,
+          label: "Crear",
+          icon: "pi pi-fw pi-exclamation-circle",
+          to: "/crearReliq",
+        },
+        {
+          id: 5002,
+          label: "Costos",
+          icon: "pi pi-fw pi-exclamation-circle",
+          to: "/costosReliq",
+        },
+      ],
+  }
 ];
 

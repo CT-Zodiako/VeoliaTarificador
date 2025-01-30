@@ -12,7 +12,7 @@ export const AsignacionOpciones = ({ usuarioAps, idSistema }) => {
     const [ porAsignar, setPorAsignar ] = useState([]);
     const [ porQuitar, setPorQuitar ] = useState([]);
     
-    const { opcionesUsuario } = useOpcionesMenu(Menu);
+    const { opcionesUsuario } = useOpcionesMenu(Menu, idSistema);
     const { cambioEstadoOpcionMenu, eliminarItemDeItemsPadre, 
     alternarCheckedItemHijo, cambioEstadoItemMenu, filtrarItemsMenu, 
     cambiarAsignacionItems, newArreglosMenu, orderOpcionesAsignadas,
@@ -22,6 +22,8 @@ export const AsignacionOpciones = ({ usuarioAps, idSistema }) => {
         try {
             const response = await getOpcionesUsuario(usuarioAps, idSistema);
             const {opciones, restante} = opcionesUsuario(response);
+            console.log('asignadas: ',opciones);
+            console.log('no asignadas: ',restante);
             setOpcionesAsignadas(opciones);
             setOpcionesRestantes(restante);
         } catch (error) {

@@ -12,7 +12,6 @@ export const serviceMenu = () => {
     const data = {
       idSistema: Number(decodedToken.idSistema),
     };
-    
 
     useEffect(() => {
         const fetchMenu = async () => {
