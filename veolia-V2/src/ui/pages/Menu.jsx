@@ -13,6 +13,12 @@ export const Menu = () => {
         setShowOffcanvas(!showOffcanvas);
     };
 
+    const token = localStorage.getItem('token');
+    const tokenData = token.split(".")[1];
+    const decodedToken = JSON.parse(atob(tokenData));
+
+    const sistema = decodedToken.idSistema;
+
     const cerrarSesion = () => {
         localStorage.removeItem('token');
         navigate('/login');
@@ -29,7 +35,14 @@ export const Menu = () => {
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <h6>Veolia App</h6>
+                <h4>Veolia App</h4>
+                <h5>
+                    {sistema &&
+                        sistema === 1 ? 'Tarificador' :
+                        'Reliquidacion'
+                    }
+                </h5>
+
                 {/* <div className={`offcanvas offcanvas-start ${showOffcanvas ? 'show' : ''}`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style={{ width: '16rem', fontSize: '15px', color: 'rgb(213,208,208)', background: 'rgb(110,110,112)' }}> */}
                 <div
                     className="sidebar-menu"

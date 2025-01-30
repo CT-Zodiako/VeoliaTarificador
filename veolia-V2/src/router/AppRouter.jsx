@@ -27,6 +27,7 @@ export const router = createBrowserRouter([
         element: <VeoliaApp />,
         errorElement: <h1>error</h1>,
         children: [
+            //TARIFICADOR
             {
                 path: "/aps",
                 element: <APSpage />,
@@ -171,7 +172,6 @@ export const router = createBrowserRouter([
                 element: <Reversiones />,
                 errorElement: <h1>error</h1>,
             },
-            
             //Proyecciones
             {
                 path: "/crear",
@@ -256,6 +256,9 @@ export const router = createBrowserRouter([
                 element: <Costo />,
                 errorElement: <h1>error</h1>,
             },
+
+            //RELIQUIDACION
+
         ]
 
     },
