@@ -3,7 +3,7 @@ import axios from 'axios';
 export class Http {
     static async get(endPoint, params = {}) {
         try {
-            const url = 'http://localhost:3000/api/';
+            const url = import.meta.env.VITE_API_URL;
             const token = localStorage.getItem('token');
             const response = await axios.get(`${url}${endPoint}`, {
                 params,
@@ -20,7 +20,7 @@ export class Http {
 
     static async post(endPoint, data) {
         try {
-            const url = 'http://localhost:3000/api/';
+            const url = import.meta.env.VITE_API_URL;
             const token = localStorage.getItem('token');
             const response = await axios.post(`${url}${endPoint}`, data, {
                 headers: {
@@ -36,7 +36,7 @@ export class Http {
 
     static async put(endPoint, data) {
         try {
-            const url = 'http://localhost:3000/api/';
+            const url = import.meta.env.VITE_API_URL;
             const token = localStorage.getItem('token');
             const response = await axios.put(`${url}${endPoint}`, data, {
                 headers: {
@@ -52,7 +52,7 @@ export class Http {
 
     static async delete(endPoint) {
         try {
-            const url = 'http://localhost:3000/api/';
+            const url = import.meta.env.VITE_API_URL;
             const token = localStorage.getItem('token');
             const response = await axios.delete(`${url}${endPoint}`, {
                 headers: {
@@ -68,7 +68,7 @@ export class Http {
 
     static async patch(endPoint, data) {
         try {
-            const url = 'http://localhost:3000/api/';
+            const url = import.meta.env.VITE_API_URL;
             const token = localStorage.getItem('token');
             const response = await axios.patch(`${url}${endPoint}`, data, {
                 headers: {

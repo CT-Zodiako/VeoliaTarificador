@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import './style.css';
+import { login } from '../services/AuthService';
 
 export const LoginPage = () => {
   // Estado para almacenar el correo electrónico y la contraseña ingresados por el usuario
@@ -22,11 +23,13 @@ export const LoginPage = () => {
     e.preventDefault();
     try {
       const idSistema = Number(sistema);
-      // Enviar una solicitud HTTP POST al endpoint de inicio de sesión en el backend
-      const response = await axios.post('http://localhost:3000/api/auth/login', { sisuCorreo, sisuPass, idSistema: idSistema });
 
+
+      const data = { sisuCorreo, sisuPass, idSistema: idSistema }
+      // Enviar una solicitud HTTP POST al endpoint de inicio de sesión en el backend
+      const response = await login(data);
       // Si la solicitud fue exitosa, obtener el token JWT de la respuesta
-      const { token } = response.data;
+      const { token } = response;
 
       // Guardar el token en el almacenamiento local (LocalStorage)
       localStorage.setItem('token', token);
@@ -34,14 +37,6 @@ export const LoginPage = () => {
       // Configurar Axios para enviar el token en los encabezados de autorización
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      const tokenData = token.split(".")[1];
-      const decodedToken = JSON.parse(atob(tokenData));
-
-      if (decodedToken) {
-        const usuarioId = decodedToken.sisuId;
-        const usuario = decodedToken.sisuCorreo;
-        const sistema = decodedToken.idSistema;
-      };
       
       if (token){
         setEstadoBoton(true);
