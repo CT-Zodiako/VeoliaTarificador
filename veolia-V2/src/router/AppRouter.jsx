@@ -15,6 +15,7 @@ import { Calculo } from "../procesos/pages/Calculo";
 import { Costo } from "../procesos/pages/Costo";
 import { Proyectar } from "../proyecciones/pages/Proyectar";
 import { CargueComplementario } from "../reporteadorSui/pages/CargueComplementario";
+import { CrearReliq } from "../../reliq/procesos/pages/CrearReliq";
 
 export const router = createBrowserRouter([
     {
@@ -258,6 +259,11 @@ export const router = createBrowserRouter([
             },
 
             //RELIQUIDACION
+            {
+                path: "/crearReliq",
+                element: <CrearReliq />,
+                errorElement: <h1>error</h1>,
+            },
 
         ]
 

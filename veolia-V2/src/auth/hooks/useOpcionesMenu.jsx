@@ -1,37 +1,47 @@
 export const useOpcionesMenu = (Menu, id) => {
-    const opcionesUsuario = (response) => {
-        let opciones = [];
-        let restante = [];
-        Menu.forEach((menu) => {
+  // console.log('menu encontrado: ', Menu);
+  const opcionesUsuario = (response) => {
+      let opciones = [];
+      let restante = [];
+      console.log('arreglo de ids: ', response);
+      Menu.forEach((menu) => {
           if (menu.idSistema == id) {
-            let encontrado = false;  
-            response.forEach((item) => {
-              if (menu.id === item) {
-                encontrado = true;
-                if (menu.items) {
-                  const itemsConChecked = menu.items.map((i) => {
-                    if (response.includes(i.id)) {
-                      return { ...i, checked: true };
-                    }
-                    return { ...i, checked: false };
-                  });
-                  opciones.push({ ...menu, checked: true, items: itemsConChecked });
-                } else {
-                  opciones.push({ ...menu, checked: true });
-                }
+              let encontrado = false;
+              let hijosRestantes = [];
+              response.forEach((item) => {
+                  if (menu.id === item) {
+                      encontrado = true;
+                      if (menu.items) {
+                          let itemsConChecked = [];
+                          menu.items.forEach((i) => {
+                              // console.log('item: ', i);
+                              if (response.includes(i.id)) {
+                                  itemsConChecked.push({ ...i, checked: true });
+                              } else {
+                                  console.log('item no encontrado: ', i);
+                                  hijosRestantes.push({ ...i, checked: false });
+                              }
+                          });
+                          opciones.push({ ...menu, checked: true, items: itemsConChecked });
+                      } else {
+                          opciones.push({ ...menu, checked: true });
+                      }
+                  }
+              });
+              if (encontrado && hijosRestantes.length > 0) {
+                  restante.push({ ...menu, checked: false, items: hijosRestantes });
               }
-            });
-            if (!encontrado) {
-              const menuSinChecked = { ...menu, checked: false };
-        
-              if (menu.items) {
-                menuSinChecked.items = menu.items.map((i) => ({ ...i, checked: false }));
+              if (!encontrado) {
+                  let menuSinChecked = { ...menu, checked: false };
+                  if (menu.items) {
+                      menuSinChecked.items = menu.items.map((i) => ({ ...i, checked: false }));
+                  }
+                  restante.push(menuSinChecked);
               }
-              restante.push(menuSinChecked);
-            }
-      }});
-        return { opciones, restante };
-    };
-    
-    return {opcionesUsuario};
+          }
+      });
+      return { opciones, restante };
+  };
+
+  return { opcionesUsuario };
 };
