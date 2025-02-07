@@ -1,9 +1,7 @@
 export const useOpcionesMenu = (Menu, id) => {
-  // console.log('menu encontrado: ', Menu);
   const opcionesUsuario = (response) => {
       let opciones = [];
       let restante = [];
-      console.log('arreglo de ids: ', response);
       Menu.forEach((menu) => {
           if (menu.idSistema == id) {
               let encontrado = false;
@@ -14,11 +12,9 @@ export const useOpcionesMenu = (Menu, id) => {
                       if (menu.items) {
                           let itemsConChecked = [];
                           menu.items.forEach((i) => {
-                              // console.log('item: ', i);
                               if (response.includes(i.id)) {
                                   itemsConChecked.push({ ...i, checked: true });
                               } else {
-                                  console.log('item no encontrado: ', i);
                                   hijosRestantes.push({ ...i, checked: false });
                               }
                           });

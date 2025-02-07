@@ -22,8 +22,6 @@ export const AsignacionOpciones = ({ usuarioAps, idSistema }) => {
         try {
             const response = await getOpcionesUsuario(usuarioAps, idSistema);
             const {opciones, restante} = opcionesUsuario(response);
-            console.log('asignadas: ',opciones);
-            console.log('no asignadas: ',restante);
             setOpcionesAsignadas(opciones);
             setOpcionesRestantes(restante);
         } catch (error) {

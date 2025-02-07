@@ -7,7 +7,7 @@ import { LoginPage } from './auth/pages/LoginPage'
 export const VeoliaApp = () => {
     const navigate = useNavigate();
     const [autentificacion, setAutentificacion] = useState(false);
-
+    
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
