@@ -327,21 +327,43 @@ export class AuthService {
   async asignarSistema(sisuId: number, asignados: number[], noAsignados: number[]) {
     try {
      
-      const eliminar: number[] = [...asignados, ...noAsignados];
+      const cantidadSistemas = await this.userRepository.query(`
+        SELECT count(*)  FROM AUGE_SISTEMA WHERE SIST_ESTADO = 1 
+      `);  
 
-      for (const idSistema of eliminar) {
-        await this.apsUserRepository.query(`
-        DELETE FROM TARIFICADOR.AUGE_USUASISTEMA
-        WHERE SIST_ID = :1 AND USUA_ID = :2
-        `, [idSistema, sisuId]);
+      const cantidadSistemaUsuario = await this.userRepository.query(`
+        SELECT count(*) FROM AUGE_USUASISTEMA WHERE USUA_ID = :1
+      `, [sisuId]);
+
+      if (cantidadSistemaUsuario[0]['COUNT(*)'] != cantidadSistemas[0]['COUNT(*)']) {
+          const idsSistemas = await this.userRepository.query(`
+          SELECT SIST_ID FROM AUGE_SISTEMA WHERE SIST_ESTADO = 1
+          `);
+
+          for(const id of idsSistemas){
+            await this.userRepository.query(`
+              INSERT INTO TARIFICADOR.AUGE_USUASISTEMA
+              (SIST_ID, USUA_ID, USSI_ESTADO, USSI_FECHA)
+              VALUES(:1, :2, 0 , CURRENT_DATE )
+            `, [id.SIST_ID, sisuId]);
+          }
       }
 
-      for (const idSistema of asignados) {
-        await this.apsUserRepository.query(`
-        INSERT INTO TARIFICADOR.AUGE_USUASISTEMA (USSI_ID, USUA_ID, SIST_ID, USSI_ESTADO) VALUES (SAUGE_USUASISTEMA.NEXTVAL, :1, :2, 1)
-        `, [sisuId, idSistema]);
+      for (const id of asignados) {
+        await this.userRepository.query(`
+          UPDATE TARIFICADOR.AUGE_USUASISTEMA
+          SET USSI_ESTADO = 1
+          WHERE SIST_ID = :1 AND USUA_ID = :2
+        `, [id, sisuId]);
       }
-      
+
+      for (const id of noAsignados) {
+        await this.userRepository.query(`
+          UPDATE TARIFICADOR.AUGE_USUASISTEMA
+          SET USSI_ESTADO = 0
+          WHERE SIST_ID = :1 AND USUA_ID = :2
+        `, [id, sisuId]);
+      }
 
       return { message: 'Aps asignadas exitosamente' };
     } catch (error) {
@@ -428,7 +450,7 @@ export class AuthService {
         SELECT AS2.SIST_ID, AS2.SIST_NOMBRE 
         FROM AUGE_USUASISTEMA au 
         INNER JOIN AUGE_SISTEMA as2 
-        ON (AU.SIST_ID = AS2.SIST_ID AND AS2.SIST_ESTADO = 1) 
+        ON (AU.SIST_ID = AS2.SIST_ID AND au.USSI_ESTADO = 1) 
         WHERE usua_id = :1
         `, [id]);     
     } catch (error) {
