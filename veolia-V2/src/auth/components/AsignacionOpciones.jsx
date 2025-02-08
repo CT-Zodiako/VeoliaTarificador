@@ -166,7 +166,7 @@ export const AsignacionOpciones = ({ usuarioAps, idSistema }) => {
         await onOpcionesRestantes();
     };
 
-    const onMenuOpciones = () => {
+    const onMenuOpciones = async() => {
         const {asignadas, sinAsignar} = newArreglosMenu(opcionesAsignadas, opcionesRestantes);
         const opcionesAsignada = asignadas;
         const opcionesSinAsignar = sinAsignar; 
@@ -175,7 +175,8 @@ export const AsignacionOpciones = ({ usuarioAps, idSistema }) => {
             opcionesAsignada,
             opcionesSinAsignar,
         };
-        asignarMenu(data);
+        await asignarMenu(data);
+        onOpcionesMenu();
     };
 
     // const iconoOpcionPadre = (padre) => {
