@@ -23,7 +23,7 @@ export const SelectorUsuarios = ({ handleUsuarioAps }) => {
 
     const handleChange = (user) => {
         setSelectedUser(user.sisuId);
-        handleUsuarioAps(user.sisuId);
+        handleUsuarioAps(user);
         setFilter('');
         setIsOpen(false);
     };

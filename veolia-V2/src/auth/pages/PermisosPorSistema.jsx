@@ -4,9 +4,11 @@ import { AsignacionSistemas } from "../components/AsignacionSistemas";
 
 export const PermisosPorSistema = () => {
     const [usuarioAps, setUsuarioAps] = useState([])
+    const [usuarioCorreo, setusuarioCorreo] = useState([])
     
     const handleUsuarioAps = (aps) => {
-      setUsuarioAps(aps)
+      setUsuarioAps(aps.sisuId);
+      setusuarioCorreo(aps.sisuCorreo);
     };
 
     return(
@@ -16,7 +18,7 @@ export const PermisosPorSistema = () => {
               <SelectorUsuarios handleUsuarioAps={handleUsuarioAps}/>
           </div>
             <hr />
-            <AsignacionSistemas sisuId={usuarioAps}/>
+            <AsignacionSistemas sisuId={usuarioAps} correo={usuarioCorreo}/>
         </div>
     </>
   )

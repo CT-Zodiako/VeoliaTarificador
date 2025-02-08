@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { getAsinarSistemas, postSistemasAsignar } from '../services/sistemas';
 import { usePermisosAps } from '../hooks/usePermisosAps';
 
-export const AsignacionSistemas = ({ sisuId }) => {
+export const AsignacionSistemas = ({ sisuId, correo }) => {
+    console.log(sisuId);
     const {
         asignadas, setAsignadas, sinAsignar, setSinAsignar,
         handleCheck, handleQuitarAps, handleAsignarAps, 
@@ -10,12 +11,13 @@ export const AsignacionSistemas = ({ sisuId }) => {
     } = usePermisosAps();  
 
     const query = {
-        sisuId: sisuId
+        correo: correo
     };
 
     const dataSistemas = async () => {
         try {
             const response = await getAsinarSistemas(query);
+            console.log('asignando: ',response);
             const asignadas = dataAsignadas(response, 'asignados');
             const sinAsignar = dataSinAsignar(response, 'noAsignados');
             setAsignadas(asignadas);
@@ -29,12 +31,15 @@ export const AsignacionSistemas = ({ sisuId }) => {
         try {
             const sistemasSinAsignar = handleApsSinAsignar('SIST_ID');
             const sistemasAsignados = handleApsAsignadas('SIST_ID');
+            console.log('sistemasSinAsignar', sistemasSinAsignar);
+            console.log('sistemasAsignados', sistemasAsignados);
             const data = {
                 sisuId: sisuId,
                 asignados: sistemasAsignados,
                 noAsignados: sistemasSinAsignar,
             };
             postSistemasAsignar(data);
+            dataSistemas();
         } catch (error) {
             console.error('Error saving data:', error);
         }

@@ -3,7 +3,6 @@ import { getSistemas } from "../services/sistemas";
 
 export const SelectorSistemaLogin = ({ usuario, sistema, setSistema }) => {
     const [data, setData] = useState([]);
-
     const query = {
         correo: usuario,
     };
