@@ -171,7 +171,7 @@ export const AsignacionOpciones = ({ usuarioAps, idSistema }) => {
         const opcionesAsignada = asignadas;
         const opcionesSinAsignar = sinAsignar; 
         const data = {
-            sisuId: usuarioAps,
+            sisuId: usuarioAps.sisuId,
             opcionesAsignada,
             opcionesSinAsignar,
         };
