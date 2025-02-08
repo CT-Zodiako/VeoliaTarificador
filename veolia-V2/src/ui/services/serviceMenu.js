@@ -15,7 +15,7 @@ export const serviceMenu = () => {
 
     useEffect(() => {
         const fetchMenu = async () => {
-            let initialMenu = Menu;
+            let initialMenu = JSON.parse(JSON.stringify(Menu));
             if (usr) {
                 const usrMenu = await getMenuService(data);
                 if (usrMenu) {

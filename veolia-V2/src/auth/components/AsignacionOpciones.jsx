@@ -6,12 +6,11 @@ import { usePermisosMenu } from '../hooks/usePermisosMenu';
 import { OpcionesMenu } from './OpcionesMenu';
 import '../styles/permisos.css';
 
-export const AsignacionOpciones = ({ usuarioAps, idSistema }) => {        
+export const AsignacionOpciones = ({ usuarioAps, idSistema }) => {      
     const [ opcionesAsignadas, setOpcionesAsignadas ] = useState();
     const [ opcionesRestantes, setOpcionesRestantes ] = useState();
     const [ porAsignar, setPorAsignar ] = useState([]);
     const [ porQuitar, setPorQuitar ] = useState([]);
-    console.log('Menu data: ', Menu);
     const { opcionesUsuario } = useOpcionesMenu(Menu, idSistema);
     const { cambioEstadoOpcionMenu, eliminarItemDeItemsPadre, 
     alternarCheckedItemHijo, cambioEstadoItemMenu, filtrarItemsMenu, 
@@ -20,10 +19,8 @@ export const AsignacionOpciones = ({ usuarioAps, idSistema }) => {
 
     const onOpcionesMenu = async() => {
         try {
-            const response = await getOpcionesUsuario(usuarioAps, idSistema);
+            const response = await getOpcionesUsuario(usuarioAps.sisuId, idSistema);
             const {opciones, restante} = opcionesUsuario(response);
-            console.log('asignadas: ',opciones);
-            console.log('no asignadas: ',restante);
             setOpcionesAsignadas(opciones);
             setOpcionesRestantes(restante);
         } catch (error) {
