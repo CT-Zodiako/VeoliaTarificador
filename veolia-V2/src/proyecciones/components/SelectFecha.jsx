@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export const SelectFecha = () => {
     const currentYear = new Date().getFullYear();
-    const years = Array.from(new Array(10), (val, index) => currentYear - index);
+    const years = Array.from(new Array(20), (val, index) => currentYear - index);
     const months = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'

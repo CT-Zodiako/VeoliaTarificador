@@ -17,7 +17,6 @@ export const AsignacionSistemas = ({ sisuId, correo }) => {
     const dataSistemas = async () => {
         try {
             const response = await getAsinarSistemas(query);
-            console.log('asignando: ',response);
             const asignadas = dataAsignadas(response, 'asignados');
             const sinAsignar = dataSinAsignar(response, 'noAsignados');
             setAsignadas(asignadas);
@@ -31,8 +30,6 @@ export const AsignacionSistemas = ({ sisuId, correo }) => {
         try {
             const sistemasSinAsignar = handleApsSinAsignar('SIST_ID');
             const sistemasAsignados = handleApsAsignadas('SIST_ID');
-            console.log('sistemasSinAsignar', sistemasSinAsignar);
-            console.log('sistemasAsignados', sistemasAsignados);
             const data = {
                 sisuId: sisuId,
                 asignados: sistemasAsignados,
