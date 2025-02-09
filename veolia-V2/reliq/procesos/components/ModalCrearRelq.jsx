@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { SelectDesdeHasta } from "./SelectDesdeHasta";
-// import { SelectorAps } from "./SelectorAps";
+import { SelectorRelq } from "./SeletorRelq";
+import { selectorService } from "../../../src/ui/services/selectorService";
 
 export const ModalCrearRelq = ({ show, cerrar }) => {
     const  [ formulario, setFormulario ] = useState({
@@ -14,12 +15,15 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
         RELQDESDE: '',
         RELQHASTA: ''
     });
-    console.log(formulario);
+    // console.log(formulario);
+    const [ dataAps, setDataAps ] = useState([]);
+    const [ dataCorreos, setDataCorreos ] = useState([]);    
 
-    const onFormularioAps = (value) => {
+    const onFormulario = (event) => {
+        const { name, value } = event.target;
         setFormulario({
             ...formulario,
-            APSAID: value
+            [name]: value
         });
     };
 
@@ -36,7 +40,30 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
             RELQHASTA: value
         }));
     };
+    
+    const onDataAps = async() => {
+        try {
+            const result = await selectorService();
+            setDataAps(result);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
+    const onDataCorreos = async() => {  
+        try {
+            const correos = await selectorService();
+            setDataCorreos(correos);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        onDataAps();
+        onDataCorreos();
+    }, []);
+    
     return(
     <>
         <Modal show={show} onHide={cerrar}>
@@ -44,9 +71,15 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                 <Modal.Title>Actualizar PROY</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        gap: '1rem'
+                    }}
+                >
                     <div>
-                        {/* <SelectorAps onFormularioAps={onFormularioAps}/> */}
+                        <SelectorRelq onFormulario={onFormulario} data={dataAps}/>
                     </div>
                     <div>
                         <SelectDesdeHasta 
@@ -68,15 +101,36 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                     <textarea 
                         name="" 
                         id=""
+                        cols="50"
+                        rows="10"
                     />
                 </div>
                 <div>
-                    <input 
-                        type="file" 
+                    <input
+                        style={{ width: '100%', height: '2rem'}}
+                        type="file"
+                        id="fileUpload"
+                        className="file-input"
+                        onChange={handleFileChange}
+                        accept=".pdf"
                     />
                 </div>
-                <div>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        gap: '1rem'
+                    }}
+                >
+                    <div>
+                        <SelectorRelq onFormulario={onFormulario} data={dataCorreos}/>
+                    </div>
+                    <div>
 
+                    </div>
+                    <div>
+
+                    </div>
                 </div>
             </Modal.Body>
             <Modal.Footer>

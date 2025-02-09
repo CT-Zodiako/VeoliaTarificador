@@ -22,11 +22,10 @@ export const SelectDesdeHasta = ({ onFormulario, label, value }) => {
     }, []);
 
     return (
-        <div className='mt-1'>
-            <label htmlFor="yearMonth" className='labelSelect'>{label}: </label>
+        <div className='mt-1 container-select'>
+            <label htmlFor="yearMonth" className='label-select'>{label}: </label>
             <select 
-                className="form-select form-select-sm selectores" 
-                style={{ width: '10rem' }}
+                className="form-select form-select-sm style-selector" 
                 aria-label="Small select example" 
                 value={value}
                 onChange={handleChange}
