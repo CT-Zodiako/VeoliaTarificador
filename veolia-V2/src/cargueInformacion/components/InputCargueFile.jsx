@@ -1,7 +1,7 @@
 import { useState } from "react";
 import '../style/index.css';
 
-export const InputCargueFile = ({ file, procesar }) => {
+export const InputCargueFile = ({ file, procesar, boton = true }) => {
     const [filemonthActive, setFilemonthActive] = useState(false);
     const [fileName, setFileName] = useState('Archivo sin seleccionar...');
 
@@ -47,22 +47,24 @@ export const InputCargueFile = ({ file, procesar }) => {
                     />
                 </div>
             </div>
-            <div style={{ display: "flex", padding: '5px' }}>
-                <button 
-                    className='cancelarCargue'
-                    onClick={cancelarArchivo}
-                    disabled={!filemonthActive}
-                >
-                    Cancelar
-                </button>
-                <button 
-                    className='procesarCargue'
-                    onClick={procesar}
-                    disabled={!filemonthActive}
-                >
-                    Procesar
-                </button>
-            </div>
+            {boton &&
+                <div style={{ display: "flex", padding: '5px' }}>
+                    <button 
+                        className='cancelarCargue'
+                        onClick={cancelarArchivo}
+                        disabled={!filemonthActive}
+                    >
+                        Cancelar
+                    </button>
+                    <button 
+                        className='procesarCargue'
+                        onClick={procesar}
+                        disabled={!filemonthActive}
+                    >
+                        Procesar
+                    </button>
+                </div>
+            }
         </div>
     </>
   )

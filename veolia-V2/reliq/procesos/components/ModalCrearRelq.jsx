@@ -5,6 +5,7 @@ import { SelectorRelq } from "./SeletorRelq";
 import { selectorService } from "../../../src/ui/services/selectorService";
 import { SelectorCalendario } from "./SelectorCalendario";
 import { getCorreosUsua, postCorreosUsua } from "../services/CrearReliqServices";
+import { InputCargueFile } from "../../../src/cargueInformacion/components/InputCargueFile";
 
 export const ModalCrearRelq = ({ show, cerrar }) => {
     const token = localStorage.getItem('token');
@@ -141,8 +142,8 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                         />
                     </div>
                 </div>
-                <div>
-                    <label htmlFor="motivo">Motivo</label>
+                <div style={{ margin: '0.8rem 0 1rem 0' }}>
+                    <label htmlFor="motivo" className='label-select'>Motivo</label>
                     <textarea 
                         style={{ width: '100%' }}
                         name="relqdescrip"
@@ -153,15 +154,18 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                         onChange={onFormulario}
                     />
                 </div>
-                <div>
-                    <input
+                <div style={{ margin: '0.8rem 0 1rem 0', display: 'flex', justifyContent: 'space-between' }}>
+                    <label className='label-select'>Adjuntar Archivo </label>
+                    <InputCargueFile boton={false}/>
+                    
+                    {/* <input
                         style={{ width: '100%', height: '2rem'}}
                         type="file"
                         id="fileUpload"
                         className="file-input"
                         // onChange={handleFileChange}
                         accept=".pdf"
-                    />
+                    /> */}
                 </div>
                 <div
                     style={{

@@ -23,7 +23,6 @@ export const getCorreosUsua = async (data) => {
 export const postCorreosUsua = async (data) => {  
     try{
         const response = await Http.post('crear-reliq', data);
-        // console.log('response', response);
         return response;
     }
     catch(error){
