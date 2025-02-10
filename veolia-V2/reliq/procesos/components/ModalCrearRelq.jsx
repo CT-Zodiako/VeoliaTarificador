@@ -3,18 +3,36 @@ import { Modal } from "react-bootstrap";
 import { SelectDesdeHasta } from "./SelectDesdeHasta";
 import { SelectorRelq } from "./SeletorRelq";
 import { selectorService } from "../../../src/ui/services/selectorService";
+import { SelectorCalendario } from "./SelectorCalendario";
 
 export const ModalCrearRelq = ({ show, cerrar }) => {
+    const token = localStorage.getItem('token');
+    const tokenData = token.split(".")[1];
+    const decodedToken = JSON.parse(atob(tokenData));
+
+    const usuarioCorreo = decodedToken.usuaCorreo;
+
     const  [ formulario, setFormulario ] = useState({
-        APSAID: '',
-        RELQDESCRIPCION: '',
-        RELQANNO: '',
-        RELQMES: '',
-        RELQANNOHAS: '',
-        RELQMESHAS: '',
-        RELQDESDE: '',
-        RELQHASTA: ''
+        apsaid: '',
+        relqdescrip: '',
+        relqdesde: '',
+        relqhasta: '',
+        relqususolicita: '',
+        relqusuaprueba: '',
     });
+
+    // {
+    //     "relqid": 3,
+    //     "apsaid": 1006,
+    //     "relqnombre": "Liquidación 1",
+    //     "relqdescrip": "Descripción de la liquidación 1",
+    //     "relqdesde": "202301",
+    //     "relqhasta": "202312",
+    //     "relqususolicita": 456,
+    //     "relqestado": 1,
+    //     "relqidatt": 0,
+    //     "relqusuaprueba": 789
+    //   }
     // console.log(formulario);
     const [ dataAps, setDataAps ] = useState([]);
     const [ dataCorreos, setDataCorreos ] = useState([]);    
@@ -66,11 +84,11 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
     
     return(
     <>
-        <Modal show={show} onHide={cerrar}>
+        <Modal show={show} onHide={cerrar} size="lg">
             <Modal.Header closeButton>
                 <Modal.Title>Actualizar PROY</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body style={{ padding: '1rem'}}>
                 <div
                     style={{
                         display: 'flex',
@@ -79,7 +97,7 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                     }}
                 >
                     <div>
-                        <SelectorRelq onFormulario={onFormulario} data={dataAps}/>
+                        <SelectorRelq onFormulario={onFormulario} data={dataAps} label={'Aps'}/>
                     </div>
                     <div>
                         <SelectDesdeHasta 
@@ -98,9 +116,11 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                     </div>
                 </div>
                 <div>
+                    <label htmlFor="motivo">Motivo</label>
                     <textarea 
+                        style={{ width: '100%' }}
                         name="" 
-                        id=""
+                        id="motivo"
                         cols="50"
                         rows="10"
                     />
@@ -111,7 +131,7 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                         type="file"
                         id="fileUpload"
                         className="file-input"
-                        onChange={handleFileChange}
+                        // onChange={handleFileChange}
                         accept=".pdf"
                     />
                 </div>
@@ -123,13 +143,20 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                     }}
                 >
                     <div>
-                        <SelectorRelq onFormulario={onFormulario} data={dataCorreos}/>
+                        <SelectorRelq onFormulario={onFormulario} data={dataCorreos} label={'Solicitado'}/>
                     </div>
                     <div>
-
+                        {/* <SelectorCalendario /> */}
                     </div>
                     <div>
-
+                        <label htmlFor="autoriza">Autoriza</label>
+                        <input 
+                            type="text" 
+                            id="autoriza"
+                            className="form-control"
+                            value={usuarioCorreo}
+                            readOnly 
+                        />
                     </div>
                 </div>
             </Modal.Body>

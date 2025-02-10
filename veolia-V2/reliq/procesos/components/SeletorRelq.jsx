@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const SelectorRelq = ({ onFormulario, data }) => {
+export const SelectorRelq = ({ onFormulario, data, label }) => {
     const [ selectedApsa, setSelectedApsaId ] = useState('');
     
     const handleChange = (event) => {
@@ -10,7 +10,7 @@ export const SelectorRelq = ({ onFormulario, data }) => {
 
     return (
       <div className='mt-1 container-select'>
-        <label htmlFor="aps" className='label-select'>APS:</label>
+        <label htmlFor="aps" className='label-select'>{label}:</label>
         <select 
           className="form-select form-select-sm style-selector" 
           aria-label="Small select example" 
