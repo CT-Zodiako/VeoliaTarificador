@@ -13,27 +13,30 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
     const usuarioCorreo = decodedToken.usuaCorreo;
 
     const  [ formulario, setFormulario ] = useState({
-        apsaid: '',
-        relqdescrip: '',
-        relqdesde: '',
-        relqhasta: '',
-        relqususolicita: '',
-        relqusuaprueba: '',
+        APSAID: '',
+        RELQDESCRIPCION: '',
+        RELQANNO: '',
+        RELQMES: '',
+        RELQANNOHAS: '',
+        RELQMESHAS: '',
+        RELQDESDE: '',
+        RELQHASTA: '',
+        RELQUSUSOLICITA: '',
     });
 
-    // {
-    //     "relqid": 3,
-    //     "apsaid": 1006,
-    //     "relqnombre": "Liquidación 1",
-    //     "relqdescrip": "Descripción de la liquidación 1",
-    //     "relqdesde": "202301",
-    //     "relqhasta": "202312",
-    //     "relqususolicita": 456,
-    //     "relqestado": 1,
-    //     "relqidatt": 0,
-    //     "relqusuaprueba": 789
-    //   }
-    // console.log(formulario);
+//     {
+//   "relqid": 3,
+//   "apsaid": 1006,
+//   "relqnombre": "Liquidación 1",
+//   "relqdescrip": "Descripción de la liquidación 1",
+//   "relqdesde": "202301",
+//   "relqhasta": "202312",
+//   "relqususolicita": 456,
+//   "relqestado": 1,
+//   "relqidatt": 0,
+//   "relqusuaprueba": 789
+// }
+    console.log(formulario);
     const [ dataAps, setDataAps ] = useState([]);
     const [ dataCorreos, setDataCorreos ] = useState([]);    
 
@@ -97,7 +100,7 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                     }}
                 >
                     <div>
-                        <SelectorRelq onFormulario={onFormulario} data={dataAps} label={'Aps'}/>
+                        <SelectorRelq onFormulario={onFormulario} data={dataAps} label={'Aps'} name={'APSAID'}/>
                     </div>
                     <div>
                         <SelectDesdeHasta 
@@ -143,10 +146,10 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                     }}
                 >
                     <div>
-                        <SelectorRelq onFormulario={onFormulario} data={dataCorreos} label={'Solicitado'}/>
+                        <SelectorRelq onFormulario={onFormulario} data={dataCorreos} label={'Solicitado'} name={'RELQUSUSOLICITA'}/>
                     </div>
                     <div>
-                        {/* <SelectorCalendario /> */}
+                        <SelectorCalendario />
                     </div>
                     <div>
                         <label htmlFor="autoriza">Autoriza</label>

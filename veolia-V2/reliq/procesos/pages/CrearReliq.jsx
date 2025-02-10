@@ -4,24 +4,25 @@ import { columnsCrearReliq, formatoCrearRelq } from "../components/data";
 import { ModalCrearRelq } from "../components/ModalCrearRelq";
 
 export const CrearReliq = () => {
-    // const [dataRelq, setDataRelq] = useState({
-    //   formato:{},
-    //   datos:[]
-    // });
+    const [dataRelq, setDataRelq] = useState({
+      formato:{},
+      datos:[]
+    });
+    console.log(dataRelq);
     const [modal, setModal] = useState(false);
 
-    // const onDatosRelq = async() => {
-    //   try{
-    //     const relq = await getRelq();
-    //     setDataRelq({
-    //       ...dataRelq,
-    //       formato: formatoCrearRelq,
-    //       datos: relq
-    //     });
-    //   } catch {
-    //     console.error('error en data relq');
-    //   }
-    // };
+    const onDatosRelq = async() => {
+      try{
+        const relq = await getCrearRelq();
+        setDataRelq({
+          ...dataRelq,
+          formato: formatoCrearRelq,
+          datos: relq
+        });
+      } catch {
+        console.error('error en data relq');
+      }
+    };
 
     const cerrarModal = () => {
       setModal(false);
@@ -31,9 +32,9 @@ export const CrearReliq = () => {
       setModal(true);
     };
 
-    // useEffect(() =>{
-    //   onDatosRelq();
-    // }, []);
+    useEffect(() =>{
+      onDatosRelq();
+    }, []);
  
     return(
     <>

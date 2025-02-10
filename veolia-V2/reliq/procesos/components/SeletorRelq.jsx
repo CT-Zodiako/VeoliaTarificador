@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const SelectorRelq = ({ onFormulario, data, label }) => {
+export const SelectorRelq = ({ onFormulario, data, label, name }) => {
     const [ selectedApsa, setSelectedApsaId ] = useState('');
     
     const handleChange = (event) => {
@@ -16,6 +16,7 @@ export const SelectorRelq = ({ onFormulario, data, label }) => {
           aria-label="Small select example" 
           value={selectedApsa} 
           onChange={handleChange}
+          name={name}
         >
           <option value="" disabled>Selecionar APS</option>
           {data.map((item) => (

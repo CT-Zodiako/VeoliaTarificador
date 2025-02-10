@@ -13,12 +13,12 @@ const months = [
 export const SelectDesdeHasta = ({ onFormulario, label, value }) => {
     const handleChange = (event) => {        
         const [year, month] = event.target.value.split('-');
-        const fecha = `${Number(year)}-${Number(month)}`
+        const fecha = `${(year)}${String(month).padStart(2, '0')}`;
         onFormulario(fecha);
     };
 
     useEffect(() => {
-        onFormulario(`${currentYear}-${currentMonth}`);
+        onFormulario(`${currentYear}${String(currentMonth).padStart(2, '0')}`);
     }, []);
 
     return (
