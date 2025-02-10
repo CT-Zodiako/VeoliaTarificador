@@ -25,7 +25,7 @@ export class CrearReliqService {
     }
 }
 
-  async findAll() {
+  async getReliquidaciones() {
     try {
       return await this.reliquidaRepository.find();
     } catch (error) {

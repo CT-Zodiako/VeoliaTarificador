@@ -13,8 +13,8 @@ export class CrearReliqController {
   }
 
   @Get()
-  findAll() {
-    return this.crearReliqService.findAll();
+  getReliquidaciones() {
+    return this.crearReliqService.getReliquidaciones();
   }
 
   @Get(':id')
