@@ -25,6 +25,11 @@ export class ApsController {
     return this.apsService.createAps(createApsDTO, sisuId);
   }
 
+  @Get('usuarioPorAPS')
+  usuarioPorAPS(@Query() Body){
+    return this.apsService.usuarioPorAPS(Body.apsaId)
+  }
+
   @Patch('updataAps')
   @UseGuards(AuthGuard())
   updataAps(@Body() updataApsDTO) {

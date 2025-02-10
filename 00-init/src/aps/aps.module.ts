@@ -9,6 +9,6 @@ import { AuthModule } from 'src/auth/auth.module';
   controllers: [ApsController],
   providers: [ApsService],
   imports: [TypeOrmModule.forFeature([Aps]), AuthModule],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, ApsService],
 })
 export class ApsModule {}
