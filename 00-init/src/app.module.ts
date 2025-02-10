@@ -39,6 +39,7 @@ import { SemestralModule } from './cargue-informacion/semestral/semestral.module
 import { MensualModule } from './cargue-informacion/mensual/mensual.module';
 import { ProyectarModule } from './proyecciones/proyectar/proyectar.module';
 import { CargueComplementarioModule } from './reporteador-sui/cargue-complementario/cargue-complementario.module';
+import { CrearReliqModule } from '../reliq/procesos/crear-reliq/crear-reliq.module';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { CargueComplementarioModule } from './reporteador-sui/cargue-complementa
       autoLoadEntities: true,
     }),
     AuthModule,
+    CrearReliqModule,
     ApsModule,
     EmpresasModule,
     RellenosModule,

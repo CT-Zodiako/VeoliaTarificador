@@ -66,7 +66,7 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
     
     return(
     <>
-        <Modal show={show} onHide={cerrar}>
+        <Modal show={show} onHide={cerrar} size="lg">
             <Modal.Header closeButton>
                 <Modal.Title>Actualizar PROY</Modal.Title>
             </Modal.Header>
@@ -111,7 +111,7 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                         type="file"
                         id="fileUpload"
                         className="file-input"
-                        onChange={handleFileChange}
+                        // onChange={handleFileChange}
                         accept=".pdf"
                     />
                 </div>

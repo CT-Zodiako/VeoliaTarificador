@@ -155,5 +155,19 @@ export class ApsService {
 
 
   }
+
+  async usuarioPorAPS(apsaId: number) {
+    try {
+      const result = await this.apsRepository.query(`
+      SELECT  b.SISU_CORREO , A.SISU_ID  FROM AUCO_APSUSUARIOS a
+      INNER JOIN AUGE_SISUSUARIO b ON (a.SISU_ID  =  b.SISU_ID  )
+      WHERE APSA_ID = :1
+    `, [apsaId]);
+
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
