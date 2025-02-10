@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
@@ -11,8 +11,13 @@ const months = [
 ];
 
 export const SelectDesdeHasta = ({ onFormulario, label, value }) => {
+    const [ anno, setAnno ] = useState(currentYear);
+    const [ mess, setMess ] = useState(currentMonth);
+
     const handleChange = (event) => {        
         const [year, month] = event.target.value.split('-');
+        setAnno(year);
+        setMess(month);
         const fecha = `${(year)}${String(month).padStart(2, '0')}`;
         onFormulario(fecha);
     };
@@ -27,7 +32,7 @@ export const SelectDesdeHasta = ({ onFormulario, label, value }) => {
             <select 
                 className="form-select form-select-sm style-selector" 
                 aria-label="Small select example" 
-                value={value}
+                value={`${anno}-${mess}`}
                 onChange={handleChange}
             >
                 {years.map((year) => (

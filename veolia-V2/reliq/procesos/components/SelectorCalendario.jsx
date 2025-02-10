@@ -8,7 +8,7 @@ export const SelectorCalendario = () => {
   const [mostrarCalendario, setMostrarCalendario] = useState(false);
   const refCalendario = useRef(null);
 
-  const diasSemana = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+  const diasSemana = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
   const obtenerDiasDelMes = (anio, mes) => new Date(anio, mes + 1, 0).getDate();
   const primerDiaSemana = new Date(anio, mes, 1).getDay();
 
@@ -35,7 +35,6 @@ export const SelectorCalendario = () => {
     setDiaSeleccionado(null);
   };
 
-  // Cerrar el calendario si el usuario hace clic fuera de él
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (refCalendario.current && !refCalendario.current.contains(event.target)) {
@@ -53,11 +52,12 @@ export const SelectorCalendario = () => {
   }, [mostrarCalendario]);
 
   return (
-    <div style={{ position: "relative", display: "inline-block", display: 'flex', flexDirection: 'column' }} ref={refCalendario}>
-        <label>Fecha: </label>
+    <div style={{ position: "relative", display: "inline-block", display: 'flex', flexDirection: 'column', paddingTop: '0.4rem' }} ref={refCalendario} className="mt-1 container-select">
+        <label className='label-select'>Fecha: </label>
       <button 
+        className="form-select-sm style-selector"
         onClick={() => setMostrarCalendario(!mostrarCalendario)} 
-        style={{ padding: "10px", cursor: "pointer", width: "260px", fontSize: "0.8rem" }}
+        style={{ padding: "10px", cursor: "pointer", width: "260px", fontSize: "0.8rem", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255, 255, 255, 0.3)", border: "1px solid rgba(179, 179, 179, 0.5)", }}
       >
         {diaSeleccionado ? `${anio}-${(mes + 1).toString().padStart(2, "0")}-${diaSeleccionado.toString().padStart(2, "0")}` : "Seleccionar Fecha"}
       </button>
@@ -68,21 +68,18 @@ export const SelectorCalendario = () => {
           borderRadius: "8px", padding: "10px", width: "260px",
           color: "#fff", textAlign: "center", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)"
         }}>
-          {/* Navegación del Mes */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
             <button onClick={() => cambiarMes(-1)} style={{ background: "none", border: "none", color: "#fff", fontSize: "18px" }}>←</button>
             <span>{new Date(anio, mes).toLocaleString("en-US", { month: "long", year: "numeric" })}</span>
             <button onClick={() => cambiarMes(1)} style={{ background: "none", border: "none", color: "#fff", fontSize: "18px" }}>→</button>
           </div>
 
-          {/* Días de la semana */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", marginBottom: "5px" }}>
             {diasSemana.map((dia, index) => (
               <div key={index} style={{ fontWeight: "bold", padding: "5px" }}>{dia}</div>
             ))}
           </div>
 
-          {/* Días del mes */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "5px" }}>
             {Array.from({ length: primerDiaSemana }).map((_, index) => (
               <div key={`empty-${index}`} style={{ visibility: "hidden" }}>00</div>
@@ -101,7 +98,6 @@ export const SelectorCalendario = () => {
             ))}
           </div>
 
-          {/* Botones de Acción */}
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
             <button onClick={seleccionarHoy} style={{ padding: "5px 10px", background: "#007bff", border: "none", color: "#fff", cursor: "pointer", borderRadius: "5px" }}>Today</button>
             <button onClick={limpiarSeleccion} style={{ padding: "5px 10px", background: "#444", border: "none", color: "#fff", cursor: "pointer", borderRadius: "5px" }}>Clear</button>

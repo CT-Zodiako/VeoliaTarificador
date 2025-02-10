@@ -4,61 +4,52 @@ import { SelectDesdeHasta } from "./SelectDesdeHasta";
 import { SelectorRelq } from "./SeletorRelq";
 import { selectorService } from "../../../src/ui/services/selectorService";
 import { SelectorCalendario } from "./SelectorCalendario";
+import { getCorreosUsua, postCorreosUsua } from "../services/CrearReliqServices";
 
 export const ModalCrearRelq = ({ show, cerrar }) => {
     const token = localStorage.getItem('token');
     const tokenData = token.split(".")[1];
     const decodedToken = JSON.parse(atob(tokenData));
 
-    const usuarioCorreo = decodedToken.usuaCorreo;
+    const usuarioCorreo = decodedToken.sisuCorreo;
+    const usuarioId = decodedToken.sisuId;
 
     const  [ formulario, setFormulario ] = useState({
-        APSAID: '',
-        RELQDESCRIPCION: '',
-        RELQANNO: '',
-        RELQMES: '',
-        RELQANNOHAS: '',
-        RELQMESHAS: '',
-        RELQDESDE: '',
-        RELQHASTA: '',
-        RELQUSUSOLICITA: '',
+        relqid: 12,
+        apsaid: '',
+        relqnombre: "Reliquidacion 12",
+        relqdescrip: '',
+        relqdesde: '',
+        relqhasta: '',
+        relqususolicita: '',
+        relqestado: 1,
+        relqidatt: 0,
+        relqusuaprueba: '',
     });
-
-//     {
-//   "relqid": 3,
-//   "apsaid": 1006,
-//   "relqnombre": "Liquidación 1",
-//   "relqdescrip": "Descripción de la liquidación 1",
-//   "relqdesde": "202301",
-//   "relqhasta": "202312",
-//   "relqususolicita": 456,
-//   "relqestado": 1,
-//   "relqidatt": 0,
-//   "relqusuaprueba": 789
-// }
     console.log(formulario);
     const [ dataAps, setDataAps ] = useState([]);
-    const [ dataCorreos, setDataCorreos ] = useState([]);    
+    const [ dataCorreos, setDataCorreos ] = useState([]);  
 
     const onFormulario = (event) => {
         const { name, value } = event.target;
+        const transformedValue = isNaN(value) ? value : Number(value);
         setFormulario({
             ...formulario,
-            [name]: value
+            [name]: transformedValue
         });
     };
 
     const onFormularioDesdes = (value) => {
         setFormulario(prevFormulario => ({
             ...prevFormulario,
-            RELQDESDE: value
+            relqdesde: value
         }));
     };
     
     const onFormularioHasta = (value) => {
         setFormulario(prevFormulario => ({
             ...prevFormulario,
-            RELQHASTA: value
+            relqhasta: value
         }));
     };
     
@@ -73,23 +64,46 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
 
     const onDataCorreos = async() => {  
         try {
-            const correos = await selectorService();
+            const data = {
+                apsaId: Number(formulario.apsaid)
+            }
+            const correos = await getCorreosUsua(data); 
             setDataCorreos(correos);
         } catch (error) {
             console.error(error);
         }
     };
 
+    const onCrearRelq = async() => {  
+        try {
+            const correos = await postCorreosUsua(formulario); 
+            setDataCorreos(correos);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {   
+        if(formulario.apsaid !== ''){
+            onDataCorreos();
+        }
+    }, [formulario.apsaid]);
+
     useEffect(() => {
         onDataAps();
         onDataCorreos();
+
+        setFormulario({
+            ...formulario,
+            relqusuaprueba: usuarioId
+        });
     }, []);
     
     return(
     <>
         <Modal show={show} onHide={cerrar} size="lg">
             <Modal.Header closeButton>
-                <Modal.Title>Actualizar PROY</Modal.Title>
+                <Modal.Title>Crear Reliquidacion</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ padding: '1rem'}}>
                 <div
@@ -100,21 +114,30 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                     }}
                 >
                     <div>
-                        <SelectorRelq onFormulario={onFormulario} data={dataAps} label={'Aps'} name={'APSAID'}/>
+                        <SelectorRelq 
+                            onFormulario={onFormulario} 
+                            data={dataAps} 
+                            label={'Aps'}
+                            opcion={'Aps'} 
+                            name={'apsaid'}
+                            keys={'APSA_ID'}
+                            text={'APSA_NOMAPS'}
+                        />
                     </div>
                     <div>
                         <SelectDesdeHasta 
                             onFormulario={onFormularioDesdes} 
                             label={'Desde'}
-                            name={'RELQDESDE'}
-                            value={formulario.RELQDESDE}
+                            name={'relqdesde'}
+                            value={formulario.relqdesde}
                         />
                     </div>
                     <div>
                         <SelectDesdeHasta 
                             onFormulario={onFormularioHasta} 
                             label={'Hasta'}
-                            value={formulario.RELQHASTA}
+                            name={'relqhasta'}
+                            value={formulario.relqhasta}
                         />
                     </div>
                 </div>
@@ -122,10 +145,12 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                     <label htmlFor="motivo">Motivo</label>
                     <textarea 
                         style={{ width: '100%' }}
-                        name="" 
+                        name="relqdescrip"
                         id="motivo"
                         cols="50"
                         rows="10"
+                        value={formulario.relqdescrip}
+                        onChange={onFormulario}
                     />
                 </div>
                 <div>
@@ -146,27 +171,37 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                     }}
                 >
                     <div>
-                        <SelectorRelq onFormulario={onFormulario} data={dataCorreos} label={'Solicitado'} name={'RELQUSUSOLICITA'}/>
+                        <SelectorRelq 
+                            onFormulario={onFormulario} 
+                            data={dataCorreos} 
+                            label={'Solicitado'} 
+                            opcion={'Correo'}
+                            name={'relqususolicita'}
+                            keys={'SISU_ID'}
+                            text={'SISU_CORREO'}
+                        />
                     </div>
                     <div>
                         <SelectorCalendario />
                     </div>
                     <div>
-                        <label htmlFor="autoriza">Autoriza</label>
-                        <input 
-                            type="text" 
-                            id="autoriza"
-                            className="form-control"
-                            value={usuarioCorreo}
-                            readOnly 
-                        />
+                        <div className='mt-1 container-select'>
+                            <label htmlFor="autoriza" className='label-select'>Autoriza</label>
+                            <input 
+                                className="form-control form-select-sm style-selector" 
+                                type="text" 
+                                id="autoriza"
+                                value={usuarioCorreo}
+                                readOnly 
+                            />
+                        </div>
                     </div>
                 </div>
             </Modal.Body>
             <Modal.Footer>
                 <button 
                     className="btn btn-primary" 
-                    // onClick={onAccionModal}
+                    onClick={onCrearRelq}
                 > 
                     Guardar
                 </button>
