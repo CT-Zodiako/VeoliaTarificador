@@ -69,9 +69,13 @@ import { useAnnoSelector, useApsSelector, useMesSelector, useProyeccionesSelecto
         apsa_id: aps
     };
 
+    const requestReliq = {
+        idReliq: 1
+    };
+
     return{ 
         anno, mes, aps, proy, data, request, requestAnnoMes, requestFecha, requestSubCon, 
         requestAjusteProd, requestVerif, requestAprov, requestCosPoda, requestDesCos,
-        requestProyectar   
+        requestProyectar, requestReliq   
     };
 };

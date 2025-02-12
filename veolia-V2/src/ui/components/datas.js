@@ -385,9 +385,9 @@ export const Menu = [
         },
         {
           id: 5002,
-          label: "Costos",
+          label: "Cargue",
           icon: "pi pi-fw pi-exclamation-circle",
-          to: "/costosReliq",
+          to: "/cargueReliq",
         },
       ],
   }

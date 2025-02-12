@@ -7,6 +7,7 @@ import axios from 'axios';
 import './style.css';
 import { login } from '../services/AuthService';
 import { Alertas } from '../../ui/components/Alertas';
+import { useAlertas } from '../../hooks/useAlertas';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -14,7 +15,9 @@ export const LoginPage = () => {
   const [ sisuPass, setPassword ] = useState('');
   const [ sistema, setSistema ] = useState('');
   const [ estadoBoton, setEstadoBoton ] = useState(false);
-  const [ alerta, setAlerta ] = useState([]);
+  // const [ alerta, setAlerta ] = useState([]);    
+  const { alerta, agregarAlerta, onCerrarAlerta } = useAlertas();
+  
 
   useEffect(() => {
     setEstadoBoton(!(sisuCorreo && sisuPass && sistema));
@@ -41,20 +44,20 @@ export const LoginPage = () => {
     }
   };
 
-  const agregarAlerta = (mensaje, tipo = "info") => {
-    const id = new Date().getTime();
-    setAlerta((prevAlertas) => [...prevAlertas, { id, mensaje, tipo }]);
+  // const agregarAlerta = (mensaje, tipo = "info") => {
+  //   const id = new Date().getTime();
+  //   setAlerta((prevAlertas) => [...prevAlertas, { id, mensaje, tipo }]);
 
-    setTimeout(() => {
-      setAlerta((prevAlertas) => prevAlertas.filter((alerta) => alerta.id !== id));
-    }, 3000);
-  };
+  //   setTimeout(() => {
+  //     setAlerta((prevAlertas) => prevAlertas.filter((alerta) => alerta.id !== id));
+  //   }, 3000);
+  // };
 
-  const onCerrarAlerta = (alert) => {
-    setAlerta((prevAlertas) =>
-      prevAlertas.filter((a) => a.id !== alert)
-    );
-  };
+  // const onCerrarAlerta = (alert) => {
+  //   setAlerta((prevAlertas) =>
+  //     prevAlertas.filter((a) => a.id !== alert)
+  //   );
+  // };
 
   return (
     <>

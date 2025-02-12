@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { columnsCrearReliq, formatoCrearRelq } from "../components/data";
-import { ModalCrearRelq } from "../components/ModalCrearRelq";
+import { ModalCrearRelq } from "../components/craerReliq/ModalCrearRelq";
 import { getCrearRelq } from "../services/CrearReliqServices";
 import { TablaInformesGerenciales } from "../../../src/informesGerenciales/components/TablaInformesGerenciales";
 
@@ -44,7 +44,6 @@ export const CrearReliq = () => {
       >
         Crear
       </button>
-      {/* <TablaComponentes colums={columnsCrearReliq} data={dataRelq}/> */}
       <TablaInformesGerenciales 
           datos={dataRelq} 
           colums={columnsCrearReliq} 

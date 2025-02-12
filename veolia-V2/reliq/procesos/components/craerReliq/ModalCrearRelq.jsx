@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { SelectDesdeHasta } from "./SelectDesdeHasta";
-import { SelectorRelq } from "./SeletorRelq";
-import { selectorService } from "../../../src/ui/services/selectorService";
+import { SelectorRelq } from "../SeletorRelq";
+import { selectorService } from "../../../../src/ui/services/selectorService";
 import { SelectorCalendario } from "./SelectorCalendario";
-import { getCorreosUsua, postCorreosUsua } from "../services/CrearReliqServices";
-import { InputCargueFile } from "../../../src/cargueInformacion/components/InputCargueFile";
+import { getCorreosUsua, postCorreosUsua } from "../../services/CrearReliqServices";
+import { InputCargueFile } from "../../../../src/cargueInformacion/components/InputCargueFile";
 
 export const ModalCrearRelq = ({ show, cerrar }) => {
     const token = localStorage.getItem('token');
@@ -16,14 +16,12 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
     const usuarioId = decodedToken.sisuId;
 
     const  [ formulario, setFormulario ] = useState({
-        relqid: 12,
         apsaid: '',
         relqnombre: "Reliquidacion 12",
         relqdescrip: '',
         relqdesde: '',
         relqhasta: '',
         relqususolicita: '',
-        relqestado: 1,
         relqidatt: 0,
         relqusuaprueba: '',
     });

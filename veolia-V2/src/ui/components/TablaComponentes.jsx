@@ -49,8 +49,7 @@ return (
                   dataF.map((item, index) => (
                       <tr 
                         key={index} 
-                        className={`transform origin-left transition-transform duration-200 hover:scale-[1.01] 
-                            border-b-8 border-b-gray-50 text-xs hover:text-sm
+                        className={`border-b-8 border-b-gray-50 text-xs hover:text-sm
                             border-l hover:border-l-4 hover:border-l-borderLetfTable 
                             ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`}
                       >
@@ -73,8 +72,7 @@ return (
                     data.map((item, index) => (
                       <tr 
                         key={index} 
-                        className={`transform origin-left transition-transform duration-200 hover:scale-[1.01] 
-                            border-b-8 border-b-gray-100 text-xs hover:text-sm
+                        className={`border-b-8 border-b-gray-100 text-xs hover:text-sm
                             border-l hover:border-l-4 hover:border-l-borderLetfTable 
                             ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`}
                       >

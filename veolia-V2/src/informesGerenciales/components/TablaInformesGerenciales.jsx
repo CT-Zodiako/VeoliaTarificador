@@ -78,8 +78,7 @@ export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums,
                                     dataF.map((item, index) => (
                                         <tr 
                                             key={index} 
-                                            className={`transform origin-left transition-transform duration-200 hover:scale-[1.01]
-                                                border-b-4 border-b-gray-100 text-xs hover:text-sm
+                                            className={`border-b-4 border-b-gray-100 text-xs hover:text-sm
                                                 border-l hover:border-l-4 hover:border-l-borderLetfTable 
                                                 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`}
                                         >
@@ -107,8 +106,7 @@ export const TablaInformesGerenciales = ({ datos, acciones, tituloTabla, colums,
                                     filtroName.map((item, index) => (
                                         <tr 
                                             key={index} 
-                                            className={`transform origin-left transition-transform duration-200 hover:scale-[1.01]
-                                                border-b-4 border-b-gray-100 text-xs hover:text-sm
+                                            className={`border-b-4 border-b-gray-100 text-xs hover:text-sm
                                                 border-l hover:border-l-4 hover:border-l-borderLetfTable 
                                                 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`}
                                         >

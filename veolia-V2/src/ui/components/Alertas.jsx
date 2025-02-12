@@ -1,7 +1,7 @@
 export const Alertas = ({ alerta, onCerrarAlerta }) => {
     return(
     <>
-        <div className="fixed top-4 right-4 z-50 space-y-2">
+        <div className="fixed top-14 right-4 z-50 space-y-2">
             {alerta.length > 0 &&
             alerta.map((alert) => (
             <div 
