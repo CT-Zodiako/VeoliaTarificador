@@ -18,7 +18,7 @@ export class CrearReliqService {
     try {
       const result = await this.dataSource.query(`SELECT RELIQ.SRELQRELIQUIDA.NEXTVAL FROM DUAL`);
       const reliquida = this.reliquidaRepository.create({
-        relqid: result[0]['NEXTVAL'], ...createReliquidaDto
+        relqid: result[0]['NEXTVAL'],relqestado: 1, ...createReliquidaDto
       });
       return await this.reliquidaRepository.save(reliquida);
       

@@ -21,10 +21,6 @@ export class CreateReliquidaDto {
 
   @IsNumber()
   @IsOptional()
-  relqestado?: number;
-
-  @IsNumber()
-  @IsOptional()
   relqidatt?: number;
 
   @IsNumber()
