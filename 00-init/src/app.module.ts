@@ -40,6 +40,7 @@ import { MensualModule } from './cargue-informacion/mensual/mensual.module';
 import { ProyectarModule } from './proyecciones/proyectar/proyectar.module';
 import { CargueComplementarioModule } from './reporteador-sui/cargue-complementario/cargue-complementario.module';
 import { CrearReliqModule } from '../reliq/procesos/crear-reliq/crear-reliq.module';
+import { CargueReliqModule } from 'reliq/procesos/cargue-reliq/cargue-reliq.module';
 
 @Module({
   imports: [
@@ -75,6 +76,7 @@ import { CrearReliqModule } from '../reliq/procesos/crear-reliq/crear-reliq.modu
     ResumenFormatosFormulariosModule,
     ReversionesModule,
     IndiceCraModule,
+    CargueReliqModule,
     ReversionesSuministrosModule,
     VerificacionModule,
     ActivarAprovechamientoModule,
