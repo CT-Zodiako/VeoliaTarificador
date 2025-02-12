@@ -6,50 +6,54 @@ import { useState } from 'react';
 import axios from 'axios';
 import './style.css';
 import { login } from '../services/AuthService';
+import { Alertas } from '../../ui/components/Alertas';
 
 export const LoginPage = () => {
-  // Estado para almacenar el correo electrónico y la contraseña ingresados por el usuario
   const navigate = useNavigate();
-  const [sisuCorreo, setEmail] = useState('');
-  const [sisuPass, setPassword] = useState('');
-  const [sistema, setSistema] = useState('');
-  const [estadoBoton, setEstadoBoton] = useState(false);
+  const [ sisuCorreo, setEmail ] = useState('');
+  const [ sisuPass, setPassword ] = useState('');
+  const [ sistema, setSistema ] = useState('');
+  const [ estadoBoton, setEstadoBoton ] = useState(false);
+  const [ alerta, setAlerta ] = useState([]);
 
   useEffect(() => {
     setEstadoBoton(!(sisuCorreo && sisuPass && sistema));
   }, [sisuCorreo, sisuPass, sistema]);
-  // Función para manejar el envío del formulario de inicio de sesión
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const idSistema = Number(sistema);
-
-
       const data = { sisuCorreo, sisuPass, idSistema: idSistema }
-      // Enviar una solicitud HTTP POST al endpoint de inicio de sesión en el backend
       const response = await login(data);
-      // Si la solicitud fue exitosa, obtener el token JWT de la respuesta
       const { token } = response;
-
-      // Guardar el token en el almacenamiento local (LocalStorage)
       localStorage.setItem('token', token);
-
-      // Configurar Axios para enviar el token en los encabezados de autorización
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-      
       if (token){
         setEstadoBoton(true);
         navigate('/');
+      } else {
+        agregarAlerta('Error al iniciar sesión', 'error');
       };
-
-      // Redireccionar a la página de inicio o realizar cualquier otra acción necesaria
-      // Por ejemplo, puedes usar React Router para redireccionar a otra página
-      // history.push('/dashboard');
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
-      // Manejar el error, por ejemplo, mostrar un mensaje de error al usuario
+      agregarAlerta('Error al iniciar sesión', 'error');
     }
+  };
+
+  const agregarAlerta = (mensaje, tipo = "info") => {
+    const id = new Date().getTime();
+    setAlerta((prevAlertas) => [...prevAlertas, { id, mensaje, tipo }]);
+
+    setTimeout(() => {
+      setAlerta((prevAlertas) => prevAlertas.filter((alerta) => alerta.id !== id));
+    }, 3000);
+  };
+
+  const onCerrarAlerta = (alert) => {
+    setAlerta((prevAlertas) =>
+      prevAlertas.filter((a) => a.id !== alert)
+    );
   };
 
   return (
@@ -95,6 +99,9 @@ export const LoginPage = () => {
             </button>
           </form>
         </div>
+          {alerta.length > 0 &&
+            <Alertas alerta={alerta} onCerrarAlerta={onCerrarAlerta}/>
+          }
       </div>
     </>
   );

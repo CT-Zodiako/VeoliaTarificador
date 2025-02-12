@@ -145,7 +145,7 @@ export const ModalCrearRelq = ({ show, cerrar }) => {
                 <div style={{ margin: '0.8rem 0 1rem 0' }}>
                     <label htmlFor="motivo" className='label-select'>Motivo</label>
                     <textarea 
-                        style={{ width: '100%' }}
+                        style={{ width: '100%', border: '1px solid #ced4da', borderRadius: '0.25rem' }}
                         name="relqdescrip"
                         id="motivo"
                         cols="50"

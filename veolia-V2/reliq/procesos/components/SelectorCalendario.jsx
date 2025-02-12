@@ -52,7 +52,7 @@ export const SelectorCalendario = () => {
   }, [mostrarCalendario]);
 
   return (
-    <div style={{ position: "relative", display: "inline-block", display: 'flex', flexDirection: 'column', paddingTop: '0.4rem' }} ref={refCalendario} className="mt-1 container-select">
+    <div style={{ position: "relative", display: 'flex', flexDirection: 'column', paddingTop: '0.4rem' }} ref={refCalendario} className="mt-1 container-select">
         <label className='label-select'>Fecha: </label>
       <button 
         className="form-select-sm style-selector"

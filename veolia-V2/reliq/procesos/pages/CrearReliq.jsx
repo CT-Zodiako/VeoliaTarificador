@@ -50,6 +50,7 @@ export const CrearReliq = () => {
           colums={columnsCrearReliq} 
           acciones={true}
           // modal={abrirModal}
+          page={true}
       />
       <ModalCrearRelq show={modal} cerrar={cerrarModal}/>
     </>
