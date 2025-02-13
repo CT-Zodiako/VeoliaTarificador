@@ -1,16 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
 import { CargueReliqService } from './cargue-reliq.service';
-import { CreateCargueReliqDto } from './dto/create-cargue-reliq.dto';
-import { UpdateCargueReliqDto } from './dto/update-cargue-reliq.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from 'src/auth/decorators/get-user.decorator';
+import { UpdateReliInfoEmprDiviArrayDTO, UpdateReliInfoEmprDiviDTO } from './dto/update-ReliInfoEmprDivi.dto';
+import {UpdateReliInfoApsEmprDiviDTO,UpdateReliInfoApsEmprDiviArrayDTO} from './dto/update-ReliInfoApsEmprDivi.dto';
+
 
 @Controller('cargue-reliq')
 export class CargueReliqController {
   constructor(private readonly cargueReliqService: CargueReliqService) {}
-
-  @Post()
-  create(@Body() createCargueReliqDto: CreateCargueReliqDto) {
-    return this.cargueReliqService.create(createCargueReliqDto);
-  }
 
   @Get("resumen-empresa")
   findAll(@Query() data) {
@@ -37,13 +35,15 @@ export class CargueReliqController {
     return this.cargueReliqService.getReliInfoUsuarios(data.idReliq);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCargueReliqDto: UpdateCargueReliqDto) {
-    return this.cargueReliqService.update(+id, updateCargueReliqDto);
+  @Patch("update-resumen-empresa")
+  @UseGuards(AuthGuard())
+  updateResumenEmpresa(@GetUser() user, @Body() updateReliInfoEmprDiviArrayDTO: UpdateReliInfoEmprDiviArrayDTO) {
+    return this.cargueReliqService.updateResumenEmpresa(user.SISU_ID, updateReliInfoEmprDiviArrayDTO);
+  }
+  @Patch("update-resumen-aps")
+  @UseGuards(AuthGuard())
+  updateResumenAps(@GetUser() user, @Body() updateReliInfoEmprDiviDTO: UpdateReliInfoApsEmprDiviArrayDTO) {
+    return this.cargueReliqService.updateResumenAPS(user.SISU_ID, updateReliInfoEmprDiviDTO);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.cargueReliqService.remove(+id);
-  }
 }

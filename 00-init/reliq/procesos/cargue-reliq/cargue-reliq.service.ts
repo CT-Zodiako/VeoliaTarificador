@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCargueReliqDto } from './dto/create-cargue-reliq.dto';
-import { UpdateCargueReliqDto } from './dto/update-cargue-reliq.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ReliInfoEmprDivi } from './entities/cargue-reliq.entity';
 import { In, Repository } from 'typeorm';
 import { ReliInfoApsRelleno } from './entities/reliInfo-aps-relleno.entity';
-import { ReliInfoApsEmprDivi } from './entities/reliInfo-apsempr-divi.entity';
+import { ReliInfoApsEmprDivi } from './entities/reliInfo-aps-empr-divi.entity';
 import { ReliInfoAdicional } from './entities/reliInfo-adicional.entity';
 import { ReliInfUsuApSemprDivi } from './entities/reliInf-usu-aps-empr-divi.entity';
+import { UpdateReliInfoEmprDiviArrayDTO, UpdateReliInfoEmprDiviDTO} from './dto/update-ReliInfoEmprDivi.dto';
+import {UpdateReliInfoApsEmprDiviArrayDTO, UpdateReliInfoApsEmprDiviDTO} from './dto/update-ReliInfoApsEmprDivi.dto'
 
 @Injectable()
 export class CargueReliqService {
@@ -24,10 +24,6 @@ export class CargueReliqService {
     @InjectRepository(ReliInfUsuApSemprDivi)
     private readonly reliInfUsuApSemprDiviRepository: Repository<ReliInfUsuApSemprDivi>,
   ) {}
-
-  create(createCargueReliqDto: CreateCargueReliqDto) {
-    return 'This action adds a new cargueReliq';
-  }
 
   async getResumenEmpresa(idReliq: number) {
     try {
@@ -90,16 +86,76 @@ export class CargueReliqService {
   }
 
 
-  
-  findOne(id: number) {
-    return `This action returns a #${id} cargueReliq`;
+
+  async updateResumenEmpresa(usuaUsua:number,updateReliInfoEmprDiviDTO: UpdateReliInfoEmprDiviArrayDTO) {
+    try {
+      updateReliInfoEmprDiviDTO.data.forEach(async (element) => {
+        await this.reliInfoEmprDiviRepository.update(
+          { reliId: element.reliId, inedId: element.inedId },
+          {
+            inedCblj: element.inedCblj,
+            inedLblj: element.inedLblj,
+            inedN: element.inedN,
+            inedM3Agua: element.inedM3Agua,
+            inedCp: element.inedCp,
+            inedM2Ccj: element.inedM2Ccj,
+            inedM2Lavj: element.inedM2Lavj,
+            inedTij: element.inedTij,
+            inedKlpj: element.inedKlpj,
+            inedTmj: element.inedTmj,
+            inedClavj: element.inedClavj,
+            inedQrtj: element.inedQrtj,
+            inedQrsj: element.inedQrsj,
+            usuaUsua: usuaUsua,
+          }
+        );
+      });
+      return { message: 'Resumen Empresa Actualizado' };     
+    } catch (error) {
+      console.log(`Error CargueReliqService.updateResumenEmpresa: ${error}`);
+   }
   }
 
-  update(id: number, updateCargueReliqDto: UpdateCargueReliqDto) {
-    return `This action updates a #${id} cargueReliq`;
-  }
+  async updateResumenAPS(usuaUsua:number,updateReliInfoApsEmprDiviArrayDTO: UpdateReliInfoApsEmprDiviArrayDTO) {
+    try {
+      updateReliInfoApsEmprDiviArrayDTO.data.forEach(async (element) => {
+        await this.reliInfoApsEmprDiviRepository.update(
+          { reliId: element.reliId, iaedId: element.iaedId },
+          {
+            diviDivi: element.diviDivi,
+            iaedQrtz: element.iaedQrtz,
+            iaedCpe: element.iaedCpe,
+            iaedT: element.iaedT,
+            iaedVacrtabc: element.iaedVacrtabc,
+            iaedVacrt: element.iaedVacrt,
+            iaedCrtz: element.iaedCrtz,
+            iaedQbl: element.iaedQbl,
+            iaedQlu: element.iaedQlu,
+            iaedQr: element.iaedQr,
+            iaedTafa: element.iaedTafa,
+            iaedNd: element.iaedNd,
+            iaedNa: element.iaedNa,
+            iaedQna: element.iaedQna,
+            iaedTafna: element.iaedTafna,
+            iaedQa: element.iaedQa,
+            iaedAprovecha: element.iaedAprovecha,
+            iaedQalmacen: element.iaedQalmacen,
+            iaedCpeet: element.iaedCpeet,
+            iaedQrtet: element.iaedQrtet,
+            iaedCrtcomp: element.iaedCrtcomp,
+            iaedCdfcomp: element.iaedCdfcomp,
+            iaedQrscomp: element.iaedQrscomp,
+            iaedNaa: element.iaedNaa,
+            iaedNda: element.iaedNda,
+            usuaUsua: usuaUsua,
+          }
+         
+        );
+      });
+      return { message: 'Resumen APS Actualizado' };
+    } catch (error) {
+      console.log(`Error CargueReliqService.updateResumenAPS: ${error}`);
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} cargueReliq`;
   }
 }
