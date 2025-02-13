@@ -50,34 +50,40 @@ export const keyTranformEmpre = {
     "INED_QRSJ": "inedQrsj",
 };
 
-// {
-//     inedId: '',
-// 	reliId: '',
-// 	diviDivi: '',
-// 	inedCblj: '',
-// 	inedLblj: '',
-// 	inedN: '',
-// 	inedM3Agua: '',
-// 	inedCp: '',
-// 	inedM2Ccj: '',
-// 	inedM2Lavj: '',
-// 	inedTij: '',
-// 	inedKlpj: '',
-// 	inedTmj: '',
-// 	inedClavj: '',
-// 	inedQrtj: '',
-// 	inedQrsj: '',
-// };
-
 export const columsAdicionalReliq = [
-    { head: "RELIQUIDACION", body: "reliId" },
     { head: "AÑO", body: "ceadAnno" },
     { head: "MES", body: "ceadMes" },
+    { head: "RELIQUIDACION", body: "reliId" },
     { head: "CDF", body: "ceadCdf" },
     { head: "CTL", body: "ceadCtl" },
 ];
 
 export const objetoAdic = {
-    ceadCdf: '',
-    ceadCtl: '',
+    info: ["ceadId", "reliId", "ceadCdf", "ceadCtl"],
+    editar: ["ceadCdf", "ceadCtl"],
+};
+
+export const columsUsuarioReliq = [
+    { head: "AÑO", body: "iuaeAnno" },
+    { head: "MES", body: "iuaeMes" },
+    { head: "CLASE USO", body: "clasClaseUso" },
+    { head: "DIVISION", body: "diviDivi" },
+    { head: "TIPO TARIFA", body: "paraTipTar20012" },
+    { head: "CANTIDAD", body: "iuaeCantidad" },
+    { head: "TONELADAS", body: "iuaeToneladas" },
+    { head: "CÓDIGO FAPR", body: "faprCodigo" },
+    { head: "UBICACIÓN", body: "paraUbicacion20016" },
+    { head: "TIPO FACTURACIÓN", body: "paraTipFac20014" },
+];
+
+export const objetoUsua = {
+    info: [
+        "iuaeId", "reliId", "clasClaseUso", "diviDivi", "paraTipTar20012", 
+        "iuaeCantidad", "iuaeToneladas", "faprCodigo", "paraUbicacion20016", 
+        "paraTipFac20014"
+    ],
+    editar: [
+        "clasClaseUso", "diviDivi", "paraTipTar20012", "iuaeCantidad", 
+        "iuaeToneladas", "faprCodigo", "paraUbicacion20016", "paraTipFac20014"
+    ],
 };

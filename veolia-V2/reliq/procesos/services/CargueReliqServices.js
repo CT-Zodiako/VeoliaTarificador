@@ -50,3 +50,33 @@ export const getRellenoRelq = async (data) => {
     }
 }
 
+export const updateEmpresaRelq = async (data) => {    
+    try{
+        const response = await Http.patch('cargue-reliq/update-resumen-empresa', data);
+        return response;
+    }
+    catch(error){
+        console.log('error en data tabla crear relq', error);
+    }
+}
+
+export const updateAdicionalRelq = async (data) => {    
+    try{
+        const response = await Http.patch('cargue-reliq/update-resumen-adicional', data);
+        return response;
+    }
+    catch(error){
+        console.log('error en data tabla crear relq', error);
+    }
+}
+
+export const updateUsuarioRelq = async (data) => {    
+    try{
+        const response = await Http.patch('cargue-reliq/update-resumen-usuarios', data);
+        return response;
+    }
+    catch(error){
+        console.log('error en data tabla crear relq', error);
+    }
+}
+

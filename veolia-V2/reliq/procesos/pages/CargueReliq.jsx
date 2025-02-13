@@ -1,30 +1,30 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelectStore } from "../../../src/hooks/useSelectStore";
-import { getAdicionalRelq, getApsRelq, getEmpresaRelq, getRellenoRelq, getUsuarioRelq } from "../services/CargueReliqServices";
+import { getAdicionalRelq, getApsRelq, getEmpresaRelq, getRellenoRelq, getUsuarioRelq, updateAdicionalRelq, updateEmpresaRelq, updateUsuarioRelq } from "../services/CargueReliqServices";
 import { Selectores } from "../../../src/ui/components/Selectores";
 import { TabTable } from "../../../src/ui/components/TabTable";
 import { TituloVista } from "../../../src/ui/components/TituloVista";
-import { columsAdicionalReliq, columsEmpreReliq, keyTranformEmpre, objetoAdic, objetoEmpr } from "../services/data";
+import { columsAdicionalReliq, columsEmpreReliq, columsUsuarioReliq, keyTranformEmpre, objetoAdic, objetoEmpr, objetoUsua } from "../services/data";
 import { TablaEmpresaReliq } from "../components/cargueReliq/TablaEmpresaReliq";
 import { Alertas } from "../../../src/ui/components/Alertas";
 import { useAlertas } from "../../../src/hooks/useAlertas";
 
 export const CargueReliq = () => {
     const { aps, reliq, requestReliq } = useSelectStore();
-    const [pestañaActiva, setPestañaActiva] = useState(0);
+    const [ pestañaActiva, setPestañaActiva ] = useState(0);
     const [ dataEmpresa, setDataEmpresa ] = useState([]);
     const [ dataAdicional, setDataAdicional ] = useState([]);
     const [ dataUsuarios, setDataUsuarios ] = useState([]);
     const [ dataAps, setDataAps ] = useState([]);
     const [ dataRelleno, setDataRelleno ] = useState([]);
-    const { alerta, agregarAlerta, onCerrarAlerta } = useAlertas();
+    // const { alerta, agregarAlerta, onCerrarAlerta } = useAlertas();
 
     const onDataEmpresa = async() => {
         try{
             const empresa = await getEmpresaRelq(requestReliq);
             const newData = transformacionData(empresa, keyTranformEmpre);
             setDataEmpresa(newData);
-            agregarAlerta('Se agrego la data de empresa', 'success');
+            // agregarAlerta('Se agrego la data de empresa', 'success');
         } catch {
             console.error('error en data empresa');
         }
@@ -65,6 +65,30 @@ export const CargueReliq = () => {
             console.error('error en data relleno');
         }
     };
+
+    const onActulalizarEmpresa = async(data) => {
+        try{
+            await updateEmpresaRelq(data);
+        } catch {
+            console.error('error en data empresa');
+        }
+    };
+
+    const onActulalizarAdicional = async(data) => {
+        try{
+            await updateAdicionalRelq(data);
+        } catch {
+            console.error('error en data empresa');
+        }
+    };
+
+    const onActulalizarUsuario = async(data) => {
+        try{
+            await updateUsuarioRelq(data);
+        } catch {
+            console.error('error en data empresa');
+        }
+    };
     
     useEffect(() =>{
         if (aps && reliq){
@@ -91,9 +115,9 @@ export const CargueReliq = () => {
     };
 
     const titulosTabs = useMemo(() => [
-        { titulo: 'Resum. Empresa', datos: dataEmpresa, encabezado: columsEmpreReliq, objEditar: objetoEmpr },
-        { titulo: 'Resum. Adicional', datos: dataAdicional, encabezado: columsAdicionalReliq, objEditar: objetoAdic },
-        // { titulo: 'Resum. Usuarios', datos: dataUsuarios, encabezado: columsLineasTiempo },
+        { titulo: 'Resum. Empresa', datos: dataEmpresa, encabezado: columsEmpreReliq, objEditar: objetoEmpr, actualizar: onActulalizarEmpresa, refresh: onDataEmpresa },    
+        { titulo: 'Resum. Adicional', datos: dataAdicional, encabezado: columsAdicionalReliq, objEditar: objetoAdic, actualizar: onActulalizarAdicional, refresh: onDataAdicional },
+        { titulo: 'Resum. Usuarios', datos: dataUsuarios, encabezado: columsUsuarioReliq, objEditar: objetoUsua, actualizar: onActulalizarUsuario, refresh: onDataUsuarios },
         // { titulo: 'Resum. Aps', datos: dataAps, encabezado: columsLineasTiempo },
         // { titulo: 'Resum. Relleno', datos: dataRelleno, encabezado: columsLineasTiempo },
     ], [dataEmpresa, dataAdicional, dataUsuarios, dataAps, dataRelleno]);
@@ -125,15 +149,17 @@ export const CargueReliq = () => {
                         </button>
                     </div>
                     <TablaEmpresaReliq 
+                        actualizar={titulosTabs[pestañaActiva].actualizar}
+                        onDataEmpresa={titulosTabs[pestañaActiva].refresh}
                         data={titulosTabs[pestañaActiva].datos} 
                         colums={titulosTabs[pestañaActiva].encabezado}
                         objEditar={titulosTabs[pestañaActiva].objEditar}
                     />
                 </div>
             </div>
-            {alerta.length > 0 &&
+            {/* {alerta.length > 0 &&
               <Alertas alerta={alerta} onCerrarAlerta={onCerrarAlerta}/>
-            }
+            } */}
         </div>
     </>
   )

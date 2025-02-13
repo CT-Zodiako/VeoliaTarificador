@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { PaginacionTablas } from "../../../../src/ui/components/PaginacionTablas";
 
-export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
+export const TablaEmpresaReliq = ({ actualizar, onDataEmpresa, data, colums, objEditar, page= true }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [ editar, setEditar ] = useState(false);
     const [ empresaEditar, setEmpresaEditar ] = useState([]);
-
+    console.log('por editar: ', empresaEditar);
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const dataF = data.slice(indexOfFirstItem, indexOfLastItem);
@@ -40,6 +40,15 @@ export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
         };
     };
 
+    const onActualizar = async() => {
+        const update = {
+            data: empresaEditar,
+        };
+        await actualizar(update);
+        onDataEmpresa();
+        setEditar(false);
+    };
+
     useEffect(() => {
         onNewData(data);
     }, [data]);
@@ -58,7 +67,7 @@ export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
                         </button>
                         <button
                             className="btn btn-success"
-                            onClick={() => setEditar(false)}
+                            onClick={onActualizar}
                         >
                             Guardar
                         </button>
