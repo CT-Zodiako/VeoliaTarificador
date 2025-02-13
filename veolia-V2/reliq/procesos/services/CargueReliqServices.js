@@ -6,7 +6,7 @@ export const getEmpresaRelq = async (data) => {
         return response;
     }
     catch(error){
-        console.log('error en data tabla crear relq', error);
+        console.log('error en data tabla empresa relq', error);
     }
 }
 
@@ -16,7 +16,7 @@ export const getAdicionalRelq = async (data) => {
         return response;
     }
     catch(error){
-        console.log('error en data tabla crear relq', error);
+        console.log('error en data tabla adicional relq', error);
     }
 }
 
@@ -26,7 +26,7 @@ export const getUsuarioRelq = async (data) => {
         return response;
     }
     catch(error){
-        console.log('error en data tabla crear relq', error);
+        console.log('error en data tabla usuario relq', error);
     }
 }
 
@@ -36,7 +36,7 @@ export const getApsRelq = async (data) => {
         return response;
     }
     catch(error){
-        console.log('error en data tabla crear relq', error);
+        console.log('error en data tabla aps relq', error);
     }
 }
 
@@ -46,7 +46,7 @@ export const getRellenoRelq = async (data) => {
         return response;
     }
     catch(error){
-        console.log('error en data tabla crear relq', error);
+        console.log('error en data tabla relleno relq', error);
     }
 }
 
@@ -56,7 +56,7 @@ export const updateEmpresaRelq = async (data) => {
         return response;
     }
     catch(error){
-        console.log('error en data tabla crear relq', error);
+        console.log('error al actualizar empresa reliq', error);
     }
 }
 
@@ -66,7 +66,7 @@ export const updateAdicionalRelq = async (data) => {
         return response;
     }
     catch(error){
-        console.log('error en data tabla crear relq', error);
+        console.log('error al actualizar adicional reliq', error);
     }
 }
 
@@ -76,7 +76,27 @@ export const updateUsuarioRelq = async (data) => {
         return response;
     }
     catch(error){
-        console.log('error en data tabla crear relq', error);
+        console.log('error al actualizar adicional reliq', error);
+    }
+}
+
+export const updateApsRelq = async (data) => {
+    try{
+        const response = await Http.patch('cargue-reliq/update-resumen-aps', data);
+        return response;
+    }
+    catch(error){
+        console.log('error al actualizar aps reliq', error);
+    }
+}
+
+export const updateRellenoRelq = async (data) => {
+    try{
+        const response = await Http.patch('cargue-reliq/update-resumen-relleno', data);
+        return response;
+    }
+    catch(error){
+        console.log('error al actualizar relleno reliq', error);
     }
 }
 

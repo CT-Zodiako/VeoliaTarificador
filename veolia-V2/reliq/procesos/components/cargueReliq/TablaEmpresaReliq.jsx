@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { PaginacionTablas } from "../../../../src/ui/components/PaginacionTablas";
 
-export const TablaEmpresaReliq = ({ actualizar, onDataEmpresa, data, colums, objEditar, page= true }) => {
+export const TablaEmpresaReliq = ({ actualizar, onData, data, colums, objEditar, page= true }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [ editar, setEditar ] = useState(false);
     const [ empresaEditar, setEmpresaEditar ] = useState([]);
-    console.log('por editar: ', empresaEditar);
+    
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const dataF = data.slice(indexOfFirstItem, indexOfLastItem);
@@ -45,7 +45,7 @@ export const TablaEmpresaReliq = ({ actualizar, onDataEmpresa, data, colums, obj
             data: empresaEditar,
         };
         await actualizar(update);
-        onDataEmpresa();
+        await onData();
         setEditar(false);
     };
 

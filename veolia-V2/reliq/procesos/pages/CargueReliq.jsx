@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelectStore } from "../../../src/hooks/useSelectStore";
-import { getAdicionalRelq, getApsRelq, getEmpresaRelq, getRellenoRelq, getUsuarioRelq, updateAdicionalRelq, updateEmpresaRelq, updateUsuarioRelq } from "../services/CargueReliqServices";
+import { getAdicionalRelq, getApsRelq, getEmpresaRelq, getRellenoRelq, getUsuarioRelq, updateAdicionalRelq, updateEmpresaRelq, updateRellenoRelq, updateUsuarioRelq } from "../services/CargueReliqServices";
 import { Selectores } from "../../../src/ui/components/Selectores";
 import { TabTable } from "../../../src/ui/components/TabTable";
 import { TituloVista } from "../../../src/ui/components/TituloVista";
-import { columsAdicionalReliq, columsEmpreReliq, columsUsuarioReliq, keyTranformEmpre, objetoAdic, objetoEmpr, objetoUsua } from "../services/data";
+import { columsAdicionalReliq, columsEmpreReliq, columsRellenosReliq, columsUsuarioReliq, keyTranformEmpre, objetoAdic, objetoEmpr, objetoRelleno, objetoUsua } from "../services/data";
 import { TablaEmpresaReliq } from "../components/cargueReliq/TablaEmpresaReliq";
 import { Alertas } from "../../../src/ui/components/Alertas";
 import { useAlertas } from "../../../src/hooks/useAlertas";
@@ -60,7 +60,7 @@ export const CargueReliq = () => {
     const onDataRelleno = async() => {
         try{
             const relleno = await getRellenoRelq(requestReliq);
-            setDataRelleno(relleno);
+            return setDataRelleno(relleno);
         } catch {
             console.error('error en data relleno');
         }
@@ -82,11 +82,19 @@ export const CargueReliq = () => {
         }
     };
 
-    const onActulalizarUsuario = async(data) => {
-        try{
+    const onActualizarUsuario = async (data) => {
+        try {
             await updateUsuarioRelq(data);
-        } catch {
-            console.error('error en data empresa');
+        } catch (error) {
+            console.error('Error en la actualización del usuario:', error);
+        }
+    };
+
+    const onActualizarRelleno = async (data) => {
+        try {
+            return await updateRellenoRelq(data);
+        } catch (error) {
+            console.error('Error en la actualización del relleno:', error);
         }
     };
     
@@ -115,12 +123,12 @@ export const CargueReliq = () => {
     };
 
     const titulosTabs = useMemo(() => [
+        { titulo: 'Resum. Usuarios', datos: dataUsuarios, encabezado: columsUsuarioReliq, objEditar: objetoUsua, actualizar: onActualizarUsuario, refresh: onDataUsuarios },
         { titulo: 'Resum. Empresa', datos: dataEmpresa, encabezado: columsEmpreReliq, objEditar: objetoEmpr, actualizar: onActulalizarEmpresa, refresh: onDataEmpresa },    
         { titulo: 'Resum. Adicional', datos: dataAdicional, encabezado: columsAdicionalReliq, objEditar: objetoAdic, actualizar: onActulalizarAdicional, refresh: onDataAdicional },
-        { titulo: 'Resum. Usuarios', datos: dataUsuarios, encabezado: columsUsuarioReliq, objEditar: objetoUsua, actualizar: onActulalizarUsuario, refresh: onDataUsuarios },
-        // { titulo: 'Resum. Aps', datos: dataAps, encabezado: columsLineasTiempo },
-        // { titulo: 'Resum. Relleno', datos: dataRelleno, encabezado: columsLineasTiempo },
-    ], [dataEmpresa, dataAdicional, dataUsuarios, dataAps, dataRelleno]);
+        { titulo: 'Resum. Relleno', datos: dataRelleno, encabezado: columsRellenosReliq, objEditar: objetoRelleno, actualizar: onActualizarRelleno, refresh: onDataRelleno },
+        // { titulo: 'Resum. Aps', datos: dataAps, encabezado: [], objEditar: {}, actualizar: () => {}, refresh: () => {} },
+    ], [dataEmpresa, dataAdicional, dataUsuarios]);
 
     const handleClickTab = (index) => {
         setPestañaActiva(index);
@@ -150,7 +158,7 @@ export const CargueReliq = () => {
                     </div>
                     <TablaEmpresaReliq 
                         actualizar={titulosTabs[pestañaActiva].actualizar}
-                        onDataEmpresa={titulosTabs[pestañaActiva].refresh}
+                        onData={titulosTabs[pestañaActiva].refresh}
                         data={titulosTabs[pestañaActiva].datos} 
                         colums={titulosTabs[pestañaActiva].encabezado}
                         objEditar={titulosTabs[pestañaActiva].objEditar}

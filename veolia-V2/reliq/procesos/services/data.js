@@ -87,3 +87,39 @@ export const objetoUsua = {
         "iuaeToneladas", "faprCodigo", "paraUbicacion20016", "paraTipFac20014"
     ],
 };
+
+export const columsRellenosReliq = [
+    { head: "ID IARE", body: "iareId" },
+    { head: "ID RELI", body: "reliId" },
+    { head: "ID APSA", body: "apsaId" },
+    { head: "ID RELL", body: "rellId" },
+    { head: "AÑO", body: "iareAnno" },
+    { head: "MES", body: "iareMes" },
+    { head: "QRS", body: "iareQrs" },
+    { head: "CDFK", body: "iareCdfk" },
+    { head: "VACDFABC", body: "iareVacdfabc" },
+    { head: "VACDF", body: "iareVacdf" },
+    { head: "VL", body: "iareVl" },
+    { head: "CTMLX", body: "iareCtmlx" },
+    { head: "CTLK", body: "iareCtlk" },
+    { head: "VACTLABC", body: "iareVactlabc" },
+    { head: "VACTL", body: "iareVactl" },
+    { head: "ESCENARIO", body: "iareEscenario" },
+    { head: "FECHA CREACIÓN", body: "iareFechaCreacion" },
+    { head: "USUARIO", body: "usuaUsua" },
+    { head: "C", body: "iareC" },
+];
+
+
+export const objetoRelleno = {
+    info: [
+        "iareId", "reliId", "iareQrs", "iareCdfk", "iareVacdfabc", "iareVacdf", 
+        "iareVl", "iareCtmlx", "iareCtlk", "iareVactlabc", "iareVactl", 
+        "iareEscenario", "iareC"
+    ],
+    editar: [
+        "iareQrs", "iareCdfk", "iareVacdfabc", "iareVacdf", "iareVl", "iareCtmlx", 
+        "iareCtlk", "iareVactlabc", "iareVactl", "iareEscenario", "iareC"
+    ],
+    
+};
