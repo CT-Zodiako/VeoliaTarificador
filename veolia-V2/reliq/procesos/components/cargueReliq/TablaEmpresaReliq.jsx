@@ -1,41 +1,80 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PaginacionTablas } from "../../../../src/ui/components/PaginacionTablas";
 
 export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
-    const [ editar, setEditar ] = useState(null);
-    const [ empresaEditar, setEmpresaEditar ] = useState(objEditar);
+    const [ editar, setEditar ] = useState(false);
+    const [ empresaEditar, setEmpresaEditar ] = useState([]);
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const dataF = data.slice(indexOfFirstItem, indexOfLastItem);
 
-    const onEmpreEditar = (index) => {
-        const nuevoObjeto = Object.keys(objEditar).reduce((acc, key) => {
-            acc[key] = data[index][key];
-            return acc;
-        }, {});
-        setEmpresaEditar(nuevoObjeto);
-        setEditar(index);
-    };
-    
-
-    const onhanledEditar = (event) => {
+    const onhanledEditar = (event, index) => {
         const { name, value } = event.target;
-        setEmpresaEditar({
-            ...empresaEditar,
-            [name]: value
-        })
+        setEmpresaEditar(prevState => 
+            prevState.map((item, i) =>
+            i === index ? { ...item, [name]: Number(value) } : item
+        ));
     };
 
     const paginacionTable = (pag) => {
       setItemsPerPage(pag)
     };
 
+    const onCancelar = () => {
+        onNewData(data);
+        setEditar(false);
+    };
+
+    const onNewData = (data) => {
+        if (data.length > 0) {
+            const newData = data.map(item => 
+                objEditar.info.reduce((acc, key) => {
+                    acc[key] = item[key];
+                    return acc;
+                }, {})
+            );
+            setEmpresaEditar(newData);
+        };
+    };
+
+    useEffect(() => {
+        onNewData(data);
+    }, [data]);
+
     return(
     <>
         <div className='componenTable'>
+            <div className="flex justify-end">
+                {editar ? (
+                    <>
+                        <button
+                            className="btn btn-danger"
+                            onClick={onCancelar}
+                        >
+                            Cancelar
+                        </button>
+                        <button
+                            className="btn btn-success"
+                            onClick={() => setEditar(false)}
+                        >
+                            Guardar
+                        </button>
+                    </>
+
+                ) : (
+                    <>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => setEditar(true)}
+                        >
+                            Editar
+                        </button>
+                    </>
+                )}  
+            </div>
             <div className="tableBorde">
                 <div className="card-body relative shadow-md sm:rounded-md overflow-hidden">
                     <div className="max-h-[30rem] overflow-x-auto overflow-y-auto">
@@ -52,11 +91,11 @@ export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
                                         </th>
                                         ))
                                     }
-                                    <th
+                                    {/* <th
                                         className="px-4 py-3 border-x-[2px] border-borderTable"
                                     >
                                         Acción
-                                    </th>
+                                    </th> */}
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +104,7 @@ export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
                                     dataF.map((item, index) => (
                                         <tr 
                                             key={index} 
-                                            className={`border-b-8 border-b-gray-50 text-xs hover:text-sm
+                                            className={`border-b-8 border-b-gray-50 text-xs 
                                                 border-l hover:border-l-4 hover:border-l-borderLetfTable 
                                                 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`}
                                         >
@@ -74,19 +113,22 @@ export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
                                                     className="px-4 py-3 border-x-[2px] border-borderTable text-right"
                                                     key={colIndex}
                                                 >
-                                                    {editar === index && objEditar.hasOwnProperty(body.body) ? (
+                                                    {editar && objEditar.editar.includes(body.body) ? (
                                                         <input 
+                                                            style={{ width: '5rem', height: '1.5rem', border: '1px solid #ccc' }}
+                                                            className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}
                                                             type="number"
                                                             name={body.body}
-                                                            value={empresaEditar[body.body] || ""}
-                                                            onChange={(event) => onhanledEditar(event)}
+                                                            // placeholder={empresaEditar[index]?.[body.body] === 0 && '0'}
+                                                            value={empresaEditar[index]?.[body.body] || ''}
+                                                            onChange={(event) => onhanledEditar(event, index)}
                                                         />
                                                     ) : (
                                                         item[body.body]
                                                     )}
                                                 </td>
                                             ))}
-                                            <td>
+                                            {/* <td>
                                                 <button
                                                     className="btn btn-primary btn-sm"
                                                     onClick={() => onEmpreEditar(index)}
@@ -99,7 +141,7 @@ export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
                                                 >
                                                     Cancelar
                                                 </button>
-                                            </td>
+                                            </td> */}
                                         </tr>
                                     )
                                 )) : (
@@ -107,7 +149,7 @@ export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
                                     data.map((item, index) => (
                                         <tr 
                                             key={index} 
-                                            className={`border-b-8 border-b-gray-50 text-xs hover:text-sm
+                                            className={`border-b-8 border-b-gray-50 text-xs
                                                 border-l hover:border-l-4 hover:border-l-borderLetfTable 
                                                 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`}
                                         >
@@ -128,7 +170,7 @@ export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
                                                     )}
                                                 </td>
                                             ))}
-                                            <td>
+                                            {/* <td>
                                                 <button
                                                     className="btn btn-primary btn-sm"
                                                     onClick={() => onEmpreEditar(index)}
@@ -141,7 +183,7 @@ export const TablaEmpresaReliq = ({ data, colums, objEditar, page= true }) => {
                                                 >
                                                     Cancelar
                                                 </button>
-                                            </td>
+                                            </td> */}
                                         </tr>
                                     ))
                                 )}

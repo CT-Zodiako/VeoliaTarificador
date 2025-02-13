@@ -4,7 +4,7 @@ import { getAdicionalRelq, getApsRelq, getEmpresaRelq, getRellenoRelq, getUsuari
 import { Selectores } from "../../../src/ui/components/Selectores";
 import { TabTable } from "../../../src/ui/components/TabTable";
 import { TituloVista } from "../../../src/ui/components/TituloVista";
-import { columsAdicionalReliq, columsEmpreReliq, objetoAdic, objetoEmpr } from "../services/data";
+import { columsAdicionalReliq, columsEmpreReliq, keyTranformEmpre, objetoAdic, objetoEmpr } from "../services/data";
 import { TablaEmpresaReliq } from "../components/cargueReliq/TablaEmpresaReliq";
 import { Alertas } from "../../../src/ui/components/Alertas";
 import { useAlertas } from "../../../src/hooks/useAlertas";
@@ -22,7 +22,8 @@ export const CargueReliq = () => {
     const onDataEmpresa = async() => {
         try{
             const empresa = await getEmpresaRelq(requestReliq);
-            setDataEmpresa(empresa);
+            const newData = transformacionData(empresa, keyTranformEmpre);
+            setDataEmpresa(newData);
             agregarAlerta('Se agrego la data de empresa', 'success');
         } catch {
             console.error('error en data empresa');
@@ -74,6 +75,20 @@ export const CargueReliq = () => {
             onDataRelleno();
         }
     }, [aps, reliq]);
+
+
+    const transformacionData = (data, keyTranform) => {
+        return data.map(item => {
+            let newItem = { ...item };
+            Object.keys(keyTranform).forEach(key => {
+                if (item.hasOwnProperty(key)) {
+                    newItem[keyTranform[key]] = item[key];
+                    delete newItem[key];
+                }
+            });
+            return newItem;
+        });
+    };
 
     const titulosTabs = useMemo(() => [
         { titulo: 'Resum. Empresa', datos: dataEmpresa, encabezado: columsEmpreReliq, objEditar: objetoEmpr },
