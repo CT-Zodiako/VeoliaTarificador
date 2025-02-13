@@ -10,6 +10,7 @@ import { UpdateReliInfoEmprDiviArrayDTO} from './dto/update-ReliInfoEmprDivi.dto
 import {UpdateReliInfoApsEmprDiviArrayDTO} from './dto/update-ReliInfoApsEmprDivi.dto'
 import { UpdateReliInfoApsRellenoArrayDTO } from './dto/update-ReliInfoApsRelleno.dto';
 import { UpdateReliInfoAdicionalArrayDTO } from './dto/update-ReliInfoAdicional.dto';
+import { UpdateReliInfUsuApSemprDiviArrayDTO } from './dto/update-ReliInfUsuApSemprDivi.dto';
 
 @Injectable()
 export class CargueReliqService {
@@ -204,6 +205,30 @@ export class CargueReliqService {
       return { message: 'Resumen Adicional Actualizado' };
     } catch (error) {
       console.log(`Error CargueReliqService.updateResumenAdicional: ${error}`);
+    }
+  }
+
+  async updateReliInfoUsuarios(usuaUsua:number, updateReliInfUsuApSemprDiviArrayDTO: UpdateReliInfUsuApSemprDiviArrayDTO) {
+    try {
+      updateReliInfUsuApSemprDiviArrayDTO.data.forEach(async (element) => {
+        await this.reliInfUsuApSemprDiviRepository.update(
+          { reliId: element.reliId, iuaeId: element.iuaeId },
+          {
+            diviDivi: element.diviDivi,
+            faprCodigo: element.faprCodigo,
+            clasClaseUso: element.clasClaseUso,
+            paraTipTar20012: element.paraTipTar20012,
+            iuaeCantidad: element.iuaeCantidad,
+            iuaeToneladas: element.iuaeToneladas,
+            paraUbicacion20016: element.paraUbicacion20016,
+            paraTipFac20014: element.paraTipFac20014,
+            usuaUsua: usuaUsua,
+          }
+        );
+      });
+      return { message: 'ReliInfoUsuarios Actualizado' };
+    } catch (error) {
+      console.log(`Error CargueReliqService.updateReliInfoUsuarios: ${error}`);
     }
   }
 }

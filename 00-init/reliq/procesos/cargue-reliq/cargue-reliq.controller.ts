@@ -6,6 +6,7 @@ import { UpdateReliInfoEmprDiviArrayDTO } from './dto/update-ReliInfoEmprDivi.dt
 import {UpdateReliInfoApsEmprDiviArrayDTO} from './dto/update-ReliInfoApsEmprDivi.dto';
 import { UpdateReliInfoApsRellenoArrayDTO } from './dto/update-ReliInfoApsRelleno.dto';
 import { UpdateReliInfoAdicionalArrayDTO } from './dto/update-ReliInfoAdicional.dto';
+import { UpdateReliInfUsuApSemprDiviArrayDTO } from './dto/update-ReliInfUsuApSemprDivi.dto';
 
 
 @Controller('cargue-reliq')
@@ -58,6 +59,12 @@ export class CargueReliqController {
   @UseGuards(AuthGuard())
   updateResumenAdicional(@GetUser() user, @Body() UpdateReliInfoAdicionalArrayDTO: UpdateReliInfoAdicionalArrayDTO) {
     return this.cargueReliqService.updateResumenAdicional(user.SISU_ID, UpdateReliInfoAdicionalArrayDTO);
+  }
+
+  @Patch("update-resumen-usuarios")
+  @UseGuards(AuthGuard())
+  updateReliInfoUsuarios(@GetUser() user, @Body() UpdateReliInfUsuApSemprDiviArrayDTO: UpdateReliInfUsuApSemprDiviArrayDTO) {
+    return this.cargueReliqService.updateReliInfoUsuarios(user.SISU_ID, UpdateReliInfUsuApSemprDiviArrayDTO);
   }
 
 }
