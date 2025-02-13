@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { CrearReliqService } from './crear-reliq.service';
 import { CreateReliquidaDto } from './dto/create-crear-reliq.dto';
 import { UpdateCrearReliqDto } from './dto/update-crear-reliq.dto';
@@ -17,9 +17,9 @@ export class CrearReliqController {
     return this.crearReliqService.getReliquidaciones();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.crearReliqService.findOne(+id);
+  @Get('reliquida-by-aps')
+  getReliquidacionByAps(@Query() data) {
+    return this.crearReliqService.getReliquidacionByAps(data.apsId);
   }
 
   @Patch(':id')

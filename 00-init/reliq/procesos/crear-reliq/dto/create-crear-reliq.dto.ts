@@ -2,9 +2,6 @@ import { IsNumber, IsString, IsDateString, IsOptional } from 'class-validator';
 
 export class CreateReliquidaDto {
   @IsNumber()
-  relqid: number;
-
-  @IsNumber()
   apsaid: number;
 
   @IsString()
@@ -21,14 +18,6 @@ export class CreateReliquidaDto {
 
   @IsNumber()
   relqususolicita: number;
-
-  @IsNumber()
-  @IsOptional()
-  relqestado?: number;
-
-  @IsDateString()
-  @IsOptional()
-  relqfecha?: string;
 
   @IsNumber()
   @IsOptional()
