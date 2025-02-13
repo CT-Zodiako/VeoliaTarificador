@@ -22,9 +22,9 @@ export class CrearReliqController {
     return this.crearReliqService.getReliquidacionByAps(data.apsId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCrearReliqDto: UpdateCrearReliqDto) {
-    return this.crearReliqService.update(+id, updateCrearReliqDto);
+  @Patch()
+  update(@Body() updateCrearReliqDto: UpdateCrearReliqDto[]) {
+    return this.crearReliqService.update(updateCrearReliqDto);
   }
 
   @Delete(':id')

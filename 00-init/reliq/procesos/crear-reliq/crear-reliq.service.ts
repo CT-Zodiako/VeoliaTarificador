@@ -48,8 +48,15 @@ export class CrearReliqService {
   }
 
 
-  update(id: number, updateCrearReliqDto: UpdateCrearReliqDto) {
-    return `This action updates a #${id} crearReliq`;
+  async update(updateCrearReliqDto: UpdateCrearReliqDto[]) {
+    try {
+      for(const item of updateCrearReliqDto){
+        await this.reliquidaRepository.update(item.relqid, item);
+      }
+      return 'Reliquidaciones actualizadas';
+    } catch (error) {
+      console.log(`Error CrearReliqService.update: ${error}`);
+    }
   }
 
   remove(id: number) {
