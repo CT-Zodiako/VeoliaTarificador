@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } f
 import { CargueReliqService } from './cargue-reliq.service';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
-import { UpdateReliInfoEmprDiviArrayDTO, UpdateReliInfoEmprDiviDTO } from './dto/update-ReliInfoEmprDivi.dto';
-import {UpdateReliInfoApsEmprDiviDTO,UpdateReliInfoApsEmprDiviArrayDTO} from './dto/update-ReliInfoApsEmprDivi.dto';
+import { UpdateReliInfoEmprDiviArrayDTO } from './dto/update-ReliInfoEmprDivi.dto';
+import {UpdateReliInfoApsEmprDiviArrayDTO} from './dto/update-ReliInfoApsEmprDivi.dto';
+import { UpdateReliInfoApsRellenoArrayDTO } from './dto/update-ReliInfoApsRelleno.dto';
+import { UpdateReliInfoAdicionalArrayDTO } from './dto/update-ReliInfoAdicional.dto';
 
 
 @Controller('cargue-reliq')
@@ -44,6 +46,18 @@ export class CargueReliqController {
   @UseGuards(AuthGuard())
   updateResumenAps(@GetUser() user, @Body() updateReliInfoEmprDiviDTO: UpdateReliInfoApsEmprDiviArrayDTO) {
     return this.cargueReliqService.updateResumenAPS(user.SISU_ID, updateReliInfoEmprDiviDTO);
+  }
+
+  @Patch("update-resumen-relleno")
+  @UseGuards(AuthGuard())
+  updateResumenRellno(@GetUser() user, @Body() UpdateReliInfoApsRellenoArrayDTO: UpdateReliInfoApsRellenoArrayDTO) {
+    return this.cargueReliqService.updateResumenRellno(user.SISU_ID, UpdateReliInfoApsRellenoArrayDTO);
+  }
+
+  @Patch("update-resumen-adicional")
+  @UseGuards(AuthGuard())
+  updateResumenAdicional(@GetUser() user, @Body() UpdateReliInfoAdicionalArrayDTO: UpdateReliInfoAdicionalArrayDTO) {
+    return this.cargueReliqService.updateResumenAdicional(user.SISU_ID, UpdateReliInfoAdicionalArrayDTO);
   }
 
 }

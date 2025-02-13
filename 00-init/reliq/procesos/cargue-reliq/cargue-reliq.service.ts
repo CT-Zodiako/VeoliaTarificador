@@ -6,8 +6,10 @@ import { ReliInfoApsRelleno } from './entities/reliInfo-aps-relleno.entity';
 import { ReliInfoApsEmprDivi } from './entities/reliInfo-aps-empr-divi.entity';
 import { ReliInfoAdicional } from './entities/reliInfo-adicional.entity';
 import { ReliInfUsuApSemprDivi } from './entities/reliInf-usu-aps-empr-divi.entity';
-import { UpdateReliInfoEmprDiviArrayDTO, UpdateReliInfoEmprDiviDTO} from './dto/update-ReliInfoEmprDivi.dto';
-import {UpdateReliInfoApsEmprDiviArrayDTO, UpdateReliInfoApsEmprDiviDTO} from './dto/update-ReliInfoApsEmprDivi.dto'
+import { UpdateReliInfoEmprDiviArrayDTO} from './dto/update-ReliInfoEmprDivi.dto';
+import {UpdateReliInfoApsEmprDiviArrayDTO} from './dto/update-ReliInfoApsEmprDivi.dto'
+import { UpdateReliInfoApsRellenoArrayDTO } from './dto/update-ReliInfoApsRelleno.dto';
+import { UpdateReliInfoAdicionalArrayDTO } from './dto/update-ReliInfoAdicional.dto';
 
 @Injectable()
 export class CargueReliqService {
@@ -62,6 +64,7 @@ export class CargueReliqService {
     try {
       return await this.reliInfoAdicionalRepository.find({
         select:{
+          ceadId: true,
           reliId: true,
           ceadAnno: true,
           ceadMes: true,
@@ -156,6 +159,51 @@ export class CargueReliqService {
     } catch (error) {
       console.log(`Error CargueReliqService.updateResumenAPS: ${error}`);
     }
+  }
 
+  async updateResumenRellno(usuaUsua:number, updateReliInfoApsRellenoArrayDTO: UpdateReliInfoApsRellenoArrayDTO) {
+    try {
+      updateReliInfoApsRellenoArrayDTO.data.forEach(async (element) => {
+        await this.reliInfoApsRellenoRepository.update(
+          { reliId: element.reliId, iareId: element.iareId },
+          {
+            iareQrs: element.iareQrs,
+            iareCdfk: element.iareCdfk,
+            iareVacdfabc: element.iareVacdfabc,
+            iareVacdf: element.iareVacdf,
+            iareVl: element.iareVl,
+            iareCtmlx: element.iareCtmlx,
+            iareCtlk: element.iareCtlk,
+            iareVactlabc: element.iareVactlabc,
+            iareVactl: element.iareVactl,
+            iareEscenario: element.iareEscenario,
+            iareC: element.iareC,
+            usuaUsua: usuaUsua,
+          }
+        );
+      });
+      
+      return { message: 'Resumen Relleno Actualizado' };
+    } catch (error) {
+      console.log(`Error CargueReliqService.updateResumenRellno: ${error}`);
+    }
+  }
+
+  async updateResumenAdicional(usuaUsua:number, updateReliInfoAdicionalArrayDTO: UpdateReliInfoAdicionalArrayDTO) {
+    try {
+      updateReliInfoAdicionalArrayDTO.data.forEach(async (element) => {
+        await this.reliInfoAdicionalRepository.update(
+          { reliId: element.reliId, ceadId: element.ceadId },
+          {
+            ceadCdf: element.ceadCdf,
+            ceadCtl: element.ceadCtl,
+            usuaUsua: usuaUsua,
+          }
+        );
+      });
+      return { message: 'Resumen Adicional Actualizado' };
+    } catch (error) {
+      console.log(`Error CargueReliqService.updateResumenAdicional: ${error}`);
+    }
   }
 }
