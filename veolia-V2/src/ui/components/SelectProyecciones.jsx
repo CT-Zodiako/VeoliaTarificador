@@ -11,38 +11,74 @@ import { mesesAno } from "../../informeProyecciones/components/data";
     const setHorizonteDesde = useHorizonteDesde(state => state.cambioHorizonteDesde);
     const setHorizonteHasta = useHorizonteHasta(state => state.cambioHorizonteHasta);
 
+    const usr = localStorage.getItem("token");
+    const tokenData = usr.split(".")[1];
+    const decodedToken = JSON.parse(atob(tokenData));
+
+    const sistema = decodedToken.idSistema;
+
     const [ proyecciones, setProyecciones ] = useState([]);
         
     const data = {
         APSA_ID : aps
-    }
+    };
 
-    const getProyecciones = async() => {
-        try {
-            const responce = await getProyec(data);
-            responce.map((item) => {
-                if(item.PROYID === selectedProy){
-                    setSelectedDescrip(item.PROYDESCRIPCION);
-                    setHorizonteDesde(`${optionMes(item.PROYMESDES)} / ${item.PROYANNODES}`);
-                    setHorizonteHasta(`${optionMes(item.PROYMESHAS)} / ${item.PROYANNOHAS}`);
-                }
-            })
-            setProyecciones(responce);
-        } catch {
-            console.error('no se pudo realizar la consulta');    
-        }
+    if ( sistema === 1) {
+        const getProyecciones = async() => {
+            try {
+                const responce = await getProyec(data);
+                responce.map((item) => {
+                    if(item.PROYID === selectedProy){
+                        setSelectedDescrip(item.PROYDESCRIPCION);
+                        setHorizonteDesde(`${optionMes(item.PROYMESDES)} / ${item.PROYANNODES}`);
+                        setHorizonteHasta(`${optionMes(item.PROYMESHAS)} / ${item.PROYANNOHAS}`);
+                    }
+                })
+                setProyecciones(responce);
+            } catch {
+                console.error('no se pudo realizar la consulta');    
+            }
+        };
+
+        useEffect(() =>{
+            if(aps){
+                getProyecciones('');
+            }
+        }, [aps]);
+    } else {
+        const getReliquidacion = async() => {
+            try {
+                const responce = await getProyec(data);
+                responce.map((item) => {
+                    if(item.PROYID === selectedProy){
+                        setSelectedDescrip(item.PROYDESCRIPCION);
+                        setHorizonteDesde(`${optionMes(item.PROYMESDES)} / ${item.PROYANNODES}`);
+                        setHorizonteHasta(`${optionMes(item.PROYMESHAS)} / ${item.PROYANNOHAS}`);
+                    }
+                })
+                setProyecciones(responce);
+            } catch {
+                console.error('no se pudo realizar la consulta');    
+            }
+        };
+
+        useEffect(() =>{
+            if(aps){
+                getReliquidacion('');
+            }
+        }, [aps]);
     }
 
     const handleChange = (event) => {
         setSelectProyec(event.target.value)
-    }
+    };
 
     const optionMes = (mes) => {
         const mesAno = mesesAno.find(
             m => m.id === mes
         );
         return mesAno.meses;
-    }
+    };
 
     useEffect(() => {
         if (proyecciones.length > 0 && selectedProy) {
@@ -54,13 +90,6 @@ import { mesesAno } from "../../informeProyecciones/components/data";
             }
         }
     }, [selectedProy, proyecciones]);
-
-    useEffect(() =>{
-        if(aps){
-            getProyecciones('');
-            // setSelectProyec('');
-        }
-    }, [aps])
 
     return(
     <>
