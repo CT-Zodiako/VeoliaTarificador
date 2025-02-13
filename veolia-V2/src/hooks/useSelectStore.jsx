@@ -1,10 +1,11 @@
-import { useAnnoSelector, useApsSelector, useMesSelector, useProyeccionesSelector } from "../store/storeSelectors";
+import { useAnnoSelector, useApsSelector, useMesSelector, useProyeccionesSelector, useReliquidacionSelector } from "../store/storeSelectors";
 
  export const useSelectStore = () => {
     const mes = useMesSelector(state => state.mes);
     const anno = useAnnoSelector(state => state.anno);
     const aps = useApsSelector(state => state.aps);
     const proy = useProyeccionesSelector(state => state.proy);
+    const reliq = useReliquidacionSelector(state => state.reliq);
 
     const data = {
         APSA_ID: aps,
@@ -70,11 +71,11 @@ import { useAnnoSelector, useApsSelector, useMesSelector, useProyeccionesSelecto
     };
 
     const requestReliq = {
-        idReliq: 1
+        idReliq: reliq,
     };
 
     return{ 
-        anno, mes, aps, proy, data, request, requestAnnoMes, requestFecha, requestSubCon, 
+        anno, mes, aps, proy, reliq, data, request, requestAnnoMes, requestFecha, requestSubCon, 
         requestAjusteProd, requestVerif, requestAprov, requestCosPoda, requestDesCos,
         requestProyectar, requestReliq   
     };

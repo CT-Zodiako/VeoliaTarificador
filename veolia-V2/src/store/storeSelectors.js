@@ -57,3 +57,10 @@ export const useSemestreSelector = create((set) => {
         cambioSelectorSemestre: (semestre) => set({semestre: Number(semestre)}),
     }
 });
+
+export const useReliquidacionSelector = create((set) => {
+    return{
+        reliq: '',
+        cambioSelectorReliq: (reliq) => set({reliq: Number(reliq)}),
+    }
+});

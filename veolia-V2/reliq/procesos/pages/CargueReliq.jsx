@@ -10,14 +10,13 @@ import { Alertas } from "../../../src/ui/components/Alertas";
 import { useAlertas } from "../../../src/hooks/useAlertas";
 
 export const CargueReliq = () => {
-    const { aps, proy, requestReliq } = useSelectStore();
+    const { aps, reliq, requestReliq } = useSelectStore();
     const [pestañaActiva, setPestañaActiva] = useState(0);
     const [ dataEmpresa, setDataEmpresa ] = useState([]);
     const [ dataAdicional, setDataAdicional ] = useState([]);
     const [ dataUsuarios, setDataUsuarios ] = useState([]);
     const [ dataAps, setDataAps ] = useState([]);
     const [ dataRelleno, setDataRelleno ] = useState([]);
-    // const [ alerta, setAlerta ] = useState([]);
     const { alerta, agregarAlerta, onCerrarAlerta } = useAlertas();
 
     const onDataEmpresa = async() => {
@@ -65,29 +64,16 @@ export const CargueReliq = () => {
             console.error('error en data relleno');
         }
     };
-
-    // const agregarAlerta = (mensaje, tipo = "info") => {
-    //     const id = new Date().getTime();
-    //     setAlerta((prevAlertas) => [...prevAlertas, { id, mensaje, tipo }]);
-    
-    //     setTimeout(() => {
-    //       setAlerta((prevAlertas) => prevAlertas.filter((alerta) => alerta.id !== id));
-    //     }, 3000);
-    // };
-
-    // const onCerrarAlerta = (alert) => {
-    //     setAlerta((prevAlertas) =>
-    //       prevAlertas.filter((a) => a.id !== alert)
-    //     );
-    // };
     
     useEffect(() =>{
+        if (aps && reliq){
             onDataEmpresa();
             onDataAdicional();
             onDataUsuarios();
             onDataAps();
             onDataRelleno();
-    }, []);
+        }
+    }, [aps, reliq]);
 
     const titulosTabs = useMemo(() => [
         { titulo: 'Resum. Empresa', datos: dataEmpresa, encabezado: columsEmpreReliq, objEditar: objetoEmpr },
