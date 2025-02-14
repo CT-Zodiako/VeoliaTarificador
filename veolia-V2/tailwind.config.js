@@ -8,6 +8,9 @@ export default {
         headTable: '#8c8c8c',
         borderLetfTable: '#ff3333',
         borderTable: '#eaedef',
+        rojoTarifica: 'rgb(255, 51, 51)',
+        grisTarifica: 'rgb(140, 140, 140)',
+
       },
     },
   },

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import '../../ui/styles/navegacion.css';
 
 export const TabTable = ({ titulosTabs, onTabClick }) => {
     const [activeTab, setActiveTab] = useState(0);
@@ -10,17 +9,22 @@ export const TabTable = ({ titulosTabs, onTabClick }) => {
     };
 
     return (
-        <div>
-            <ul className="nav nav-tabs custom-tabs panel-fondo">
+        <div className="mb-2 border-b border-gray-200">
+            <ul className="flex flex-wrap -mb-px text-sm font-semibold text-center" role="tablist">
                 {titulosTabs.map((tab, index) => (
-                    <li key={index} className="nav-item">
-                        <a 
-                            onClick={() => handleTabClick(index, tab.titulo)} 
-                            className={`nav-link custom-nav-link nav-tabs nav-links ${activeTab === index ? 'active-tab' : ''}`} 
-                            aria-current="page"
+                    <li key={index} className="me-2" role="presentation">
+                        <button
+                            onClick={() => handleTabClick(index, tab.titulo)}
+                            className={`inline-block p-4 border-b-2 rounded-t-lg h-[4rem]
+                            ${activeTab === index
+                                    ? "text-red-600 hover:text-red-600 border-red-600"
+                                    : "text-gray-500 hover:text-gray-600 border-gray-200 hover:border-gray-300"
+                            }`}
+                            role="tab"
+                            aria-selected={activeTab === index}
                         >
                             {tab.titulo}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>

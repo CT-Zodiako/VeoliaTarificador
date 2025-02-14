@@ -18,5 +18,13 @@ export const useAlertas = ( inicial=[] ) => {
         );
     };
 
-    return { alerta, agregarAlerta, onCerrarAlerta };
+    const onManejoAlerta = (respuesta) => {
+      if(respuesta.success){
+        agregarAlerta(respuesta.mensaje, 'success');
+      } else {
+          agregarAlerta(respuesta.error, 'error');
+      }
+    };
+
+    return { alerta, onManejoAlerta, onCerrarAlerta };
 };

@@ -13,10 +13,11 @@ export const getEmpresaRelq = async (data) => {
 export const getAdicionalRelq = async (data) => {    
     try{
         const response = await Http.get('cargue-reliq/resumen-adicional', data);
-        return response;
+        return { success: true, data: response, mensaje: "Cargó tabla adicional" };
     }
     catch(error){
         console.log('error en data tabla adicional relq', error);
+        return { success: false, error: "No se logró cargar la tabla." };
     }
 }
 

@@ -17,7 +17,7 @@ export const CargueReliq = () => {
     const [ dataUsuarios, setDataUsuarios ] = useState([]);
     const [ dataAps, setDataAps ] = useState([]);
     const [ dataRelleno, setDataRelleno ] = useState([]);
-    // const { alerta, agregarAlerta, onCerrarAlerta } = useAlertas();
+    const { alerta, onManejoAlerta, onCerrarAlerta } = useAlertas();
 
     const onDataEmpresa = async() => {
         const empresa = await getEmpresaRelq(requestReliq);
@@ -28,7 +28,8 @@ export const CargueReliq = () => {
 
     const onDataAdicional = async() => {
         const adicional = await getAdicionalRelq(requestReliq);
-        setDataAdicional(adicional);
+        setDataAdicional(adicional.data);
+        onManejoAlerta(adicional);
     };
 
     const onDataUsuarios = async() => {
@@ -64,7 +65,6 @@ export const CargueReliq = () => {
     };
 
     const onActualizarAps = async (data) => {
-        console.log('actualizado aps: ', data);
         await updateApsRelq(data);
     };
     
@@ -134,9 +134,9 @@ export const CargueReliq = () => {
                     />
                 </div>
             </div>
-            {/* {alerta.length > 0 &&
+            {alerta.length > 0 &&
               <Alertas alerta={alerta} onCerrarAlerta={onCerrarAlerta}/>
-            } */}
+            }
         </div>
     </>
   )
