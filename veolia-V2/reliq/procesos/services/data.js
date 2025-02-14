@@ -89,12 +89,9 @@ export const objetoUsua = {
 };
 
 export const columsRellenosReliq = [
-    { head: "ID IARE", body: "iareId" },
-    { head: "ID RELI", body: "reliId" },
-    { head: "ID APSA", body: "apsaId" },
-    { head: "ID RELL", body: "rellId" },
     { head: "AÑO", body: "iareAnno" },
     { head: "MES", body: "iareMes" },
+    { head: "ID RELL", body: "rellId" },
     { head: "QRS", body: "iareQrs" },
     { head: "CDFK", body: "iareCdfk" },
     { head: "VACDFABC", body: "iareVacdfabc" },
@@ -105,11 +102,8 @@ export const columsRellenosReliq = [
     { head: "VACTLABC", body: "iareVactlabc" },
     { head: "VACTL", body: "iareVactl" },
     { head: "ESCENARIO", body: "iareEscenario" },
-    { head: "FECHA CREACIÓN", body: "iareFechaCreacion" },
-    { head: "USUARIO", body: "usuaUsua" },
     { head: "C", body: "iareC" },
 ];
-
 
 export const objetoRelleno = {
     info: [
@@ -121,5 +115,81 @@ export const objetoRelleno = {
         "iareQrs", "iareCdfk", "iareVacdfabc", "iareVacdf", "iareVl", "iareCtmlx", 
         "iareCtlk", "iareVactlabc", "iareVactl", "iareEscenario", "iareC"
     ],
+};
+
+export const columsApsReliq = [
+    { head: "AÑO", body: "IAED_ANNO" },
+    { head: "MES", body: "IAED_MES" },
+    { head: "EMPRESA", body: "EMPR_NOMBRE" },
+    { head: "QRTZ", body: "iaedQrtz" },
+    { head: "CPE", body: "iaedCpe" },
+    { head: "T", body: "iaedT" },
+    { head: "VACRTABC", body: "iaedVacrtabc" },
+    { head: "VACRT", body: "iaedVacrt" },
+    { head: "CRTZ", body: "iaedCrtz" },
+    { head: "QBL", body: "iaedQbl" },
+    { head: "QLU", body: "iaedQlu" },
+    { head: "QR", body: "iaedQr" },
+    { head: "TAFA", body: "iaedTafa" },
+    { head: "ND", body: "iaedNd" },
+    { head: "NA", body: "iaedNa" },
+    { head: "QNA", body: "iaedQna" },
+    { head: "TAFNA", body: "iaedTafna" },
+    { head: "QA", body: "iaedQa" },
+    { head: "APROVECHA", body: "iaedAprovecha" },
+    { head: "CRTCOMP", body: "iaedCrtcomp" },
+    { head: "CDFCOMP", body: "iaedCdfcomp" },
+    { head: "QRSCOMP", body: "iaedQrscomp" },
+    { head: "QALMACEN", body: "iaedQalmacen" },
+    { head: "CPEET", body: "iaedCpeet" },
+    { head: "QRTET", body: "iaedQrtet" },
+    { head: "NAA", body: "iaedNaa" },
+    { head: "NDA", body: "iaedNda" },
+    { head: "DIVISIÓN", body: "diviDivi" },
+
+];
+
+export const objetoAps = {
+    info: [ "iaedId", "reliId", "diviDivi", "iaedQrtz", "iaedCpe",  "iaedT",
+        "iaedVacrtabc", "iaedVacrt", "iaedCrtz", "iaedQbl", "iaedQlu",
+        "iaedQr", "iaedTafa", "iaedNd", "iaedNa", "iaedQna", "iaedTafna",
+        "iaedQa", "iaedAprovecha", "iaedQalmacen", "iaedCpeet", "iaedQrtet",
+        "iaedCrtcomp", "iaedCdfcomp", "iaedQrscomp", "iaedNaa", "iaedNda"
+    ],
+    editar: [ "diviDivi", "iaedQrtz", "iaedCpe", "iaedT", "iaedVacrtabc", "iaedVacrt",
+        "iaedCrtz", "iaedQbl", "iaedQlu", "iaedQr", "iaedTafa", "iaedNd",
+        "iaedNa", "iaedQna", "iaedTafna", "iaedQa", "iaedAprovecha", "iaedQalmacen",
+        "iaedCpeet", "iaedQrtet", "iaedCrtcomp", "iaedCdfcomp", "iaedQrscomp",
+        "iaedNaa", "iaedNda"],
     
+};
+
+export const keyTranformAps = {
+    "IAED_ID": "iaedId",
+    "RELI_ID": "reliId",
+    "DIVI_DIVI": "diviDivi",
+    "IAED_QRTZ": "iaedQrtz",
+    "IAED_CPE": "iaedCpe",
+    "IAED_T": "iaedT",
+    "IAED_VACRTABC": "iaedVacrtabc",
+    "IAED_VACRT": "iaedVacrt",
+    "IAED_CRTZ": "iaedCrtz",
+    "IAED_QBL": "iaedQbl",
+    "IAED_QLU": "iaedQlu",
+    "IAED_QR": "iaedQr",
+    "IAED_TAFA": "iaedTafa",
+    "IAED_ND": "iaedNd",
+    "IAED_NA": "iaedNa",
+    "IAED_QNA": "iaedQna",
+    "IAED_TAFNA": "iaedTafna",
+    "IAED_QA": "iaedQa",
+    "IAED_APROVECHA": "iaedAprovecha",
+    "IAED_QALMACEN": "iaedQalmacen",
+    "IAED_CPEET": "iaedCpeet",
+    "IAED_QRTET": "iaedQrtet",
+    "IAED_CRTCOMP": "iaedCrtcomp",
+    "IAED_CDFCOMP": "iaedCdfcomp",
+    "IAED_QRSCOMP": "iaedQrscomp",
+    "IAED_NAA": "iaedNaa",
+    "IAED_NDA": "iaedNda"
 };

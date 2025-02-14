@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelectStore } from "../../../src/hooks/useSelectStore";
-import { getAdicionalRelq, getApsRelq, getEmpresaRelq, getRellenoRelq, getUsuarioRelq, updateAdicionalRelq, updateEmpresaRelq, updateRellenoRelq, updateUsuarioRelq } from "../services/CargueReliqServices";
+import { getAdicionalRelq, getApsRelq, getEmpresaRelq, getRellenoRelq, getUsuarioRelq, updateAdicionalRelq, updateApsRelq, updateEmpresaRelq, updateRellenoRelq, updateUsuarioRelq } from "../services/CargueReliqServices";
 import { Selectores } from "../../../src/ui/components/Selectores";
 import { TabTable } from "../../../src/ui/components/TabTable";
 import { TituloVista } from "../../../src/ui/components/TituloVista";
-import { columsAdicionalReliq, columsEmpreReliq, columsRellenosReliq, columsUsuarioReliq, keyTranformEmpre, objetoAdic, objetoEmpr, objetoRelleno, objetoUsua } from "../services/data";
+import { columsAdicionalReliq, columsApsReliq, columsEmpreReliq, columsRellenosReliq, columsUsuarioReliq, keyTranformAps, keyTranformEmpre, objetoAdic, objetoAps, objetoEmpr, objetoRelleno, objetoUsua } from "../services/data";
 import { TablaEmpresaReliq } from "../components/cargueReliq/TablaEmpresaReliq";
 import { Alertas } from "../../../src/ui/components/Alertas";
 import { useAlertas } from "../../../src/hooks/useAlertas";
@@ -20,82 +20,52 @@ export const CargueReliq = () => {
     // const { alerta, agregarAlerta, onCerrarAlerta } = useAlertas();
 
     const onDataEmpresa = async() => {
-        try{
-            const empresa = await getEmpresaRelq(requestReliq);
-            const newData = transformacionData(empresa, keyTranformEmpre);
-            setDataEmpresa(newData);
-            // agregarAlerta('Se agrego la data de empresa', 'success');
-        } catch {
-            console.error('error en data empresa');
-        }
+        const empresa = await getEmpresaRelq(requestReliq);
+        const newData = transformacionData(empresa, keyTranformEmpre);
+        setDataEmpresa(newData);
+        // agregarAlerta('Se agrego la data de empresa', 'success');
     };
 
     const onDataAdicional = async() => {
-        try{
-            const adicional = await getAdicionalRelq(requestReliq);
-            setDataAdicional(adicional);
-        } catch {
-            console.error('error en data adicional');
-        }
+        const adicional = await getAdicionalRelq(requestReliq);
+        setDataAdicional(adicional);
     };
 
     const onDataUsuarios = async() => {
-        try{
-            const usuarios = await getUsuarioRelq(requestReliq);
-            setDataUsuarios(usuarios);
-        } catch {
-            console.error('error en data usuarios');
-        }
+        const usuarios = await getUsuarioRelq(requestReliq);
+        setDataUsuarios(usuarios);
     };
 
     const onDataAps = async() => {
-        try{
-            const aps = await getApsRelq(requestReliq);
-            setDataAps(aps);
-        } catch {
-            console.error('error en data aps');
-        }
+        const aps = await getApsRelq(requestReliq);
+        const newData = transformacionData(aps, keyTranformAps);
+        setDataAps(newData);
     };
 
     const onDataRelleno = async() => {
-        try{
-            const relleno = await getRellenoRelq(requestReliq);
-            return setDataRelleno(relleno);
-        } catch {
-            console.error('error en data relleno');
-        }
+        const relleno = await getRellenoRelq(requestReliq);
+        setDataRelleno(relleno);
     };
 
     const onActulalizarEmpresa = async(data) => {
-        try{
-            await updateEmpresaRelq(data);
-        } catch {
-            console.error('error en data empresa');
-        }
+        await updateEmpresaRelq(data);
     };
 
     const onActulalizarAdicional = async(data) => {
-        try{
-            await updateAdicionalRelq(data);
-        } catch {
-            console.error('error en data empresa');
-        }
+        await updateAdicionalRelq(data);
     };
 
     const onActualizarUsuario = async (data) => {
-        try {
-            await updateUsuarioRelq(data);
-        } catch (error) {
-            console.error('Error en la actualización del usuario:', error);
-        }
+        await updateUsuarioRelq(data);
     };
 
     const onActualizarRelleno = async (data) => {
-        try {
-            return await updateRellenoRelq(data);
-        } catch (error) {
-            console.error('Error en la actualización del relleno:', error);
-        }
+        await updateRellenoRelq(data);
+    };
+
+    const onActualizarAps = async (data) => {
+        console.log('actualizado aps: ', data);
+        await updateApsRelq(data);
     };
     
     useEffect(() =>{
@@ -107,7 +77,6 @@ export const CargueReliq = () => {
             onDataRelleno();
         }
     }, [aps, reliq]);
-
 
     const transformacionData = (data, keyTranform) => {
         return data.map(item => {
@@ -127,8 +96,8 @@ export const CargueReliq = () => {
         { titulo: 'Resum. Empresa', datos: dataEmpresa, encabezado: columsEmpreReliq, objEditar: objetoEmpr, actualizar: onActulalizarEmpresa, refresh: onDataEmpresa },    
         { titulo: 'Resum. Adicional', datos: dataAdicional, encabezado: columsAdicionalReliq, objEditar: objetoAdic, actualizar: onActulalizarAdicional, refresh: onDataAdicional },
         { titulo: 'Resum. Relleno', datos: dataRelleno, encabezado: columsRellenosReliq, objEditar: objetoRelleno, actualizar: onActualizarRelleno, refresh: onDataRelleno },
-        // { titulo: 'Resum. Aps', datos: dataAps, encabezado: [], objEditar: {}, actualizar: () => {}, refresh: () => {} },
-    ], [dataEmpresa, dataAdicional, dataUsuarios]);
+        { titulo: 'Resum. Aps', datos: dataAps, encabezado: columsApsReliq, objEditar: objetoAps, actualizar: onActualizarAps, refresh: onDataAps },
+    ], [dataEmpresa, dataAdicional, dataUsuarios, dataAps, dataRelleno]);
 
     const handleClickTab = (index) => {
         setPestañaActiva(index);

@@ -44,7 +44,7 @@ export const TablaEmpresaReliq = ({ actualizar, onData, data, colums, objEditar,
         const update = {
             data: empresaEditar,
         };
-        await actualizar(update);
+        await actualizar(update);        
         await onData();
         setEditar(false);
     };
