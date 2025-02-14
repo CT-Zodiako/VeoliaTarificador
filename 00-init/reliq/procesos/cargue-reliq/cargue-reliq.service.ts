@@ -54,6 +54,7 @@ export class CargueReliqService {
   }
   async getResumenRelleno(idReliq: number) {
     try {
+      isNaN(idReliq) ? idReliq = 0 : idReliq;
       return await this.reliInfoApsRellenoRepository.findBy(
         { reliId: idReliq }
       )
@@ -63,6 +64,7 @@ export class CargueReliqService {
   }
   async getReliInfoAdicional(idReliq: number) {
     try {
+      isNaN(idReliq) ? idReliq = 0 : idReliq;
       return await this.reliInfoAdicionalRepository.find({
         select:{
           ceadId: true,
@@ -81,6 +83,7 @@ export class CargueReliqService {
   }
   async getReliInfoUsuarios(idReliq: number) {
     try {
+      isNaN(idReliq) ? idReliq = 0 : idReliq;
       return await this.reliInfUsuApSemprDiviRepository.findBy({
         reliId: idReliq
       })
