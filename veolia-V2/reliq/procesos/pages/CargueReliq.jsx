@@ -92,11 +92,11 @@ export const CargueReliq = () => {
     };
 
     const titulosTabs = useMemo(() => [
-        { titulo: 'Resum. Usuarios', datos: dataUsuarios, encabezado: columsUsuarioReliq, objEditar: objetoUsua, actualizar: onActualizarUsuario, refresh: onDataUsuarios },
         { titulo: 'Resum. Empresa', datos: dataEmpresa, encabezado: columsEmpreReliq, objEditar: objetoEmpr, actualizar: onActulalizarEmpresa, refresh: onDataEmpresa },    
-        { titulo: 'Resum. Adicional', datos: dataAdicional, encabezado: columsAdicionalReliq, objEditar: objetoAdic, actualizar: onActulalizarAdicional, refresh: onDataAdicional },
-        { titulo: 'Resum. Relleno', datos: dataRelleno, encabezado: columsRellenosReliq, objEditar: objetoRelleno, actualizar: onActualizarRelleno, refresh: onDataRelleno },
         { titulo: 'Resum. Aps', datos: dataAps, encabezado: columsApsReliq, objEditar: objetoAps, actualizar: onActualizarAps, refresh: onDataAps },
+        { titulo: 'Resum. Relleno', datos: dataRelleno, encabezado: columsRellenosReliq, objEditar: objetoRelleno, actualizar: onActualizarRelleno, refresh: onDataRelleno },
+        { titulo: 'Resum. Adicionales', datos: dataAdicional, encabezado: columsAdicionalReliq, objEditar: objetoAdic, actualizar: onActulalizarAdicional, refresh: onDataAdicional },
+        { titulo: 'Resum. Usuarios', datos: dataUsuarios, encabezado: columsUsuarioReliq, objEditar: objetoUsua, actualizar: onActualizarUsuario, refresh: onDataUsuarios },
     ], [dataEmpresa, dataAdicional, dataUsuarios, dataAps, dataRelleno]);
 
     const handleClickTab = (index) => {
@@ -122,7 +122,7 @@ export const CargueReliq = () => {
                             className='btn btn-success'
                             style={{ width: '12rem' }}
                         >
-                            EJECUTAR
+                            CARGAR
                         </button>
                     </div>
                     <TablaEmpresaReliq 
