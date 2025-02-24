@@ -1,7 +1,7 @@
 export const columsEmpreReliq = [
     { head: "AÑO", body: "INED_ANNO" },
     { head: "MES", body: "INED_MES" },
-    { head: "EMPRESA", body: "EMPR_EMPR" },
+    { head: "EMPRESA", body: "EMPR_NOMBRE" },
     { head: "CBLJ", body: "inedCblj" },
     { head: "LBLJ", body: "inedLblj" },
     { head: "N", body: "inedN" },
@@ -91,7 +91,6 @@ export const objetoUsua = {
 export const columsRellenosReliq = [
     { head: "AÑO", body: "iareAnno" },
     { head: "MES", body: "iareMes" },
-    { head: "ID RELL", body: "rellId" },
     { head: "QRS", body: "iareQrs" },
     { head: "CDFK", body: "iareCdfk" },
     { head: "VACDFABC", body: "iareVacdfabc" },
