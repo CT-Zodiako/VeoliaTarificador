@@ -41,6 +41,7 @@ import { ProyectarModule } from './proyecciones/proyectar/proyectar.module';
 import { CargueComplementarioModule } from './reporteador-sui/cargue-complementario/cargue-complementario.module';
 import { CrearReliqModule } from '../reliq/procesos/crear-reliq/crear-reliq.module';
 import { CargueReliqModule } from 'reliq/procesos/cargue-reliq/cargue-reliq.module';
+import { DriveModule } from './drive/drive.module';
 
 @Module({
   imports: [
@@ -94,6 +95,7 @@ import { CargueReliqModule } from 'reliq/procesos/cargue-reliq/cargue-reliq.modu
     MensualModule,
     ProyectarModule,
     CargueComplementarioModule,
+    DriveModule,
   ],
 })
 export class AppModule {}

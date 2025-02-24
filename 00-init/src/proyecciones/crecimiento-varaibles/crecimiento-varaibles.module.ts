@@ -4,10 +4,11 @@ import { CrecimientoVaraiblesController } from './crecimiento-varaibles.controll
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/auth/auth.module';
 import { ProyProyeccion } from './entities/crecimiento-varaible.entity';
+import { DriveModule } from 'src/drive/drive.module';
 
 @Module({
   controllers: [CrecimientoVaraiblesController],
   providers: [CrecimientoVaraiblesService],
-  imports: [TypeOrmModule.forFeature([ProyProyeccion]), AuthModule],
+  imports: [TypeOrmModule.forFeature([ProyProyeccion]), AuthModule, DriveModule],
 })
 export class CrecimientoVaraiblesModule {}

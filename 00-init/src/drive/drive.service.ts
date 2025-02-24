@@ -1,0 +1,58 @@
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { google, sheets_v4 } from 'googleapis';
+import { GoogleAuth, OAuth2Client } from 'google-auth-library';
+import * as path from 'path';
+
+@Injectable()
+export class DriveService {
+  private sheets: sheets_v4.Sheets;
+
+  async authSheets() {
+    try {
+      // Ajustamos la ruta para funcionar en src/ y dist/
+      const credentials = {
+        "type": "service_account",
+        "project_id": "citric-kit-365717",
+        "private_key_id": "14fde2f386748d8b02d4169c307e78e8b1214dc0",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDDGzLAAFqpLelg\nUn2H53krpJ5q7lqkaIizjX9u/WdIDYz8YOT4tmqjcAso63crVtvICwPezGvly5Kn\ne4ES+yZWzs2elqCJsz/89L1ByYMcMBe5T0ZFSP1luXEBZrVKc/e79ubAhaXgEKkj\nugQcE6x56w358XKjOFLkY1gc3ziQXDiQtF0bktkDFs3EhfYWRBhjtNQtw8sGFgss\naeuasMKuo6H9sB8FKyw74iddkAbvIedqV3jpGX7qct8gGrglZ1WF6NYsJ32Btxsf\nYylktjyde6Rvq8SIal7+/0SsVm9RwrFZ1wS86vAIaNGwEoF5UreHm7ZCyIX6BObI\naLeXUiexAgMBAAECggEAD+iG0dBK6XfR4JsOmzyMzQ8wz5KRwiK34BQN1knugu8q\nlhAnJf8RtjPWOnGV7OsPI+zUqvT2E0LvDp2WX6rUwcfo93ZcA/5L8wnYPftP/Rtl\nbnmqnCRLF7aazTzHqW4dPq6aEAvrA4MNl4PSU/ZoCM+D+zjsWlH8XZzwEU1Dem8L\ncTWBmQq4gN4kVSsrgUkM3B8kIGwpQ6QL4zBa5FxlxEJTwDcY8iux9wsV1mpHVPGb\n1Boz2NPQYtsiROh6I8aXAFEk3R7jWDIwWBMSn1Zceqg0sp5fyiycaVxnuycNXWFB\nqrl1tcyWLAuQzEkljh8dUrLs/YyLC+NdTnXXUmljdQKBgQDi5UUZBhdOuWMscdjo\nYnMrB6WnYzKqi1EEv03bJDILh5MVgmZWb+5BMdQQieex5qrXO77yGgOfWSVwdZQe\nDxB7JXwB2RaCnWcAxCjKKCQikvknEFuYOtXlevnHOQ7U2DegU4WWbSRJLL+tyMn5\nsA+KHPcLQ+knkxBxHWGpRuNZ1wKBgQDcIgoQNMRE4941xb2tTqxmJC75Mz8LgXY1\nXS1Ga4KnV/1GDEtnlwsvGJGJRN9jvvJGgbKCvEIY7aSBbYETBlnp71tyRxn23RXW\ngdZTDGy+L6cjQFiBXCP5/PbDHNFP0I+RSgE+0r1wY6ZaabikDfYOt43lHb9CJfDv\n51Xr67KptwKBgQC4l5o9n4z6ySx8DitP9DiKO3Bz2+pugWVqnVD0BmCIrMXm6+3i\nSLHnbGiBBBDx1R4MeVkBklR8IYSqF55nTg40gex/fGQp43DXWL9uqHWtgzEcrNw3\n3zYBuqjXgf4k/7tRvmGiXiz1M2jGM+LONoSN8r6x9ZAMWEM6I5M+qqNwhQKBgQCP\nxzfVb/GFoWOAsZ/6szkNGbMIlv0lkbBYmHw603upu2G0v9D8Xv4yC5T7GF3j81Kg\n1JN4qmdtisH4u0Ij3/EYR3ruAByoTay2x2TqJ2JbMhqzfpKQI1NoM14lAAyCWhF7\nbt+zXcfXwW5k/UpY9Lly0Va/gBdsqAVfXDSVfAPcrwKBgQCEqjsZheK9XAT/Dm2C\nT5Fi732mrV+5GlfflGXV55fQDPSLFuSxFokQWRJxxngPpp+Zif99TRh2AFSGzlsS\n3svEm/Tg40/YEjQ/at5h4Xy303YwExYuzX4a43HgiNLPvW3hRZlO5zWZKhpI1RWC\nCxllld+OWHZRtGn+ubsdoj+9yw==\n-----END PRIVATE KEY-----\n",
+        "client_email": "planos@citric-kit-365717.iam.gserviceaccount.com",
+        "client_id": "116906923711637994237",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/planos%40citric-kit-365717.iam.gserviceaccount.com"
+      }
+      
+
+      const auth = new GoogleAuth({
+        credentials,
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      });
+
+      const authClient = (await auth.getClient()) as OAuth2Client;
+
+      this.sheets = google.sheets({ version: 'v4', auth: authClient });
+    } catch (error) {
+      console.error('❌ Error autenticando Google Sheets:', error);
+      throw new InternalServerErrorException('Error autenticando Google Sheets');
+    }
+  }
+
+  async consultarArchivo(idFile: string, sheet: string) {
+    try {
+      if (!this.sheets) {
+        await this.authSheets();
+      }
+
+      const getRows = await this.sheets.spreadsheets.values.get({
+        spreadsheetId: idFile,
+        range: sheet,
+      });
+
+      return getRows.data;
+    } catch (error) {
+      console.error(`❌ Error consultando archivo: ${idFile}, Hoja: ${sheet}`, error);
+      throw new InternalServerErrorException('Error al consultar el archivo en Google Sheets');
+    }
+  }
+}

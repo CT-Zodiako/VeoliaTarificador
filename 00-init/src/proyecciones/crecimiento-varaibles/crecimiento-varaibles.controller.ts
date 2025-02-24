@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { CrecimientoVaraiblesService } from './crecimiento-varaibles.service';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
 
@@ -20,7 +20,7 @@ export class CrecimientoVaraiblesController {
     return this.crecimientoVaraiblesService.registrarCrecimientoInfTerceros(data, usuario.SISU_ID);
   }
   @Get(`consultarCrecimiento`)
-  consultarCrecimiento(@Body() data) {
+  consultarCrecimiento(@Query() data) {
     return this.crecimientoVaraiblesService.consultarCrecimiento(data);
   }
 }

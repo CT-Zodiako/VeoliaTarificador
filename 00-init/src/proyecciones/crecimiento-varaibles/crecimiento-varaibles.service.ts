@@ -4,6 +4,7 @@ import { UpdateCrecimientoVaraibleDto } from './dto/update-crecimiento-varaible.
 import { In, Repository } from 'typeorm';
 import { ProyProyeccion } from './entities/crecimiento-varaible.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { DriveService } from '../../drive/drive.service';
 
 @Injectable()
 export class CrecimientoVaraiblesService {
@@ -11,6 +12,7 @@ export class CrecimientoVaraiblesService {
 constructor(
   @InjectRepository(ProyProyeccion)
   private readonly crecimientoVaraibleRepository: Repository<ProyProyeccion>,
+  private readonly driveService: DriveService
 ) {}
 
   async registrarCrecimientoUsuarios(data, usuario) {
@@ -34,21 +36,54 @@ constructor(
       return `error en registrarCrecimientoUsuarios: ${error}`;
     }
   }
-  async consultarCrecimiento(data) {
+  async consultarCrecimiento(data: { APSA_ID: number }) {
     try {
-      const {PROY_ID} = data;
-      const resultado = this.crecimientoVaraibleRepository.query(`
-        SELECT * FROM PROY_CRECIMIENTO_VBLES WHERE APSA_ID = :1
-        `, [PROY_ID]);
-
-      
-
-      
-        
+      const { APSA_ID } = data;
+  
+      // Usar await para esperar la consulta
+      const resultado = await this.crecimientoVaraibleRepository.query(
+        `SELECT * FROM PROY_CRECIMIENTO_VBLES WHERE APSA_ID = :1`,
+        [APSA_ID],
+      );
+  
+      if (!resultado || resultado.length === 0) {
+        return { status: 404, message: 'No se encontraron datos' };
+      }
+  
+      const docId = resultado[0].ID_ARCHIVO;
+      const sheetList = resultado[0].LISTA_HOJAS.split(',');
+      const dataFormateada = [];
+  
+      // for...of para manejar promesas correctamente
+      for (const hoja of sheetList) {
+        const data = await this.driveService.consultarArchivo(docId, hoja);
+  
+        if (!data || !data.values || data.values.length === 0) {
+          continue;
+        }
+  
+        const cabeceras = data.values[0];
+        data.values.shift();
+  
+        dataFormateada.push({
+          TITLE: hoja,
+          dataset: {
+            columns: cabeceras,
+            data: data.values,
+          },
+        });
+      }
+  
+      return {
+        status: 200,
+        data: dataFormateada,
+      };
     } catch (error) {
-      return `error en consultarCrecimiento: ${error}`;
+      console.error('Error en consultarCrecimiento:', error);
+      throw new Error(`Error en consultarCrecimiento: ${error.message}`);
     }
   }
+  
   async registrarCrecimientoInfTerceros(data, usuario) {
     try {
       const {PROY_ID,datosTerceros} = data;
