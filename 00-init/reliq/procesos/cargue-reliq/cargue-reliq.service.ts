@@ -211,9 +211,12 @@ export class CargueReliqService {
     }
   }
 
-  async updateReliInfoUsuarios(usuaUsua:number, updateReliInfUsuApSemprDiviArrayDTO: UpdateReliInfUsuApSemprDiviArrayDTO) {
+  async updateReliInfoUsuarios(
+    usuaUsua: number,
+    updateReliInfUsuApSemprDiviArrayDTO: UpdateReliInfUsuApSemprDiviArrayDTO
+  ) {
     try {
-      updateReliInfUsuApSemprDiviArrayDTO.data.forEach(async (element) => {
+      for (const element of updateReliInfUsuApSemprDiviArrayDTO.data) {
         await this.reliInfUsuApSemprDiviRepository.update(
           { reliId: element.reliId, iuaeId: element.iuaeId },
           {
@@ -228,10 +231,12 @@ export class CargueReliqService {
             usuaUsua: usuaUsua,
           }
         );
-      });
+      }
       return { message: 'ReliInfoUsuarios Actualizado' };
     } catch (error) {
-      console.log(`Error CargueReliqService.updateReliInfoUsuarios: ${error}`);
+      console.error(`Error en updateReliInfoUsuarios: ${error}`);
+      throw new Error('Error al actualizar la información');
     }
   }
+  
 }
